@@ -1,0 +1,32 @@
+#sidebar{
+    background-color: grey;
+    color: white;
+}
+#username{
+    margin-top: 10px;
+}
+#profile{
+    width :40px;
+    height: 40px;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.listTitle{
+    padding : 10px;
+    padding-bottom: 5%;
+    background-color: rgb(226, 136, 0);
+    color: white;
+}
+.sidebarlist{
+    padding :10px;
+    background-color: rgb(255, 238, 212);
+    color: rgb(51, 35, 0)
+}
+.sidebarComp{
+    margin : 20px 0px;
+}
+.schedule{
+    background-color: rgb(212, 212, 212);
+    margin :30px 10px 10px 30px;
+}
