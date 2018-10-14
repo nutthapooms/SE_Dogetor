@@ -37,7 +37,31 @@
     width: 40px;
     margin: 0px;
 }
-.schedule{
-    background-color: rgb(212, 212, 212);
+.content{
+    background-color: rgb(255, 255, 255);
     margin :30px 10px 10px 30px;
 }
+.schedule{
+    background-color: rgb(255, 238, 212);
+   
+}
+#schedulehead{
+    background-color : rgb(255, 229, 182);
+    margin-bottom :0px;
+}
+.eachday{
+    padding-left: 20px;
+    width: 110px;
+    height: 110px;  
+    border: 10px;  
+}
+.day{
+
+    text-align: center;
+    background-color: rgb(226, 136, 0);
+    color : white; 
+    width: 110px;
+    height: 50px;  
+    border: 10px;  
+}
+
