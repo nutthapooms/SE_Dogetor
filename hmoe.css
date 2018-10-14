@@ -19,12 +19,23 @@
     color: white;
 }
 .sidebarlist{
-    padding :10px;
+    padding :0px;
     background-color: rgb(255, 238, 212);
     color: rgb(51, 35, 0)
 }
 .sidebarComp{
     margin : 20px 0px;
+}
+
+.dognameinlist{
+    padding : 0px 10px;
+    width: 120px;
+    margin: 0px;
+}
+.dognameindot{
+    padding : 3px 10px;
+    width: 40px;
+    margin: 0px;
 }
 .schedule{
     background-color: rgb(212, 212, 212);
