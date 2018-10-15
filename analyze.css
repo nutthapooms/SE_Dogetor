@@ -1,0 +1,65 @@
+.rect-header{
+    position: absolute;
+    width: 350px;
+    height: 70px;
+    left: 192px;
+    top: 90px;
+
+    background: rgb(226, 136, 0);
+    border-radius: 10px;
+}
+
+.text-header{
+    position: absolute;
+    left: 53px;
+    top: 10px;
+
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 35px;
+
+    color: #FFFFFF;
+}
+
+.rect-bar{
+    position: absolute;
+    width: 275px;
+    height: 40px;
+
+    background: grey;
+    border-radius: 10px;
+}
+
+.rect-bar-w{
+    position: absolute;
+    width: 400px;
+    height: 40px;
+
+    background: grey;
+    border-radius: 10px;
+}
+
+.text-bar{
+    position: absolute;
+    left: 12px;
+    top: 7px;
+
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 18px;
+
+    color: #FFFFFF;
+}
+
+.symptom-box{
+    position: absolute;
+    width: 615px;
+    height: 350px;
+
+    background: #FFFFFF;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
