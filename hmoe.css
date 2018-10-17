@@ -6,8 +6,11 @@
     margin-top: 10px;
 }
 #loginpics{
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-left: auto;
+    margin-right: auto;
 }
 #profile{
     width :40px;
