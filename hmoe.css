@@ -9,8 +9,15 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 2% 0%;
+}
+#logincontent{
+    background-color: rgb(85, 85, 85);
+    margin-top: 2%;
+    padding:0px;
+}
+#loginpagecontent{
+    padding :2%;
 }
 #profile{
     width :40px;
