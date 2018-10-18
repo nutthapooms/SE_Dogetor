@@ -29,7 +29,7 @@
                     <div class="navbar-nav ml-auto">
                         <a class="nav-item nav-link" href="#">About us</a>
                         <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Loginmodal"><i class="fas fa-user-plus"></i> Log in</a></button>
-                        <a class="nav-item nav-link" href="#">Register</a>
+                        <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Registermodal"><i class="fas fa-user-plus"></i> Register</a></button>
                     </div>
                 </div>
             </div>
@@ -37,7 +37,6 @@
        
 <!--  Navbar End------------------------------------------------------------------------------------------------->   
 <!--  Example Slide Start------------------------------------------------------------------------------------------------>   
-
         <div class = "row" >
              <div class ="col-2"></div>
              <div class ="col-8" id = "logincontent">
@@ -68,7 +67,6 @@
         </div>
 <!--  Example Slide End------------------------------------------------------------------------------------------------->   
 <!--  Login Modal start------------------------------------------------------------------------------------------------->   
-
         <div class="modal fade" id="Loginmodal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <div class="modal-content">
@@ -86,19 +84,18 @@
                                         <table>
                                                 <tr>
                                                     <td>Username</td>
-                                                    <td>  :  </td>
+                                                    
                                                     <td><input class = "form-control" type="text" placeholder="Username"></td>
                                                 </tr>
                                                 <tr>
                                                     <td>Password</td>
-                                                    <td>  :  </td>
+                                                    
                                                     <td><input class = "form-control" type="password" placeholder="Password"></td>
                                                 </tr>
                                             </table>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary ">Log in</button>
@@ -108,8 +105,49 @@
                 </div>
               </div>
 <!--  Login Modal End------------------------------------------------------------------------------------------------->   
-        
-    
+        <div class="modal fade" id="Registermodal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="LoginModalLabel">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class = "container-fluid">
+                            <div class = "row">
+                                <div class = "col-1"></div>
+                                <div class = "col-9">
+                                        <table>
+                                            <tr>
+                                                <td>Username</td>
+                                                <td><input class = "form-control" type="text" placeholder="Username"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email</td>
+                                                <td><input class = "form-control" type="text" placeholder="youremail@gmail.com"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Password</td>
+                                                <td><input class = "form-control" type="password" placeholder="Password"></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Confirm Password</td>
+                                                <td><input class = "form-control" type="password" placeholder="Confirm Password"></td>
+                                            </tr>
+                                        </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary ">Register</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
