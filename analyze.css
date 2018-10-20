@@ -22,6 +22,35 @@
     color: #FFFFFF;
 }
 
+.head-field{
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 18px;
+
+    color: white;
+    background: grey;
+
+    border: grey;
+    border-radius: 10px;
+}
+
+.rect-field{
+    position: absolute;     
+    width: 275px;
+    height: 40px;
+
+    border-radius: 10px;
+}
+
+.rect-field-w{
+    position: absolute;
+    width: 400px;
+    height: 40px;
+
+    border-radius: 10px;
+}
+
 .rect-bar{
     position: absolute;
     width: 275px;
