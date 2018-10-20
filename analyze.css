@@ -1,18 +1,23 @@
-.rect-header{
+.page-header{
     position: absolute;
     width: 350px;
     height: 70px;
-    left: 192px;
-    top: 90px;
+    margin-left: 192px;
+    margin-top: 90px;
 
+    
     background: rgb(226, 136, 0);
     border-radius: 10px;
 }
 
-.text-header{
+.page-header h1{
     position: absolute;
-    left: 53px;
-    top: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+
+    white-space: nowrap;
 
     font-style: normal;
     font-weight: normal;
@@ -51,44 +56,37 @@
     border-radius: 10px;
 }
 
-.rect-bar{
-    position: absolute;
-    width: 275px;
-    height: 40px;
-
-    background: grey;
-    border-radius: 10px;
-}
-
-.rect-bar-w{
-    position: absolute;
-    width: 400px;
-    height: 40px;
-
-    background: grey;
-    border-radius: 10px;
-}
-
-.text-bar{
-    position: absolute;
-    left: 12px;
-    top: 7px;
-
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    font-size: 18px;
-
-    color: #FFFFFF;
-}
-
-.symptom-box{
+.box-symptom{
     position: absolute;
     width: 615px;
     height: 350px;
+    margin-bottom: 20px;
 
     background: #FFFFFF;
     border: 1px solid #000000;
     box-sizing: border-box;
     border-radius: 10px;
 }
+
+.box-symptom h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+
+    font-style: normal;
+    font-weight: bold;
+    line-height: normal;
+    font-size: 80px;
+
+    color: grey;
+}
+
+/* .center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+} */
