@@ -119,65 +119,77 @@
 <!-- Side bar End---------------------------------------------------------------------------------------------->
 
 <!--  Analyze part Start ---------------------------------------------------------------------------------------------->
-                <div style="position:absolute; top:0px; left:26%;">
-                    <div class="rect-header"><h1 class="text-header">Analyze Disease</h1></div>
-                    <div style="position:absolute; top:200px; left:60px;">
+                <div id="analyzereg" style="position:absolute; top:0px; left:26%;">
+                    <div class="page-header"><h1>Analyze Disease</h1></div>
+                    <div style="position:absolute; margin-top:200px; margin-left:60px;">
                         <!-- Name -->
                         <div class="input-group mb-3 rect-field">
                             <div class="input-group-prepend">
                                 <span class="input-group-text head-field" id="basic-addon1">Name</span>
                             </div>
-                            <input type="text" class="form-control rect-field" placeholder="Pet's name" aria-label="Pet's name" aria-describedby="Pet's name">
+                            <input type="text" class="form-control rect-field" v-model="name" placeholder="Pet's name" aria-label="Pet's name" aria-describedby="Pet's name">
                         </div>
                         <!-- Age -->
-                        <div class="input-group mb-3 rect-field" style="left:340px;">
+                        <div class="input-group mb-3 rect-field" style="margin-left:340px;">
                             <div class="input-group-prepend">
                                 <span class="input-group-text head-field" id="basic-addon1">Age</span>
                             </div>
-                            <input type="text" class="form-control rect-field" placeholder="Pet's age" aria-label="Pet's age" aria-describedby="Pet's age">
+                            <input type="text" class="form-control rect-field" v-model="age" placeholder="Pet's age" aria-label="Pet's age" aria-describedby="Pet's age">
                         </div>
                     </div>
-                    <div style="position:absolute; top:255px; left:60px;">
+                    <div style="position:absolute; margin-top:255px; margin-left:60px;">
                         <!-- Breed -->
                         <div class="input-group mb-3 rect-field">
                             <div class="input-group-prepend">
                                 <label class="input-group-text head-field" for="breed">Breed</label>
                             </div>
-                            <select class="custom-select rect-field" id="breed">
-                                <option selected>Select pet's breed</option>
+                            <select class="custom-select rect-field" id="breed" v-model="breed">
+                                <option value="" disabled selected>Select pet's breed</option>
                                 <option value="1">Huskey</option>
                                 <option value="2">Labrador</option>
                                 <option value="3">Golden</option>
                             </select>
                         </div>
                         <!-- Gender -->
-                        <div class="input-group mb-3 rect-field" style="left:340px;">
+                        <div class="input-group mb-3 rect-field" style="margin-left:340px;">
                             <div class="input-group-prepend">
                                 <label class="input-group-text head-field" for="breed">Gender</label>
                             </div>
-                            <select class="custom-select rect-field" id="breed">
-                                <option selected>Select pet's gender</option>
+                            <select class="custom-select rect-field" id="breed" v-model="gend">
+                                <option value="" disabled selected>Select pet's gender</option>
                                 <option value="1">Dog (male)</option>
                                 <option value="2">Bitch (female)</option>
                             </select>
                         </div>
                     </div>
                     <!-- Symptom -->
-                    <div class="input-group mb-3 rect-field-w" style="top:320px; left:166px;">
+                    <div class="input-group mb-3 rect-field-w" style="margin-top:320px; margin-left:166px;">
                         <div class="input-group-prepend">
                             <label class="input-group-text head-field" for="breed">Symptom type</label>
                         </div>
-                        <select class="custom-select rect-field" id="breed">
-                            <option selected>Select type of symptom</option>
+                        <select class="custom-select rect-field" id="breed" v-model="symptype">
+                            <option value="" disabled selected>Select type of symptom</option>
                             <option value="1">Skin</option>
                             <option value="2">Nose</option>
                             <option value="3">Mouth</option>
                             <option value="4">Eyes</option>
                             <option value="5">Ears</option>
                         </select>
+                    </div>                    
+                    <div class="box-symptom" style="margin-top:380px; margin-left:60px;">
+                        <h1>Symptom</h1>
+                        <!-- {{ name }}
+                        <br>
+                        {{ age }}
+                        <br>
+                        {{ breed }}
+                        <br>
+                        {{ gend }}
+                        <br>
+                        {{ symptype }}
+                        <br>
+                        {{ symp }} -->
                     </div>
-                    <!-- <div class="rect-field-w" style="top:320px; left:166px;"><p class="text-bar">Symptom type</p></div> -->
-                    <div class="symptom-box" style="top:380px; left:60px;"></div>
                 </div>
                 <div class="rect-bar-w" style="top:320px; left:166px;">
                     <p class="text-bar">Symptom type</p>
@@ -197,6 +209,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="homee.js"></script>
 
-<!-- <script src="analyzereg.js"></script> -->
-
+    <script src="analyzereg.js"></script>
+    
 </html>

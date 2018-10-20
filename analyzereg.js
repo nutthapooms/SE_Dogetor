@@ -1,8 +1,12 @@
 var app_var = new Vue({
-    el: '#analysereg',
+    el: '#analyzereg',
     data: {
-        title: 'Hello',
-        name: 'Dolla'
+        name: '',
+        age: '',
+        breed: '',
+        gend: '',
+        symptype: '',
+        symp: ''
     },
     methods: {
         // sayGreeting : function () {
