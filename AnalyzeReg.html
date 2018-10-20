@@ -86,14 +86,61 @@
                 <div style="position:absolute; top:0px; left:26%;">
                     <div class="rect-header"><h1 class="text-header">Analyze Disease</h1></div>
                     <div style="position:absolute; top:200px; left:60px;">
-                        <div class="rect-bar"><p class="text-bar">Name</p></div>
-                        <div class="rect-bar" style="left:340px;"><p class="text-bar">Species</p></div>
+                        <!-- Name -->
+                        <div class="input-group mb-3 rect-field">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text head-field" id="basic-addon1">Name</span>
+                            </div>
+                            <input type="text" class="form-control rect-field" placeholder="Pet's name" aria-label="Pet's name" aria-describedby="Pet's name">
+                        </div>
+                        <!-- Age -->
+                        <div class="input-group mb-3 rect-field" style="left:340px;">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text head-field" id="basic-addon1">Age</span>
+                            </div>
+                            <input type="text" class="form-control rect-field" placeholder="Pet's age" aria-label="Pet's age" aria-describedby="Pet's age">
+                        </div>
                     </div>
                     <div style="position:absolute; top:255px; left:60px;">
-                        <div class="rect-bar"><p class="text-bar">Age</p></div>
-                        <div class="rect-bar" style="left:340px;"><p class="text-bar">Gender</p></div>
+                        <!-- Breed -->
+                        <div class="input-group mb-3 rect-field">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text head-field" for="breed">Breed</label>
+                            </div>
+                            <select class="custom-select rect-field" id="breed">
+                                <option selected>Select pet's breed</option>
+                                <option value="1">Huskey</option>
+                                <option value="2">Labrador</option>
+                                <option value="3">Golden</option>
+                            </select>
+                        </div>
+                        <!-- Gender -->
+                        <div class="input-group mb-3 rect-field" style="left:340px;">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text head-field" for="breed">Gender</label>
+                            </div>
+                            <select class="custom-select rect-field" id="breed">
+                                <option selected>Select pet's gender</option>
+                                <option value="1">Dog (male)</option>
+                                <option value="2">Bitch (female)</option>
+                            </select>
+                        </div>
                     </div>
-                    <div class="rect-bar-w" style="top:320px; left:166px;"><p class="text-bar">Symptom type</p></div>
+                    <!-- Symptom -->
+                    <div class="input-group mb-3 rect-field-w" style="top:320px; left:166px;">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text head-field" for="breed">Symptom type</label>
+                        </div>
+                        <select class="custom-select rect-field" id="breed">
+                            <option selected>Select type of symptom</option>
+                            <option value="1">Skin</option>
+                            <option value="2">Nose</option>
+                            <option value="3">Mouth</option>
+                            <option value="4">Eyes</option>
+                            <option value="5">Ears</option>
+                        </select>
+                    </div>
+                    <!-- <div class="rect-field-w" style="top:320px; left:166px;"><p class="text-bar">Symptom type</p></div> -->
                     <div class="symptom-box" style="top:380px; left:60px;"></div>
                 </div>
 <!--  Analyze part End ---------------------------------------------------------------------------------------------->
