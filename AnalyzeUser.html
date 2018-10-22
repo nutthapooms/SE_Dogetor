@@ -50,16 +50,20 @@
                         <!-- Name -->
                         <div class="input-group mb-3 rect-field">
                             <div class="input-group-prepend">
-                                <span class="input-group-text head-field" id="basic-addon1">Name</span>
+                                <span class="input-group-text head-field" id="name">Name</span>
                             </div>
-                            <input type="text" class="form-control rect-field" v-model="name" placeholder="Pet's name" aria-label="Pet's name" aria-describedby="Pet's name">
+                            <input type="text" class="form-control rect-field" 
+                            v-model="petinfo.name" placeholder="Pet's name" 
+                            aria-label="Pet's name" aria-describedby="Pet's name">
                         </div>
                         <!-- Age -->
                         <div class="input-group mb-3 rect-field" style="left:340px;">
                             <div class="input-group-prepend">
                                 <span class="input-group-text head-field" id="basic-addon1">Age</span>                                
                             </div>
-                            <input type="text" class="form-control rect-field" v-model="age" placeholder="Pet's age" aria-label="Pet's age" aria-describedby="Pet's age">
+                            <input type="text" class="form-control rect-field" 
+                            v-model="petinfo.age" placeholder="Pet's age" 
+                            aria-label="Pet's age" aria-describedby="Pet's age">
                         </div>
                     </div>
                     <div style="position:absolute; top:155px; left:60px;">
@@ -68,11 +72,12 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text head-field" for="breed">Breed</label>
                             </div>
-                            <select class="custom-select rect-field" id="breed" v-model="breed">
+                            <select class="custom-select rect-field" id="breed" 
+                            v-model="breedval" v-on:change="changeBreed">
                                 <option value="" disabled selected>Select pet's breed</option>
-                                <option value="1">Huskey</option>
-                                <option value="2">Labrador</option>
-                                <option value="3">Golden</option>
+                                <option v-for="(breed, index) in breedall" 
+                                v-bind:value="index+1">
+                                {{ breed }}</option>
                             </select>
                         </div>
                         <!-- Gender -->
@@ -80,10 +85,11 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text head-field" for="gender">Gender</label>
                             </div>
-                            <select class="custom-select rect-field" id="gender" v-model="gend">
+                            <select class="custom-select rect-field" id="gender" 
+                            v-model="gendval" v-on:change="changeGender">
                                 <option value="" disabled selected>Select pet's gender</option>
-                                <option value="1">Dog (male)</option>
-                                <option value="2">Bitch (female)</option>
+                                <option v-for="(gend, index) in gendall" 
+                                v-bind:value="index+1">{{ gend }}</option>
                             </select>
                         </div>
                     </div>
@@ -98,11 +104,8 @@
                         <select class="custom-select rect-field" id="symptomtype" 
                         v-model="typeval" v-on:change="changeSymptomType">
                             <option value="" disabled selected>Select type of symptom</option>
-                            <option value="1">Skin</option>
-                            <option value="2">Nose</option>
-                            <option value="3">Mouth</option>
-                            <option value="4">Eyes</option>
-                            <option value="5">Ears</option>
+                            <option v-for="(type, index) in typenameall" v-bind:value="index+1">
+                            {{ type }}</option>
                         </select>
                     </div>
                     <!-- Symptom box -->
@@ -121,17 +124,17 @@
                         </div>
                         <div class="line-divide"></div>
                         <!-- Symptom detail -->
-                        <div class="box-symptom-half box-detail" v-for="symp in sympdet" style="text-align:center;">
-                            <h2>{{ symp.name }}</h2>                                    
+                        <div class="box-symptom-half box-detail" style="text-align:center;">
+                            <h2>{{ sympdet.name }}</h2>                                    
                             <p>
-                                <img class="img-symptom" v-bind:src="symp.pic"/>
-                                <img class="img-symptom" v-bind:src="symp.pic"/>
+                                <img class="img-symptom" v-bind:src="sympdet.pic"/>
+                                <img class="img-symptom" v-bind:src="sympdet.pic"/>
                             </p>
                             <p>
-                                <div>{{ symp.detail }}</div>
+                                <div>{{ sympdet.detail }}</div>
                             </p>
                         </div>
-                        <button type="button" class="btn btn-analyze" style="right:0px; top:360px">
+                        <button type="button" class="btn btn-analyze" style="top:360px; right:0px;">
                             <i class="fas fa-search"></i> Analyze
                         </button>
                     </div>
@@ -148,6 +151,6 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="homee.js"></script>
-    <script src="analyzeuser.js"></script>
+    <script src="analyze.js"></script>
     
 </html>
