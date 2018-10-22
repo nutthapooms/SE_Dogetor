@@ -29,7 +29,7 @@ var storage = multer.diskStorage({
         callback(null, __dirname + '/public/image');
     },
     filename: function (req, file, callback) {
-        callback(null,Date.now()+file.originalname);
+        callback(null,file.originalname);
     }
 });
 
@@ -46,7 +46,7 @@ var newuser = new userData();
     newuser.username = req.body.username;
     newuser.email = req.body.email;
     newuser.password = req.body.pwd;
-    newuser.avatar = req.file.filename   
+    newuser.avatar = req.file.filename;  
 
     newuser.save(function (err, book) {
         if (err) {
