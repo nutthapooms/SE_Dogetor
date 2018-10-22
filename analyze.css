@@ -63,24 +63,80 @@
     margin-bottom: 20px;
 
     background: #FFFFFF;
-    border: 1px solid #000000;
+    border: 1px solid black;
     box-sizing: border-box;
     border-radius: 10px;
 }
 
-.box-symptom h1{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    margin: 0;
+.box-symptom .box-list{
+    width: 236px;
+    height: 348px;
+}
 
+.box-symptom .box-detail{
+    width: 376px;
+    height: 348px;
+}
+
+.box-symptom h1{
     font-style: normal;
     font-weight: bold;
     line-height: normal;
     font-size: 80px;
 
     color: grey;
+}
+
+.box-symptom-half{
+    position: relative;
+    /* width: 306px;
+    height: 348px; */
+    float: left;
+
+    background: #FFFFFF;
+    border-radius: 10px;
+    /* border: 1px solid black; */
+
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+}
+
+.box-symptom-half h2{
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    /* font-size: 20px; */
+
+    color: black;
+}
+
+.box-symptom-half div{
+    font-style: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-size: 18px;
+
+    color: black;
+}
+
+.img-symptom{
+    position: relative;
+    width: 165px;
+    height: auto;
+
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.line-divide{
+    position: relative;
+    width: 1px;
+    height: 348px;
+    float: left;
+
+    background: black;
 }
 
 /* .center{
@@ -90,3 +146,12 @@
     transform: translate(-50%, -50%);
     margin: 0;
 } */
+
+.center h1{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+}
+
