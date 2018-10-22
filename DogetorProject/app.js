@@ -23,6 +23,10 @@ app.get('/', function (req, res) {
     res.render('Regis.ejs');
 
 });
+app.get('/home', function (req, res) {
+    res.render('homepage.ejs');
+
+});
 
 app.post('/', function (req, res) {
     var newuser = new userData();
