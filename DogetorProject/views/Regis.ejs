@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dogetor</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
+</head>
+
+<body>
+    <!--  Navbar Start--------------------------------------------------------------------------------------------------->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class=container>
+            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link" href="#">About us</a>
+                    <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Loginmodal"><i class="fas fa-user-plus"></i>
+                        Log in</a></button>
+                    <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Registermodal"><i class="fas fa-user-plus"></i>
+                        Register</a></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!--  Navbar End------------------------------------------------------------------------------------------------->
+    <!--  Example Slide Start------------------------------------------------------------------------------------------------>
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-6" id="logincontent">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="/image/jhin.jpg" alt="First slide">
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="/image/jhinb.jpg" alt="Second slide">
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+        <div class="col-4" id="loginpagecontent">
+            <h2>Mind your Little beast</h2>
+            It's free and always will be(like facebook).
+        </div>
+    </div>
+    <!--  Example Slide End------------------------------------------------------------------------------------------------->
+    <!--  Login Modal start------------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="Loginmodal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LoginModalLabel">LOG IN</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div align="center">
+                            <img src="/image/jhin.jpg" id="loginpics" alt="">
+
+                        </div>
+                        <div class="row">
+                            <div class="col-2"></div>
+                            <div class="col-8">
+                                <table>
+                                    <tr>
+                                        <td>Username</td>
+
+                                        <td><input class="form-control" type="text" placeholder="Username"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Password</td>
+
+                                        <td><input class="form-control" type="password" placeholder="Password"></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary ">Log in</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Login Modal End------------------------------------------------------------------------------------------------->
+    <div class="modal fade" id="Registermodal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="LoginModalLabel">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <!-- <div class="col-1"></div> -->
+                            <div class="col-12">
+                                <form method="POST">
+
+                                    <div class="form-group">
+                                        <label for="username">Username:</label>
+                                        <input type="text" class="form-control" name="username" placeholder="username">
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" class="form-control" name="email" placeholder="email">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="pwd">Password:</label>
+                                        <input type="password" class="form-control" name="pwd" placeholder="password">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="Cpwd">Confirm Password:</label>
+                                        <input type="password" class="form-control" name="Cpwd" placeholder="Confirm password">
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <div class="row ">
+                                            <button type="submit" class="col btn btn-primary ">Register</button>
+                                            <button type="submit" class="col btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
+</html>
