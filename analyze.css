@@ -2,8 +2,7 @@
     position: absolute;
     width: 350px;
     height: 70px;
-    margin-left: 192px;
-    margin-top: 90px;
+    left: 192px;
 
     
     background: rgb(226, 136, 0);
@@ -69,12 +68,12 @@
 }
 
 .box-symptom .box-list{
-    width: 236px;
+    width: 241px;
     height: 348px;
 }
 
 .box-symptom .box-detail{
-    width: 376px;
+    width: 371px;
     height: 348px;
 }
 
@@ -141,7 +140,6 @@
 
 /* .center{
     position: absolute;
-    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     margin: 0;
@@ -155,3 +153,21 @@
     margin: 0;
 }
 
+.btn-analyze{
+    position:absolute;
+    margin-bottom: 30px;
+
+    font-size: 18px;
+
+    color: white;
+    background-color: rgb(0, 192, 226);
+
+    padding-top: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 5px;
+}
+
+.obj-hide{
+    visibility: hidden;
+}
