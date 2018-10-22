@@ -1,3 +1,4 @@
+var multer = require('multer')
 var mongoose = require('mongoose');
 var express = require('express');
 var app = express();
@@ -23,18 +24,29 @@ app.get('/', function (req, res) {
     res.render('Regis.ejs');
 
 });
-app.get('/home', function (req, res) {
-    res.render('homepage.ejs');
-
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, __dirname + '/public/image');
+    },
+    filename: function (req, file, callback) {
+        callback(null,Date.now()+file.originalname);
+    }
 });
 
-app.post('/', function (req, res) {
-    var newuser = new userData();
+var upload = multer({
+    storage: storage
+});
+
+
+
+app.post('/', upload.single('uploaded_image'), function (req, res) {
 
     
+var newuser = new userData();
     newuser.username = req.body.username;
-    newuser.email = req.body.email
+    newuser.email = req.body.email;
     newuser.password = req.body.pwd;
+    newuser.avatar = req.file.filename   
 
     newuser.save(function (err, book) {
         if (err) {
@@ -43,10 +55,13 @@ app.post('/', function (req, res) {
             console.log(book);
 
         }
-    })
+    });
+
 
     res.render('Regis.ejs')
 });
+
+
 
 
 app.listen(port);
