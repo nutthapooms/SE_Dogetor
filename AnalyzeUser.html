@@ -1,89 +1,104 @@
 <!DOCTYPE html>
 <html>
+
     <head>
-        <title>Dogetor</title>
+        <title>Analyze</title>
         <link rel="stylesheet" type="text/css" href="bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+            crossorigin="anonymous">
         <link rel="stylesheet" href="hmoe.css">
         <link rel="stylesheet" href="analyze.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- For use Vue.JS -->
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
     </head>
+
     <body>
-        
-<!--  Navbar Start--------------------------------------------------------------------------------------------------->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class = container>
-                <a class="navbar-brand " href="Homepage.html"><i class="fas fa-paw"></i> Dogetor</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+        <!--  Navbar Start--------------------------------------------------------------------------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class=container>
+            <a class="navbar-brand " href="Homepage.html"><i class="fas fa-paw"></i> Dogetor</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-                    <div class="navbar-nav ml-auto">
-                        <a class="nav-item nav-link active" href="Homepage.html">Home <span class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link" href="#">About us</a>
-                        <a class="nav-item nav-link" href="#">Log out</a>
-                    </div>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link active" href="Homepage.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">About us</a>
+                    <a class="nav-item nav-link" href="#">Log out</a>
                 </div>
             </div>
-        </nav>
-<!--  Navbar End------------------------------------------------------------------------------------------------->       
-        <div class="container" >
-            <div class="row">
-<!-- Side bar Start--------------------------------------------------------------------------------------------->
-                <div class = "col-2 rounded-bottom" id ="sidebar">
-                    <div class="sidebarComp">
-                        <img id = "profile" src="jhin.jpg">                                                                      <!-- userpics----->
-                        <h5 id = username>Nutthapoom</h5>                                                                        <!-- username----->                                    <div>3 dogs</div> 
-                    </div>
-                    <div class="sidebarComp" >
-                        <div class = "listTitle rounded-top"><i class="fas fa-dog"></i>  Dog list</div>
-                        <table class = "sidebarlist rounded-bottom">
-                            <tr class = "sidebarlist">
-                                <td class = "dognameinlist">he y</td>
-                                <td class = "dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                </tr>
-                                <tr >
-                                <td class = "dognameinlist">he y</td>
-                                <td class = "dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+        </div>
+    </nav>
+    <!--  Navbar End------------------------------------------------------------------------------------------------->
+    <!--  Topbar Start------------------------------------------------------------------------------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="topbar">
+        <div class="container">
+            <div class="mr-auto"><i class="fas fa-dog"></i></div>
+            <div class="mr-auto"><i class="fas fa-star"></i></div>
+            <div class=><i class="fas fa-search"></i></div>
+            <div class="ml-auto"><i class="fas fa-user-md"></i></div>
+            <div class="ml-auto"><i class="fas fa-briefcase-medical"></i></div>
+        </div>
+    </nav>
+    <!--  Topbar End------------------------------------------------------------------------------------------------->
+    <div class="container">
+        <div class="row">
+            <!-- Side bar Start--------------------------------------------------------------------------------------------->
+            <div class="col-2 rounded-bottom" id="sidebar">
+                <div class="sidebarComp">
+                    <img id="profile" src="jhin.jpg"> <!-- userpics----->
+                    <h5 id=username>Nutthapoom</h5> <!-- username----->
+                    <div>3 dogs</div>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
+                    <table class="sidebarlist rounded-bottom">
+                        <tr class="sidebarlist">
+                            <td class="dognameinlist">he y</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist">he y</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist">he y</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
+                    <div>
+                        <table class="sidebarlist rounded-bottom">
+                            <tr class="sidebarlist">
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                             </tr>
-                            <tr >
-                                <td class = "dognameinlist">he y</td>
-                                <td class = "dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            <tr>
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                             </tr>
                         </table>
                     </div>
-                    <div class="sidebarComp">
-                        <div class = "listTitle rounded-top"><i class="fas fa-star"></i>  Favourite</div>
-                        <div>
-                            <table class = "sidebarlist rounded-bottom">
-                                <tr class = "sidebarlist">
-                                    <td class = "dognameinlist">he y</td>
-                                    <td class = "dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                </tr>
-                                <tr >
-                                    <td class = "dognameinlist">he y</td>
-                                    <td class = "dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                </tr>
-                                <tr >
-                                    <td class = "dognameinlist">he y</td>
-                                    <td class = "dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                </tr>
-                            </table>
-                        </div> 
-                    </div>
-                    <div class="sidebarComp">
-                        <div class = "listTitle rounded"><i class="fas fa-user-md"></i>  Vet list</div>
-                    </div>
-                    <div class="sidebarComp">
-                        <div class = "listTitle rounded"><i class="fas fa-briefcase-medical"></i>  Hospital list</div>
-                    </div>
-                </div>                         
-<!-- Side bar End---------------------------------------------------------------------------------------------->
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
+                </div>
+            </div>
+            <!-- Side bar End---------------------------------------------------------------------------------------------->
 
-<!--  Analyze part Start ---------------------------------------------------------------------------------------------->
+                <!--  Analyze part Start ---------------------------------------------------------------------------------------------->
                 <div style="position:absolute; top:0px; left:26%;">
                     <div class="page-header"><h1>Analyze Disease</h1></div>
                     <!-- Pet info -->
@@ -181,14 +196,18 @@
                         </div>
                     </div>
                 </div>
-<!--  Analyze part End ---------------------------------------------------------------------------------------------->
-            </div> 
+                <!--  Analyze part End ---------------------------------------------------------------------------------------------->
+            </div>
         </div>
     </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="homee.js"></script>
     <script src="analyzeuser.js"></script>
     
 </html>
