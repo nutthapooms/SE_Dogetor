@@ -8,6 +8,7 @@ var expressValidator = require('express-validator');
 var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
+var bcrypt = require('bcrypt-nodejs');
 
 
 var LocalStrategy = require('passport-local'),
@@ -97,23 +98,22 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
             errors: errors
         })
     } else {
+        var salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(req.body.pwd, salt);
+        newuser = new userData();
+        newuser.username = req.body.username
+        newuser.email = req.body.email
+        newuser.password = hash
+        newuser.avatar = req.file.filename
 
-        var newuser = new userData();
-        newuser.username = req.body.username,
-            newuser.email = req.body.email,
-            newuser.password = req.body.pwd,
-            newuser.avatar = req.file.filename
-
-
-       
 
         userData.findOne({
             username: newuser.username,
-            
+
 
         }, function (err, result) {
-            
-            if (result == null  ) {
+
+            if (result == null) {
 
                 newuser.save(function (err, book) {
                     if (err) {
@@ -121,7 +121,7 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
                     } else {
                         console.log(book);
                     }
-                });
+                })
 
                 res.render('Regis.ejs', {
                     errors: ''
@@ -137,7 +137,29 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 
 });
 
+passport.use(new LocalStrategy(
+    function (username, password, done) {
+        userData.getUserByUsername(username, function (err, user) {
+            if (err) throw err;
 
+            if (!user) {
+                return done(null, false, {
+                    message: 'Unknown User'
+                })
+            }
+            userData.comparePassword(password, user.password, function (err, isMatch) {
+                if (err) throw err
+                if (isMatch) {
+                    return done(null, user);
+                } else {
+                    return done(null, false, {
+                        message: 'Unknown User'
+                    })
+                }
+            })
+        })
+    }
+))
 app.post('/login', function (req, res) {
 
 })
