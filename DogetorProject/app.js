@@ -11,6 +11,8 @@ var passport = require('passport')
 var bcrypt = require('bcrypt-nodejs');
 
 
+
+
 var LocalStrategy = require('passport-local'),
     Strategy;
 var port = 8080;
@@ -82,6 +84,10 @@ app.get('/', function (req, res) {
     });
 
 });
+app.get('/home', function (req, res) {
+    res.render('homepage.ejs');
+
+});
 
 app.post('/', upload.single('uploaded_image'), function (req, res) {
 
@@ -138,30 +144,48 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 });
 
 passport.use(new LocalStrategy(
-    function (username, password, done) {
-        userData.getUserByUsername(username, function (err, user) {
-            if (err) throw err;
-
+    function ( username,password, done) {
+        userData.findOne({
+            username: username
+        }, function (err, user) {
+            if (err) {
+                return done(err);
+            }
             if (!user) {
                 return done(null, false, {
-                    message: 'Unknown User'
-                })
+                    message: 'Incorrect username.'
+                });
             }
-            userData.comparePassword(password, user.password, function (err, isMatch) {
-                if (err) throw err
-                if (isMatch) {
-                    return done(null, user);
-                } else {
-                    return done(null, false, {
-                        message: 'Unknown User'
-                    })
-                }
-            })
-        })
+            if (user.password != password) {
+                return done(null, false, {
+                    message: 'Incorrect password.'
+                });
+            }
+            return done(null, user);
+        });
     }
-))
-app.post('/login', function (req, res) {
+));
 
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
+});
+
+passport.deserializeUser(function (id, done) {
+    userData.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
+
+app.post('/login',
+    passport.authenticate('local', {
+        successRedirect: '/home',
+        failureRedirect: '/',
+        failureFlash: true
+    })
+);
+
+app.get('/profile',function(req,res){
+    res.send(req.session)
 })
 
 app.listen(port);

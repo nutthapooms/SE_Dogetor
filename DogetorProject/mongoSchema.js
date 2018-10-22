@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+
 
 var Schema = mongoose.Schema;
 
@@ -12,5 +12,5 @@ var user = new Schema({
 
 });
 
-module.exports = mongoose.model('userData', user);
+var userData =module.exports = mongoose.model('userData', user);
 
