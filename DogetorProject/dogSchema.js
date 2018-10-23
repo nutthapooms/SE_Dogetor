@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 
 var Schema = mongoose.Schema;
 
+
 var dog = new Schema({
 
     name: String,
@@ -12,6 +13,7 @@ var dog = new Schema({
     symtom: String
 
 });
+
 
 
 

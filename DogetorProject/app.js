@@ -14,6 +14,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 
 
+
 var LocalStrategy = require('passport-local'),
     Strategy;
 var port = 8080;
@@ -105,7 +106,8 @@ app.get('/home',loggedIn, function (req, res) {
         }
     })
     res.render('homepage.ejs',{
-        msg:req.user.username
+        msg:req.user.username,
+        pic:req.user.avatar
     });
 
 });
