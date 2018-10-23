@@ -22,9 +22,9 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link active " href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">About us</a>
-                    <a class="nav-item nav-link" href="#">Log out</a>
+                    <a href="/logout"><button action='' method='GET' class="btn btn-dark  navbtn">Home</button></a>
+                    <a href="/logout"><button action='' method='GET' class="btn btn-dark  navbtn">About us</button></a>
+                    <a href="/logout"><button action='/logout' method='GET' class="btn btn-dark  navbtn">Log out</button></a>
                 </div>
             </div>
         </div>
@@ -119,16 +119,17 @@
                             <input type="text" class="form-control" placeholder="name">
                         </div>
                         <div class="form-group">
-                            <label >Gender:</label>
-                            <input type="text" class="form-control" placeholder="gender">
-                        </div>
-                        <div class="form-group">
                                 <label >Age(year):</label>
                                 <input type="number" class="form-control" placeholder="age">
                         </div>
                         <div class="form-group">
                                 <label >Breed:</label>
                                 <input type="text" class="form-control" placeholder="breed">
+                        </div>
+                        <div class="form-group">
+                            <label >Gender:</label><br>
+                            <input type="radio" name="gender" value="male"> Male
+                            <input type="radio" name="gender" value="female"> Female<br>
                         </div>
                         <div >
                             <button class="btn btn-primary ">Add</button>
