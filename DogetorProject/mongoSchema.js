@@ -8,9 +8,19 @@ var Schema = mongoose.Schema;
 
 var user = new Schema({
 
-    username: { type: String ,required: true, unique: true  },
-    password: { type: String},
-    email: { type: String, required: true, unique: true },
+    username: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
     avatar: String
 
 });
@@ -20,4 +30,3 @@ user.methods.validPassword = function (password) {
 };
 
 module.exports = mongoose.model('userData', user);
-

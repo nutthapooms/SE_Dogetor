@@ -57,7 +57,7 @@ app.use(expressValidator({
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(flash())
+app.use(flash());
 app.set('view engine', 'ejs')
 
 app.use(function (req, res, next) {
@@ -86,7 +86,8 @@ app.get('/', function (req, res) {
     } else {
         res.render('Regis.ejs', {
             errors: '',
-            dupli: ''
+            dupli: '' + req.flash('log'),
+
         })
     };
 
@@ -191,10 +192,18 @@ passport.deserializeUser(function (id, done) {
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/home',
-        failureRedirect: '/',
+        failureRedirect: '/error',
         failureFlash: true
     })
+
+
 );
+
+app.get('/error', function (req, res) {
+    req.flash('log', "Username or Password is invalid")
+    res.redirect('/')
+
+})
 
 app.get('/profile', function (req, res) {
     res.send(req.user)
