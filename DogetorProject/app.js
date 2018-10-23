@@ -88,7 +88,7 @@ app.get('/', function (req, res) {
     })};
 
 });
-app.get('/home', function (req, res) {
+app.get('/home',loggedIn, function (req, res) {
 
     newDog = new dogData();
     newDog.name = 'red';
@@ -213,5 +213,13 @@ app.get('/logout',function(req,res){
     req.logout();
     res.redirect('/')
 })
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
 
 app.listen(port);
