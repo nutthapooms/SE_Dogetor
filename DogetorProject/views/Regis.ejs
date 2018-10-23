@@ -68,7 +68,7 @@
             It's free and always will be(like facebook).
 
 
-            <% if(errors !== undefined){ %>
+            <% if(errors){ %>
             <% for (var error of errors){%>
             <div class="alert alert-danger">
                 <%=error.msg %>
@@ -81,6 +81,10 @@
             <% } else{ %>
             <h1></h1>
             <% } %>
+            <div class="alert alert-danger">
+                <%=dupli %>
+            </div>
+
 
 
 
