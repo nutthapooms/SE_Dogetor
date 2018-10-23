@@ -132,51 +132,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="eachday">1</td>
-                            <td class="eachday">2</td>
-                            <td class="eachday">3</td>
-                            <td class="eachday">4</td>
-                            <td class="eachday">5</td>
-                            <td class="eachday">6</td>
-                            <td class="eachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="eachday">1</td>
-                            <td class="eachday">2</td>
-                            <td class="eachday">3</td>
-                            <td class="eachday">4</td>
-                            <td class="eachday">5</td>
-                            <td class="eachday">6</td>
-                            <td class="eachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="eachday">1</td>
-                            <td class="eachday">2</td>
-                            <td class="eachday">3</td>
-                            <td class="eachday">4</td>
-                            <td class="eachday">5</td>
-                            <td class="eachday">6</td>
-                            <td class="eachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="eachday">1</td>
-                            <td class="eachday">2</td>
-                            <td class="eachday">3</td>
-                            <td class="eachday">4</td>
-                            <td class="eachday">5</td>
-                            <td class="eachday">6</td>
-                            <td class="eachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="eachday">1</td>
-                            <td class="eachday">2</td>
-                            <td class="eachday">3</td>
-                            <td class="eachday">4</td>
-                            <td class="eachday">5</td>
-                            <td class="eachday">6</td>
-                            <td class="eachday">7</td>
-                        </tr>
+                        <% for(var i=0; i<5; i++) {%>
+                            <tr>
+                                <% for(var j=0; j<7; j++) {%>
+                                    <td class = "eachday">1</td>
+                                <% } %>     
+                            </tr>
+                         <% } %>
                     </tbody>
                 </table>
             </div>
