@@ -156,7 +156,8 @@ passport.use(new LocalStrategy(
                     message: 'Incorrect username.'
                 });
             }
-            if (user.password != password) {
+            if (!(user.validPassword(password))) {
+                console.log('not match')
                 return done(null, false, {
                     message: 'Incorrect password.'
                 });
