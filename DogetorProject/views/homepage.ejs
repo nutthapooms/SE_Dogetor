@@ -52,21 +52,19 @@
                 </div>
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-                    <table class="sidebarlist rounded-bottom">
-                        <tr class="sidebarlist">
-                            <td class="dognameinlist">Husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist">The Rock</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist">Trump</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                   <table class="sidebarlist rounded-bottom">
+                            <% for(var i=0; i<3; i++) { %>
+                                    <tr>
+                                        <td class="dognameinlist">Husky</td>
+                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                                    </tr>
+                                <% } %>
                         <tr>
                             <td class="dognameinlist"><h5>more</h5></td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist"><h5>Add dog</h5></td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                     </table>
