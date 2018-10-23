@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var body = require('body-parser');
 var userData = require('./mongoSchema');
+var dogData = require('./dogSchema');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash')
 var session = require('express-session');
@@ -13,13 +14,14 @@ var bcrypt = require('bcrypt-nodejs');
 
 
 
+
 var LocalStrategy = require('passport-local'),
     Strategy;
 var port = 8080;
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
-        useNewUrlParser: true
-    },
+    useNewUrlParser: true
+},
     function (err) {
         if (err) throw err;
         console.log("connect!");
@@ -79,13 +81,35 @@ var upload = multer({
 });
 
 app.get('/', function (req, res) {
-    res.render('Regis.ejs', {
-        errors: ''
-    });
+    if (req.user != null) {
+        res.redirect('/home')
+    } else {
+        res.render('Regis.ejs', {
+            errors: '',
+            dupli: ''
+        })
+    };
 
 });
-app.get('/home', function (req, res) {
-    res.render('homepage.ejs');
+app.get('/home', loggedIn, function (req, res) {
+
+    newDog = new dogData();
+    newDog.name = 'red';
+    newDog.breed = 'thai';
+    newDog.owner = req.user.username;
+    newDog.symtom = '1';
+
+    newDog.save(function (err, dog) {
+        if (err) {
+            res.send("error register");
+        } else {
+            console.log(dog);
+        }
+    })
+    res.render('homepage.ejs', {
+        msg: req.user.username,
+        pic: req.user.avatar
+    });
 
 });
 
@@ -101,7 +125,8 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 
     if (errors) {
         res.render('Regis.ejs', {
-            errors: errors
+            errors: errors,
+            dupli: ''
         })
     } else {
         var salt = bcrypt.genSaltSync(10);
@@ -113,38 +138,28 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
         newuser.avatar = req.file.filename
 
 
-        userData.findOne({
-            username: newuser.username,
 
-
-        }, function (err, result) {
-
-            if (result == null) {
-
-                newuser.save(function (err, book) {
-                    if (err) {
-                        res.send("error register");
-                    } else {
-                        console.log(book);
-                    }
-                })
+        newuser.save(function (err, book) {
+            if (err) {
+                console.log(err.code);
 
                 res.render('Regis.ejs', {
-                    errors: ''
+                    errors: '',
+                    dupli: 'Username or Email is already in use '
+
                 })
             } else {
-                res.render('Regis.ejs', {
-                    errors: ''
-                })
-
+                console.log(book);
+                res.redirect("/")
             }
         })
+
     }
 
 });
 
 passport.use(new LocalStrategy(
-    function ( username,password, done) {
+    function (username, password, done) {
         userData.findOne({
             username: username
         }, function (err, user) {
@@ -156,7 +171,8 @@ passport.use(new LocalStrategy(
                     message: 'Incorrect username.'
                 });
             }
-            if (user.password != password) {
+            if (!(user.validPassword(password))) {
+                console.log('not match')
                 return done(null, false, {
                     message: 'Incorrect password.'
                 });
@@ -184,8 +200,21 @@ app.post('/login',
     })
 );
 
-app.get('/profile',function(req,res){
-    res.send(req.session)
+app.get('/profile', function (req, res) {
+    res.send(req.user)
+});
+
+app.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/')
 })
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
 
 app.listen(port);

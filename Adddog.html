@@ -3,11 +3,11 @@
 
 <head>
     <title>Dogetor</title>
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="static/hmoe.css">
+    <link rel="stylesheet" href="hmoe.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
 </head>
 
@@ -46,26 +46,28 @@
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <div class="col-2 rounded-bottom" id="sidebar">
                 <div class="sidebarComp">
-                    <img id="profile" src="/image/<%=pic%>"> <!-- userpics----->
-                    <h5 id=username><%=msg%></h5> <!-- username----->
+                    <img id="profile" src="jhin.jpg"> <!-- userpics----->
+                    <h5 id=username>Nutthapoom</h5> <!-- username----->
                     <div>3 dogs</div>
                 </div>
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-                   <table class="sidebarlist rounded-bottom">
-                            <% for(var i=0; i<3; i++) { %>
-                                    <tr>
-                                        <td class="dognameinlist">Husky</td>
-                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                    </tr>
-                                <% } %>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
+                    <table class="sidebarlist rounded-bottom">
+                        <tr class="sidebarlist">
+                            <td class="dognameinlist">Husky</td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                         <tr>
-                            <td class="dognameinlist"><h5>Add dog</h5></td>
-                            <td class="dognameindot"><i class="fas fa-plus"></i></td>
+                            <td class="dognameinlist">The Rock</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist">Trump</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist"><h5>more</h5></td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                     </table>
                 </div>
@@ -107,39 +109,34 @@
 
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
-                <h1 id="schedulehead">Appointment Schedule</h1>
-                <table class="schedule ">
-                    <thead>
-                        <tr id = "dayfull">
-                            <td class="day">Sunday</td>
-                            <td class="day">Monday</td>
-                            <td class="day">Tuesday</td>
-                            <td class="day">Wednesday</td>
-                            <td class="day">Thursday</td>
-                            <td class="day">Friday</td>
-                            <td class="day">Saturday</td>
-                        </tr>
-                        <tr id = "dayacro">
-                            <td class="day">Sun</td>
-                            <td class="day">Mon</td>
-                            <td class="day">Tue</td>
-                            <td class="day">Wed</td>
-                            <td class="day">Thu</td>
-                            <td class="day">Fri</td>
-                            <td class="day">Sat</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i=0; i<5; i++) {%>
-                            <tr>
-                                <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday">1</td>
-                                <% } %>     
-                            </tr>
-                         <% } %>
-                    </tbody>
-                </table>
-            </div>
+                <div id="doginfo" class="row">      
+                    <div class ="col-6"><img id="dogprofilepics" src="addpics.png" alt="" align="center"></div>      
+                    <div class="col-6" >
+                        
+                        <h1>Add a new Dog</h1>
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" class="form-control" placeholder="name">
+                        </div>
+                        <div class="form-group">
+                                <label >Age(year):</label>
+                                <input type="number" class="form-control" placeholder="age">
+                        </div>
+                        <div class="form-group">
+                                <label >Breed:</label>
+                                <input type="text" class="form-control" placeholder="breed">
+                        </div>
+                        <div class="form-group">
+                            <label >Gender:</label><br>
+                            <input type="radio" name="gender" value="male"> Male
+                            <input type="radio" name="gender" value="female"> Female<br>
+                        </div>
+                        <div >
+                            <button class="btn btn-primary ">Add</button>
+                            <button class="btn btn-secondary" >Cancel</button>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
 </body>
@@ -150,11 +147,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/static/homee.js"></script>
-<script>
-        history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        history.go(1);
-    };
-    </script>
+<script src="homee.js"></script>
+
 </html>
