@@ -80,12 +80,29 @@ var upload = multer({
 });
 
 app.get('/', function (req, res) {
+    if(req.user != null){
+        res.redirect('/home')
+    }else{
     res.render('Regis.ejs', {
         errors: ''
-    });
+    })};
 
 });
 app.get('/home', function (req, res) {
+
+    newDog = new dogData();
+    newDog.name = 'red';
+    newDog.breed = 'thai';
+    newDog.owner = req.user.username;
+    newDog.symtom = '1';
+
+    newDog.save(function (err, dog) {
+        if (err) {
+            res.send("error register");
+        } else {
+            console.log(dog);
+        }
+    })
     res.render('homepage.ejs',{
         msg:req.user.username
     });
