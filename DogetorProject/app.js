@@ -20,8 +20,8 @@ var LocalStrategy = require('passport-local'),
 var port = 8080;
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
-    useNewUrlParser: true
-},
+        useNewUrlParser: true
+    },
     function (err) {
         if (err) throw err;
         console.log("connect!");
@@ -167,15 +167,11 @@ passport.use(new LocalStrategy(
                 return done(err);
             }
             if (!user) {
-                return done(null, false, {
-                    message: 'Incorrect username.'
-                });
+                return done(null, false);
             }
             if (!(user.validPassword(password))) {
                 console.log('not match')
-                return done(null, false, {
-                    message: 'Incorrect password.'
-                });
+                return done(null, false);
             }
             return done(null, user);
         });
