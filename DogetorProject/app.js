@@ -122,7 +122,8 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 
     if (errors) {
         res.render('Regis.ejs', {
-            errors: errors
+            errors: errors,
+            dupli:''
         })
     } else {
         var salt = bcrypt.genSaltSync(10);
@@ -158,7 +159,7 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
             } else {
                 res.render('Regis.ejs', {
                     errors:'',
-                    dupli: "Username is already in use"              })
+                    dupli: 'Username is already in use'})
 
             }
         })
