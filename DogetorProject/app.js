@@ -4,6 +4,7 @@ var express = require('express');
 var app = express();
 var body = require('body-parser');
 var userData = require('./mongoSchema');
+var dogData = require('./dogSchema');
 var expressValidator = require('express-validator');
 var flash = require('connect-flash')
 var session = require('express-session');
@@ -85,7 +86,9 @@ app.get('/', function (req, res) {
 
 });
 app.get('/home', function (req, res) {
-    res.render('homepage.ejs');
+    res.render('homepage.ejs',{
+        msg:req.user.username
+    });
 
 });
 
@@ -186,7 +189,7 @@ app.post('/login',
 );
 
 app.get('/profile',function(req,res){
-    res.send(req.session)
+    res.send(req.user)
 })
 
 app.listen(port);
