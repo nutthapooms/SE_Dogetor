@@ -84,7 +84,8 @@ app.get('/', function (req, res) {
         res.redirect('/home')
     }else{
     res.render('Regis.ejs', {
-        errors: ''
+        errors: '',
+        dupli:''
     })};
 
 });
@@ -150,12 +151,14 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
                 })
 
                 res.render('Regis.ejs', {
-                    errors: ''
+                    errors: '',
+                    dupli:''
+
                 })
             } else {
                 res.render('Regis.ejs', {
-                    errors: ''
-                })
+                    errors:'',
+                    dupli: "Username is already in use"              })
 
             }
         })
