@@ -1,11 +1,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 
-
-
 var Schema = mongoose.Schema;
-
-
 var user = new Schema({
 
     username: {
@@ -21,7 +17,10 @@ var user = new Schema({
         required: true,
         unique: true
     },
-    avatar: String
+    avatar: String,
+    dog: [{
+        type: mongoose.Schema.Types.ObjectId
+    }]
 
 });
 
