@@ -6,7 +6,7 @@ var app = express();
 
 var body = require('body-parser');
 var userData = require('./routes/mongoSchema');
-var dogData = require('./dogSchema');
+var dogData = require('./routes/dogSchema');
 var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
@@ -166,6 +166,6 @@ function loggedIn(req, res, next) {
     }
 }
 
-app.listen(port, "192.168.2.96", function () {
+app.listen(port, function () {
     console.log("ready to launch")
 });
