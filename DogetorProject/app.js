@@ -141,6 +141,7 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 
         newuser.save(function (err, book) {
             if (err) {
+                console.log(err.code);
 
                 res.render('Regis.ejs', {
                     errors: '',
