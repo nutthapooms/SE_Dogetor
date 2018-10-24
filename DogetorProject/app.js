@@ -20,8 +20,8 @@ var LocalStrategy = require('passport-local'),
 var port = 8080;
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
-        useNewUrlParser: true
-    },
+    useNewUrlParser: true
+},
     function (err) {
         if (err) throw err;
         console.log("connect!");
@@ -81,16 +81,17 @@ var upload = multer({
 });
 
 app.get('/', function (req, res) {
-    if(req.user != null){
+    if (req.user != null) {
         res.redirect('/home')
-    }else{
-    res.render('Regis.ejs', {
-        errors: '',
-        dupli:''
-    })};
+    } else {
+        res.render('Regis.ejs', {
+            errors: '',
+            dupli: ''
+        })
+    };
 
 });
-app.get('/home',loggedIn, function (req, res) {
+app.get('/home', loggedIn, function (req, res) {
 
     newDog = new dogData();
     newDog.name = 'red';
@@ -105,9 +106,9 @@ app.get('/home',loggedIn, function (req, res) {
             console.log(dog);
         }
     })
-    res.render('homepage.ejs',{
-        msg:req.user.username,
-        pic:req.user.avatar
+    res.render('homepage.ejs', {
+        msg: req.user.username,
+        pic: req.user.avatar
     });
 
 });
@@ -125,7 +126,7 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
     if (errors) {
         res.render('Regis.ejs', {
             errors: errors,
-            dupli:''
+            dupli: ''
         })
     } else {
         var salt = bcrypt.genSaltSync(10);
@@ -147,21 +148,24 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 
                 newuser.save(function (err, book) {
                     if (err) {
-                        res.send("error register");
+
+                        res.render('Regis.ejs', {
+                            errors: '',
+                            dupli: 'Email is already in use'
+
+                        })
                     } else {
                         console.log(book);
+                        res.redirect("/")
                     }
                 })
 
-                res.render('Regis.ejs', {
-                    errors: '',
-                    dupli:''
 
-                })
             } else {
                 res.render('Regis.ejs', {
-                    errors:'',
-                    dupli: 'Username is already in use'})
+                    errors: '',
+                    dupli: 'Username is already in use'
+                })
 
             }
         })
@@ -170,7 +174,7 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
 });
 
 passport.use(new LocalStrategy(
-    function ( username,password, done) {
+    function (username, password, done) {
         userData.findOne({
             username: username
         }, function (err, user) {
@@ -211,11 +215,11 @@ app.post('/login',
     })
 );
 
-app.get('/profile',function(req,res){
+app.get('/profile', function (req, res) {
     res.send(req.user)
 });
 
-app.get('/logout',function(req,res){
+app.get('/logout', function (req, res) {
     req.logout();
     res.redirect('/')
 })
