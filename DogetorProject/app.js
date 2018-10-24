@@ -138,37 +138,21 @@ app.post('/', upload.single('uploaded_image'), function (req, res) {
         newuser.avatar = req.file.filename
 
 
-        userData.findOne({
-            username: newuser.username,
 
+        newuser.save(function (err, book) {
+            if (err) {
 
-        }, function (err, result) {
-
-            if (result == null) {
-
-                newuser.save(function (err, book) {
-                    if (err) {
-
-                        res.render('Regis.ejs', {
-                            errors: '',
-                            dupli: 'Email is already in use'
-
-                        })
-                    } else {
-                        console.log(book);
-                        res.redirect("/")
-                    }
-                })
-
-
-            } else {
                 res.render('Regis.ejs', {
                     errors: '',
-                    dupli: 'Username is already in use'
-                })
+                    dupli: 'Username or Email is already in use '
 
+                })
+            } else {
+                console.log(book);
+                res.redirect("/")
             }
         })
+
     }
 
 });
