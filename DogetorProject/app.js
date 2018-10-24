@@ -1,7 +1,9 @@
 var multer = require('multer')
 var mongoose = require('mongoose');
+
 var express = require('express');
 var app = express();
+
 var body = require('body-parser');
 var userData = require('./mongoSchema');
 var dogData = require('./dogSchema');
@@ -17,6 +19,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 var LocalStrategy = require('passport-local'),
     Strategy;
+
 var port = 8080;
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
@@ -30,7 +33,10 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
 
 
 app.use(body());
+
+
 app.use(express.static(__dirname + '/public'));
+
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
@@ -69,7 +75,7 @@ app.use(function (req, res, next) {
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, __dirname + '/public/image');
+        callback(null, __dirname + '/public/image');     
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
@@ -222,4 +228,6 @@ function loggedIn(req, res, next) {
     }
 }
 
-app.listen(port);
+app.listen(port,"192.168.2.96",function(){
+    console.log("ready to launch");
+});
