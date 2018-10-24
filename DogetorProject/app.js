@@ -23,8 +23,8 @@ app.use('/', routes);
 
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
-        useNewUrlParser: true
-    },
+    useNewUrlParser: true
+},
     function (err) {
         if (err) throw err;
         console.log("connect!");
@@ -57,10 +57,9 @@ app.use(function (req, res, next) {
     next();
 });
 
-<<<<<<< HEAD
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, __dirname + '/public/image');     
+        callback(null, __dirname + '/public/image');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
@@ -70,7 +69,6 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 });
-
 app.get('/', function (req, res) {
     if (req.user != null) {
         res.redirect('/home')
@@ -78,11 +76,10 @@ app.get('/', function (req, res) {
         res.render('Regis.ejs', {
             errors: '',
             dupli: '' + req.flash('log'),
-
         })
-    };
-=======
->>>>>>> be9d3a478407b3a384425bab47c983fd52c0cbed
+        }
+    })
+
 
 app.get('/home', loggedIn, function (req, res) {
 
@@ -105,8 +102,6 @@ app.get('/home', loggedIn, function (req, res) {
     });
 
 });
-
-
 
 passport.use(new LocalStrategy(
     function (username, password, done) {
@@ -171,6 +166,6 @@ function loggedIn(req, res, next) {
     }
 }
 
-app.listen(port,"192.168.2.96",function(){
-    console.log("ready to launch");
+app.listen(port, "192.168.2.96", function () {
+    console.log("ready to launch")
 });
