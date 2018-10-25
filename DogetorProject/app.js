@@ -166,6 +166,6 @@ function loggedIn(req, res, next) {
     }
 }
 
-app.listen(port, "192.168.2.96", function () {
+app.listen(port, "10.66.15.148", function () {
     console.log("ready to launch")
 });
