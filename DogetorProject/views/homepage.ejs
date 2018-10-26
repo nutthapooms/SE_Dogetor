@@ -15,7 +15,7 @@
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class=container>
-            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
+            <a class="navbar-brand " href="#" ><i class="fas fa-paw"></i> Dogetor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,10 +54,10 @@
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                    <table class="sidebarlist rounded-bottom">
                             <% for(var i=0; i<3; i++) { %>
-                                    <tr>
-                                        <td class="dognameinlist"><a href="#">Husky</a></td>
+                                    <tr id = "asdasd" >
+                                        <td class="dognameinlist" ><a href="#">Husky</a></td>
                                         <!-- <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td> -->
-                                    </tr>
+                                    </tr>   
                                 <% } %>
                         <tr>
                             <td class="dognameinlist"><h5>more</h5></td>
@@ -155,6 +155,17 @@
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
+        
     };
+    document.getElementById("asdasd").onmouseover = function(){mouseOver()};
+    document.getElementById("asdasd").onmouseout = function() {mouseOut()};
+
+    function mouseOver(){
+        document.getElementById("asdasd").style.backgroundColor = "rgb(225, 220, 212)";
+  
+    }
+    function mouseOut(){
+        document.getElementById("asdasd").style.backgroundColor = "rgb(255, 238, 212)";
+    }
     </script>
 </html>
