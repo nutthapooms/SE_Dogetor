@@ -112,7 +112,7 @@
 
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
-                <h1 id="schedulehead">Appointment Schedule</h1>
+                <h1 id="schedulehead"></h1>
                 <table class="schedule ">
                     <thead>
                         <tr id = "dayfull">
@@ -162,11 +162,12 @@
         history.go(1);
         
     };
-    var zzz = 111;
-    // for(var i=0; i<3; i++){
-    // document.getElementById(i).onmouseover = function(){mouseOver()};
-    // document.getElementById(i).onmouseout = function() {mouseOut()};
-    // }
+    var datee = new Date();
+    var month = datee.getMonth();
+    var year = datee.getFullYear();
+    var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
+    
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }
