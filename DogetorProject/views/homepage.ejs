@@ -53,10 +53,15 @@
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                    <table class="sidebarlist rounded-bottom">
-                            <% for(var i=0; i<3; i++) { %>
-                                    <tr id = "asdasd" >
-                                        <td class="dognameinlist" ><a href="#">Husky</a></td>
-                                        <!-- <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td> -->
+                            <script>var j = 0;</script>
+                            <% for(var i=0; i<4; i++) { %>
+                                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                                        <script>    
+                                            document.getElementById("asdasd").id = j;
+                                            j++;
+                                        </script>
+                                        <td class="dognameinlist" >husky</td>
+                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                                     </tr>   
                                 <% } %>
                         <tr>
@@ -157,15 +162,16 @@
         history.go(1);
         
     };
-    document.getElementById("asdasd").onmouseover = function(){mouseOver()};
-    document.getElementById("asdasd").onmouseout = function() {mouseOut()};
-
-    function mouseOver(){
-        document.getElementById("asdasd").style.backgroundColor = "rgb(225, 220, 212)";
-  
+    var zzz = 111;
+    // for(var i=0; i<3; i++){
+    // document.getElementById(i).onmouseover = function(){mouseOver()};
+    // document.getElementById(i).onmouseout = function() {mouseOut()};
+    // }
+    function mouseOver(j){
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }
-    function mouseOut(){
-        document.getElementById("asdasd").style.backgroundColor = "rgb(255, 238, 212)";
+    function mouseOut(j){
+        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
     </script>
 </html>
