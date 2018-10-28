@@ -15,7 +15,7 @@
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class=container>
-            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
+            <a class="navbar-brand " href="#" ><i class="fas fa-paw"></i> Dogetor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -53,11 +53,16 @@
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                    <table class="sidebarlist rounded-bottom">
-                            <% for(var i=0; i<3; i++) { %>
-                                    <tr>
-                                        <td class="dognameinlist">Husky</td>
+                            <script>var j = 0;</script>
+                            <% for(var i=0; i<4; i++) { %>
+                                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                                        <script>    
+                                            document.getElementById("asdasd").id = j;
+                                            j++;
+                                        </script>
+                                        <td class="dognameinlist" >husky</td>
                                         <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                    </tr>
+                                    </tr>   
                                 <% } %>
                         <tr>
                             <td class="dognameinlist"><h5>more</h5></td>
@@ -107,7 +112,7 @@
 
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
-                <h1 id="schedulehead">Appointment Schedule</h1>
+                <h1 id="schedulehead"></h1>
                 <table class="schedule ">
                     <thead>
                         <tr id = "dayfull">
@@ -155,6 +160,19 @@
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
+        
     };
+    var datee = new Date();
+    var month = datee.getMonth();
+    var year = datee.getFullYear();
+    var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
+    
+    function mouseOver(j){
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    }
+    function mouseOut(j){
+        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
+    }
     </script>
 </html>
