@@ -1,12 +1,9 @@
 var express = require('express')
 var router = express.Router();
 var multer = require('multer')
-var mongoose = require('mongoose');
-var body = require('body-parser');
 var userData = require('./mongoSchema');
 var expressValidator = require('express-validator');
 var session = require('express-session');
-var passport = require('passport')
 var bcrypt = require('bcrypt-nodejs');
 var flash = require('connect-flash')
 
