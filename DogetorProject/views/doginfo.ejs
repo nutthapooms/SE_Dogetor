@@ -54,41 +54,40 @@
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                     <table class="sidebarlist rounded-bottom">
-                        <tr class="sidebarlist">
-                            <td class="dognameinlist">Husky</td>
+                        <script>var j = 0;</script>
+                        <% for(var i=0; i<3; i++) { %>
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                            <script>    
+                                document.getElementById("asdasd").id = j;
+                                j++;
+                            </script>
+                            <td class="dognameinlist" >husky</td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                        </tr>   
+                        <% } %>
                         <tr>
-                            <td class="dognameinlist">The Rock</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist">Trump</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
                     </table>
                 </div>
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
                     <div>
                         <table class="sidebarlist rounded-bottom">
-                            <tr class="sidebarlist">
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                        </table>
+                        <script>var k = 3;</script>
+                        <% for(var i=3; i<6; i++) { %>
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                        <script>    
+                            document.getElementById("asdasd").id = k;
+                            k++;
+                        </script>
+                        <td class="dognameinlist" >husky</td>
+                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>   
+                        <% } %>
+                        <tr>
+                            <td class="dognameinlist"><h5>more</h5></td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                    </table>
                     </div>
                 </div>
                 <div class="sidebarComp">
@@ -135,6 +134,7 @@
                 </div>
                 <!--Dog info end---------------------------------------------------------------------------------------------->
                 <!--Schedule start---------------------------------------------------------------------------------------------->
+                <h1 id="schedulehead"></h1>
                 <table class="schedule ">
                     <thead class="schedule">
                         <tr id = "dayfull">
@@ -157,51 +157,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="dogeachday">1</td>
-                            <td class="dogeachday">2</td>
-                            <td class="dogeachday">3</td>
-                            <td class="dogeachday">4</td>
-                            <td class="dogeachday">5</td>
-                            <td class="dogeachday">6</td>
-                            <td class="dogeachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="dogeachday">1</td>
-                            <td class="dogeachday">2</td>
-                            <td class="dogeachday">3</td>
-                            <td class="dogeachday">4</td>
-                            <td class="dogeachday">5</td>
-                            <td class="dogeachday">6</td>
-                            <td class="dogeachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="dogeachday">1</td>
-                            <td class="dogeachday">2</td>
-                            <td class="dogeachday">3</td>
-                            <td class="dogeachday">4</td>
-                            <td class="dogeachday">5</td>
-                            <td class="dogeachday">6</td>
-                            <td class="dogeachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="dogeachday">1</td>
-                            <td class="dogeachday">2</td>
-                            <td class="dogeachday">3</td>
-                            <td class="dogeachday">4</td>
-                            <td class="dogeachday">5</td>
-                            <td class="dogeachday">6</td>
-                            <td class="dogeachday">7</td>
-                        </tr>
-                        <tr>
-                            <td class="dogeachday">1</td>
-                            <td class="dogeachday">2</td>
-                            <td class="dogeachday">3</td>
-                            <td class="dogeachday">4</td>
-                            <td class="dogeachday">5</td>
-                            <td class="dogeachday">6</td>
-                            <td class="dogeachday">7</td>
-                        </tr>
+                        <% for(var i=0; i<5; i++) {%>
+                            <tr>
+                                <% for(var j=0; j<7; j++) {%>
+                                    <td class = "dogeachday">1</td>
+                                <% } %>     
+                            </tr>
+                         <% } %>
                     </tbody>
                 </table>
             </div>
@@ -217,5 +179,19 @@
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
+<script>
+    var datee = new Date();
+    var month = datee.getMonth();
+    var year = datee.getFullYear();
+    var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
+    
+    function mouseOver(j){
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    }
+    function mouseOut(j){
+        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
+    }
+</script>
 
 </html>
