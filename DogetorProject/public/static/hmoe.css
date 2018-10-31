@@ -20,10 +20,11 @@
     padding :2%;
 }
 #profile{
-    width :40px;
-    height: 40px;
+    width :100px;
+    height: 100px;
     background-position: center;
     border-radius: 50%;
+    align:center;
 }
 
 .listTitle{
@@ -34,6 +35,19 @@
 }
 #analyzebtn{
     padding : 15px;
+    background-color: rgb(0, 192, 226);
+    color: white;
+}
+#nxtmbtn{
+    
+    margin-top : 10px;
+    padding : 10px;
+    background-color: rgb(0, 192, 226);
+    color: white;
+}
+#prembtn{
+    margin-top : 10px;
+    padding : 10px;
     background-color: rgb(0, 192, 226);
     color: white;
 }
@@ -111,5 +125,35 @@
     width: 110px;
     height: 50px;  
  
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+#img-upload{
+    display:block;
+    width: 150px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    
+    
 }
 

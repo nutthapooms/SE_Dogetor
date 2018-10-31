@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>Analyze</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap.css">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="hmoe.css">
-    <link rel="stylesheet" href="analyze.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
-</head>
+    <head>
+        <title>Analyze</title>
+        <link rel="stylesheet" type="text/css" href="bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+            crossorigin="anonymous">
+        <link rel="stylesheet" href="hmoe.css">
+        <link rel="stylesheet" href="analyze.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
+    </head>
 
-<body>
+    <body>
 
-    <!--  Navbar Start--------------------------------------------------------------------------------------------------->
+        <!--  Navbar Start--------------------------------------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class=container>
-            <a class="navbar-brand " href="Homepage.html"><i class="fas fa-paw"></i> Dogetor</a>
+            <a class="navbar-brand" href="Homepage.html"><i class="fas fa-paw"></i> Dogetor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link active" href="Homepage.html">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active " href="Homepage.html">Home <span class="sr-only">(current)</span></a>
                     <a class="nav-item nav-link" href="#">About us</a>
                     <a class="nav-item nav-link" href="#">Log out</a>
                 </div>
@@ -34,7 +34,7 @@
     </nav>
     <!--  Navbar End------------------------------------------------------------------------------------------------->
     <!--  Topbar Start------------------------------------------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light" id="topbar">
+    <nav class="navbar navbar-expand-lg " id="topbar">
         <div class="container">
             <div class="mr-auto"><i class="fas fa-dog"></i></div>
             <div class="mr-auto"><i class="fas fa-star"></i></div>
@@ -46,7 +46,7 @@
     <!--  Topbar End------------------------------------------------------------------------------------------------->
     <div class="container">
         <div class="row">
-            <!-- Side bar Start--------------------------------------------------------------------------------------------->
+            <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <div class="col-2 rounded-bottom" id="sidebar">
                 <div class="sidebarComp">
                     <img id="profile" src="jhin.jpg"> <!-- userpics----->
@@ -57,15 +57,19 @@
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                     <table class="sidebarlist rounded-bottom">
                         <tr class="sidebarlist">
-                            <td class="dognameinlist">he y</td>
+                            <td class="dognameinlist">Husky</td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                         <tr>
-                            <td class="dognameinlist">he y</td>
+                            <td class="dognameinlist">The Rock</td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                         <tr>
-                            <td class="dognameinlist">he y</td>
+                            <td class="dognameinlist">Trump</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist"><h5>more</h5></td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                     </table>
@@ -95,35 +99,82 @@
                 <div class="sidebarComp">
                     <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
                 </div>
+                <!-- <div class="sidebarComp">
+                    <a href="AnalyzeReg.html">
+                        <div id="analyzebtn" class="listTitle rounded">
+                            <h5><i class="fas fa-search"></i> Analyze</h5>
+                        </div>
+                    </a>
+                </div> -->
             </div>
-            <!-- Side bar End---------------------------------------------------------------------------------------------->
+
+            <!--Side bar End---------------------------------------------------------------------------------------------->
+
             <!--  Analyze part Start ---------------------------------------------------------------------------------------------->
-            <div class="col-8">
-                <div class="rect-header">
-                    <h1 class="text-header">Analyze Disease</h1>
-                </div>
-                <div style="position:absolute; top:200px; left:60px;">
-                    <div class="rect-bar">
-                        <p class="text-bar">Name</p>
-                    </div>
-                    <div class="rect-bar" style="left:340px;">
-                        <p class="text-bar">Species</p>
-                    </div>
-                </div>
-                <div style="position:absolute; top:255px; left:60px;">
-                    <div class="rect-bar">
-                        <p class="text-bar">Age</p>
-                    </div>
-                    <div class="rect-bar" style="left:340px;">
-                        <p class="text-bar">Gender</p>
+            <div class="col-8 content">
+                <div class="page-header"><h1>Analyze Disease</h1></div>
+                <!-- Pet info -->
+                <div id="petinfo">
+                    <!-- Pet -->
+                    <div class="input-group mb-3 rect-field-w" style="position:absolute; top:100px; left:166px;">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text head-field" for="pet">Pet's name</label>
+                        </div>
+                        <select class="custom-select rect-field" id="pet" 
+                        v-model="petval" v-on:change="changePetInfo">
+                            <option value="" disabled selected>Select your pet</option>
+                            <option v-for="(pet, index) in petinfoall" v-bind:value="index+1">
+                            {{ pet.name }}</option>
+                        </select>
                     </div>
                 </div>
-                <div class="rect-bar-w" style="top:320px; left:166px;">
-                    <p class="text-bar">Symptom type</p>
+                <!-- Symptom -->
+                <div id="symptom">
+                    <!-- Symptom type -->
+                    <div class="input-group mb-3 rect-field-w" style="top:160px; left:166px;">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text head-field" for="symptomtype">Symptom type</label>
+                        </div>
+                        <select class="custom-select rect-field" id="symptomtype" 
+                        v-model="typeval" v-on:change="changeSymptomType">
+                            <option value="" disabled selected>Select type of symptom</option>
+                            <option v-for="(type, index) in typenameall" v-bind:value="index+1">
+                            {{ type }}</option>
+                        </select>
+                    </div>
+                    <!-- Symptom box -->
+                    <div class="box-symptom" style="top:220px; left:60px;">
+                        <!-- Symptom list -->
+                        <div class="box-symptom-half box-list">
+                            <h2>{{ typename }}</h2>
+                            <div class="form-check" v-for="symp in symplist">
+                                <label class="form-check-label" 
+                                v-on:mouseover="showSymptomInfo(symp)">
+                                <!-- v-on:mouseleave="hideSymptomInfo" -->
+                                    <input type="checkbox" class="form-check-input" value="" v-model="symp.check">
+                                    {{ symp.name }}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="line-divide"></div>
+                        <!-- Symptom detail -->
+                        <div class="box-symptom-half box-detail" style="text-align:center;">
+                            <h2>{{ sympdet.name }}</h2>                                    
+                            <p>
+                                <img class="img-symptom" v-bind:src="sympdet.pic"/>
+                                <img class="img-symptom" v-bind:src="sympdet.pic"/>
+                            </p>
+                            <p>
+                                <div>{{ sympdet.detail }}</div>
+                            </p>
+                        </div>
+                        <button type="button" class="btn btn-analyze" style="top:360px; right:0px;">
+                            <i class="fas fa-search"></i> Analyze
+                        </button>
+                    </div>
                 </div>
-                <div class="symptom-box" style="top:380px; left:60px;"></div>
             </div>
-            <!--  Analyze part End ---------------------------------------------------------------------------------------------->
+                <!--  Analyze part End ---------------------------------------------------------------------------------------------->
         </div>
     </div>
 </body>
@@ -138,9 +189,6 @@
 
 <!-- <script src="analyzereg.js"></script> -->
 
-<<<<<<< HEAD
-    <!-- <script src="analyzereg.js"></script> -->
-    
 </html>
 
 

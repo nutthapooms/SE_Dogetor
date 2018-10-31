@@ -3,11 +3,11 @@
 
 <head>
     <title>Dogetor</title>
-    <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="hmoe.css">
+    <link rel="stylesheet" href="static/hmoe.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
 </head>
 
@@ -46,28 +46,31 @@
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <div class="col-2 rounded-bottom" id="sidebar">
                 <div class="sidebarComp">
-                    <img id="profile" src="jhin.jpg"> <!-- userpics----->
+                    <img id="profile" src="/image/jhin.jpg"> <!-- userpics----->
                     <h5 id=username>Nutthapoom</h5> <!-- username----->
                     <div>3 dogs</div>
                 </div>
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                     <table class="sidebarlist rounded-bottom">
-                        <tr class="sidebarlist">
-                            <td class="dognameinlist">Husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist">The Rock</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist">Trump</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                        <script>var j = 0;</script>
+                            <% for(var i=0; i<3; i++) { %>
+                                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                                        <script>    
+                                            document.getElementById("asdasd").id = j;
+                                            j++;
+                                        </script>
+                                        <td class="dognameinlist" >husky</td>
+                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                                    </tr>   
+                                <% } %>
                         <tr>
                             <td class="dognameinlist"><h5>more</h5></td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist"><h5>Add dog</h5></td>
+                            <td class="dognameindot"><i class="fas fa-plus"></i></td>
                         </tr>
                     </table>
                 </div>
@@ -75,16 +78,19 @@
                     <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
                     <div>
                         <table class="sidebarlist rounded-bottom">
-                            <tr class="sidebarlist">
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
+                            <script>var k = 3;</script>
+                            <% for(var i=3; i<6; i++) { %>
+                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                            <script>    
+                                document.getElementById("asdasd").id = k;
+                                k++;
+                            </script>
+                            <td class="dognameinlist" >husky</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>   
+                            <% } %>
                             <tr>
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="dognameinlist">he y</td>
+                                <td class="dognameinlist"><h5>more</h5></td>
                                 <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                             </tr>
                         </table>
@@ -110,7 +116,7 @@
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
                 <div id="doginfo" class="row">      
-                    <div class ="col-6"><a href=""><img id="dogprofilepics" src="addpics.png" alt="" align="center"></a></div>      
+                    <div class ="col-6"><a href=""><img id="dogprofilepics" src="/image/addpics.png" alt="" align="center"></a></div>      
                     <div class="col-6" >
                         
                         <h1>Add a new Dog</h1>
@@ -147,6 +153,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="homee.js"></script>
+<script src="/static/homee.js"></script>
+<script>
+    function mouseOver(j){
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    }
+    function mouseOut(j){
+        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
+    }
+</script>
 
 </html>

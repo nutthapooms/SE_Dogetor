@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Dogetor</title>
+    <title>Dog info</title>
     <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
@@ -12,47 +12,48 @@
 </head>
 
 <body>
+
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class=container>
-            <a class="navbar-brand " href="#" ><i class="fas fa-paw"></i> Dogetor</a>
+            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                 aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a ><button  method='GET' class="btn btn-dark  navbtn">Home</button></a>
-                    <a ><button  method='GET' class="btn btn-dark  navbtn">About us</button></a>
-                    <a href="/logout"><button  class="btn btn-dark  navbtn">Log out</button></a>
+                    <a class="nav-item nav-link active " href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">About us</a>
+                    <a class="nav-item nav-link" href="#">Log out</a>
                 </div>
             </div>
         </div>
     </nav>
     <!--  Navbar End------------------------------------------------------------------------------------------------->
-    <!--  Topbar Start------------------------------------------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg " id="topbar">
-        <div class="container">
-            <div class="mr-auto"><i class="fas fa-dog"></i></div>
-            <div class="mr-auto"><i class="fas fa-star"></i></div>
-            <div class=><i class="fas fa-search"></i></div>
-            <div class="ml-auto"><i class="fas fa-user-md"></i></div>
-            <div class="ml-auto"><i class="fas fa-briefcase-medical"></i></div>
-        </div>
-    </nav>
-    <!--  Topbar End------------------------------------------------------------------------------------------------->
+      <!--  Topbar Start------------------------------------------------------------------------------------------------->
+      <nav class="navbar navbar-expand-lg " id="topbar">
+            <div class="container">
+                <div class = "mr-auto"><i class="fas fa-dog"></i></div>
+                <div class = "mr-auto"><i class="fas fa-star"></i></div>
+                <div class = ><i class="fas fa-search"></i></div>
+                <div class = "ml-auto"><i class="fas fa-user-md"></i></div>
+                <div class = "ml-auto"><i class="fas fa-briefcase-medical"></i></div>
+            </div>
+        </nav>
+        <!--  Topbar End------------------------------------------------------------------------------------------------->
     <div class="container">
         <div class="row">
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <div class="col-2 rounded-bottom" id="sidebar">
                 <div class="sidebarComp">
-                    <img id="profile" src="/image/<%=pic%>"> <!-- userpics----->
-                    <h5 id=username><%=msg%></h5> <!-- username----->
+                    <img id="profile" src="/image/jhin.jpg"> <!-- userpics----->
+                    <h5 id=username>Nutthapoom</h5> <!-- username----->
                     <div>3 dogs</div>
                 </div>
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-                   <table class="sidebarlist rounded-bottom">
+                    <table class="sidebarlist rounded-bottom">
                         <script>var j = 0;</script>
                         <% for(var i=0; i<3; i++) { %>
                         <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
@@ -65,13 +66,14 @@
                         </tr>   
                         <% } %>
                         <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
                         <tr>
-                            <td class="dognameinlist"><h5>Add dog</h5></td>
-                            <td class="dognameindot"><i class="fas fa-plus"></i></td>
-                        </tr>
+                                <td class="dognameinlist"><h5>more</h5></td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="dognameinlist"><h5>Add dog</h5></td>
+                                <td class="dognameindot"><i class="fas fa-plus"></i></td>
+                            </tr>
                     </table>
                 </div>
                 <div class="sidebarComp">
@@ -93,7 +95,7 @@
                             <td class="dognameinlist"><h5>more</h5></td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
-                        </table>
+                    </table>
                     </div>
                 </div>
                 <div class="sidebarComp">
@@ -110,38 +112,63 @@
                         </div>
                     </a>
                 </div>
-
             </div>
-
             <!--Side bar End---------------------------------------------------------------------------------------------->
+            <!--Dog info start---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
+                <div id="doginfo" class="row">
+                    <div class="col-4"><img id="dogprofilepics" src="/image/profile.jpg" alt=""></div>
+                    <div class="col-5">
+                        <h1>Husky</h1>
+                        <table>
+                            <tr>
+                                <td>Breed</td>
+                                <td> : </td>
+                                <td>Siberian</td>
+                            </tr>
+                            <tr>
+                                <td>Age</td>
+                                <td> : </td>
+                                <td>1,000,000</td>
+                            </tr>
+                            <tr>
+                                <td>Gender</td>
+                                <td> : </td>
+                                <td>Male</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+                <!--Dog info end---------------------------------------------------------------------------------------------->
+                <!--Schedule start---------------------------------------------------------------------------------------------->
                 <h1 id="schedulehead"></h1>
                 <table class="schedule ">
-                    <thead>
+                    <thead class="schedule">
                         <tr id = "dayfull">
-                            <td class="day">Sunday</td>
-                            <td class="day">Monday</td>
-                            <td class="day">Tuesday</td>
-                            <td class="day">Wednesday</td>
-                            <td class="day">Thursday</td>
-                            <td class="day">Friday</td>
-                            <td class="day">Saturday</td>
+                            <td class="dogday">Sunday</td>
+                            <td class="dogday">Monday</td>
+                            <td class="dogday">Tuesday</td>
+                            <td class="dogday">Wednesday</td>
+                            <td class="dogday">Thursday</td>
+                            <td class="dogday">Friday</td>
+                            <td class="dogday">Saturday</td>
                         </tr>
                         <tr id = "dayacro">
-                            <td class="day">Sun</td>
-                            <td class="day">Mon</td>
-                            <td class="day">Tue</td>
-                            <td class="day">Wed</td>
-                            <td class="day">Thu</td>
-                            <td class="day">Fri</td>
-                            <td class="day">Sat</td>
+                            <td class="dogday">Sun</td>
+                            <td class="dogday">Mon</td>
+                            <td class="dogday">Tue</td>
+                            <td class="dogday">Wed</td>
+                            <td class="dogday">Thu</td>
+                            <td class="dogday">Fri</td>
+                            <td class="dogday">Sat</td>
                         </tr>
                     </thead>
                     <tbody>
                         <% for(var i=0; i<5; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday">1</td>
+                                    <td class = "dogeachday">1</td>
                                 <% } %>     
                             </tr>
                          <% } %>
@@ -157,6 +184,7 @@
                 </div>
             </div>
         </div>
+        <!--Schedule end---------------------------------------------------------------------------------------------->
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -168,17 +196,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
 <script>
-        history.pushState(null, null, location.href);
-    window.onpopstate = function () {
-        history.go(1);
-        
-    };
     var datee = new Date();
     var month = datee.getMonth();
     var year = datee.getFullYear();
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
-    
+
     function nxtMonth(){
         if(month == 11)month = -1; 
         document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
@@ -194,5 +217,6 @@
     function mouseOut(j){
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
-    </script>
+</script>
+
 </html>

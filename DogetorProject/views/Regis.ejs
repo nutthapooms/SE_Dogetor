@@ -70,24 +70,31 @@
 
             <% if(errors){ %>
             <% for (var error of errors){%>
-            <div class="alert alert-danger">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <%=error.msg %>
             </div>
-            
+
 
             <% } %>
 
 
 
             <% } else{ %>
-            
+
             <% } %>
             <%if (dupli != '') { %>
-                <div class="alert alert-danger"><%=dupli%></div>
-                
-                <% } %>
-            
-            <!-- <div class="alert alert-danger"></div> -->
+            <div class="alert alert-danger alert-dismissible fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+
+                <%=dupli%>
+
+            </div>
+
+            <% } %>
+
+
+
 
 
 
@@ -115,7 +122,7 @@
                         <div class="row">
                             <div class="col-2"></div>
                             <div class="col-8">
-                                <form action="/login" method="POST" >
+                                <form action="/login" method="POST">
 
                                     <div class="form-group">
                                         <label for="username">Username:</label>
@@ -144,6 +151,7 @@
         </div>
     </div>
     <!--  Login Modal End------------------------------------------------------------------------------------------------->
+    <!--  Regis Modal Start------------------------------------------------------------------------------------------------->
     <div class="modal fade" id="Registermodal" tabindex="-1" role="dialog" aria-labelledby="RegisterModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -161,10 +169,17 @@
                             <div class="col-12">
                                 <form action="/" method="POST" enctype="multipart/form-data">
 
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="uploaded_image"
-                                            aria-describedby="inputGroupFileAddon01">
-                                        <label class="custom-file-label" for="inputGroupFile01"></label>
+
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-btn">
+                                                <span class="btn btn-default btn-file">
+                                                    Browse… <input type="file" id="imgInp" name="uploaded_image">
+                                                </span>
+                                            </span>
+                                            <input type="text" class="form-control" readonly>
+                                        </div>
+                                        <img id='img-upload' />
                                     </div>
 
                                     <div class="form-group">
@@ -180,12 +195,15 @@
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input type="password" class="form-control" name="pwd" placeholder="password">
+                                        <input id = "password1" type="password" class="form-control" name="pwd" placeholder="password" oninput="passwordcheck()">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Cpwd">Confirm Password:</label>
-                                        <input type="password" class="form-control" name="Cpwd" placeholder="Confirm password">
+                                        <input id = "password2" type="password" class="form-control" name="Cpwd" placeholder="Confirm password" oninput="passwordcheck()">
+                                    </div>
+                                    <div id = "alertpw">
+                                            
                                     </div>
 
                                     <div class="modal-footer">
@@ -203,6 +221,8 @@
             </div>
         </div>
     </div>
+    <!--  Regis Modal End------------------------------------------------------------------------------------------------->
+
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -210,11 +230,63 @@
     crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
-    <script>
-        history.pushState(null, null, location.href);
+<script>
+
+    history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
     };
-    </script>
+
+    $(document).ready(function () {
+        $(document).on('change', '.btn-file :file', function () {
+            var input = $(this),
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function (event, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+    });
+    function passwordcheck(){
+        var pw1 = document.getElementById("password1").value;
+        var pw2 = document.getElementById("password2").value;
+        if (pw1==pw2){
+            if(pw1!=""){
+            document.getElementById("alertpw").innerHTML = "match!";
+            document.getElementById("alertpw").className = "alert alert-success";           
+            }
+        }
+        else {
+            document.getElementById("alertpw").innerHTML = "password not match";
+            document.getElementById("alertpw").className = "alert alert-danger";
+        }
+    }
+</script>
 
 </html>

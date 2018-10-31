@@ -1,23 +1,26 @@
 var multer = require('multer')
 var mongoose = require('mongoose');
+
 var express = require('express');
 var app = express();
+
 var body = require('body-parser');
-var userData = require('./mongoSchema');
-var dogData = require('./dogSchema');
-var expressValidator = require('express-validator');
+var userData = require('./routes/mongoSchema');
+var dogData = require('./routes/dogSchema');
 var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
-var bcrypt = require('bcrypt-nodejs');
-
-
-
+var routes = require('./routes/index');
 
 
 var LocalStrategy = require('passport-local'),
     Strategy;
+
 var port = 8080;
+
+app.use('/', routes);
+//app.use('/error',routes);
+
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
     useNewUrlParser: true
@@ -28,36 +31,23 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
     });
 
 
-
 app.use(body());
+
+
 app.use(express.static(__dirname + '/public'));
+
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }));
 
-app.use(expressValidator({
-    errorFormatter: function (param, msg, value) {
-        var namespace = param.split('.'),
-            root = namespace.shift(),
-            formParam = root;
 
-        while (namespace.length) {
-            formParam += '[' + namespace.shift() + ']';
-        }
-        return {
-            param: formParam,
-            msg: msg,
-            value: value
-        };
-    }
-}));
 
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use(flash())
+app.use(flash());
 app.set('view engine', 'ejs')
 
 app.use(function (req, res, next) {
@@ -79,18 +69,18 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 });
-
 app.get('/', function (req, res) {
     if (req.user != null) {
         res.redirect('/home')
     } else {
         res.render('Regis.ejs', {
             errors: '',
-            dupli: ''
+            dupli: '' + req.flash('log'),
         })
-    };
+        }
+    })
 
-});
+
 app.get('/home', loggedIn, function (req, res) {
 
     newDog = new dogData();
@@ -112,50 +102,11 @@ app.get('/home', loggedIn, function (req, res) {
     });
 
 });
-
-app.post('/', upload.single('uploaded_image'), function (req, res) {
-
-    req.checkBody('username', 'Username is required').notEmpty();
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('pwd', 'Password is required ').notEmpty();
-    req.checkBody('Cpwd', 'Password do not match').equals(req.body.pwd);
-
-    var errors = req.validationErrors();
-
-    if (errors) {
-        res.render('Regis.ejs', {
-            errors: errors,
-            dupli: ''
-        })
-    } else {
-        var salt = bcrypt.genSaltSync(10);
-        let hash = bcrypt.hashSync(req.body.pwd, salt);
-        newuser = new userData();
-        newuser.username = req.body.username
-        newuser.email = req.body.email
-        newuser.password = hash
-        newuser.avatar = req.file.filename
-
-
-
-        newuser.save(function (err, book) {
-            if (err) {
-                console.log(err.code);
-
-                res.render('Regis.ejs', {
-                    errors: '',
-                    dupli: 'Username or Email is already in use '
-
-                })
-            } else {
-                console.log(book);
-                res.redirect("/")
-            }
-        })
-
-    }
-
+app.get('/addDog',function(req,res){
+    res.render("addDog.ejs");
+});
+app.get('/dogInfo',function(req,res){
+    res.render("doginfo.ejs");
 });
 
 passport.use(new LocalStrategy(
@@ -167,15 +118,11 @@ passport.use(new LocalStrategy(
                 return done(err);
             }
             if (!user) {
-                return done(null, false, {
-                    message: 'Incorrect username.'
-                });
+                return done(null, false);
             }
             if (!(user.validPassword(password))) {
                 console.log('not match')
-                return done(null, false, {
-                    message: 'Incorrect password.'
-                });
+                return done(null, false);
             }
             return done(null, user);
         });
@@ -195,10 +142,18 @@ passport.deserializeUser(function (id, done) {
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/home',
-        failureRedirect: '/',
+        failureRedirect: '/error',
         failureFlash: true
     })
+
+
 );
+
+app.get('/error', function (req, res) {
+    req.flash('log', "Username or Password is invalid")
+    res.redirect('/')
+
+})
 
 app.get('/profile', function (req, res) {
     res.send(req.user)
@@ -217,4 +172,6 @@ function loggedIn(req, res, next) {
     }
 }
 
-app.listen(port);
+app.listen(port, function () {
+    console.log("ready to launch")
+});
