@@ -41,7 +41,13 @@
 #nxtmbtn{
     
     margin-top : 10px;
-    padding : 15px;
+    padding : 10px;
+    background-color: rgb(0, 192, 226);
+    color: white;
+}
+#prembtn{
+    margin-top : 10px;
+    padding : 10px;
     background-color: rgb(0, 192, 226);
     color: white;
 }

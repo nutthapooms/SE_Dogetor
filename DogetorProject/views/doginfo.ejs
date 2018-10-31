@@ -176,10 +176,10 @@
                 </table>
                 <div class = "row">
                     <div class = "rounded col-6"  align ="left">
-                        <button id = "nxtmbtn" class = "btn">Last month</button>
+                        <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
                     </div>
                     <div class = "rounded col-6"  align ="right">
-                        <button id = "nxtmbtn" class = "btn">Next month</button>
+                        <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
                     </div>
                 </div>
             </div>
@@ -201,7 +201,16 @@
     var year = datee.getFullYear();
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
-    
+
+    function nxtMonth(){
+        if(month == 11)month = -1; 
+        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
+    }
+    function preMonth(){
+        if(month == 0)month = 12; 
+        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
+    }
+
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }
