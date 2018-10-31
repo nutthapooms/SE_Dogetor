@@ -105,6 +105,9 @@ app.get('/home', loggedIn, function (req, res) {
 app.get('/addDog',function(req,res){
     res.render("addDog.ejs");
 });
+app.get('/dogInfo',function(req,res){
+    res.render("doginfo.ejs");
+});
 
 passport.use(new LocalStrategy(
     function (username, password, done) {

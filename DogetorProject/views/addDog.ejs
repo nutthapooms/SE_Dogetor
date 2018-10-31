@@ -54,7 +54,7 @@
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                     <table class="sidebarlist rounded-bottom">
                         <script>var j = 0;</script>
-                            <% for(var i=0; i<4; i++) { %>
+                            <% for(var i=0; i<3; i++) { %>
                                     <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                                         <script>    
                                             document.getElementById("asdasd").id = j;
@@ -78,16 +78,19 @@
                     <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
                     <div>
                         <table class="sidebarlist rounded-bottom">
-                            <tr class="sidebarlist">
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
+                            <script>var k = 3;</script>
+                            <% for(var i=3; i<6; i++) { %>
+                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                            <script>    
+                                document.getElementById("asdasd").id = k;
+                                k++;
+                            </script>
+                            <td class="dognameinlist" >husky</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>   
+                            <% } %>
                             <tr>
-                                <td class="dognameinlist">he y</td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="dognameinlist">he y</td>
+                                <td class="dognameinlist"><h5>more</h5></td>
                                 <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                             </tr>
                         </table>
