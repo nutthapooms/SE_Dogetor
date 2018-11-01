@@ -1,0 +1,145 @@
+#sidebar{
+    background-color: grey;
+    color: white;
+}
+#topbar{
+    background-color: grey;
+    color: white;
+}
+#topicHead{
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0;
+}
+#hospitalPic{
+    width: 450px;
+
+   
+}
+#infoContainer{
+    background-color: rgba(247, 153, 59, 0.77);
+}
+
+#infoParagraph{
+    font-weight: bold;
+    color: grey;
+}
+
+#topic{
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
+
+#username{
+    margin-top: 10px;
+}
+#loginpics{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin: 2% 0%;
+}
+#logincontent{
+    background-color: rgb(85, 85, 85);
+    margin-top: 2%;
+    padding:0px;
+}
+#loginpagecontent{
+    padding :2%;
+}
+#profile{
+    width :40px;
+    height: 40px;
+    background-position: center;
+    border-radius: 50%;
+}
+
+.listTitle{
+    padding : 10px;
+    padding-bottom: 5%;
+    background-color: rgb(226, 136, 0);
+    color: white;
+}
+#analyzebtn{
+    padding : 15px;
+    background-color: rgb(0, 192, 226);
+    color: white;
+}
+#doginfo{
+    background-color: rgb(0, 192, 226);
+    color: white;
+    padding: 5%;
+    margin :10px 0px;
+    border-radius: 10px;
+}
+#dogprofilepics{
+    width   : 100%;
+    background-position: center;
+    border-radius: 50%;
+    border :10px solid rgb(0, 142, 167);
+   ;
+}
+.sidebarlist{
+    padding :0px;
+    background-color: rgb(255, 238, 212);
+    color: rgb(51, 35, 0)
+}
+.sidebarComp{
+    margin : 20px 0px;
+}
+
+.dognameinlist{
+    padding : 0px 10px;
+    width: 120px;
+    margin: 0px;
+}
+.dognameindot{
+    padding : 3px 10px;
+    width: 40px;
+    margin: 0px;
+}
+.content{
+    background-color: rgb(255, 255, 255);
+    margin :30px 10px 10px 30px;
+    
+}
+.schedule{
+    background-color: rgb(255, 238, 212);
+    border-radius: 10px;
+}
+#schedulehead{
+    background-color : rgb(255, 229, 182);
+    margin-bottom :0px;
+}
+.eachday{
+    padding-left: 20px;
+    width: 110px;
+    height: 110px;  
+    border: 10px;  
+}
+.dogeachday{
+    padding-left: 20px;
+    width: 110px;
+    height: 70px;  
+    border: 10px;  
+}
+.day{
+
+    text-align: center;
+    background-color: rgb(226, 136, 0);
+    color : white; 
+    width: 110px;
+    height: 50px;  
+    border: 10px;  
+}
+.dogday{
+    text-align: center;
+    background-color: rgb(226, 136, 0);
+    color : white; 
+    width: 110px;
+    height: 50px;  
+ 
+}
+
