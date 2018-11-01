@@ -141,7 +141,7 @@
                         <% for(var i=0; i<5; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday">1</td>
+                                    <td class = "eachday"><a href=d"#">1</a></td>
                                 <% } %>     
                             </tr>
                          <% } %>
@@ -180,11 +180,17 @@
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
     
     function nxtMonth(){
-        if(month == 11)month = -1; 
+        if(month == 11){
+            month = -1;
+            year++;
+        }; 
         document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
     }
     function preMonth(){
-        if(month == 0)month = 12; 
+        if(month == 0){
+            month = 12;
+            year--;
+        }; 
         document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
     }
 
