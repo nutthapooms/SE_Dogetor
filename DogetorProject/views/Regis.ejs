@@ -195,15 +195,17 @@
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input id = "password1" type="password" class="form-control" name="pwd" placeholder="password" oninput="passwordcheck()">
+                                        <input id="password1" type="password" class="form-control" name="pwd"
+                                            placeholder="password" oninput="passwordcheck()">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Cpwd">Confirm Password:</label>
-                                        <input id = "password2" type="password" class="form-control" name="Cpwd" placeholder="Confirm password" oninput="passwordcheck()">
+                                        <input id="password2" type="password" class="form-control" name="Cpwd"
+                                            placeholder="Confirm password" oninput="passwordcheck()">
                                     </div>
-                                    <div id = "alertpw">
-                                            
+                                    <div id="alertpw">
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -231,7 +233,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 <script>
-
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
@@ -273,16 +274,16 @@
             readURL(this);
         });
     });
-    function passwordcheck(){
+
+    function passwordcheck() {
         var pw1 = document.getElementById("password1").value;
         var pw2 = document.getElementById("password2").value;
-        if (pw1==pw2){
-            if(pw1!=""){
-            document.getElementById("alertpw").innerHTML = "match!";
-            document.getElementById("alertpw").className = "alert alert-success";           
+        if (pw1 == pw2) {
+            if (pw1 != "") {
+                document.getElementById("alertpw").innerHTML = "match!";
+                document.getElementById("alertpw").className = "alert alert-success";
             }
-        }
-        else {
+        } else {
             document.getElementById("alertpw").innerHTML = "password not match";
             document.getElementById("alertpw").className = "alert alert-danger";
         }

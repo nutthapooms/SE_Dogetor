@@ -1,16 +1,15 @@
 var multer = require('multer')
 var mongoose = require('mongoose');
-
 var express = require('express');
 var app = express();
-
 var body = require('body-parser');
 var userData = require('./routes/mongoSchema');
 var dogData = require('./routes/dogSchema');
 var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
-var routes = require('./routes/index');
+var index = require('./routes/index');
+var dogRegis = require('./routes/dogRegis');
 
 
 var LocalStrategy = require('passport-local'),
@@ -18,8 +17,9 @@ var LocalStrategy = require('passport-local'),
 
 var port = 8080;
 
-app.use('/', routes);
-//app.use('/error',routes);
+app.use('/', index);
+ app.use('/dogRegis',dogRegis);
+
 
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
@@ -83,29 +83,32 @@ app.get('/', function (req, res) {
 
 app.get('/home', loggedIn, function (req, res) {
 
-    newDog = new dogData();
-    newDog.name = 'red';
-    newDog.breed = 'thai';
-    newDog.owner = req.user.username;
-    newDog.symtom = '1';
+    // newDog = new dogData();
+    // newDog.name = 'red';
+    // newDog.breed = 'thai';
+    // newDog.owner = req.user.username;
+    // newDog.symtom = '1';
 
-    newDog.save(function (err, dog) {
-        if (err) {
-            res.send("error register");
-        } else {
-            console.log(dog);
-        }
-    })
+    // newDog.save(function (err, dog) {
+    //     if (err) {
+    //         res.send("error register");
+    //     } else {
+    //         console.log(dog);
+    //     }
+    // })
     res.render('homepage.ejs', {
-        msg: req.user.username,
+        name: req.user.username,
         pic: req.user.avatar
     });
 
 });
-app.get('/addDog',function(req,res){
-    res.render("addDog.ejs");
+app.get('/addDog', loggedIn,function(req,res){
+    res.render("addDog.ejs", {
+        name: req.user.username,
+        pic: req.user.avatar
+    });
 });
-app.get('/dogInfo',function(req,res){
+app.get('/dogInfo', loggedIn,function(req,res){
     res.render("doginfo.ejs");
 });
 

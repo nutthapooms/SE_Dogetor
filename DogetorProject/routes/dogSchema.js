@@ -8,9 +8,10 @@ var Schema = mongoose.Schema;
 var dog = new Schema({
 
     name: String,
+    age: String,
     breed: String,
     owner: String,
-    symtom: String
+    gender: String
 
 });
 

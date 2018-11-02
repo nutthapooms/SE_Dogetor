@@ -22,9 +22,9 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a href="/logout"><button action='' method='GET' class="btn btn-dark  navbtn">Home</button></a>
+                    <a href="/logout"><button method='GET' class="btn btn-dark  navbtn">Home</button></a>
                     <a href="/logout"><button action='' method='GET' class="btn btn-dark  navbtn">About us</button></a>
-                    <a href="/logout"><button action='/logout' method='GET' class="btn btn-dark  navbtn">Log out</button></a>
+                    <a href="/logout"><button method='GET' class="btn btn-dark  navbtn">Log out</button></a>
                 </div>
             </div>
         </div>
@@ -46,30 +46,36 @@
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <div class="col-2 rounded-bottom" id="sidebar">
                 <div class="sidebarComp">
-                    <img id="profile" src="/image/jhin.jpg"> <!-- userpics----->
-                    <h5 id=username>Nutthapoom</h5> <!-- username----->
+                    <img id="profile" src="/image/<%=pic%>"> <!-- userpics----->
+                    <h5 id=username>
+                        <%=name%>
+                    </h5> <!-- username----->
                     <div>3 dogs</div>
                 </div>
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                     <table class="sidebarlist rounded-bottom">
                         <script>var j = 0;</script>
-                            <% for(var i=0; i<3; i++) { %>
-                                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                                        <script>    
-                                            document.getElementById("asdasd").id = j;
+                        <% for(var i=0; i<3; i++) { %>
+                        <tr id="asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                            <script>
+                                document.getElementById("asdasd").id = j;
                                             j++;
                                         </script>
-                                        <td class="dognameinlist" >husky</td>
-                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                    </tr>   
-                                <% } %>
+                            <td class="dognameinlist">husky</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <% } %>
                         <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
+                            <td class="dognameinlist">
+                                <h5>more</h5>
+                            </td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                         <tr>
-                            <td class="dognameinlist"><h5>Add dog</h5></td>
+                            <td class="dognameinlist">
+                                <h5>Add dog</h5>
+                            </td>
                             <td class="dognameindot"><i class="fas fa-plus"></i></td>
                         </tr>
                     </table>
@@ -80,17 +86,19 @@
                         <table class="sidebarlist rounded-bottom">
                             <script>var k = 3;</script>
                             <% for(var i=3; i<6; i++) { %>
-                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                            <script>    
-                                document.getElementById("asdasd").id = k;
+                            <tr id="asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                                <script>
+                                    document.getElementById("asdasd").id = k;
                                 k++;
                             </script>
-                            <td class="dognameinlist" >husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>   
+                                <td class="dognameinlist">husky</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
                             <% } %>
                             <tr>
-                                <td class="dognameinlist"><h5>more</h5></td>
+                                <td class="dognameinlist">
+                                    <h5>more</h5>
+                                </td>
                                 <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                             </tr>
                         </table>
@@ -115,34 +123,41 @@
 
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
-                <div id="doginfo" class="row">      
-                    <div class ="col-6"><a href=""><img id="dogprofilepics" src="/image/addpics.png" alt="" align="center"></a></div>      
-                    <div class="col-6" >
-                        
-                        <h1>Add a new Dog</h1>
-                        <div class="form-group">
-                            <label>Name:</label>
-                            <input type="text" class="form-control" placeholder="name">
-                        </div>
-                        <div class="form-group">
-                                <label >Age(year):</label>
-                                <input type="number" class="form-control" placeholder="age">
-                        </div>
-                        <div class="form-group">
-                                <label >Breed:</label>
-                                <input type="text" class="form-control" placeholder="breed">
-                        </div>
-                        <div class="form-group">
-                            <label >Gender:</label><br>
-                            <input type="radio" name="gender" value="male"> Male
-                            <input type="radio" name="gender" value="female"> Female<br>
-                        </div>
-                        <div >
-                            <button class="btn btn-primary ">Add</button>
-                            <button class="btn btn-secondary" >Cancel</button>
-                        </div>
-                    </div>
+                <div id="doginfo" class="row">
+
+
+                    <div class="col-6"></div>
+                    <form action="/dogRegis" method="POST" enctype="multipart/form-data"><a href=""><img id="dogprofilepics"
+                                src="/image/addpics.png" alt="" align="center"></a>
                 </div>
+                <div class="col-6">
+
+                    <h1>Add a new Dog</h1>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" name="dogName" class="form-control" placeholder="name">
+                    </div>
+                    <div class="form-group">
+                        <label>Age(year):</label>
+                        <input type="number" name="dogAge" class="form-control" placeholder="age">
+                    </div>
+                    <div class="form-group">
+                        <label>Breed:</label>
+                        <input type="text" name="dogBreed" class="form-control" placeholder="breed">
+                    </div>
+                    <div class="form-group">
+                        <label>Gender:</label><br>
+                        <input type="radio" name="gender" value="male"> Male
+                        <input type="radio" name="gender" value="female"> Female<br>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary ">Add</button>
+                        <button class="btn btn-secondary">Cancel</button>
+                    </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
 </body>
@@ -155,10 +170,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
 <script>
-    function mouseOver(j){
-        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    function mouseOver(j) {
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";
     }
-    function mouseOut(j){
+
+    function mouseOut(j) {
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
 </script>
