@@ -125,7 +125,8 @@ app.post('/addDog', function (req, res) {
 app.get('/home', loggedIn, function (req, res) {
     res.render('homepage.ejs', {
         name: req.user.username,
-        pic: req.user.avatar
+        pic: req.user.avatar,
+        dog:req.user.dog
     });
 
 });
