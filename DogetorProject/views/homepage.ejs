@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/hmoe.css">
+    <link rel="stylesheet" href="static/hmoe.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
 </head>
 
@@ -53,23 +53,23 @@
                 <div class="sidebarComp">
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                    <table class="sidebarlist rounded-bottom">
-                        <script>var j = 0;</script>
-                        <% for(var i=0; i<3; i++) { %>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                            <script>    
-                                document.getElementById("asdasd").id = j;
-                                j++;
-                            </script>
-                            <td class="dognameinlist" >husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                        <% } %>
+                            <script>var j = 0;</script>
+                            <% for(var i=0; i<4; i++) { %>
+                                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                                        <script>    
+                                            document.getElementById("asdasd").id = j;
+                                            j++;
+                                        </script>
+                                        <td class="dognameinlist" >husky</td>
+                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                                    </tr>   
+                                <% } %>
                         <tr>
                             <td class="dognameinlist"><h5>more</h5></td>
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                         <tr>
-                           <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
+                            <td class="dognameinlist"><h5>Add dog</h5></td>
                             <td class="dognameindot"><i class="fas fa-plus"></i></td>
                         </tr>
                     </table>
@@ -78,21 +78,18 @@
                     <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
                     <div>
                         <table class="sidebarlist rounded-bottom">
-                        <script>var k = 3;</script>
-                        <% for(var i=3; i<6; i++) { %>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                        <script>    
-                            document.getElementById("asdasd").id = k;
-                            k++;
-                        </script>
-                        <td class="dognameinlist" >husky</td>
-                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                        <% } %>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
+                            <tr class="sidebarlist">
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -138,23 +135,48 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <script>
+                        var start = 0;
+                        var check = 0;
+                        var startdate = new Date().getDay();
+                        </script>
+                        
+                        <%var start = 0;%>
+                        <%var day = new Date().getDate();%>
+                        <%var date =  1;%>
+                        <%var startdate =  new Date().getDay();%>
+                        <%startdate = startdate-(day%7)+1;%>
+                        <%var limit = new Date(2018, 9, 0).getDate()+1;%>
                         <% for(var i=0; i<5; i++) {%>
                             <tr>
-                                <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday"><a href=d"#">1</a></td>
-                                <% } %>     
+                                <% for(var j=0; j<7; j++) {%>    
+                                    <% if(start == 0){%>
+                                        <% if(j==startdate){%>
+                                            <% start = 1;%>
+                                        <% }else{%>
+                                            <td class = "eachday"></td>
+                                        <%}%>
+                                    <% }if(start ==1){%>
+                                        <% if(date < limit){%>
+                                            <td class = "eachday"><%= date;%></td>
+                                            <%date++;%>
+                                        <%}else{%>
+                                            <% start = 123;%>
+                                        <%}%>  
+                                    <%}%>
+                                <%}%>     
                             </tr>
                          <% } %>
                     </tbody>
                 </table>
                 <div class = "row">
-                    <div class = "rounded col-6"  align ="left">
-                        <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
+                        <div class = "rounded col-6"  align ="left">
+                            <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
+                        </div>
+                        <div class = "rounded col-6"  align ="right">
+                            <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
+                        </div>
                     </div>
-                    <div class = "rounded col-6"  align ="right">
-                        <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -178,8 +200,8 @@
     var year = datee.getFullYear();
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
-    
-    function nxtMonth(){
+
+     function nxtMonth(){
         if(month == 11){
             month = -1;
             year++;
@@ -193,7 +215,7 @@
         }; 
         document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
     }
-
+    
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }
