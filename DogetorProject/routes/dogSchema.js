@@ -6,13 +6,14 @@ var Schema = mongoose.Schema;
 
 
 var dog = new Schema({
-
+    
+    
     name: String,
-    age: String,
+    age: Number,
     breed: String,
     owner: String,
-    gender: String
-
+    gender: String,
+    dogAvatar :String
 });
 
 
