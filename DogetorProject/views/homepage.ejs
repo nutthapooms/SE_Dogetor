@@ -54,13 +54,13 @@
                     <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
                    <table class="sidebarlist rounded-bottom">
                             <script>var j = 0;</script>
-                            <% for(var i=0; i<4; i++) { %>
+                            <% for (var pet of dog){%>
                                     <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                                         <script>    
                                             document.getElementById("asdasd").id = j;
                                             j++;
                                         </script>
-                                        <td class="dognameinlist" >husky</td>
+                                        <td class="dognameinlist" ><%=pet%></td>
                                         <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                                     </tr>   
                                 <% } %>
@@ -69,7 +69,7 @@
                             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                         </tr>
                         <tr>
-                            <td class="dognameinlist"><h5>Add dog</h5></td>
+                            <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
                             <td class="dognameindot"><i class="fas fa-plus"></i></td>
                         </tr>
                     </table>

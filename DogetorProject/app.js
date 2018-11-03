@@ -9,7 +9,7 @@ var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
 var index = require('./routes/index');
-var dogRegis = require('./routes/dogRegis');
+//var dogRegis = require('./routes/dogRegis');
 
 
 var LocalStrategy = require('passport-local'),
@@ -18,13 +18,13 @@ var LocalStrategy = require('passport-local'),
 var port = 8080;
 
 app.use('/', index);
- app.use('/dogRegis',dogRegis);
+//app.use('/addDog', dogRegis);
 
 
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
-    useNewUrlParser: true
-},
+        useNewUrlParser: true
+    },
     function (err) {
         if (err) throw err;
         console.log("connect!");
@@ -77,38 +77,62 @@ app.get('/', function (req, res) {
             errors: '',
             dupli: '' + req.flash('log'),
         })
-        }
-    })
+    }
+})
 
-
-app.get('/home', loggedIn, function (req, res) {
-
-    // newDog = new dogData();
-    // newDog.name = 'red';
-    // newDog.breed = 'thai';
-    // newDog.owner = req.user.username;
-    // newDog.symtom = '1';
-
-    // newDog.save(function (err, dog) {
-    //     if (err) {
-    //         res.send("error register");
-    //     } else {
-    //         console.log(dog);
-    //     }
-    // })
-    res.render('homepage.ejs', {
-        name: req.user.username,
-        pic: req.user.avatar
-    });
-
-});
-app.get('/addDog', loggedIn,function(req,res){
+app.get('/addDog', loggedIn, function (req, res) {
     res.render("addDog.ejs", {
         name: req.user.username,
         pic: req.user.avatar
     });
 });
-app.get('/dogInfo', loggedIn,function(req,res){
+
+app.post('/addDog', function (req, res) {
+
+    newDog = new dogData();
+    newDog.name = req.body.dogName
+    newDog.age = req.body.dogAge
+    newDog.breed = req.body.dogBreed
+    newDog.owner = req.user.username
+    newDog.gender = req.user.gender
+    newDog.dogAvatar = '/default.jpg'
+
+    newDog.save(function (err, book) {
+        if (err) {
+            console.log(err.code)
+        } else {
+            userData.findByIdAndUpdate(
+                req.user._id, {
+                $push: {
+                    dog: book._id
+                }
+            }, {
+                "new":true,"upsert": true
+            }, function (err, newBook) {
+                    if(err){
+                        console.log('error')
+                    }else{
+                        console.log('newBook')
+                    }
+            })
+
+            console.log(book)
+            res.redirect('/addDog')
+        }
+    })
+
+})
+app.get('/home', loggedIn, function (req, res) {
+    res.render('homepage.ejs', {
+        name: req.user.username,
+        pic: req.user.avatar,
+        dog:req.user.dog
+    });
+
+});
+
+
+app.get('/dogInfo', loggedIn, function (req, res) {
     res.render("doginfo.ejs");
 });
 
