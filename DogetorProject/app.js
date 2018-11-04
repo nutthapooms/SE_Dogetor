@@ -81,10 +81,15 @@ app.get('/', function (req, res) {
 })
 
 app.get('/addDog', loggedIn, function (req, res) {
-    res.render("addDog.ejs", {
-        name: req.user.username,
-        pic: req.user.avatar
-    });
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('addDog.ejs', {
+            name: req.user.username,
+            pic: req.user.avatar,
+            dog: book
+        });
+    })
 });
 
 app.post('/addDog', function (req, res) {
@@ -103,31 +108,38 @@ app.post('/addDog', function (req, res) {
         } else {
             userData.findByIdAndUpdate(
                 req.user._id, {
-                $push: {
-                    dog: book._id
-                }
-            }, {
-                "new":true,"upsert": true
-            }, function (err, newBook) {
-                    if(err){
+                    $push: {
+                        dog: book._id
+                    }
+                }, {
+                    "new": true,
+                    "upsert": true
+                },
+                function (err, newBook) {
+                    if (err) {
                         console.log('error')
-                    }else{
+                    } else {
                         console.log('newBook')
                     }
-            })
+                })
 
             console.log(book)
-            res.redirect('/addDog')
+            res.redirect('/home')
         }
     })
 
 })
 app.get('/home', loggedIn, function (req, res) {
-    res.render('homepage.ejs', {
-        name: req.user.username,
-        pic: req.user.avatar,
-        dog:req.user.dog
-    });
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('homepage.ejs', {
+            name: req.user.username,
+            pic: req.user.avatar,
+            dog: book
+        });
+    })
+
 
 });
 
