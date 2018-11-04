@@ -32,7 +32,7 @@ router.use(expressValidator({
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, 'D:/SE_Dogetor/DogetorProject/public/image');
+        callback(null, 'D:/SE_Dogetor/DogetorProject/public/image/user');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
@@ -84,9 +84,12 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 
 
 router.get('/', function (req, res) {
-    if (req.user != null) {
+    
+    if (req.user) {
+        console.log('logged in')
         res.redirect('/home')
     } else {
+        console.log('not logged in')
         res.render('Regis.ejs', {
             errors: '',
             dupli: '' + req.flash('log'),
@@ -94,4 +97,11 @@ router.get('/', function (req, res) {
     };
 });
 
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
 module.exports = router

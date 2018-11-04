@@ -32,21 +32,14 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
 
 
 app.use(body());
-
-
 app.use(express.static(__dirname + '/public'));
-
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }));
-
-
-
 app.use(passport.initialize())
 app.use(passport.session())
-
 app.use(flash());
 app.set('view engine', 'ejs')
 
@@ -59,7 +52,7 @@ app.use(function (req, res, next) {
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, __dirname + '/public/image');
+        callback(null, __dirname + '/public/image/dog');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
@@ -69,16 +62,17 @@ var storage = multer.diskStorage({
 var upload = multer({
     storage: storage
 });
-app.get('/', function (req, res) {
-    if (req.user != null) {
-        res.redirect('/home')
-    } else {
-        res.render('Regis.ejs', {
-            errors: '',
-            dupli: '' + req.flash('log'),
-        })
-    }
-})
+
+// app.get('/', function (req, res) {
+//     if (req.user != null) {
+//         res.redirect('/home')
+//     } else {
+//         res.render('Regis.ejs', {
+//             errors: '',
+//             dupli: '' + req.flash('log'),
+//         })
+//     }
+// })
 
 app.get('/addDog', loggedIn, function (req, res) {
     dogData.find({
