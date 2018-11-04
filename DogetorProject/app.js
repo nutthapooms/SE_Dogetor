@@ -70,7 +70,7 @@ app.get('/addDog', loggedIn, function (req, res) {
         owner: req.user.username
     }, function (err, book) {
         res.render('addDog.ejs', {
-            name: req.user.username,
+            username: req.user.username,
             pic: req.user.avatar,
             dog: book
         });
@@ -84,7 +84,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
     newDog.age = req.body.dogAge
     newDog.breed = req.body.dogBreed
     newDog.owner = req.user.username
-    newDog.gender = req.user.gender
+    newDog.gender = req.body.gender
     newDog.dogAvatar = req.file.filename
 
     newDog.save(function (err, book) {
@@ -119,7 +119,7 @@ app.get('/home', loggedIn, function (req, res) {
         owner: req.user.username
     }, function (err, book) {
         res.render('homepage.ejs', {
-            name: req.user.username,
+            username: req.user.username,
             pic: req.user.avatar,
             dog: book
         });
@@ -130,7 +130,27 @@ app.get('/home', loggedIn, function (req, res) {
 
 
 app.get('/dogInfo', loggedIn, function (req, res) {
-    res.render("doginfo.ejs");
+    var topic = req.query.topic
+    
+    dogData.findById(topic,function(err,book){
+        dogData.find({
+            owner: req.user.username
+        }, function (err, bookuser) {
+            res.render("doginfo",{
+                dogName : book.name,
+                breed : book.breed,
+                gender : book.gender,
+                age : book.age,
+                dogPic : book.dogAvatar,
+                username: req.user.username,
+                pic: req.user.avatar,
+                dog: bookuser
+            });
+        })
+        
+    })
+
+    
 });
 
 passport.use(new LocalStrategy(
