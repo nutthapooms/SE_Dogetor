@@ -16,6 +16,12 @@
     background-position: center;
     background-repeat: no-repeat;
 }
+#img-upload{
+    background-image: url("/image/addpics.png");
+   
+    
+    border-radius: 50%;
+}
 #logincontent{
     background-color: rgb(85, 85, 85);
     margin-top: 2%;
