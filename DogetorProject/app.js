@@ -72,7 +72,8 @@ app.get('/addDog', loggedIn, function (req, res) {
         res.render('addDog.ejs', {
             username: req.user.username,
             pic: req.user.avatar,
-            dog: book
+            dog: book,
+            amount:book.length
         });
     })
 });
@@ -121,7 +122,8 @@ app.get('/home', loggedIn, function (req, res) {
         res.render('homepage.ejs', {
             username: req.user.username,
             pic: req.user.avatar,
-            dog: book
+            dog: book,
+            amount:book.length
         });
     })
 
@@ -144,7 +146,8 @@ app.get('/dogInfo', loggedIn, function (req, res) {
                 dogPic : book.dogAvatar,
                 username: req.user.username,
                 pic: req.user.avatar,
-                dog: bookuser
+                dog: bookuser,
+                amount:bookuser.length
             });
         })
         
