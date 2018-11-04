@@ -9,7 +9,7 @@ var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
 var index = require('./routes/index');
-//var dogRegis = require('./routes/dogRegis');
+
 
 
 var LocalStrategy = require('passport-local'),
@@ -18,9 +18,6 @@ var LocalStrategy = require('passport-local'),
 var port = 8080;
 
 app.use('/', index);
-//app.use('/addDog', dogRegis);
-
-
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
         useNewUrlParser: true
@@ -73,9 +70,24 @@ app.get('/addDog', loggedIn, function (req, res) {
             username: req.user.username,
             pic: req.user.avatar,
             dog: book,
-            amount:book.length
+            amount: book.length
         });
     })
+});
+
+app.get('/index', function (req, res) {
+
+    if (req.user) {
+        console.log('ogged in')
+        res.redirect('/home')
+    } else {
+        console.log('not logged in')
+        res.render('Regis.ejs', {
+            errors: '',
+            dupli: '' + req.flash('log'),
+        })
+    }
+
 });
 
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
@@ -123,7 +135,7 @@ app.get('/home', loggedIn, function (req, res) {
             username: req.user.username,
             pic: req.user.avatar,
             dog: book,
-            amount:book.length
+            amount: book.length
         });
     })
 
@@ -133,27 +145,27 @@ app.get('/home', loggedIn, function (req, res) {
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
-    
-    dogData.findById(topic,function(err,book){
+
+    dogData.findById(topic, function (err, book) {
         dogData.find({
             owner: req.user.username
         }, function (err, bookuser) {
-            res.render("doginfo",{
-                dogName : book.name,
-                breed : book.breed,
-                gender : book.gender,
-                age : book.age,
-                dogPic : book.dogAvatar,
+            res.render("doginfo", {
+                dogName: book.name,
+                breed: book.breed,
+                gender: book.gender,
+                age: book.age,
+                dogPic: book.dogAvatar,
                 username: req.user.username,
                 pic: req.user.avatar,
                 dog: bookuser,
-                amount:bookuser.length
+                amount: bookuser.length
             });
         })
-        
+
     })
 
-    
+
 });
 
 passport.use(new LocalStrategy(
