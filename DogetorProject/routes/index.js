@@ -7,12 +7,16 @@ var session = require('express-session');
 var bcrypt = require('bcrypt-nodejs');
 var flash = require('connect-flash')
 
+
+
 router.use(flash());
 router.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }));
+
+
 
 router.use(expressValidator({
     errorFormatter: function (param, msg, value) {
@@ -90,23 +94,10 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 
 router.get('/', function (req, res) {
 
-    if (req.user) {
-        console.log('logged in')
-        res.redirect('/home')
-    } else {
-        console.log('not logged in')
-        res.render('Regis.ejs', {
-            errors: '',
-            dupli: '' + req.flash('log'),
-        })
-    };
+    res.redirect('/index')
+    
+
 });
 
-function loggedIn(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
+
 module.exports = router
