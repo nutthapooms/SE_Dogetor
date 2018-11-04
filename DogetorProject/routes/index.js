@@ -84,7 +84,7 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 
 
 router.get('/', function (req, res) {
-    
+
     if (req.user) {
         console.log('logged in')
         res.redirect('/home')

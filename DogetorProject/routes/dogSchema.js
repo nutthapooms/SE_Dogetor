@@ -6,18 +6,17 @@ var Schema = mongoose.Schema;
 
 
 var dog = new Schema({
-    
-    
+
+
     name: String,
     age: Number,
     breed: String,
     owner: String,
     gender: String,
-    dogAvatar :String
+    dogAvatar: String
 });
 
 
 
 
 module.exports = mongoose.model('dogData', dog);
-

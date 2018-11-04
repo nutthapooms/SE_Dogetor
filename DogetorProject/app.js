@@ -63,16 +63,7 @@ var upload = multer({
     storage: storage
 });
 
-// app.get('/', function (req, res) {
-//     if (req.user != null) {
-//         res.redirect('/home')
-//     } else {
-//         res.render('Regis.ejs', {
-//             errors: '',
-//             dupli: '' + req.flash('log'),
-//         })
-//     }
-// })
+
 
 app.get('/addDog', loggedIn, function (req, res) {
     dogData.find({
@@ -86,7 +77,7 @@ app.get('/addDog', loggedIn, function (req, res) {
     })
 });
 
-app.post('/addDog', function (req, res) {
+app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 
     newDog = new dogData();
     newDog.name = req.body.dogName
@@ -94,7 +85,7 @@ app.post('/addDog', function (req, res) {
     newDog.breed = req.body.dogBreed
     newDog.owner = req.user.username
     newDog.gender = req.user.gender
-    newDog.dogAvatar = '/default.jpg'
+    newDog.dogAvatar = req.file.filename
 
     newDog.save(function (err, book) {
         if (err) {
