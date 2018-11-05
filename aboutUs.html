@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>About Us</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="aboutUs.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
+</head>
+
+<body>
+	<!--  Navbar Start--------------------------------------------------------------------------------------------------->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class=container>
+            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
+                <div class="navbar-nav ml-auto">
+                    <a class="nav-item nav-link active " href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link" href="#">About us</a>
+                    <a class="nav-item nav-link" href="#">Log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--  Navbar End------------------------------------------------------------------------------------------------->
+
+    <div class="container">
+        <div class="row">
+        	 <!--  Side bar Start--------------------------------------------------------------------------------------------->
+            <div class="col-2 rounded-bottom" id="sidebar">
+                <div class="sidebarComp">
+                    <img id="profile" src="jhin.jpg"> <!-- userpics----->
+                    <h5 id=username>Nutthapoom</h5> <!-- username----->
+                    <div>3 dogs</div>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
+                    <table class="sidebarlist rounded-bottom">
+                        <tr class="sidebarlist">
+                            <td class="dognameinlist">Husky</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist">The Rock</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist">Trump</td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                        <tr>
+                            <td class="dognameinlist"><h5>more</h5></td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
+                    <div>
+                        <table class="sidebarlist rounded-bottom">
+                            <tr class="sidebarlist">
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                            <tr>
+                                <td class="dognameinlist">he y</td>
+                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div>
+                </div>
+                <div class="sidebarComp">
+                    <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
+                </div>
+                <div class="sidebarComp">
+                    <!-- <a href="AnalyzeReg.html"></a> -->
+                    <a href="AnalyzeReg.html">
+                        <div id="analyzebtn" class="listTitle rounded">
+                            <h5><i class="fas fa-search"></i> Analyze</h5>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+             <!--Side bar End---------------------------------------------------------------------------------------------->
+
+             <!--row container begin---------------------------------------------------------------------------------------->
+             <div class="container col-8">
+             	<div class="row">
+             		<!-- About Us container begin------------------------------------------------------------------------------------->
+
+             		<div class="col-1"></div>
+            		<div class="col-10"><h2 class="text-center" id="topic">About Us</h2></div> <!--This is Topic--->
+            		<div class="col-1"></div>
+
+            		<div class="col rounded" id="infoContainer">
+            			<br>
+            			
+            			<div class="col-12" id="infoParagraph">
+            			<br>
+            			<h2 class="text-center" id="missionTopic">Our mission</h2>
+            			<br>
+            			<p>&nbsp; &nbsp; &nbsp; &nbsp;การจัดทำโปรแกรม&nbsp; Dogetor&nbsp;  นี้เพื่ออำนวยความสะดวกแก่บุคคลที่เลี้ยงสัตว์ในการสำรวจอาการผิดปรกติเบื้องต้น&nbsp;ให้ข้อมูลข่าวสาร&nbsp;  และส่งเสริมให้ร่างกายของสัตว์เลี้ยงของคุณแข็งแรง&nbsp;&nbsp;  รวมถึงบันทึกข้อมูลการให้วัคซีน&nbsp; ประวัติอาการป่วย&nbsp; และตารางนัดพบสัตวแพทย์ครั้งถัดไป</p>
+            			
+            			</div>           			
+            		</div>
+            		<!-- About Us container End------------------------------------------------------------------------------------->            		
+             		
+             	</div>
+             	 <!-- Develop Team container begin------------------------------------------------------------------------------------->
+             	 <br>
+
+             	<div class="row">
+
+             		<br>
+
+             		<div class="col rounded" id="memberContainer">
+             			<br>
+             			<div class="col-12" id="memberParagraph">
+             				<br>
+             				<h2 class="text-center" id="memberTopic">Develop Team</h2>
+             				<br>
+
+             				<table>
+
+             					<tr>
+             						<td class="setCenter"><img src="PoomPic.jpg"><br>นายณัฐภูมิ&nbsp;สุวรรณวิทย์เวช<br>59010467</td>
+             						<td class="setCenter"><img src="FrongPic.jpg"><br>นายปณต&nbsp;สดศรี<br>59010781</td>
+             						<td class="setCenter"><img src="TaePic.jpg"><br>นายณัชพล&nbsp;แซ่แต้<br>59010395</td>
+             					</tr>
+
+
+             					<tr>
+             						<td class="setCenterRow2"><img src="DolPic.jpg"><br>นายดลพัชร&nbsp;เหลือมปุ๋ย<br>59010496</td>
+             						<td class="setCenterRow2"><img src="PraewPic.jpg"><br>นางสาวเบญญาภา&nbsp;เมตตพันธุ์<br>59010772</td>
+             						<td class="setCenterRow2"><img src="KikiPic.jpg"><br>นางสาวณัฏฐนันท์&nbsp;สายวรรณ์<br>59010404</td>
+             					</tr>
+
+             				</table>
+             				
+             			</div>
+
+             		</div>             		
+             	</div>
+             	
+
+             <!--Develop Team container End---------------------------------------------------------------------------------------->
+             		
+             </div>
+             <!--row container End---------------------------------------------------------------------------------------->
+
+             
+
+             <!--Boostrap Begin---------------------------------------------------------------------------------------------->
+            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+              crossorigin="anonymous"></script>
+              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    		  crossorigin="anonymous"></script>
+    		<!--Boostrap End---------------------------------------------------------------------------------------------->
+
+
+</body>
+</html>
