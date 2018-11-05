@@ -13,8 +13,8 @@ var expressValidator = require('express-validator');
 
 
 
-var LocalStrategy = require('passport-local'),
-    Strategy;
+var LocalStrategy = require('passport-local')
+   
 
 var port = 8080;
 
@@ -102,7 +102,7 @@ app.get('/index', function (req, res) {
         console.log('not logged in')
         res.render('Regis.ejs', {
             errors: '',
-            dupli: '' + req.flash('log'),
+            dupli: '' 
         })
     }
 
