@@ -1,0 +1,77 @@
+<div class="col-2 rounded-bottom" id="sidebar">
+    <div class="sidebarComp">
+        <img  id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
+        <h5 id=username><%=username%></h5> <!-- username----->
+        <div><%=amount%> dogs</div>
+    </div>
+    
+    <div class="sidebarComp">
+        <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
+       <table class="sidebarlist rounded-bottom">
+                <script>var j = 0;</script>
+                <% for (var pet of dog){%>
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class ="dogtoshow">
+                            <script>    
+                                document.getElementById("asdasd").id = j;
+                                j++;
+                            </script>
+                            <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
+                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        </tr>   
+                    <% } %>
+            <tr>
+                <td class="dognameinlist"><h5>more</h5></td>
+                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+            </tr>
+            <tr>
+                <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
+                <td class="dognameindot"><i class="fas fa-plus"></i></td>
+            </tr>
+        </table>
+    </div>
+    <div class="sidebarComp">
+        <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
+        <div>
+            <table class="sidebarlist rounded-bottom">
+                <tr class="sidebarlist">
+                    <td class="dognameinlist">he y</td>
+                    <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                </tr>
+                <tr>
+                    <td class="dognameinlist">he y</td>
+                    <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                </tr>
+                <tr>
+                    <td class="dognameinlist">he y</td>
+                    <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="sidebarComp">
+        <div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div>
+    </div>
+    <div class="sidebarComp">
+        <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
+    </div>
+    <div class="sidebarComp">
+        <!-- <a href="AnalyzeReg.html"></a> -->
+        <a href="AnalyzeReg.html">
+            <div id="analyzebtn" class="listTitle rounded">
+                <h5><i class="fas fa-search"></i> Analyze</h5>
+            </div>
+        </a>
+    </div>
+
+</div>
+<script>
+    var dogtoshow = document.getElementsByClassName("dogtoshow");
+
+    for(var e = 0;e<dogtoshow.length;e++){
+        if(e>2){
+            dogtoshow[e].style.display = "none"
+        }
+    }
+    
+
+</script>

@@ -7,113 +7,24 @@
     <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
         crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/hmoe.css">
+    <link rel="stylesheet" href="static/hmoe.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
 </head>
 
 <body>
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class=container>
-            <a class="navbar-brand " href="#" ><i class="fas fa-paw"></i> Dogetor</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a ><button  method='GET' class="btn btn-dark  navbtn">Home</button></a>
-                    <a ><button  method='GET' class="btn btn-dark  navbtn">About us</button></a>
-                    <a href="/logout"><button  class="btn btn-dark  navbtn">Log out</button></a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <%- include('navbar') %>
     <!--  Navbar End------------------------------------------------------------------------------------------------->
     <!--  Topbar Start------------------------------------------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg " id="topbar">
-        <div class="container">
-            <div class="mr-auto"><i class="fas fa-dog"></i></div>
-            <div class="mr-auto"><i class="fas fa-star"></i></div>
-            <div class=><i class="fas fa-search"></i></div>
-            <div class="ml-auto"><i class="fas fa-user-md"></i></div>
-            <div class="ml-auto"><i class="fas fa-briefcase-medical"></i></div>
-        </div>
-    </nav>
+    <!-- <%- include('topbar') %> -->
     <!--  Topbar End------------------------------------------------------------------------------------------------->
     <div class="container">
         <div class="row">
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
-            <div class="col-2 rounded-bottom" id="sidebar">
-                <div class="sidebarComp">
-                    <img id="profile" src="/image/<%=pic%>"> <!-- userpics----->
-                    <h5 id=username><%=msg%></h5> <!-- username----->
-                    <div>3 dogs</div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-                   <table class="sidebarlist rounded-bottom">
-                        <script>var j = 0;</script>
-                        <% for(var i=0; i<3; i++) { %>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                            <script>    
-                                document.getElementById("asdasd").id = j;
-                                j++;
-                            </script>
-                            <td class="dognameinlist" >husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                        <% } %>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist"><h5>Add dog</h5></td>
-                            <td class="dognameindot"><i class="fas fa-plus"></i></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
-                    <div>
-                        <table class="sidebarlist rounded-bottom">
-                        <script>var k = 3;</script>
-                        <% for(var i=3; i<6; i++) { %>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                        <script>    
-                            document.getElementById("asdasd").id = k;
-                            k++;
-                        </script>
-                        <td class="dognameinlist" >husky</td>
-                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                        <% } %>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
-                </div>
-                <div class="sidebarComp">
-                    <!-- <a href="AnalyzeReg.html"></a> -->
-                    <a href="AnalyzeReg.html">
-                        <div id="analyzebtn" class="listTitle rounded">
-                            <h5><i class="fas fa-search"></i> Analyze</h5>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-
+            <%- include('sidebar') %>
+            
             <!--Side bar End---------------------------------------------------------------------------------------------->
+            
             <div class="col-8 content">
                 <h1 id="schedulehead"></h1>
                 <table class="schedule ">
@@ -137,27 +48,45 @@
                             <td class="day">Sat</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <% for(var i=0; i<5; i++) {%>
+                    <tbody id = "calendar">
+                        <!-- calendar startt -->
+                        
+                        <% for(var i=0; i<6; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday">1</td>
+                                    <td class = "eachday"><a href="#" class = "dayeach" onclick="loadXMLDoc()"></a>
+
+                                    </td>
+
                                 <% } %>     
                             </tr>
-                         <% } %>
+                        <% } %>
+                        
+                         <!-- calendar endd-->
                     </tbody>
                 </table>
                 <div class = "row">
-                    <div class = "rounded col-6"  align ="left">
-                        <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
+                        <div class = "rounded col-6"  align ="left">
+                            <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
+                        </div>
+                        <div class = "rounded col-6"  align ="right">
+                            <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
+                        </div>
                     </div>
-                    <div class = "rounded col-6"  align ="right">
-                        <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
-                    </div>
-                </div>
             </div>
         </div>
+        <button id="mbtn" >kuy</button>
+        <div id = "try1"></div>
     </div>
+    <% if(errors){ %>
+        <% for (var error of errors){%>
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%=error.msg %>
+        </div>
+        <% } %>
+        <% } else{ %>
+        <% } %>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
@@ -168,31 +97,112 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
 <script>
+    function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML =
+            this.responseText;
+        }
+        };
+        xhttp.open("GET", "xmlhttp_info.txt", true);
+        xhttp.send();
+    }
+    </script>
+    
+<script>
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
-        
+    
     };
+    
     var datee = new Date();
     var month = datee.getMonth();
     var year = datee.getFullYear();
+    datee.setDate(1);
+    var date = datee.getDate();
+    var day = datee.getDay();
+    var checkday = 0;
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
-    
-    function nxtMonth(){
-        if(month == 11)month = -1; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
-    }
-    function preMonth(){
-        if(month == 0)month = 12; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
+    var x = document.getElementsByClassName("dayeach");
+
+    function updatecalendar(monthh,yearr){
+        date = 1;
+        datee.setDate(1);
+        datee.setMonth(monthh);
+        datee.setFullYear(yearr);
+        var day = datee.getDay();
+        var limit = new Date(yearr, monthh, 0).getDate();
+        for (var i = 0; i < x.length; i++) {
+            if(i== day){
+                checkday = 1;
+            }
+            if(checkday==0){
+                x[i].innerHTML = " ";
+            }
+            else{
+                if (date < limit) {
+                    x[i].innerHTML = date;
+                    
+                }
+                else {
+                    x[i].innerHTML = " ";
+                }
+                date++;
+            }
+        }  
+        checkday = 0;
     }
 
+    updatecalendar(month,year);
+    function nxtMonth(){
+        if(month == 11){
+            month = -1;
+            year++;
+        }; 
+        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
+        // alert(month);
+        updatecalendar(month,year);
+    }
+    function preMonth(){
+        if(month == 0){
+            month = 12;
+            year--;
+        }; 
+        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
+        updatecalendar(month,year);
+    }
+    
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }
     function mouseOut(j){
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
+
+    $("#mbtn").on('click',function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        // alert("asdasd");
+        $.ajax({
+            url:"/home",
+            type:"POST",
+            datatype :"json",
+            data: {date:1,day,day,month:month,year:year}
+        }).done(function(result,data){
+            showwww(result);
+          
+        })
+    })
+    var showwww = function (result1){
+        // alert("asdasd333");
+        var div = document.getElementById("calendar");
+        div.innerHTML = result1;
+        updatecalendar(month,year);
+        
+    }
+
     </script>
 </html>

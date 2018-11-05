@@ -13,22 +13,7 @@
 
 <body>
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class=container>
-            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a href="/logout"><button action='' method='GET' class="btn btn-dark  navbtn">Home</button></a>
-                    <a href="/logout"><button action='' method='GET' class="btn btn-dark  navbtn">About us</button></a>
-                    <a href="/logout"><button action='/logout' method='GET' class="btn btn-dark  navbtn">Log out</button></a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <%- include('navbar') %>
     <!--  Navbar End------------------------------------------------------------------------------------------------->
     <!--  Topbar Start------------------------------------------------------------------------------------------------->
     <nav class="navbar navbar-expand-lg " id="topbar">
@@ -44,105 +29,57 @@
     <div class="container">
         <div class="row">
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
-            <div class="col-2 rounded-bottom" id="sidebar">
-                <div class="sidebarComp">
-                    <img id="profile" src="/image/jhin.jpg"> <!-- userpics----->
-                    <h5 id=username>Nutthapoom</h5> <!-- username----->
-                    <div>3 dogs</div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-                    <table class="sidebarlist rounded-bottom">
-                        <script>var j = 0;</script>
-                            <% for(var i=0; i<3; i++) { %>
-                                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                                        <script>    
-                                            document.getElementById("asdasd").id = j;
-                                            j++;
-                                        </script>
-                                        <td class="dognameinlist" >husky</td>
-                                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                                    </tr>   
-                                <% } %>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                        <tr>
-                            <td class="dognameinlist"><h5>Add dog</h5></td>
-                            <td class="dognameindot"><i class="fas fa-plus"></i></td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
-                    <div>
-                        <table class="sidebarlist rounded-bottom">
-                            <script>var k = 3;</script>
-                            <% for(var i=3; i<6; i++) { %>
-                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                            <script>    
-                                document.getElementById("asdasd").id = k;
-                                k++;
-                            </script>
-                            <td class="dognameinlist" >husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>   
-                            <% } %>
-                            <tr>
-                                <td class="dognameinlist"><h5>more</h5></td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
-                </div>
-                <div class="sidebarComp">
-                    <!-- <a href="AnalyzeReg.html"></a> -->
-                    <a href="AnalyzeReg.html">
-                        <div id="analyzebtn" class="listTitle rounded">
-                            <h5><i class="fas fa-search"></i> Analyze</h5>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
+            <%- include('sidebar') %>
 
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
-                <div id="doginfo" class="row">      
-                    <div class ="col-6"><a href=""><img id="dogprofilepics" src="/image/addpics.png" alt="" align="center"></a></div>      
-                    <div class="col-6" >
-                        
+                <div id="doginfo" class="row">
+
+
+                    <div class="col-4">
+                        <form action="/addDog" method="POST"  enctype="multipart/form-data">
+                            <div class="form-group" id="dogaddpic">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <span class="btn btn-default btn-file">
+                                            <img id='img-upload' src="/image/addpics.png" align="center"><input  onchange="chng()" accept="image/*"
+                                                type="file" id="imgInp" name="uploaded_dogimage">
+                                        </span>
+                                    </span>
+
+                                </div>
+                            </div>
+                    </div>
+                    <div class="col-6"> 
+
                         <h1>Add a new Dog</h1>
                         <div class="form-group">
                             <label>Name:</label>
-                            <input type="text" class="form-control" placeholder="name">
+                            <input type="text" name="dogName" class="form-control" placeholder="name">
                         </div>
                         <div class="form-group">
-                                <label >Age(year):</label>
-                                <input type="number" class="form-control" placeholder="age">
+                            <label>Age(year):</label>
+                            <input type="number" name="dogAge" class="form-control" placeholder="age">
                         </div>
                         <div class="form-group">
-                                <label >Breed:</label>
-                                <input type="text" class="form-control" placeholder="breed">
+                            <label>Breed:</label>
+                            <input type="text" name="dogBreed" class="form-control" placeholder="breed">
                         </div>
                         <div class="form-group">
-                            <label >Gender:</label><br>
+                            <label>Gender:</label><br>
                             <input type="radio" name="gender" value="male"> Male
                             <input type="radio" name="gender" value="female"> Female<br>
                         </div>
-                        <div >
-                            <button class="btn btn-primary ">Add</button>
-                            <button class="btn btn-secondary" >Cancel</button>
+                        <div>
+                            <button id="sub" type="submit" class="btn btn-primary ">Add</button>
+                            <button class="btn btn-secondary">Cancel</button>
                         </div>
+                        </form>
+
+
                     </div>
                 </div>
+            </div>
         </div>
     </div>
 </body>
@@ -155,12 +92,75 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
 <script>
-    function mouseOver(j){
-        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    };
+
+    $(document).ready(function () {
+        $(document).on('change', '.btn-file :file', function () {
+            var input = $(this),
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function (event, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        });
+    });
+
+    function mouseOver(j) {
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";
     }
-    function mouseOut(j){
+
+    function mouseOut(j) {
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
+
+    function chng()
+    {
+        var typ=document.getElementById("imgInp").value;
+        var res = typ.match(".jpg");
+        var res2 = typ.match(".PNG");
+
+        if(res || res2)
+        {
+            alert("sucess");
+        }
+        else
+        {
+           
+            alert("Sorry only jpeg images are accepted");
+            document.getElementById("imgInp").value="";
+        }
+    }
+
+    
 </script>
 
 </html>

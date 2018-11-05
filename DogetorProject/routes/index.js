@@ -7,12 +7,16 @@ var session = require('express-session');
 var bcrypt = require('bcrypt-nodejs');
 var flash = require('connect-flash')
 
+
+
 router.use(flash());
 router.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }));
+
+
 
 router.use(expressValidator({
     errorFormatter: function (param, msg, value) {
@@ -29,9 +33,10 @@ router.use(expressValidator({
         };
     }
 }));
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, 'D:/SE_Dogetor/DogetorProject/public/image');
+        callback(null, 'G:/My Drive/SE/SE_Dogetor/DogetorProject/public/image/user');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);
@@ -62,7 +67,12 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
         newuser.username = req.body.username
         newuser.email = req.body.email
         newuser.password = hash
-        newuser.avatar = req.file.filename
+
+        if (req.file == undefined) {
+            newuser.avatar = "defaultprofilepicturedogetoruser.jpg"
+        } else {
+            newuser.avatar = req.file.filename
+        }
 
         newuser.save(function (err, book) {
             if (err) {
@@ -70,12 +80,15 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 
                 res.render('Regis.ejs', {
                     errors: '',
-                    dupli: 'Username or Email is already in use '
+                    dupli: 'Username or email is already in use'
 
                 })
             } else {
-                console.log(book);
-                res.redirect("/")
+                res.render('Regis.ejs', {
+                    errors: '',
+                    dupli: 'Registration Success'
+
+                })
             }
         })
     }
@@ -83,14 +96,11 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 
 
 router.get('/', function (req, res) {
-    if (req.user != null) {
-        res.redirect('/home')
-    } else {
-        res.render('Regis.ejs', {
-            errors: '',
-            dupli: '' + req.flash('log'),
-        })
-    };
+
+    res.redirect('/index')
+
+
 });
+
 
 module.exports = router

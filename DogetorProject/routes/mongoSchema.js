@@ -18,9 +18,7 @@ var user = new Schema({
         unique: true
     },
     avatar: String,
-    dog: [{
-        type: mongoose.Schema.Types.ObjectId
-    }]
+    dog: [String]
 
 });
 

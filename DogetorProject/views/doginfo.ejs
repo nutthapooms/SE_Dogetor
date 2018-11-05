@@ -14,127 +14,37 @@
 <body>
 
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class=container>
-            <a class="navbar-brand " href="#"><i class="fas fa-paw"></i> Dogetor</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
-                <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link active " href="#">Home <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">About us</a>
-                    <a class="nav-item nav-link" href="#">Log out</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+    <%- include('navbar') %>
     <!--  Navbar End------------------------------------------------------------------------------------------------->
       <!--  Topbar Start------------------------------------------------------------------------------------------------->
-      <nav class="navbar navbar-expand-lg " id="topbar">
-            <div class="container">
-                <div class = "mr-auto"><i class="fas fa-dog"></i></div>
-                <div class = "mr-auto"><i class="fas fa-star"></i></div>
-                <div class = ><i class="fas fa-search"></i></div>
-                <div class = "ml-auto"><i class="fas fa-user-md"></i></div>
-                <div class = "ml-auto"><i class="fas fa-briefcase-medical"></i></div>
-            </div>
-        </nav>
+      <!-- <%- include('topbar') %> -->
         <!--  Topbar End------------------------------------------------------------------------------------------------->
     <div class="container">
         <div class="row">
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
-            <div class="col-2 rounded-bottom" id="sidebar">
-                <div class="sidebarComp">
-                    <img id="profile" src="/image/jhin.jpg"> <!-- userpics----->
-                    <h5 id=username>Nutthapoom</h5> <!-- username----->
-                    <div>3 dogs</div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-                    <table class="sidebarlist rounded-bottom">
-                        <script>var j = 0;</script>
-                        <% for(var i=0; i<3; i++) { %>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                            <script>    
-                                document.getElementById("asdasd").id = j;
-                                j++;
-                            </script>
-                            <td class="dognameinlist" >husky</td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                        <% } %>
-                        <tr>
-                        <tr>
-                                <td class="dognameinlist"><h5>more</h5></td>
-                                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                            </tr>
-                            <tr>
-                                <td class="dognameinlist"><h5>Add dog</h5></td>
-                                <td class="dognameindot"><i class="fas fa-plus"></i></td>
-                            </tr>
-                    </table>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
-                    <div>
-                        <table class="sidebarlist rounded-bottom">
-                        <script>var k = 3;</script>
-                        <% for(var i=3; i<6; i++) { %>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-                        <script>    
-                            document.getElementById("asdasd").id = k;
-                            k++;
-                        </script>
-                        <td class="dognameinlist" >husky</td>
-                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                        <% } %>
-                        <tr>
-                            <td class="dognameinlist"><h5>more</h5></td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>
-                    </table>
-                    </div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div>
-                </div>
-                <div class="sidebarComp">
-                    <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div>
-                </div>
-                <div class="sidebarComp">
-                    <!-- <a href="AnalyzeReg.html"></a> -->
-                    <a href="AnalyzeReg.html">
-                        <div id="analyzebtn" class="listTitle rounded">
-                            <h5><i class="fas fa-search"></i> Analyze</h5>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            <%- include('sidebar') %>
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <!--Dog info start---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
                 <div id="doginfo" class="row">
-                    <div class="col-4"><img id="dogprofilepics" src="/image/profile.jpg" alt=""></div>
+                    <div class="col-4"><img id="dogprofilepics" src="/image/dog/<%=dogPic%>" alt=""></div>
                     <div class="col-5">
-                        <h1>Husky</h1>
+                        <h1><%=dogName%></h1>
                         <table>
                             <tr>
                                 <td>Breed</td>
                                 <td> : </td>
-                                <td>Siberian</td>
+                                <td><%=breed%></td>
                             </tr>
                             <tr>
                                 <td>Age</td>
                                 <td> : </td>
-                                <td>1,000,000</td>
+                                <td><%=age%></td>
                             </tr>
                             <tr>
                                 <td>Gender</td>
                                 <td> : </td>
-                                <td>Male</td>
+                                <td><%=gender%></td>
                             </tr>
                         </table>
 
@@ -199,18 +109,59 @@
     var datee = new Date();
     var month = datee.getMonth();
     var year = datee.getFullYear();
+    datee.setDate(1);
+    var date = datee.getDate();
+    var day = datee.getDay();
+    var checkday = 0;
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
+    var x = document.getElementsByClassName("dogeachday");
 
+    function updatecalendar(monthh,yearr){
+        date = 1;
+        datee.setDate(1);
+        datee.setMonth(monthh);
+        datee.setFullYear(yearr);
+        var day = datee.getDay();
+        var limit = new Date(yearr, monthh, 0).getDate();
+        for (var i = 0; i < x.length; i++) {
+            if(i== day){
+                checkday = 1;
+            }
+            if(checkday==0){
+                x[i].innerHTML = " ";
+            }
+            else{
+                if (date < limit) {
+                    x[i].innerHTML = date;
+                }
+                else {
+                    x[i].innerHTML = " ";
+                }
+                date++;
+            }
+        }  
+        checkday = 0;
+    }
+    updatecalendar(month,year);
     function nxtMonth(){
-        if(month == 11)month = -1; 
+        if(month == 11){
+            month = -1;
+            year++;
+        }; 
         document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
+        // alert(month);
+        updatecalendar(month,year);
     }
     function preMonth(){
-        if(month == 0)month = 12; 
+        if(month == 0){
+            month = 12;
+            year--;
+        }; 
         document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
+        updatecalendar(month,year);
     }
-
+    
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }

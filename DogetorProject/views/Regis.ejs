@@ -47,10 +47,10 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="/image/jhin.jpg" alt="First slide">
+                        <img class="d-block w-100" src="/image/dogwall1.jpg" alt="First slide">
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="/image/jhinb.jpg" alt="Second slide">
+                        <img class="d-block w-100" src="/image/dogwall2.jpg" alt="Second slide">
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -66,7 +66,14 @@
         <div class="col-4" id="loginpagecontent">
             <h2>Mind your Little beast</h2>
             It's free and always will be(like facebook).
-
+            <h4 class = "loginguide">1. Input your dog Info.</h4>
+            <h4 class = "loginguide">2. Choos it Symptom.</h4>
+            <h4 class = "loginguide">3. Get Result !</h4>
+            <a href="AnalyzeReg.html" >
+                <div id="analyzebtn" align="center" class="listTitle rounded">
+                    <h5><i class="fas fa-search"></i> Analyze Now !</h5>
+                </div>
+            </a>
 
             <% if(errors){ %>
             <% for (var error of errors){%>
@@ -74,32 +81,22 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <%=error.msg %>
             </div>
-
-
             <% } %>
-
-
-
             <% } else{ %>
-
             <% } %>
-            <%if (dupli != '') { %>
+            <%if (dupli == 'Username or email is already in use') { %>
             <div class="alert alert-danger alert-dismissible fade show">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-
                 <%=dupli%>
-
             </div>
-
             <% } %>
 
-
-
-
-
-
-
-
+            <%if (dupli == 'Registration Success') { %>
+                <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <%=dupli%>
+                </div>
+                <% } %>
         </div>
     </div>
     <!--  Example Slide End------------------------------------------------------------------------------------------------->
@@ -115,9 +112,8 @@
                 </div>
                 <div class="modal-body">
                     <div class="container-fluid">
-                        <div align="center">
-                            <img src="/image/jhin.jpg" id="loginpics" alt="">
-
+                        <div align="center" >
+                            <div id = "loginpics"></div>
                         </div>
                         <div class="row">
                             <div class="col-2"></div>
@@ -174,10 +170,10 @@
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-default btn-file">
-                                                    Browse… <input type="file" id="imgInp" name="uploaded_image">
+                                                    Browse… <input type="file" id="imgInp" onchange="chng()" accept="image/*" name="uploaded_image">
                                                 </span>
                                             </span>
-                                            <input type="text" class="form-control" readonly>
+                                            <!-- <input type="text" class="form-control" readonly> -->
                                         </div>
                                         <img id='img-upload' />
                                     </div>
@@ -195,15 +191,17 @@
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input id = "password1" type="password" class="form-control" name="pwd" placeholder="password" oninput="passwordcheck()">
+                                        <input id="password1" type="password" class="form-control" name="pwd"
+                                            placeholder="password" oninput="passwordcheck()">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Cpwd">Confirm Password:</label>
-                                        <input id = "password2" type="password" class="form-control" name="Cpwd" placeholder="Confirm password" oninput="passwordcheck()">
+                                        <input id="password2" type="password" class="form-control" name="Cpwd"
+                                            placeholder="Confirm password" oninput="passwordcheck()">
                                     </div>
-                                    <div id = "alertpw">
-                                            
+                                    <div id="alertpw">
+
                                     </div>
 
                                     <div class="modal-footer">
@@ -231,7 +229,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
 <script>
-
     history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
@@ -273,16 +270,34 @@
             readURL(this);
         });
     });
-    function passwordcheck(){
+
+    function chng()
+    {
+        var typ=document.getElementById("imgInp").value;
+        var res = typ.match(".jpg");
+        var res2 = typ.match(".PNG");
+
+        if(res || res2)
+        {
+            alert("sucess");
+        }
+        else
+        {
+           
+            alert("Sorry only jpeg images are accepted");
+            document.getElementById("imgInp").value="";
+        }
+    }
+
+    function passwordcheck() {
         var pw1 = document.getElementById("password1").value;
         var pw2 = document.getElementById("password2").value;
-        if (pw1==pw2){
-            if(pw1!=""){
-            document.getElementById("alertpw").innerHTML = "match!";
-            document.getElementById("alertpw").className = "alert alert-success";           
+        if (pw1 == pw2) {
+            if (pw1 != "") {
+                document.getElementById("alertpw").innerHTML = "match!";
+                document.getElementById("alertpw").className = "alert alert-success";
             }
-        }
-        else {
+        } else {
             document.getElementById("alertpw").innerHTML = "password not match";
             document.getElementById("alertpw").className = "alert alert-danger";
         }

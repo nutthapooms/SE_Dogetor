@@ -1,21 +1,12 @@
 var mongoose = require('mongoose');
-
-
-
 var Schema = mongoose.Schema;
-
-
 var dog = new Schema({
-
     name: String,
+    age: Number,
     breed: String,
     owner: String,
-    symtom: String
-
+    gender: String,
+    dogAvatar: String
 });
 
-
-
-
 module.exports = mongoose.model('dogData', dog);
-
