@@ -83,6 +83,8 @@
                     </div>
             </div>
         </div>
+        <button id="mbtn" >kuy</button>
+        <div id = "try1"></div>
     </div>
     <% if(errors){ %>
         <% for (var error of errors){%>
@@ -103,18 +105,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
 <script>
-        function loadXMLDoc() {
-          var xhttp = new XMLHttpRequest();
-          xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-              document.getElementById("demo").innerHTML =
-              this.responseText;
-            }
-          };
-          xhttp.open("GET", "xmlhttp_info.txt", true);
-          xhttp.send();
+    function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML =
+            this.responseText;
         }
-        </script>
+        };
+        xhttp.open("GET", "xmlhttp_info.txt", true);
+        xhttp.send();
+    }
+    </script>
+    
 <script>
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
@@ -186,5 +189,24 @@
     function mouseOut(j){
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
+
+    $("#mbtn").on('click',function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        // alert("asdasd");
+        $.ajax({
+            url:"/asdasd",
+            type:"GET"
+        }).done(function(result){
+            showwww(result);
+        })
+    })
+    var showwww = function (result1){
+        // alert("asdasd333");
+        var div = document.getElementById("try1");
+        div.innerHTML = result1;
+        
+    }
+
     </script>
 </html>

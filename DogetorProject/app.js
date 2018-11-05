@@ -185,9 +185,16 @@ app.get('/home', loggedIn, function (req, res) {
             amount: book.length
         });
     })
+    
 
 
 });
+app.get('/asdasd',function(req,res){
+    res.render('try1',{
+        user : req.user.username
+    });
+    res.end();
+})
 
 
 app.get('/dogInfo', loggedIn, function (req, res) {
