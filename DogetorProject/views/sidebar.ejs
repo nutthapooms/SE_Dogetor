@@ -1,6 +1,6 @@
 <div class="col-2 rounded-bottom" id="sidebar">
     <div class="sidebarComp">
-        <img id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
+        <img  id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
         <h5 id=username><%=username%></h5> <!-- username----->
         <div><%=amount%> dogs</div>
     </div>
@@ -9,7 +9,7 @@
        <table class="sidebarlist rounded-bottom">
                 <script>var j = 0;</script>
                 <% for (var pet of dog){%>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class ="dogtoshow">
                             <script>    
                                 document.getElementById("asdasd").id = j;
                                 j++;
@@ -63,3 +63,13 @@
     </div>
 
 </div>
+<script>
+    var dogtoshow = document.getElementsByClassName("dogtoshow");
+
+    for(var e = 0;e<dogtoshow.length;e++){
+        if(e>2){
+            dogtoshow[e].style.display = "none"
+        }
+    }
+
+</script>

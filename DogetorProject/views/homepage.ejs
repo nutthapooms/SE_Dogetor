@@ -62,7 +62,7 @@
                         <% for(var i=0; i<6; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday">1</td>
+                                    <td class = "eachday"><a href="#" class = "dayeach"></a></td>
                                 <% } %>     
                             </tr>
                         <% } %>
@@ -114,7 +114,7 @@
     var checkday = 0;
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
-    var x = document.getElementsByClassName("eachday");
+    var x = document.getElementsByClassName("dayeach");
 
     function updatecalendar(monthh,yearr){
         date = 1;
@@ -133,6 +133,7 @@
             else{
                 if (date < limit) {
                     x[i].innerHTML = date;
+                    
                 }
                 else {
                     x[i].innerHTML = " ";
