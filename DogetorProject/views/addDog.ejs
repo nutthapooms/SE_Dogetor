@@ -29,15 +29,16 @@
 
 
                     <div class="col-4">
-                        <form action="/addDog" method="POST" enctype="multipart/form-data" >
-                            <div class="form-group" id = "dogaddpic">
+                        <form action="/addDog" method="POST"  enctype="multipart/form-data">
+                            <div class="form-group" id="dogaddpic">
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <span class="btn btn-default btn-file">
-                                                <img id='img-upload' src="/image/addpics.png" align="center"><input type="file" id="imgInp" name="uploaded_dogimage">
+                                            <img id='img-upload' src="/image/addpics.png" align="center"><input  onchange="chng()" accept="image/*"
+                                                type="file" id="imgInp" name="uploaded_dogimage">
                                         </span>
                                     </span>
-                                    
+
                                 </div>
                             </div>
                             add your dog picture!
@@ -63,11 +64,11 @@
                             <input type="radio" name="gender" value="female"> Female<br>
                         </div>
                         <div>
-                            <button type="submit" class="btn btn-primary ">Add</button>
+                            <button id="sub" type="submit" class="btn btn-primary ">Add</button>
                             <button class="btn btn-secondary">Cancel</button>
                         </div>
                         </form>
-                        
+
 
                     </div>
                 </div>
@@ -125,6 +126,7 @@
             readURL(this);
         });
     });
+
     function mouseOver(j) {
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";
     }
@@ -132,6 +134,26 @@
     function mouseOut(j) {
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
+
+    function chng()
+    {
+        var typ=document.getElementById("imgInp").value;
+        var res = typ.match(".jpg");
+        var res2 = typ.match(".PNG");
+
+        if(res || res2)
+        {
+            alert("sucess");
+        }
+        else
+        {
+           
+            alert("Sorry only jpeg images are accepted");
+            document.getElementById("imgInp").value="";
+        }
+    }
+
+    
 </script>
 
 </html>

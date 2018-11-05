@@ -64,6 +64,14 @@ app.use(expressValidator({
     }
 }));
 
+// imageFilter = function (req, file, cb) {
+    
+//     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
+//         return cb(new Error('Only image files are allowed!'), false);
+//     }
+//     cb(null, true);
+// };
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, __dirname + '/public/image/dog');
@@ -75,6 +83,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({
     storage: storage
+    // fileFilter: imageFilter
 });
 
 
@@ -115,10 +124,11 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
     req.checkBody('dogAge', 'Dog Age must be number ').isNumeric();
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
     req.checkBody('gender', 'Gender is required').notEmpty()
+    
 
     var errors = req.validationErrors()
 
-    if (errors) {
+    if (errors  ) {
         dogData.find({
             owner: req.user.username
         }, function (err, book) {
@@ -144,6 +154,8 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
             newDog.dogAvatar = req.file.filename
+            console.log(req.file.mimetype)
+            
         }
 
         newDog.save(function (err, book) {

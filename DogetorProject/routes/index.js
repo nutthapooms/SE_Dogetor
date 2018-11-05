@@ -36,7 +36,7 @@ router.use(expressValidator({
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, 'D:/SE_Dogetor/DogetorProject/public/image/user');
+        callback(null, 'G:/My Drive/SE/SE_Dogetor/DogetorProject/public/image/user');
     },
     filename: function (req, file, callback) {
         callback(null, file.originalname);

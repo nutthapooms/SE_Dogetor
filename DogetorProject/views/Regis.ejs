@@ -170,10 +170,10 @@
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <span class="btn btn-default btn-file">
-                                                    Browse… <input type="file" id="imgInp" name="uploaded_image">
+                                                    Browse… <input type="file" id="imgInp" onchange="chng()" accept="image/*" name="uploaded_image">
                                                 </span>
                                             </span>
-                                            <input type="text" class="form-control" readonly>
+                                            <!-- <input type="text" class="form-control" readonly> -->
                                         </div>
                                         <img id='img-upload' />
                                     </div>
@@ -270,6 +270,24 @@
             readURL(this);
         });
     });
+
+    function chng()
+    {
+        var typ=document.getElementById("imgInp").value;
+        var res = typ.match(".jpg");
+        var res2 = typ.match(".PNG");
+
+        if(res || res2)
+        {
+            alert("sucess");
+        }
+        else
+        {
+           
+            alert("Sorry only jpeg images are accepted");
+            document.getElementById("imgInp").value="";
+        }
+    }
 
     function passwordcheck() {
         var pw1 = document.getElementById("password1").value;
