@@ -62,7 +62,10 @@
                         <% for(var i=0; i<6; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday"><a href="#" class = "dayeach"></a></td>
+                                    <td class = "eachday"><a href="#" class = "dayeach" onclick="loadXMLDoc()"></a>
+
+                                    </td>
+
                                 <% } %>     
                             </tr>
                         <% } %>
@@ -100,11 +103,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
 <script>
+        function loadXMLDoc() {
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              document.getElementById("demo").innerHTML =
+              this.responseText;
+            }
+          };
+          xhttp.open("GET", "xmlhttp_info.txt", true);
+          xhttp.send();
+        }
+        </script>
+<script>
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);
     
     };
+    
     var datee = new Date();
     var month = datee.getMonth();
     var year = datee.getFullYear();
