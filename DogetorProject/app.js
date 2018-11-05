@@ -189,9 +189,15 @@ app.get('/home', loggedIn, function (req, res) {
 
 
 });
-app.get('/asdasd',function(req,res){
-    res.render('try1',{
-        user : req.user.username
+app.post('/home',function(req,res){
+    var try1 = req.body;
+    console.log(try1);
+    res.render('calendar.ejs',{
+        date : Number(try1.date),
+        day : try1.day,
+        month : try1.month,
+        year : try1.year,
+        limit:try1.limit
     });
     res.end();
 })

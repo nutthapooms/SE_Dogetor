@@ -48,7 +48,7 @@
                             <td class="day">Sat</td>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id = "calendar">
                         <!-- calendar startt -->
                         
                         <% for(var i=0; i<6; i++) {%>
@@ -187,16 +187,20 @@
         event.stopPropagation();
         // alert("asdasd");
         $.ajax({
-            url:"/asdasd",
-            type:"GET"
-        }).done(function(result){
+            url:"/home",
+            type:"POST",
+            datatype :"json",
+            data: {date:1,day,day,month:month,year:year}
+        }).done(function(result,data){
             showwww(result);
+          
         })
     })
     var showwww = function (result1){
         // alert("asdasd333");
-        var div = document.getElementById("try1");
+        var div = document.getElementById("calendar");
         div.innerHTML = result1;
+        updatecalendar(month,year);
         
     }
 
