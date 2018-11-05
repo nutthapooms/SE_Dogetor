@@ -110,67 +110,67 @@ app.get('/index', function (req, res) {
 
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 
-    req.checkBody('dogName','Dog Name is required ').notEmpty()
-    req.checkBody('dogAge','Dog Age is required ').notEmpty()
-    req.checkBody('dogAge','Dog Age must be number ').isNumeric();
-    req.checkBody('dogBreed','Dog Breed is required').notEmpty()    
-    req.checkBody('gender','Gender is required').notEmpty()
+    req.checkBody('dogName', 'Dog Name is required ').notEmpty()
+    req.checkBody('dogAge', 'Dog Age is required ').notEmpty()
+    req.checkBody('dogAge', 'Dog Age must be number ').isNumeric();
+    req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
+    req.checkBody('gender', 'Gender is required').notEmpty()
 
     var errors = req.validationErrors()
 
-    if(errors){
+    if (errors) {
         dogData.find({
             owner: req.user.username
         }, function (err, book) {
             res.render('homepage', {
-                errors:errors,
+                errors: errors,
                 username: req.user.username,
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length
             });
         })
-    }else{
+    } else {
 
-    newDog = new dogData();
-    newDog.name = req.body.dogName
-    newDog.age = req.body.dogAge
-    newDog.breed = req.body.dogBreed
-    newDog.owner = req.user.username
-    newDog.gender = req.body.gender
-    
+        newDog = new dogData();
+        newDog.name = req.body.dogName
+        newDog.age = req.body.dogAge
+        newDog.breed = req.body.dogBreed
+        newDog.owner = req.user.username
+        newDog.gender = req.body.gender
 
-    if(req.file == undefined){
-        newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
-    }else{
-        newDog.dogAvatar = req.file.filename
-    }
 
-    newDog.save(function (err, book) {
-        if (err) {
-            console.log(err.code)
+        if (req.file == undefined) {
+            newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
-            userData.findByIdAndUpdate(
-                req.user._id, {
-                    $push: {
-                        dog: book._id
-                    }
-                }, {
-                    "new": true,
-                    "upsert": true
-                },
-                function (err, newBook) {
-                    if (err) {
-                        console.log('error')
-                    } else {
-                        console.log('newBook')
-                    }
-                })
-
-            console.log(book)
-            res.redirect('/home')
+            newDog.dogAvatar = req.file.filename
         }
-    })
+
+        newDog.save(function (err, book) {
+            if (err) {
+                console.log(err.code)
+            } else {
+                userData.findByIdAndUpdate(
+                    req.user._id, {
+                        $push: {
+                            dog: book._id
+                        }
+                    }, {
+                        "new": true,
+                        "upsert": true
+                    },
+                    function (err, newBook) {
+                        if (err) {
+                            console.log('error')
+                        } else {
+                            console.log('newBook')
+                        }
+                    })
+
+                console.log(book)
+                res.redirect('/home')
+            }
+        })
     }
 })
 app.get('/home', loggedIn, function (req, res) {
@@ -178,7 +178,7 @@ app.get('/home', loggedIn, function (req, res) {
         owner: req.user.username
     }, function (err, book) {
         res.render('homepage.ejs', {
-            errors :'',
+            errors: '',
             username: req.user.username,
             pic: req.user.avatar,
             dog: book,
@@ -193,24 +193,29 @@ app.get('/home', loggedIn, function (req, res) {
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
 
-    dogData.findById(topic, function (err, book) {
-        dogData.find({
-            owner: req.user.username
-        }, function (err, bookuser) {
-            res.render("doginfo", {
-                dogName: book.name,
-                breed: book.breed,
-                gender: book.gender,
-                age: book.age,
-                dogPic: book.dogAvatar,
-                username: req.user.username,
-                pic: req.user.avatar,
-                dog: bookuser,
-                amount: bookuser.length
-            });
-        })
+    if (req.user.dog.includes(topic)) {
 
-    })
+        dogData.findById(topic, function (err, book) {
+            dogData.find({
+                owner: req.user.username
+            }, function (err, bookuser) {
+                res.render("doginfo", {
+                    dogName: book.name,
+                    breed: book.breed,
+                    gender: book.gender,
+                    age: book.age,
+                    dogPic: book.dogAvatar,
+                    username: req.user.username,
+                    pic: req.user.avatar,
+                    dog: bookuser,
+                    amount: bookuser.length
+                });
+            })
+
+        })
+    } else {
+        res.redirect('/home')
+    }
 
 
 });

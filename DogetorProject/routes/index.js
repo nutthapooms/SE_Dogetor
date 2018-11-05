@@ -69,7 +69,7 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
         newuser.password = hash
 
         if (req.file == undefined) {
-            newuser.avatar = "defaultprofilepicturedogetoruser.jpg"            
+            newuser.avatar = "defaultprofilepicturedogetoruser.jpg"
         } else {
             newuser.avatar = req.file.filename
         }
@@ -95,7 +95,7 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 router.get('/', function (req, res) {
 
     res.redirect('/index')
-    
+
 
 });
 
