@@ -9,6 +9,7 @@ var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
 var index = require('./routes/index');
+var expressValidator = require('express-validator');
 
 
 
@@ -47,6 +48,22 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.use(expressValidator({
+    errorFormatter: function (param, msg, value) {
+        var namespace = param.split('.'),
+            root = namespace.shift(),
+            formParam = root;
+        while (namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            param: formParam,
+            msg: msg,
+            value: value
+        };
+    }
+}));
+
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, __dirname + '/public/image/dog');
@@ -63,6 +80,7 @@ var upload = multer({
 
 
 app.get('/addDog', loggedIn, function (req, res) {
+
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
@@ -92,13 +110,41 @@ app.get('/index', function (req, res) {
 
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 
+    req.checkBody('dogName','Dog Name is required ').notEmpty()
+    req.checkBody('dogAge','Dog Age is required ').notEmpty()
+    req.checkBody('dogAge','Dog Age must be number ').isNumeric();
+    req.checkBody('dogBreed','Dog Breed is required').notEmpty()    
+    req.checkBody('gender','Gender is required').notEmpty()
+
+    var errors = req.validationErrors()
+
+    if(errors){
+        dogData.find({
+            owner: req.user.username
+        }, function (err, book) {
+            res.render('homepage', {
+                errors:errors,
+                username: req.user.username,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length
+            });
+        })
+    }else{
+
     newDog = new dogData();
     newDog.name = req.body.dogName
     newDog.age = req.body.dogAge
     newDog.breed = req.body.dogBreed
     newDog.owner = req.user.username
     newDog.gender = req.body.gender
-    newDog.dogAvatar = req.file.filename
+    
+
+    if(req.file == undefined){
+        newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
+    }else{
+        newDog.dogAvatar = req.file.filename
+    }
 
     newDog.save(function (err, book) {
         if (err) {
@@ -125,13 +171,14 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             res.redirect('/home')
         }
     })
-
+    }
 })
 app.get('/home', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
         res.render('homepage.ejs', {
+            errors :'',
             username: req.user.username,
             pic: req.user.avatar,
             dog: book,

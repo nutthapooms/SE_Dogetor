@@ -30,8 +30,9 @@
         <div class="row">
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <%- include('sidebar') %>
-
+            
             <!--Side bar End---------------------------------------------------------------------------------------------->
+            
             <div class="col-8 content">
                 <h1 id="schedulehead"></h1>
                 <table class="schedule ">
@@ -80,6 +81,15 @@
             </div>
         </div>
     </div>
+    <% if(errors){ %>
+        <% for (var error of errors){%>
+        <div class="alert alert-danger alert-dismissible fade show">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <%=error.msg %>
+        </div>
+        <% } %>
+        <% } else{ %>
+        <% } %>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
