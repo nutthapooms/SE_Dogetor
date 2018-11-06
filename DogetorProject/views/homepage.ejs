@@ -50,18 +50,13 @@
                     </thead>
                     <tbody id = "calendar">
                         <!-- calendar startt -->
-                        
                             <% for(var i=0; i<6; i++) {%>
                                 <tr>
                                     <% for(var j=0; j<7; j++) {%>
-                                        <td class = "eachday"><a href="#" class = "dayeach" onclick="loadXMLDoc()"></a>
-    
-                                        </td>
-    
+                                        <td class = "eachday"><a href="#" class = "dayeach"></a></td>
                                     <% } %>     
                                 </tr>
                             <% } %>
-                        
                          <!-- calendar endd-->
                     </tbody>
                 </table>
@@ -131,8 +126,7 @@
             }
             else{
                 if (date < limit) {
-                    x[i].innerHTML = date;
-                    
+                    x[i].innerHTML = date;  
                 }
                 else {
                     x[i].innerHTML = " ";
@@ -142,24 +136,19 @@
         }  
         checkday = 0;
     }
+    updatecalendar(month,year);
     function allowdog(){
         // alert('adasasd');
         var allowing = document.getElementsByClassName("allowdog");
         jQuery(".allowdog").css("display", "table-row");
         
     }
-    updatecalendar(month,year);
-    
-   
-    
+       
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
     }
     function mouseOut(j){
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
-
-    
-
     </script>
 </html>

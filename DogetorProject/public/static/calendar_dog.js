@@ -10,9 +10,8 @@ $("#nxtmbtn").on('click',function(event){
     datee.setMonth(month);
     datee.setFullYear(year);
     var day = datee.getDay();
-    // alert(month);
     $.ajax({
-        url:"/doginfo",
+        url:"/dogInfo",
         type:"POST",          
         data: {date:1,day,day,month:month,year:year,limit:limit}
     }).done(function(result){
@@ -37,9 +36,8 @@ $("#prembtn").on('click',function(event){
     datee.setMonth(month);
     datee.setFullYear(year);
     var day = datee.getDay();
-    // alert(month);
     $.ajax({
-        url:"/doginfo",
+        url:"/dogInfo",
         type:"POST",          
         data: {date:1,day,day,month:month,year:year,limit:limit}
     }).done(function(result){  

@@ -74,11 +74,11 @@
                             <td class="dogday">Sat</td>
                         </tr>
                     </thead>
-                    <tbody>
-                        <% for(var i=0; i<5; i++) {%>
+                    <tbody id = "calendar">
+                        <% for(var i=0; i<6; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td class = "dogeachday">1</td>
+                                    <td  class = "dogeachday"><a href="#" class = "dogeach"></a></td>
                                 <% } %>     
                             </tr>
                          <% } %>
@@ -86,10 +86,10 @@
                 </table>
                 <div class = "row">
                     <div class = "rounded col-6"  align ="left">
-                        <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
+                        <button id = "prembtn" class = "btn"">Last month</button>
                     </div>
                     <div class = "rounded col-6"  align ="right">
-                        <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
+                        <button id = "nxtmbtn" class = "btn" ">Next month</button>
                     </div>
                 </div>
             </div>
@@ -116,15 +116,15 @@
     var checkday = 0;
     var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
-    var x = document.getElementsByClassName("dogeachday");
-
+    var x = document.getElementsByClassName("dogeach");
+    var limit = new Date(year, month, 0).getDate();
     function updatecalendar(monthh,yearr){
         date = 1;
         datee.setDate(1);
         datee.setMonth(monthh);
         datee.setFullYear(yearr);
         var day = datee.getDay();
-        var limit = new Date(yearr, monthh, 0).getDate();
+        limit = new Date(yearr, monthh, 0).getDate();
         for (var i = 0; i < x.length; i++) {
             if(i== day){
                 checkday = 1;

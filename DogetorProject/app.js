@@ -213,6 +213,18 @@ app.post('/home',function(req,res){
     });
     res.end();
 })
+app.post('/dogInfo',function(req,res){
+    var try2 = req.body;
+    console.log(try2);
+    res.render('calendar_dog',{
+        date : try2.date,
+        day : try2.day,
+        month : try2.month,
+        year : try2.year,
+        limit:try2.limit
+    });
+    res.end();
+})
 
 
 app.get('/dogInfo', loggedIn, function (req, res) {
@@ -242,18 +254,7 @@ app.get('/dogInfo', loggedIn, function (req, res) {
         res.redirect('/home')
     }
 });
-app.post('/doginfo',function(req,res){
-    var try1 = req.body;
-    console.log(try1);
-    res.render('calendar_dog',{
-        date : try1.date,
-        day : try1.day,
-        month : try1.month,
-        year : try1.year,
-        limit:try1.limit
-    });
-    res.end();
-})
+
 
 
 passport.use(new LocalStrategy(
