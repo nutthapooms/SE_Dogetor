@@ -7,41 +7,46 @@
     
     <div class="sidebarComp">
         <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-       <table class="sidebarlist rounded-bottom">
-                <script>var j = 0;</script>
-                <% for (var pet of dog){%>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class ="dogtoshow">
-                            <script>    
-                                document.getElementById("asdasd").id = j;
-                                j++;
-                            </script>
-                            <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
-                            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                        </tr>   
-                    <% } %>
-            <tr>
-                <td class="dognameinlist"><h5>more</h5></td>
-                <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-            </tr>
-            <tr>
-                <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
-                <td class="dognameindot"><i class="fas fa-plus"></i></td>
-            </tr>
-        </table>
+        <table class="sidebarlist rounded-bottom">
+            <script>var j = 0;</script>
+            <% for (var pet of dog){%>
+                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  class ="dogtoshow allowdog">
+                        <script>    
+                            document.getElementById("asdasd").id = j;
+                            j++;
+                        </script>
+                        <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
+                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                    </tr>   
+                <% } %>
+        <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+            <script>document.getElementById("asdasd").id = ++j;</script>
+            <td class="dognameinlist"><h5>more</h5></td>
+            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+        </tr>
+        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+            <script>document.getElementById("asdasd").id = ++j;</script>
+            <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
+            <td class="dognameindot"><i class="fas fa-plus"></i></td>
+        </tr>
+    </table>
     </div>
     <div class="sidebarComp">
         <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
         <div>
             <table class="sidebarlist rounded-bottom">
-                <tr class="sidebarlist">
+                <tr  id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class="sidebarlist">
+                    <script>document.getElementById("asdasd").id = ++j;</script>
                     <td class="dognameinlist">he y</td>
                     <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                 </tr>
-                <tr>
+                <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" >
+                    <script>document.getElementById("asdasd").id = ++j;</script>
                     <td class="dognameinlist">he y</td>
                     <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                 </tr>
-                <tr>
+                <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" >
+                    <script>document.getElementById("asdasd").id = ++j;</script>
                     <td class="dognameinlist">he y</td>
                     <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
                 </tr>

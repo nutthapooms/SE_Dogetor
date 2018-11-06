@@ -155,7 +155,12 @@
         }  
         checkday = 0;
     }
-
+    function allowdog(){
+        // alert('adasasd');
+        var allowing = document.getElementsByClassName("allowdog");
+        jQuery(".allowdog").css("display", "table-row");
+        
+    }
     updatecalendar(month,year);
     function nxtMonth(){
         if(month == 11){
