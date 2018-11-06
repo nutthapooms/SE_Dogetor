@@ -39,7 +39,7 @@ var storage = multer.diskStorage({
         callback(null, 'G:/My Drive/SE/SE_Dogetor/DogetorProject/public/image/user');
     },
     filename: function (req, file, callback) {
-        callback(null, file.originalname);
+        callback(null, Date.now()+file.originalname);
     }
 });
 

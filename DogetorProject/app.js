@@ -77,7 +77,7 @@ var storage = multer.diskStorage({
         callback(null, __dirname + '/public/image/dog');
     },
     filename: function (req, file, callback) {
-        callback(null, file.originalname);
+        callback(null,Date.now()+file.originalname);
     }
 });
 

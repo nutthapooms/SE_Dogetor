@@ -173,7 +173,7 @@
                                                     Browse… <input type="file" id="imgInp" onchange="chng()" accept="image/*" name="uploaded_image">
                                                 </span>
                                             </span>
-                                            <!-- <input type="text" class="form-control" readonly> -->
+                                           
                                         </div>
                                         <img id='img-upload' />
                                     </div>
@@ -249,7 +249,9 @@
             if (input.length) {
                 input.val(log);
             } else {
-                if (log) alert(log);
+                if (log) {
+                    console.log(log);
+                };
             }
 
         });
@@ -279,13 +281,14 @@
 
         if(res || res2)
         {
-            alert("sucess");
+           
         }
         else
         {
            
-            alert("Sorry only jpeg images are accepted");
+            alert("Sorry only jpeg or PNG images are accepted");
             document.getElementById("imgInp").value="";
+            
         }
     }
 

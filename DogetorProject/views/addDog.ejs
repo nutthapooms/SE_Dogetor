@@ -37,20 +37,20 @@
 
 
                     <div class="col-4">
-                        <form action="/addDog" method="POST"  enctype="multipart/form-data">
+                        <form action="/addDog" method="POST" enctype="multipart/form-data">
                             <div class="form-group" id="dogaddpic">
                                 <div class="input-group">
                                     <span class="input-group-btn">
                                         <span class="btn btn-default btn-file">
-                                            <img id='img-upload' src="/image/addpics.png" align="center"><input  onchange="chng()" accept="image/*"
-                                                type="file" id="imgInp" name="uploaded_dogimage">
+                                            <img id='img-upload' src="/image/addpics.png" align="center"><input
+                                                onchange="chng()" accept="image/*" type="file" id="imgInp" name="uploaded_dogimage">
                                         </span>
                                     </span>
 
                                 </div>
                             </div>
                     </div>
-                    <div class="col-6"> 
+                    <div class="col-6">
 
                         <h1>Add a new Dog</h1>
                         <div class="form-group">
@@ -112,7 +112,7 @@
             if (input.length) {
                 input.val(log);
             } else {
-                if (log) alert(log);
+                
             }
 
         });
@@ -150,17 +150,16 @@
 
         if(res || res2)
         {
-            alert("sucess");
+           
         }
         else
         {
            
-            alert("Sorry only jpeg images are accepted");
+            alert("Sorry only jpeg or PNG images are accepted");
             document.getElementById("imgInp").value="";
+            
         }
     }
-
-    
 </script>
 
 </html>
