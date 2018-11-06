@@ -49,11 +49,10 @@ var upload = multer({
 
 
 router.post('/', upload.single('uploaded_image'), function (req, res) {
-    req.checkBody('username', 'Username is required').notEmpty();
-    req.checkBody('email', 'Email is required').notEmpty();
-    req.checkBody('email', 'Email is not valid').isEmail();
-    req.checkBody('pwd', 'Password is required ').notEmpty();
-    req.checkBody('Cpwd', 'Password do not match').equals(req.body.pwd);
+    req.checkBody('username').notEmpty().withMessage('Username is required').isAlphanumeric().withMessage('Username contains only number and alphabet')
+    req.checkBody('email').notEmpty().withMessage('Email is required').isEmail().withMessage('Email only!!')
+    req.checkBody('pwd').notEmpty().withMessage('Password is required ').isAlphanumeric().withMessage('Password contains only number and alphabet')
+    req.checkBody('Cpwd', 'Password  not match').equals(req.body.pwd);
     var errors = req.validationErrors();
     if (errors) {
         res.render('Regis.ejs', {
