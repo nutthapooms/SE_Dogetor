@@ -44,12 +44,6 @@
         
     }
        
-    function mouseOver(j){
-        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
-    }
-    function mouseOut(j){
-        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
-    }
 $("#nxtmbtn").on('click',function(event){
     event.preventDefault();
     event.stopPropagation();

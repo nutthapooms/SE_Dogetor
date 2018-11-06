@@ -67,7 +67,6 @@
             </div>
         </a>
     </div>
-
 </div>
 <script>
     var dogtoshow = document.getElementsByClassName("dogtoshow");
@@ -76,6 +75,12 @@
         if(e>2){
             dogtoshow[e].style.display = "none"
         }
+    }
+    function mouseOver(j){
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    }
+    function mouseOut(j){
+        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
     
 
