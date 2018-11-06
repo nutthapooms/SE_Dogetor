@@ -70,7 +70,8 @@
     border-radius: 10px;
 }
 #dogprofilepics{
-    width   : 100%;
+    width   : 145px;
+    height: 150px;
     background-position: center;
     border-radius: 50%;
     border :10px solid rgb(0, 142, 167);
