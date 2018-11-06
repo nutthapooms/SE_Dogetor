@@ -197,9 +197,6 @@ app.get('/home', loggedIn, function (req, res) {
             amount: book.length
         });
     })
-    
-
-
 });
 app.post('/home',function(req,res){
     var try1 = req.body;

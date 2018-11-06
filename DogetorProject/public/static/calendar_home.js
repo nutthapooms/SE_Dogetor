@@ -37,12 +37,7 @@
         checkday = 0;
     }
     updatecalendar(month,year);
-    function allowdog(){
-        // alert('adasasd');
-        var allowing = document.getElementsByClassName("allowdog");
-        jQuery(".allowdog").css("display", "table-row");
-        
-    }
+    
        
 $("#nxtmbtn").on('click',function(event){
     event.preventDefault();

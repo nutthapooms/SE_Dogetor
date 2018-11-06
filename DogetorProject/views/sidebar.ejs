@@ -21,7 +21,12 @@
                 <% } %>
         <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
             <script>document.getElementById("asdasd").id = ++j;</script>
-            <td class="dognameinlist"><div><h5>more</h5></div></td>
+            <td class="dognameinlist"><a href="#"><h5>more</h5></a></td>
+            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+        </tr>
+        <tr id = "asdasd" class ="lessbtn" onclick="disallowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+            <script>document.getElementById("asdasd").id = ++j;</script>
+            <td class="dognameinlist"><a href="#"><h5>less</h5></div></td>
             <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
         </tr>
         <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
@@ -70,11 +75,19 @@
 </div>
 <script>
     var dogtoshow = document.getElementsByClassName("dogtoshow");
-
+    var morebtn = document.getElementsByClassName("morebtn");
+    var lessbtn = document.getElementsByClassName("lessbtn");
+    lessbtn[0].style.display = "none"
     for(var e = 0;e<dogtoshow.length;e++){
         if(e>2){
             dogtoshow[e].style.display = "none"
         }
+    }
+    if(dogtoshow.length<4){
+        morebtn[0].style.display = "none"
+    }
+    else{
+        jQuery(".morebtn").css("display", "table-row");
     }
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
@@ -82,6 +95,23 @@
     function mouseOut(j){
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
-    
-
+    function allowdog(){
+        var allowing = document.getElementsByClassName("allowdog");
+        jQuery(".allowdog").css("display", "table-row");
+        morebtn[0].style.display = "none"
+        jQuery(".lessbtn").css("display", "table-row");
+        
+    }
+    function disallowdog(){
+        var dogtoshow = document.getElementsByClassName("dogtoshow");
+        for(var e = 0;e<dogtoshow.length;e++){
+            if(e>2){
+                dogtoshow[e].style.display = "none"
+            }
+        }
+        // jQuery(".allowdog").css("display", "table-row");
+        lessbtn[0].style.display = "none"
+        jQuery(".morebtn").css("display", "table-row");
+        
+    }
 </script>
