@@ -1,30 +1,40 @@
-<%var datee = 1;%>
-<%var dayy = Number(day);%>
-<%var monthh = Number(month);%>
-<%var yearr  = Number(year);%>
-<%var limitt = Number(limit);%>
-<%var check = 0; %> 
-<% for(var i=0; i<6; i++) {%>
-    <tr>
-        <% for(var j=0; j<7; j++) {%>
-            <% if (j == dayy){ %>
-                <% check = 1; %>
-            <% } %>
-            <% if (check == 0){%>
-                <td class = "eachday">0</td>
-            <% }else{%>
-                <% if(datee < limitt){%>
-                    <td class = "eachday"><%= datee %></td>
-                    <% datee++; %>
-                <% }else{%>
-                    <td class = "eachday"> </td>
-                <% } %>
-            <% } %>
+
+        <tbody id = "calendar">
+            <!-- calendar startt -->
             
-        <% } %>     
-    </tr>
-<% } %>
-<% check = 0; %>
+            <%var datee = 1;%>
+            <%var dayy = Number(day);%>
+            <!-- <%= dayy%> -->
+            <%var monthh = Number(month);%>
+            <%var yearr  = Number(year);%>
+            <%var limitt = Number(limit);%>
+            <%var check = 0; %> 
+            <% for(var i=0; i<6; i++) {%>
+                <tr>
+                    <% for(var j=0; j<7; j++) {%>
+                        <% if (j == dayy){ %>
+                            <% check = 1; %>
+                        <% } %>
+                        <% if (check == 0){%>
+                            <td class = "eachday"> </td>
+                        <% }else{%>
+                            <% if(datee < limitt){%>
+                                <td class = "eachday"><a href="#" onclick="loadXMLDoc()"><%= datee %></a></td>
+                                
+                                <% datee++; %>
+                            <% }else{%>
+                                <td class = "eachday"> </td>
+                            <% } %>
+                        <% } %>
+                        
+                    <% } %>     
+                </tr>
+            <% } %>
+            <% check = 0; %>
+            
+             <!-- calendar endd-->
+        </tbody>
+
 
 
 

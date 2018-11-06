@@ -25,7 +25,7 @@
             
             <!--Side bar End---------------------------------------------------------------------------------------------->
             
-            <div class="col-8 content">
+            <div class="col-8 content" >
                 <h1 id="schedulehead"></h1>
                 <table class="schedule ">
                     <thead>
@@ -51,32 +51,31 @@
                     <tbody id = "calendar">
                         <!-- calendar startt -->
                         
-                        <% for(var i=0; i<6; i++) {%>
-                            <tr>
-                                <% for(var j=0; j<7; j++) {%>
-                                    <td class = "eachday"><a href="#" class = "dayeach" onclick="loadXMLDoc()"></a>
-
-                                    </td>
-
-                                <% } %>     
-                            </tr>
-                        <% } %>
+                            <% for(var i=0; i<6; i++) {%>
+                                <tr>
+                                    <% for(var j=0; j<7; j++) {%>
+                                        <td class = "eachday"><a href="#" class = "dayeach" onclick="loadXMLDoc()"></a>
+    
+                                        </td>
+    
+                                    <% } %>     
+                                </tr>
+                            <% } %>
                         
                          <!-- calendar endd-->
                     </tbody>
                 </table>
                 <div class = "row">
                         <div class = "rounded col-6"  align ="left">
-                            <button id = "prembtn" class = "btn" onclick="preMonth()">Last month</button>
+                            <button id = "prembtn" class = "btn">Last month</button>
                         </div>
                         <div class = "rounded col-6"  align ="right">
-                            <button id = "nxtmbtn" class = "btn" onclick="nxtMonth()">Next month</button>
+                            <button id = "nxtmbtn" class = "btn">Next month</button>
                         </div>
                     </div>
             </div>
         </div>
-        <button id="mbtn" >kuy</button>
-        <div id = "try1"></div>
+  
     </div>
     <% if(errors){ %>
         <% for (var error of errors){%>
@@ -96,20 +95,6 @@
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
-<script>
-    function loadXMLDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML =
-            this.responseText;
-        }
-        };
-        xhttp.open("GET", "xmlhttp_info.txt", true);
-        xhttp.send();
-    }
-    </script>
-    
 <script>
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
@@ -162,26 +147,8 @@
         
     }
     updatecalendar(month,year);
-    function nxtMonth(){
-        if(month == 11){
-            month = -1;
-            year++;
-        }; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
-        // alert(month);
-        var div = document.getElementById("calendar");
-        div.innerHTML = result1;
-        // updatecalendar(month,year);
-
-    }
-    function preMonth(){
-        if(month == 0){
-            month = 12;
-            year--;
-        }; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
-        updatecalendar(month,year);
-    }
+    
+   
     
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
@@ -193,17 +160,59 @@
     $("#nxtmbtn").on('click',function(event){
         event.preventDefault();
         event.stopPropagation();
-        // alert("asdasd");
+        if(month == 11){        
+                month = -1;
+                year++;
+        }; 
+        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
+        datee.setDate(1);
+        datee.setMonth(month);
+        datee.setFullYear(year);
+        var day = datee.getDay();
+        // alert(month);
         $.ajax({
             url:"/home",
-            type:"POST",
-            datatype :"json",
+            type:"POST",          
             data: {date:1,day,day,month:month,year:year,limit:limit}
-        }).done(function(result,data){
+        }).done(function(result){
+            limit = new Date(year, month+1, 0).getDate();
             nxtMonth(result);
-          
         })
     })
+    function nxtMonth(result1){
+        var div = document.getElementById("calendar");
+        div.innerHTML = result1;
+    }
+    
+    $("#prembtn").on('click',function(event){
+        event.preventDefault();
+        event.stopPropagation();
+        if(month == 0){
+            month = 12;
+            year--;
+        }; 
+        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;        
+        datee.setDate(1);
+        datee.setMonth(month);
+        datee.setFullYear(year);
+        var day = datee.getDay();
+        // alert(month);
+        $.ajax({
+            url:"/home",
+            type:"POST",          
+            data: {date:1,day,day,month:month,year:year,limit:limit}
+        }).done(function(result){  
+            limit = new Date(year, month+1, 0).getDate();
+            nxtMonth(result);
+        })
+    })
+    function preMonth(){
+        var div = document.getElementById("calendar");
+        div.innerHTML = result1;
+    }
+
+
+
     var showwww = function (result1){
         // alert("asdasd333");
         
