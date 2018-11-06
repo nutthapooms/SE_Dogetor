@@ -171,3 +171,19 @@
 .obj-hide{
     visibility: hidden;
 }
+
+.head-result{
+
+}
+
+.box-result{
+    position: absolute;
+    width: 615px;
+    height: 100px;
+    margin-bottom: 20px;
+
+    background: #FFFFFF;
+    border: 1px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+}

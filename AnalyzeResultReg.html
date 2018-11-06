@@ -118,6 +118,7 @@
                 <div id="petinfo">
                     <!-- Pet -->
                     <div class="input-group mb-3 rect-field-w" style="position:absolute; top:100px; left:166px;">
+                        
                         <div class="input-group-prepend">
                             <label class="input-group-text head-field" for="pet">Pet's name</label>
                         </div>
@@ -127,8 +128,10 @@
                             <option v-for="(pet, index) in petinfoall" v-bind:value="index+1">
                             {{ pet.name }}</option>
                         </select>
+
                     </div>
                 </div>
+                
                 <!-- Symptom -->
                 <div id="symptom">
                     <!-- Symptom type -->
