@@ -1,3 +1,51 @@
+
+    var datee = new Date();
+    var month = datee.getMonth();
+    var year = datee.getFullYear();
+    datee.setDate(1);
+    var date = datee.getDate();
+    var day = datee.getDay();
+    var checkday = 0;
+    var monthlist = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"]
+    document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[month] + " " + year;
+    var x = document.getElementsByClassName("dogeach");
+    var limit = new Date(year, month, 0).getDate();
+    function updatecalendar(monthh,yearr){
+        date = 1;
+        datee.setDate(1);
+        datee.setMonth(monthh);
+        datee.setFullYear(yearr);
+        var day = datee.getDay();
+        limit = new Date(yearr, monthh, 0).getDate();
+        for (var i = 0; i < x.length; i++) {
+            if(i== day){
+                checkday = 1;
+            }
+            if(checkday==0){
+                x[i].innerHTML = " ";
+            }
+            else{
+                if (date < limit) {
+                    x[i].innerHTML = date;
+                }
+                else {
+                    x[i].innerHTML = " ";
+                }
+                date++;
+            }
+        }  
+        checkday = 0;
+    }
+    updatecalendar(month,year);
+   
+    
+    function mouseOver(j){
+        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+    }
+    function mouseOut(j){
+        document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
+    }
+
 $("#nxtmbtn").on('click',function(event){
     event.preventDefault();
     event.stopPropagation();
@@ -6,6 +54,7 @@ $("#nxtmbtn").on('click',function(event){
             year++;
     }; 
     document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
+    limit = new Date(year, month+1, 0).getDate();  
     datee.setDate(1);
     datee.setMonth(month);
     datee.setFullYear(year);
@@ -13,9 +62,8 @@ $("#nxtmbtn").on('click',function(event){
     $.ajax({
         url:"/dogInfo",
         type:"POST",          
-        data: {date:1,day,day,month:month,year:year,limit:limit}
+        data: {date:1,day,day,month:month,year:year,limit:limit+1}
     }).done(function(result){
-        limit = new Date(year, month+1, 0).getDate();
         nxtMonth(result);
     })
 })
@@ -31,7 +79,8 @@ $("#prembtn").on('click',function(event){
         month = 12;
         year--;
     }; 
-    document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;        
+    document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;      
+    limit = new Date(year, month+1, 0).getDate();  
     datee.setDate(1);
     datee.setMonth(month);
     datee.setFullYear(year);
@@ -39,9 +88,8 @@ $("#prembtn").on('click',function(event){
     $.ajax({
         url:"/dogInfo",
         type:"POST",          
-        data: {date:1,day,day,month:month,year:year,limit:limit}
+        data: {date:1,day,day,month:month,year:year,limit:limit+1}
     }).done(function(result){  
-        limit = new Date(year, month+1, 0).getDate();
         nxtMonth(result);
     })
 })
