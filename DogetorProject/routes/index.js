@@ -80,12 +80,15 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
 
                 res.render('Regis.ejs', {
                     errors: '',
-                    dupli: 'Username or Email is already in use '
+                    dupli: 'Username or email is already in use'
 
                 })
             } else {
-                console.log(book);
-                res.redirect("/")
+                res.render('Regis.ejs', {
+                    errors: '',
+                    dupli: 'Registration Success'
+
+                })
             }
         })
     }
