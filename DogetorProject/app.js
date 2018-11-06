@@ -241,9 +241,20 @@ app.get('/dogInfo', loggedIn, function (req, res) {
     } else {
         res.redirect('/home')
     }
-
-
 });
+app.post('/doginfo',function(req,res){
+    var try1 = req.body;
+    console.log(try1);
+    res.render('calendar_dog',{
+        date : try1.date,
+        day : try1.day,
+        month : try1.month,
+        year : try1.year,
+        limit:try1.limit
+    });
+    res.end();
+})
+
 
 passport.use(new LocalStrategy(
     function (username, password, done) {

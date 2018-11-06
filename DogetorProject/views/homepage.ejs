@@ -95,6 +95,8 @@
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
+<script src="/static/calendar_home.js"></script>
+
 <script>
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
@@ -157,67 +159,7 @@
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
     }
 
-    $("#nxtmbtn").on('click',function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        if(month == 11){        
-                month = -1;
-                year++;
-        }; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
-        datee.setDate(1);
-        datee.setMonth(month);
-        datee.setFullYear(year);
-        var day = datee.getDay();
-        // alert(month);
-        $.ajax({
-            url:"/home",
-            type:"POST",          
-            data: {date:1,day,day,month:month,year:year,limit:limit}
-        }).done(function(result){
-            limit = new Date(year, month+1, 0).getDate();
-            nxtMonth(result);
-        })
-    })
-    function nxtMonth(result1){
-        var div = document.getElementById("calendar");
-        div.innerHTML = result1;
-    }
     
-    $("#prembtn").on('click',function(event){
-        event.preventDefault();
-        event.stopPropagation();
-        if(month == 0){
-            month = 12;
-            year--;
-        }; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;        
-        datee.setDate(1);
-        datee.setMonth(month);
-        datee.setFullYear(year);
-        var day = datee.getDay();
-        // alert(month);
-        $.ajax({
-            url:"/home",
-            type:"POST",          
-            data: {date:1,day,day,month:month,year:year,limit:limit}
-        }).done(function(result){  
-            limit = new Date(year, month+1, 0).getDate();
-            nxtMonth(result);
-        })
-    })
-    function preMonth(){
-        var div = document.getElementById("calendar");
-        div.innerHTML = result1;
-    }
-
-
-
-    var showwww = function (result1){
-        // alert("asdasd333");
-        
-        
-    }
 
     </script>
 </html>

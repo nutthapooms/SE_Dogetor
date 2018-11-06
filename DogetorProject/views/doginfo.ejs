@@ -105,6 +105,7 @@
     crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/static/homee.js"></script>
+<script src="/static/calendar_dog.js"></script>
 <script>
     var datee = new Date();
     var month = datee.getMonth();
@@ -144,23 +145,7 @@
         checkday = 0;
     }
     updatecalendar(month,year);
-    function nxtMonth(){
-        if(month == 11){
-            month = -1;
-            year++;
-        }; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[++month] + " " + year;
-        // alert(month);
-        updatecalendar(month,year);
-    }
-    function preMonth(){
-        if(month == 0){
-            month = 12;
-            year--;
-        }; 
-        document.getElementById("schedulehead").innerHTML = "Appointment schedule : " + monthlist[--month] + " " + year;
-        updatecalendar(month,year);
-    }
+   
     
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
