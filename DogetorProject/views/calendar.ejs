@@ -1,28 +1,26 @@
-
-<%var datee = date%>
-<%=day%>
-<%=month %>
-<%=year %>
-<%=limit %>
-<% var check = 0; %>
+<%var datee = 1;%>
+<%var dayy = Number(day);%>
+<%var monthh = Number(month);%>
+<%var yearr  = Number(year);%>
+<%var limitt = Number(limit);%>
+<%var check = 0; %> 
 <% for(var i=0; i<6; i++) {%>
     <tr>
         <% for(var j=0; j<7; j++) {%>
-            <% if (i == day){ %>
+            <% if (j == dayy){ %>
                 <% check = 1; %>
             <% } %>
             <% if (check == 0){%>
-                <td class = "eachday"> </td>
-            <% } %>
-            <% else{%>
-                <% if(datee < limit){%>
-                    <td class = "eachday"><% asdasd %></td>
-                <% } %>
-                <% else{%>
+                <td class = "eachday">0</td>
+            <% }else{%>
+                <% if(datee < limitt){%>
+                    <td class = "eachday"><%= datee %></td>
+                    <% datee++; %>
+                <% }else{%>
                     <td class = "eachday"> </td>
-                    <% } %>
+                <% } %>
             <% } %>
-            <% datee++; %>
+            
         <% } %>     
     </tr>
 <% } %>
