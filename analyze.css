@@ -204,19 +204,20 @@
 .box-result{
     position: absolute;
     width: 615px;
-    height: 100px;
-    margin-bottom: 20px;
+    min-height: 100px;
+    margin-bottom: 20px;    
+    overflow:hidden;
 
     background-color: rgb(255, 238, 212);
     border: 1px solid rgb(226, 136, 0);
     box-sizing: border-box;
     border-radius: 10px;
 
-    font-style: normal;
+    /* font-style: normal;
     font-weight: normal;
     line-height: normal;
     font-size: 18px;
-    color: black;
+    color: black; */
 }
 
 .text-result{
@@ -225,4 +226,7 @@
     line-height: normal;
     font-size: 18px;
     color: black;
+
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
