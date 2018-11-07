@@ -248,6 +248,30 @@ var symptom = new Vue({
     },
     showSymptomInfo: function(symp){
       this.sympdet = symp;
+    },
+    summaryResult: function(){
+      // Get checked symptom
+      for (i in this.symplistall){
+        for (j in this.symplistall[i]){
+          if(this.symplistall[i][j].check == true){
+            this.sympsummary.push(this.symplistall[i][j].name);
+            for (k in this.diseaseall){    
+              var index = this.diseaseall[k].symplist.indexOf(this.symplistall[i][j].name);
+              if(index != -1){
+                this.diseaseall[k].prob++;
+              }
+            }
+          }
+        }
+      }
+      // Analyze symptom
+      for (i in this.diseaseall){
+        var prob = this.diseaseall[i].prob /= this.diseaseall[i].symplist.length;
+        if(prob > 0.5){
+          this.sympresult.push(this.diseaseall[i].name);
+        }
+      }
+
     }
     // hideSymptomInfo: function(){
     //   this.sympdet[0].name = '';
