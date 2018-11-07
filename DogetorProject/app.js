@@ -14,7 +14,7 @@ var expressValidator = require('express-validator');
 
 
 var LocalStrategy = require('passport-local')
-   
+
 
 var port = 8080;
 
@@ -70,7 +70,7 @@ var storage = multer.diskStorage({
         callback(null, __dirname + '/public/image/dog');
     },
     filename: function (req, file, callback) {
-        callback(null,Date.now()+file.originalname);
+        callback(null, Date.now() + file.originalname);
     }
 });
 
@@ -104,17 +104,19 @@ app.get('/index', function (req, res) {
         console.log('not logged in')
         res.render('Regis.ejs', {
             errors: '',
-            dupli: '' 
+            dupli: ''
         })
     }
 
 });
 
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
-    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')   
-    req.checkBody('dogAge').isInt({min:0}).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
+    req.checkBody('dogAge').isInt({
+        min: 0
+    }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
-    req.checkBody('gender', 'Gender is required').notEmpty()  
+    req.checkBody('gender', 'Gender is required').notEmpty()
 
     var errors = req.validationErrors()
     if (errors) {
@@ -127,11 +129,11 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-                dupli:''
+                dupli: ''
             });
         })
-    } else { 
-        
+    } else {
+
         newDog = new dogData();
         newDog.name = req.body.dogName
         newDog.age = req.body.dogAge
@@ -143,8 +145,6 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
             newDog.dogAvatar = req.file.filename
-            console.log(req.file.mimetype)
-            
         }
         newDog.save(function (err, book) {
             if (err) {
@@ -174,11 +174,13 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 })
 
 
-app.post('/editDog',upload.single('uploaded_dogimage'),loggedIn,function(req,res){
-    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')   
-    req.checkBody('dogAge').isInt({min:0}).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
+app.post('/editDog', upload.single('uploaded_dogimage'), loggedIn, function (req, res) {
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
+    req.checkBody('dogAge').isInt({
+        min: 0
+    }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
-    req.checkBody('gender', 'Gender is required').notEmpty()  
+    req.checkBody('gender', 'Gender is required').notEmpty()
 
     var errors = req.validationErrors()
     if (errors) {
@@ -191,13 +193,39 @@ app.post('/editDog',upload.single('uploaded_dogimage'),loggedIn,function(req,res
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-                
+
             });
         })
-    }else{
-        
+    } else {
+        if (req.file == undefined) {
 
-    }   
+        } else {
+            var newAvatar = req.file.filename
+        }
+
+        dogData.findByIdAndUpdate(req.user.cache, {
+            name: req.body.dogName,
+            age: req.body.dogAge,
+            breed: req.body.dogBreed,
+            owner: req.user.username,
+            gender: req.body.gender,
+            dogAvatar: newAvatar
+        }, function (err, bookuser) {
+            res.render("doginfo", {
+                dogName: book.name,
+                breed: book.breed,
+                gender: book.gender,
+                age: book.age,
+                dogPic: book.dogAvatar,
+                username: req.user.username,
+                pic: req.user.avatar,
+                dog: bookuser,
+                amount: bookuser.length
+            });
+        })
+
+
+    }
 
 })
 app.get('/home', loggedIn, function (req, res) {
@@ -210,31 +238,31 @@ app.get('/home', loggedIn, function (req, res) {
             pic: req.user.avatar,
             dog: book,
             amount: book.length,
-            dupli:''
+            dupli: ''
         });
     })
 });
-app.post('/home',function(req,res){
+app.post('/home', function (req, res) {
     var try1 = req.body;
     console.log(try1);
-    res.render('calendar',{
-        date : try1.date,
-        day : try1.day,
-        month : try1.month,
-        year : try1.year,
-        limit:try1.limit
+    res.render('calendar', {
+        date: try1.date,
+        day: try1.day,
+        month: try1.month,
+        year: try1.year,
+        limit: try1.limit
     });
     res.end();
 })
-app.post('/dogInfo',function(req,res){
+app.post('/dogInfo', function (req, res) {
     var try2 = req.body;
     console.log(try2);
-    res.render('calendar_dog',{
-        date : try2.date,
-        day : try2.day,
-        month : try2.month,
-        year : try2.year,
-        limit:try2.limit
+    res.render('calendar_dog', {
+        date: try2.date,
+        day: try2.day,
+        month: try2.month,
+        year: try2.year,
+        limit: try2.limit
     });
     res.end();
 })
@@ -242,16 +270,20 @@ app.post('/dogInfo',function(req,res){
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
-    
-    
-    userData.findOneAndUpdate( {_id:req.user._id},{cache:topic}, {
-         "new": true,
-         "upsert": true
-     },function(err,man){
+
+
+    userData.findOneAndUpdate({
+        _id: req.user._id
+    }, {
+        cache: topic
+    }, {
+        "new": true,
+        "upsert": true
+    }, function (err, man) {
         console.log(req.user._id)
 
 
-     })
+    })
     if (req.user.dog.includes(topic)) {
         dogData.findById(topic, function (err, book) {
             dogData.find({
