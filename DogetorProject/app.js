@@ -14,8 +14,6 @@ var expressValidator = require('express-validator');
 
 
 var LocalStrategy = require('passport-local')
-   
-
 var port = 8080;
 
 app.use('/', index);
@@ -27,7 +25,6 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
         if (err) throw err;
         console.log("connect!");
     });
-
 
 app.use(body());
 app.use(express.static(__dirname + '/public'));
@@ -72,7 +69,7 @@ app.use(expressValidator({
 //     cb(null, true);
 // };
 
-var storage = multer.diskStorage({
+var storage = multer.diskStorage({//storage for dog
     destination: function (req, file, callback) {
         callback(null, __dirname + '/public/image/dog');
     },
@@ -88,19 +85,7 @@ var upload = multer({
 
 
 
-app.get('/addDog', loggedIn, function (req, res) {
 
-    dogData.find({
-        owner: req.user.username
-    }, function (err, book) {
-        res.render('addDog.ejs', {
-            username: req.user.username,
-            pic: req.user.avatar,
-            dog: book,
-            amount: book.length
-        });
-    })
-});
 
 app.get('/index', function (req, res) {
 
@@ -116,19 +101,28 @@ app.get('/index', function (req, res) {
     }
 
 });
-
+app.get('/addDog', loggedIn, function (req, res) {
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('addDog.ejs', {
+            username: req.user.username,
+            pic: req.user.avatar,
+            dog: book,
+            amount: book.length
+        });
+    })
+});
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 
     req.checkBody('dogName').isAlphanumeric().withMessage('Dog Name is required').notEmpty().withMessage('Dog name contains only number and alphabet ')
     req.checkBody('dogAge', 'Dog Age is required').notEmpty()
     req.checkBody('dogAge').isInt({min:0}).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
-    req.checkBody('gender', 'Gender is required').notEmpty()
-    
+    req.checkBody('gender', 'Gender is required').notEmpty()    
 
     var errors = req.validationErrors()
-
-    if (errors  ) {
+    if (errors) {
         dogData.find({
             owner: req.user.username
         }, function (err, book) {
@@ -154,7 +148,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
             newDog.dogAvatar = req.file.filename
-            console.log(req.file.mimetype)
+           
             
         }
 
