@@ -64,13 +64,6 @@ app.use(expressValidator({
     }
 }));
 
-// imageFilter = function (req, file, cb) {
-    
-//     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-//         return cb(new Error('Only image files are allowed!'), false);
-//     }
-//     cb(null, true);
-// };
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
