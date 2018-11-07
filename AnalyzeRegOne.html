@@ -169,11 +169,27 @@
                                 <div>{{ sympdet.detail }}</div>
                             </p>
                         </div>
-                        <a href="AnalyzeResultReg.html" >
-                            <button type="button" class="btn btn-analyze" onclick="summaryResult()" style="top:360px; right:0px;">
-                                <i class="fas fa-search"></i> Analyze
-                            </button>
-                        </a>
+                        <!-- Analyze button -->
+                        <button type="button" class="btn btn-analyze" onclick="summaryResult()" style="top:360px; right:0px;">
+                            <i class="fas fa-search"></i> Analyze
+                        </button>
+                    </div>
+                    <!-- Result -->
+                    <div style="position:absolute; top:640px; left:60px;">
+                        <!-- Symptom box -->
+                        <div class="head-result" style="position:relative; top:15px; left:205px"><h2>Symptom</h2></div>
+                        <div class="box-result" style="position:relative; top:15px;">
+                            <ul class="text-result" type="none">
+                                <li v-for="summ in sympsummary">o {{ summ }}</li>
+                            </ul>
+                        </div>
+                        <!-- Result box -->
+                        <div class="head-result" style="position:relative; top:30px; left:205px"><h2>Result</h2></div>
+                        <div class="box-result" style="position:relative; top:30px;">
+                            <ul class="text-result" type="none">
+                                <li v-for="res in sympresult">-> {{ res }}</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

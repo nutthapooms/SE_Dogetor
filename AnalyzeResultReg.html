@@ -10,6 +10,8 @@
         <link rel="stylesheet" href="hmoe.css">
         <link rel="stylesheet" href="analyze.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <!-- Bootstrp-Vue -->
         <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> <!-- For Thai lang. -->
     </head>
@@ -111,73 +113,49 @@
 
             <!--Side bar End---------------------------------------------------------------------------------------------->
 
-            <!--  Analyze part Start ---------------------------------------------------------------------------------------------->
+            <!-- Result part Start ---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
                 <div class="page-header"><h1>Analyze Disease</h1></div>
-                <!-- Pet info -->
-                <div id="petinfo">
-                    <!-- Pet -->
-                    <div class="input-group mb-3 rect-field-w" style="position:absolute; top:100px; left:166px;">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text head-field" for="pet">Pet's name</label>
-                        </div>
-                        <select class="custom-select rect-field" id="pet" 
-                        v-model="petval" v-on:change="changePetInfo">
-                            <option value="" disabled selected>Select your pet</option>
-                            <option v-for="(pet, index) in petinfoall" v-bind:value="index+1">
-                            {{ pet.name }}</option>
-                        </select>
-                    </div>
-                </div>
-                <!-- Symptom -->
-                <div id="symptom">
-                    <!-- Symptom type -->
-                    <div class="input-group mb-3 rect-field-w" style="top:160px; left:166px;">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text head-field" for="symptomtype">Symptom type</label>
-                        </div>
-                        <select class="custom-select rect-field" id="symptomtype" 
-                        v-model="typeval" v-on:change="changeSymptomType">
-                            <option value="" disabled selected>Select type of symptom</option>
-                            <option v-for="(type, index) in typenameall" v-bind:value="index+1">
-                            {{ type }}</option>
-                        </select>
-                    </div>
-                    <!-- Symptom box -->
-                    <div class="box-symptom" style="top:220px; left:60px;">
-                        <!-- Symptom list -->
-                        <div class="box-symptom-half box-list">
-                            <h2>{{ typename }}</h2>
-                            <div class="form-check" v-for="symp in symplist">
-                                <label class="form-check-label" 
-                                v-on:mouseover="showSymptomInfo(symp)">
-                                <!-- v-on:mouseleave="hideSymptomInfo" -->
-                                    <input type="checkbox" class="form-check-input" value="" v-model="symp.check">
-                                    {{ symp.name }}
-                                </label>
-                            </div>
-                        </div>
-                        <div class="line-divide"></div>
-                        <!-- Symptom detail -->
-                        <div class="box-symptom-half box-detail" style="text-align:center;">
-                            <h2>{{ sympdet.name }}</h2>                                    
-                            <p>
-                                <img class="img-symptom" v-bind:src="sympdet.pic1"/>
-                                <img class="img-symptom" v-bind:src="sympdet.pic2"/>
-                            </p>
-                            <p>
-                                <div>{{ sympdet.detail }}</div>
-                            </p>
-                        </div>
-                        <a href="AnalyzeResultReg.html" >
-                            <button type="button" class="btn btn-analyze" onclick="summaryResult()" style="top:360px; right:0px;">
-                                <i class="fas fa-search"></i> Analyze
+                <!-- Result box area -->
+                <div style="position:absolute; top:110px; left:60px;">
+                    <!-- Pet info box -->
+                    <div class="head-result" style="position:relative; top:0px;"><h2>Pet infomation</h2></div>
+                    <ul class="text-result" id="petinfo" style="position:relative; top:10px" type="none">
+                        <li>Name : {{ petinfo.name }}</li>
+                        <li>Age : {{ petinfo.age }}</li>
+                        <li>Breed : {{ petinfo.breed }}</li>
+                        <li>Gender : {{ petinfo.gend }}</li>
+                    </ul>
+                    <!-- <div class="box-result" id="petinfo" style="top:20px">
+                    </div> -->
+
+                    <div id="symptom">
+                        <!-- Symptom box -->
+                        <div class="head-result" style="position:relative; top:15px;"><h2>Symptom</h2></div>
+                        <ul class="text-result" style="position:relative; top:25px" type="none">
+                            <li v-for="summ in sympsummary">o {{ summ }}</li>
+                        </ul>
+                        <!-- <div class="box-result" id="symptom" style="top:180px">
+                        </div> -->
+
+                        <!-- Result box -->
+                        <div class="head-result" style="position:relative; top:30px;"><h2>Result</h2></div>
+                        <ul class="text-result" style="position:relative; top:40px" type="none">
+                            <li v-for="res in sympresult">-> {{ res }}</li>
+                        </ul>
+                        <!-- <div class="box-result" id="symptom" style="top:340px">
+                        </div> -->
+
+                        <!-- Back button -->
+                        <a href="AnalyzeReg.html" >
+                            <button class="btn btn-analyze" style="position:relative; top:80px; left:0px;">
+                                <i class="fas fa-arrow-alt-circle-left"></i> Back
                             </button>
                         </a>
                     </div>
                 </div>
             </div>
-                <!--  Analyze part End ---------------------------------------------------------------------------------------------->
+                <!-- Result part End ---------------------------------------------------------------------------------------------->
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -189,5 +167,4 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="homee.js"></script>
     <script src="analyze.js"></script>
-    
 </html>
