@@ -66,6 +66,7 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
         newuser.username = req.body.username
         newuser.email = req.body.email
         newuser.password = hash
+        newuser.cache = ''
 
         if (req.file == undefined) {
             newuser.avatar = "defaultprofilepicturedogetoruser.jpg"
