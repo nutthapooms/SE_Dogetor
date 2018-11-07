@@ -89,3 +89,8 @@ function preMonth(){
     var div = document.getElementById("calendar");
     div.innerHTML = result1;
 }
+function eachdayclick(x){
+    var m = month+1;
+    var kk = x+" "+m+" "+year;
+    alert(kk);
+}
