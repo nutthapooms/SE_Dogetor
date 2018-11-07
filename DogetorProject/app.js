@@ -214,6 +214,14 @@ app.post('/editDog', loggedIn, function (req, res) {
     }
 
 })
+
+app.get('/deletedog',function(req,res){
+    userData.findByIdAndUpdate(req.user._id,{$pull:{dog:req.user.cache}},{safe:true,upsert:true},function(err,book){
+        dogData.findByIdAndRemove(req.user.cache,function(err,books){
+            res.redirect('/home')
+        })
+    })})
+
 app.get('/home', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
