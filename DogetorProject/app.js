@@ -112,15 +112,13 @@ app.get('/index', function (req, res) {
 
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 
-    req.checkBody('dogName').isAlphanumeric().withMessage('Dog Name is required').notEmpty().withMessage('Dog name contains only number and alphabet ')
-    req.checkBody('dogAge', 'Dog Age is required').notEmpty()
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')   
     req.checkBody('dogAge').isInt({min:0}).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
     req.checkBody('gender', 'Gender is required').notEmpty()
     
 
     var errors = req.validationErrors()
-
     if (errors  ) {
         dogData.find({
             owner: req.user.username
