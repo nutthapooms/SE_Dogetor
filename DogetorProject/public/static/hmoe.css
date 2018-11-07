@@ -117,8 +117,7 @@
 #memberTopic{
     color: white;
 }
-
-img{
+.memberpic{
     width: 50%;
     border-radius: 50%;
     border : 5px solid;
@@ -126,6 +125,7 @@ img{
     float: center;
 
 }
+
 #infoParagraph{
     font-weight: bold;
     color: grey;
@@ -137,6 +137,9 @@ img{
 #topic{
     padding-top: 10%;
     padding-bottom: 5%;
+}
+#infoContainer{
+    background-color: rgba(247, 153, 59, 0.77);
 }
 .schedule{
     background-color: rgb(255, 238, 212);
