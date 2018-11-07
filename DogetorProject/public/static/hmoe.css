@@ -72,7 +72,7 @@
 #updatedog{
     margin-top: 50px;
     padding: 10px;
-    padding-right: 36px;
+    padding-right: 41px;
 }
 #deletedog{
     padding: 10px;
@@ -177,6 +177,8 @@
     margin-right: auto;   
 }
 .doginfobtn{
+    background-color: white;
+    color:rgb(0, 192, 226);
     margin-top:10px;
 }
 
