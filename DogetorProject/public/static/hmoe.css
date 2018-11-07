@@ -71,6 +71,13 @@
 }
 #updatedog{
     margin-top: 50px;
+    padding: 10px;
+    padding-right: 36px;
+}
+#deletedog{
+    padding: 10px;
+
+    padding-right: 15px;
 }
 #dogprofilepics{
     width   : 145px;
