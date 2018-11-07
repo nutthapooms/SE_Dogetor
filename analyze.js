@@ -5,10 +5,10 @@ var pet = new Vue({
       breedval: '',
       gendval: '',
       petinfo: {
-        name: 'Dogga',
-        age: '123',
-        breed: 'X',
-        gend: 'Dog' 
+        name: '',
+        age: '',
+        breed: '',
+        gend: ''
       },
       gendall: [
         'Dog (male)',
@@ -268,7 +268,7 @@ var symptom = new Vue({
       for (i in this.diseaseall){
         var prob = this.diseaseall[i].prob /= this.diseaseall[i].symplist.length;
         if(prob > 0.5){
-          this.sympresult.push(prob);
+          this.sympresult.push(this.diseaseall[i].name);
         }
       }
 
@@ -280,3 +280,37 @@ var symptom = new Vue({
     // }
   }
 })
+
+function summaryResult() {
+  // Check data
+  if(pet.$data.petinfo.name == '' || pet.$data.petinfo.age == '' || pet.$data.petinfo.breed == '' || pet.$data.petinfo.gend == ''){
+    alert("Please fill in all information.");
+  }
+  else{
+    //alert(pet.$data.petinfo.name);
+    // Get checked symptom
+    symptom.$data.sympsummary = [];
+    symptom.$data.sympresult = [];
+    for (i in symptom.$data.symplistall){
+      for (j in symptom.$data.symplistall[i]){
+        if(symptom.$data.symplistall[i][j].check == true){
+          symptom.$data.sympsummary.push(symptom.$data.symplistall[i][j].name);
+          for (k in symptom.$data.diseaseall){    
+            var index = symptom.$data.diseaseall[k].symplist.indexOf(symptom.$data.symplistall[i][j].name);
+            if(index != -1){
+              symptom.$data.diseaseall[k].prob++;
+            }
+          }
+        }
+      }
+    }
+    // Analyze symptom
+    for (i in symptom.$data.diseaseall){
+      var prob = symptom.$data.diseaseall[i].prob / symptom.$data.diseaseall[i].symplist.length;
+      if(prob > 0.5){
+        symptom.$data.sympresult.push(symptom.$data.diseaseall[i].name);
+      }
+      symptom.$data.diseaseall[i].prob = 0;
+    }
+  }
+}
