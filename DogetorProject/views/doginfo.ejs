@@ -28,7 +28,7 @@
             <div class="col-8 content">
                 <div id="doginfo" class="row">
                     <div class="col-4"><img id="dogprofilepics" src="/image/dog/<%=dogPic%>" alt=""></div>
-                    <div class="col-5">
+                    <div class="col-4">
                         <h1><%=dogName%></h1>
                         <table>
                             <tr>
@@ -47,10 +47,74 @@
                                 <td><%=gender%></td>
                             </tr>
                         </table>
+                    </div>
+                    <div class = "col-3">
+                        <button id = "updatedog" class = "btn doginfobtn" data-toggle="modal" data-target="#updatedogModal"><h5>Update Dog info</h5></button>
+                        <button id = "deletedog" class = "btn doginfobtn" data-toggle="modal" data-target="#deletedogModal"><h5>Delete Dog account</h5></button>
 
                     </div>
                 </div>
                 <!--Dog info end---------------------------------------------------------------------------------------------->
+                <!--Dog info update modal start---------------------------------------------------------------------------------------------->
+                <div class="modal fade" id="updatedogModal" tabindex="-1" role="dialog" aria-labelledby="updatedogTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="updatedogTitle">Update dog info</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class = "modal-body">
+                            <h3>Update to</h3>
+                            <div class="form-group">
+                                    <label>Name:</label>
+                                    <input type="text" name="dogName" class="form-control" placeholder="name">
+                            </div>
+                            <div class="form-group">
+                                <label>Age(year):</label>
+                                <input type="number" min="0" name="dogAge" class="form-control" placeholder="age">
+                            </div>
+                            <div class="form-group">
+                                <label>Breed:</label>
+                                <input type="text" name="dogBreed" class="form-control" placeholder="breed">
+                            </div>
+                            <div class="form-group">
+                                <label>Gender:</label><br>
+                                <input type="radio" name="gender" value="male"> Male
+                                <input type="radio" name="gender" value="female"> Female<br>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--Dog info update modal end---------------------------------------------------------------------------------------------->
+                <!--Dog info delete modal start---------------------------------------------------------------------------------------------->
+                <div class="modal fade" id="deletedogModal" tabindex="-1" role="dialog" aria-labelledby="deletedogTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="deletedogTitle">Delete dog account</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Are you sure?, your dog's data and appointment data will lost permanently.
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                          <button type="button" class="btn btn-primary">Confirm</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!--Dog info delete modal end---------------------------------------------------------------------------------------------->
+
                 <!--Schedule start---------------------------------------------------------------------------------------------->
                 <h1 id="schedulehead"></h1>
                 <table class="schedule ">
@@ -78,7 +142,7 @@
                         <% for(var i=0; i<6; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td  class = "dogeachday"><a href="#" class = "dogeach"></a></td>
+                                    <td  class = "dogeachday" ><a href="#" class = "dogeach" onclick="eachdayclick(this.innerHTML)"></a></td>
                                 <% } %>     
                             </tr>
                          <% } %>

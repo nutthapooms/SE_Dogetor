@@ -92,3 +92,10 @@ function preMonth(){
     var div = document.getElementById("calendar");
     div.innerHTML = result1;
 }
+            // alert(eachday.length);
+
+function eachdayclick(x){
+    var m = month+1;
+    var kk = x+" "+m+" "+year;
+    alert(kk);
+}

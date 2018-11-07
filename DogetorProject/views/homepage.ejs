@@ -53,7 +53,7 @@
                             <% for(var i=0; i<6; i++) {%>
                                 <tr>
                                     <% for(var j=0; j<7; j++) {%>
-                                        <td class = "eachday"><a href="#" class = "dayeach"></a></td>
+                                        <td class = "eachday"><a href="#" class = "dayeach" onclick="eachdayclick(this.innerHTML)"></a></td>
                                     <% } %>     
                                 </tr>
                             <% } %>
@@ -93,6 +93,9 @@
 <script src="/static/calendar_home.js"></script>
 
 <script>
+    
+    
+
         history.pushState(null, null, location.href);
     window.onpopstate = function () {
         history.go(1);

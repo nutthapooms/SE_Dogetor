@@ -69,6 +69,16 @@
     margin :10px 0px;
     border-radius: 10px;
 }
+#updatedog{
+    margin-top: 50px;
+    padding: 10px;
+    padding-right: 41px;
+}
+#deletedog{
+    padding: 10px;
+
+    padding-right: 15px;
+}
 #dogprofilepics{
     width   : 145px;
     height: 150px;
@@ -164,8 +174,13 @@
     width: 150px;
     height: auto;
     margin-left: auto;
-    margin-right: auto;
-    
-    
+    margin-right: auto;   
 }
+.doginfobtn{
+    background-color: white;
+    color:rgb(0, 192, 226);
+    margin-top:10px;
+}
+
+
 

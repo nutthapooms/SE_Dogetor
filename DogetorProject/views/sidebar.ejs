@@ -16,23 +16,23 @@
                             j++;
                         </script>
                         <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
-                        <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+                        <td class="dognameindot"><a href="/doginfo?topic=<%=pet.id%>"><i class="fas fa-ellipsis-h"></i> </a></td>
                     </tr>   
                 <% } %>
         <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
             <script>document.getElementById("asdasd").id = ++j;</script>
             <td class="dognameinlist"><a href="#"><h5>more</h5></a></td>
-            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+            <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
         </tr>
         <tr id = "asdasd" class ="lessbtn" onclick="disallowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
             <script>document.getElementById("asdasd").id = ++j;</script>
             <td class="dognameinlist"><a href="#"><h5>less</h5></div></td>
-            <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
+            <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
         </tr>
         <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
             <script>document.getElementById("asdasd").id = ++j;</script>
             <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
-            <td class="dognameindot"><i class="fas fa-plus"></i></td>
+            <td class="dognameindot"><a href="/addDog"><i class="fas fa-plus"></a></i></td>
         </tr>
     </table>
     </div>

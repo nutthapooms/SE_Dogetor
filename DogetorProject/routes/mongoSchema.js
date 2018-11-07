@@ -18,7 +18,8 @@ var user = new Schema({
         unique: true
     },
     avatar: String,
-    dog: [String]
+    dog: [String],
+    cache :String
 
 });
 

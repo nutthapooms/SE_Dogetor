@@ -36,7 +36,7 @@ router.use(expressValidator({
 
 var storage = multer.diskStorage({
     destination: function (req, file, callback) {
-        callback(null, 'G:/My Drive/SE/SE_Dogetor/DogetorProject/public/image/user');
+        callback(null, 'D:/SE_Dogetor/DogetorProject/public/image/user');
     },
     filename: function (req, file, callback) {
         callback(null, Date.now()+file.originalname);
@@ -66,6 +66,7 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
         newuser.username = req.body.username
         newuser.email = req.body.email
         newuser.password = hash
+        newuser.cache = ''
 
         if (req.file == undefined) {
             newuser.avatar = "defaultprofilepicturedogetoruser.jpg"

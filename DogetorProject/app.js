@@ -61,20 +61,13 @@ app.use(expressValidator({
     }
 }));
 
-// imageFilter = function (req, file, cb) {
-    
-//     if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-//         return cb(new Error('Only image files are allowed!'), false);
-//     }
-//     cb(null, true);
-// };
 
 var storage = multer.diskStorage({//storage for dog
     destination: function (req, file, callback) {
         callback(null, __dirname + '/public/image/dog');
     },
     filename: function (req, file, callback) {
-        callback(null,Date.now()+file.originalname);
+        callback(null, Date.now() + file.originalname);
     }
 });
 
@@ -96,7 +89,7 @@ app.get('/index', function (req, res) {
         console.log('not logged in')
         res.render('Regis.ejs', {
             errors: '',
-            dupli: '' 
+            dupli: ''
         })
     }
 
@@ -114,10 +107,10 @@ app.get('/addDog', loggedIn, function (req, res) {
     })
 });
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
-
-    req.checkBody('dogName').isAlphanumeric().withMessage('Dog Name is required').notEmpty().withMessage('Dog name contains only number and alphabet ')
-    req.checkBody('dogAge', 'Dog Age is required').notEmpty()
-    req.checkBody('dogAge').isInt({min:0}).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
+    req.checkBody('dogAge').isInt({
+        min: 0
+    }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
     req.checkBody('gender', 'Gender is required').notEmpty()    
 
@@ -131,7 +124,8 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                 username: req.user.username,
                 pic: req.user.avatar,
                 dog: book,
-                amount: book.length
+                amount: book.length,
+                dupli: ''
             });
         })
     } else {
@@ -143,7 +137,6 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
         newDog.owner = req.user.username
         newDog.gender = req.body.gender
 
-
         if (req.file == undefined) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
@@ -151,7 +144,6 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
            
             
         }
-
         newDog.save(function (err, book) {
             if (err) {
                 console.log(err.code)
@@ -172,12 +164,67 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                             console.log('newBook')
                         }
                     })
-
                 console.log(book)
                 res.redirect('/home')
             }
         })
     }
+})
+
+
+app.post('/editDog', upload.single('uploaded_dogimage'), loggedIn, function (req, res) {
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
+    req.checkBody('dogAge').isInt({
+        min: 0
+    }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
+    req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
+    req.checkBody('gender', 'Gender is required').notEmpty()
+
+    var errors = req.validationErrors()
+    if (errors) {
+        dogData.find({
+            owner: req.user.username
+        }, function (err, book) {
+            res.render('homepage', {
+                errors: errors,
+                username: req.user.username,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+
+            });
+        })
+    } else {
+        if (req.file == undefined) {
+
+        } else {
+            var newAvatar = req.file.filename
+        }
+
+        dogData.findByIdAndUpdate(req.user.cache, {
+            name: req.body.dogName,
+            age: req.body.dogAge,
+            breed: req.body.dogBreed,
+            owner: req.user.username,
+            gender: req.body.gender,
+            dogAvatar: newAvatar
+        }, function (err, bookuser) {
+            res.render("doginfo", {
+                dogName: book.name,
+                breed: book.breed,
+                gender: book.gender,
+                age: book.age,
+                dogPic: book.dogAvatar,
+                username: req.user.username,
+                pic: req.user.avatar,
+                dog: bookuser,
+                amount: bookuser.length
+            });
+        })
+
+
+    }
+
 })
 app.get('/home', loggedIn, function (req, res) {
     dogData.find({
@@ -188,31 +235,32 @@ app.get('/home', loggedIn, function (req, res) {
             username: req.user.username,
             pic: req.user.avatar,
             dog: book,
-            amount: book.length
+            amount: book.length,
+            dupli: ''
         });
     })
 });
-app.post('/home',function(req,res){
+app.post('/home', function (req, res) {
     var try1 = req.body;
     console.log(try1);
-    res.render('calendar',{
-        date : try1.date,
-        day : try1.day,
-        month : try1.month,
-        year : try1.year,
-        limit:try1.limit
+    res.render('calendar', {
+        date: try1.date,
+        day: try1.day,
+        month: try1.month,
+        year: try1.year,
+        limit: try1.limit
     });
     res.end();
 })
-app.post('/dogInfo',function(req,res){
+app.post('/dogInfo', function (req, res) {
     var try2 = req.body;
     console.log(try2);
-    res.render('calendar_dog',{
-        date : try2.date,
-        day : try2.day,
-        month : try2.month,
-        year : try2.year,
-        limit:try2.limit
+    res.render('calendar_dog', {
+        date: try2.date,
+        day: try2.day,
+        month: try2.month,
+        year: try2.year,
+        limit: try2.limit
     });
     res.end();
 })
@@ -221,8 +269,20 @@ app.post('/dogInfo',function(req,res){
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
 
-    if (req.user.dog.includes(topic)) {
 
+    userData.findOneAndUpdate({
+        _id: req.user._id
+    }, {
+        cache: topic
+    }, {
+        "new": true,
+        "upsert": true
+    }, function (err, man) {
+        console.log(req.user._id)
+
+
+    })
+    if (req.user.dog.includes(topic)) {
         dogData.findById(topic, function (err, book) {
             dogData.find({
                 owner: req.user.username
