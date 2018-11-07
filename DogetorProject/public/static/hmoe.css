@@ -164,8 +164,9 @@
     width: 150px;
     height: auto;
     margin-left: auto;
-    margin-right: auto;
-    
-    
+    margin-right: auto;   
+}
+.doginfobtn{
+    margin-top:10px;
 }
 

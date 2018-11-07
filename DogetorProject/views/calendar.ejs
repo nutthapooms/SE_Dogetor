@@ -19,7 +19,7 @@
                             <td class = "eachday"> </td>
                         <% }else{%>
                             <% if(datee < limitt){%>
-                                <td class = "eachday"><a href="#" onclick="loadXMLDoc()"><%= datee %></a></td>
+                                <td class = "eachday"><a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
                                 
                                 <% datee++; %>
                             <% }else{%>
@@ -34,6 +34,10 @@
             
              <!-- calendar endd-->
         </tbody>
+        <script>
+            
+            
+        </script>
 
 
 
