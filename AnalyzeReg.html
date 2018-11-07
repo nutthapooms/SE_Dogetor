@@ -169,9 +169,11 @@
                                 <div>{{ sympdet.detail }}</div>
                             </p>
                         </div>
-                        <button type="button" class="btn btn-analyze" style="top:360px; right:0px;">
-                            <i class="fas fa-search"></i> Analyze
-                        </button>
+                        <a href="AnalyzeResultReg.html" >
+                            <button type="button" class="btn btn-analyze" v-on:click="summaryResult" style="top:360px; right:0px;">
+                                <i class="fas fa-search"></i> Analyze
+                            </button>
+                        </a>
                     </div>
                 </div>
             </div>

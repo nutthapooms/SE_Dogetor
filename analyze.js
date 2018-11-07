@@ -5,10 +5,10 @@ var pet = new Vue({
       breedval: '',
       gendval: '',
       petinfo: {
-        name: '',
-        age: '',
-        breed: '',
-        gend: '' 
+        name: 'Dogga',
+        age: '123',
+        breed: 'X',
+        gend: 'Dog' 
       },
       gendall: [
         'Dog (male)',
@@ -63,12 +63,50 @@ var symptom = new Vue({
       pic1: '',
       pic2: ''
     },
+    sympsummary: [
+    ],
+    sympresult: [
+    ],
+    diseaseall: [
+      { name: 'พยาธิตัวตืด',
+        symplist: ['ถ่ายเหลว', 'ผอมเกินควร', 'ท้องมาน'],
+        prob: 0,
+      },
+      { name: 'ลมแดด',
+        symplist: ['เหงือกแดง', 'ปัสสาวะน้อย', 'หอบ', 'ช็อก', 'อาเจียนเลือด', 'ชัก', 'กล้ามเนื้อกระตุก', 'กล้ามเนื้ออ่อนแรง', 'เดินไม่ตรง', 'อุณภูมิสูง'],
+        prob: 0,
+      },
+      { name: 'ต้อหิน',
+        symplist: ['ตาขุ่นมัว'],
+        prob: 0,
+      },
+      { name: 'ไตวาย',
+        symplist: ['ปัสสาวะมาก'],
+        prob: 0,
+      },
+      { name: 'คุชชิ่ง',
+        symplist: ['ขนร่วง', 'มีไขมันคอไหล่', 'ปัสสาวะมาก', 'กล้ามเนื้ออ่อนแรง'],
+        prob: 0,
+      },
+      { name: 'ท้องเสีย',
+        symplist: ['ถ่ายเหลว', 'อาเจียนอาหาร', 'เบื่ออาหาร', 'ซึม'],
+        prob: 0,
+      },
+      { name: 'พิษสุนัขบ้า',
+        symplist: ['ลิ้นห้อย', 'อยู่ไม่นิ่ง'],
+        prob: 0,
+      },
+      { name: 'ภาวะหลอดอาหารขยายใหญ่',
+        symplist: ['มีน้ำมูก', 'อาเจียนอาหาร', 'ไอ'],
+        prob: 0,
+      }
+    ],
     typenameall : [
-        'ส่วนผิวหนัง',
-        'ส่วนใบหน้าและศรีษะ',
-        'การขับถ่ายและทางเดินอาหาร',
-        'การหายใจ',
-        'อื่นๆ'
+      'ส่วนผิวหนัง',
+      'ส่วนใบหน้าและศรีษะ',
+      'การขับถ่ายและทางเดินอาหาร',
+      'การหายใจ',
+      'อื่นๆ'
     ],
     symplistall: [
       // Type 1
@@ -88,7 +126,7 @@ var symptom = new Vue({
           pic1: 'jhin.jpg',
           pic2: 'jhin.jpg',
           check: false },
-        { name: 'ไขมันคอไหล่',
+        { name: 'มีไขมันคอไหล่',
           detail: 'พบก้อนไขมันตามคอไหล่',
           pic1: 'doge0.jpg',
           pic2: 'doge0.jpg',
@@ -104,7 +142,7 @@ var symptom = new Vue({
           pic2: 'doge2.jpg',
           check: false } ],
       // Type 3
-      [ { name: 'ท้องเสีย',
+      [ { name: 'ถ่ายเหลว',
           detail: 'อุจจาระเหลวมากขึ้นกว่าปกติ',
           pic1: 'doge1.jpg',
           pic2: 'doge1.jpg',
@@ -144,7 +182,7 @@ var symptom = new Vue({
           pic1: 'doge1.jpg',
           pic2: 'doge1.jpg',
           check: false },
-        { name: 'กกระหายน้ำผิดปกติ',
+        { name: 'กระหายน้ำผิดปกติ',
           detail: 'กินน้ำมาก ฉี่มาก กินเก่ง',
           pic1: 'doge4.jpg',
           pic2: 'doge4.jpg',
@@ -171,20 +209,20 @@ var symptom = new Vue({
           pic1: 'doge2.jpg',
           pic2: 'doge2.jpg',
           check: false },
-        { name: 'ท้องมาน',
-          detail: 'ท้องบวมป่องผิดปกติ เหมือนมีน้ำอยู่ภายในช่องท้อง',
-          pic1: 'doge3.jpg',
-          pic2: 'doge3.jpg',
-          check: false },
         { name: 'ไอ',
           detail: 'มีอาการไอคล้ายมนุษย์',
           pic1: 'doge0.jpg',
           pic2: 'doge0.jpg',
           check: false },
-        { name: 'กล้ามเนื้อกระตุก ',
+        { name: 'กล้ามเนื้อกระตุก',
           detail: 'กล้ามเนื้อกระตุกผิดสังเกต ไม่สามารถควบคุมได้',
           pic1: 'doge1.jpg',
           pic2: 'doge1.jpg',
+          check: false },
+        { name: 'กล้ามเนื้ออ่อนแรง',
+          detail: 'ดูไม่มีแรง การขยับไม่เป็นธรรมชาติ',
+          pic1: 'doge0.jpg',
+          pic2: 'doge0.jpg',
           check: false },
         { name: 'อยู่ไม่นิ่ง',
           detail: 'ลุกนั่งเดินไปมาบ่อยครั้ง',
@@ -210,6 +248,30 @@ var symptom = new Vue({
     },
     showSymptomInfo: function(symp){
       this.sympdet = symp;
+    },
+    summaryResult: function(){
+      // Get checked symptom
+      for (i in this.symplistall){
+        for (j in this.symplistall[i]){
+          if(this.symplistall[i][j].check == true){
+            this.sympsummary.push(this.symplistall[i][j].name);
+            for (k in this.diseaseall){    
+              var index = this.diseaseall[k].symplist.indexOf(this.symplistall[i][j].name);
+              if(index != -1){
+                this.diseaseall[k].prob++;
+              }
+            }
+          }
+        }
+      }
+      // Analyze symptom
+      for (i in this.diseaseall){
+        var prob = this.diseaseall[i].prob /= this.diseaseall[i].symplist.length;
+        if(prob > 0.5){
+          this.sympresult.push(prob);
+        }
+      }
+
     }
     // hideSymptomInfo: function(){
     //   this.sympdet[0].name = '';
@@ -218,7 +280,3 @@ var symptom = new Vue({
     // }
   }
 })
-
-  
-
-  
