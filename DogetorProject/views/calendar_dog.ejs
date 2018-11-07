@@ -19,7 +19,7 @@
                             <td class = "dogeachday"> </td>
                         <% }else{%>
                             <% if(datee < limitt){%>
-                                <td class = "dogeachday"><a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                <td class = "dogeachday"><a href="#" onclick="eachdayclick(this.innerHTML)" data-toggle="modal" data-target="#daydogModal"><%= datee %></a></td>
                                 <% datee++; %>
                             <% }else{%>
                                 <td class = "dogeachday"> </td>

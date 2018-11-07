@@ -92,5 +92,5 @@ function preMonth(){
 function eachdayclick(x){
     var m = month+1;
     var kk = x+" "+m+" "+year;
-    alert(kk);
+    document.getElementById("dogdayshow").innerHTML= x+" "+monthlist[month]+" "+year;
 }
