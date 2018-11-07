@@ -172,7 +172,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 })
 
 
-app.post('/editDog', upload.single('uploaded_dogimage'), loggedIn, function (req, res) {
+app.post('/editDog', loggedIn, function (req, res) {
     req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
     req.checkBody('dogAge').isInt({
         min: 0
@@ -194,12 +194,7 @@ app.post('/editDog', upload.single('uploaded_dogimage'), loggedIn, function (req
 
             });
         })
-    } else {
-        if (req.file == undefined) {
-
-        } else {
-            var newAvatar = req.file.filename
-        }
+    } else {        
 
         dogData.findByIdAndUpdate(req.user.cache, {
             name: req.body.dogName,
@@ -207,19 +202,12 @@ app.post('/editDog', upload.single('uploaded_dogimage'), loggedIn, function (req
             breed: req.body.dogBreed,
             owner: req.user.username,
             gender: req.body.gender,
-            dogAvatar: newAvatar
+            
         }, function (err, bookuser) {
-            res.render("doginfo", {
-                dogName: book.name,
-                breed: book.breed,
-                gender: book.gender,
-                age: book.age,
-                dogPic: book.dogAvatar,
-                username: req.user.username,
-                pic: req.user.avatar,
-                dog: bookuser,
-                amount: bookuser.length
-            });
+            res.redirect('/doginfo?topic='+bookuser._id)
+            
+            
+            
         })
 
 
@@ -278,7 +266,7 @@ app.get('/dogInfo', loggedIn, function (req, res) {
         "new": true,
         "upsert": true
     }, function (err, man) {
-        console.log(req.user._id)
+        console.log(req.user.cache)
 
 
     })

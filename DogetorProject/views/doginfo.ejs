@@ -67,17 +67,18 @@
                         </div>
                         <div class = "modal-body">
                             <h3>Update to</h3>
+                            <form action="/editDog" method="POST">
                             <div class="form-group">
                                     <label>Name:</label>
-                                    <input type="text" name="dogName" class="form-control" placeholder="name">
+                                    <input type="text" name="dogName" value="<%=dogName%>" class="form-control" placeholder="name">
                             </div>
                             <div class="form-group">
                                 <label>Age(year):</label>
-                                <input type="number" min="0" name="dogAge" class="form-control" placeholder="age">
+                                <input type="number" min="0" name="dogAge" value="<%=age%>" class="form-control" placeholder="age">
                             </div>
                             <div class="form-group">
                                 <label>Breed:</label>
-                                <input type="text" name="dogBreed" class="form-control" placeholder="breed">
+                                <input type="text" name="dogBreed" value="<%=breed%>" class="form-control" placeholder="breed">
                             </div>
                             <div class="form-group">
                                 <label>Gender:</label><br>
@@ -87,8 +88,9 @@
                         </div>
                         <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                          <button type="button" class="btn btn-primary">Save changes</button>
+                          <button type="submit"  class="btn btn-primary">Save changes</button>
                         </div>
+                    </form>
                       </div>
                     </div>
                   </div>
