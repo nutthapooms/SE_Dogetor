@@ -111,6 +111,33 @@
     margin :30px 10px 10px 30px;
     
 }
+#missionTopic{
+    color: white;
+}
+#memberTopic{
+    color: white;
+}
+
+img{
+    width: 50%;
+    border-radius: 50%;
+    border : 5px solid;
+    border-color: white;
+    float: center;
+
+}
+#infoParagraph{
+    font-weight: bold;
+    color: grey;
+}
+
+#memberContainer{
+    background-color: rgba(247, 153, 59, 0.77);
+}
+#topic{
+    padding-top: 10%;
+    padding-bottom: 5%;
+}
 .schedule{
     background-color: rgb(255, 238, 212);
     border-radius: 10px;

@@ -205,14 +205,9 @@ app.post('/editDog', loggedIn, function (req, res) {
             
         }, function (err, bookuser) {
             res.redirect('/doginfo?topic='+bookuser._id)
-            
-            
-            
+                     
         })
-
-
     }
-
 })
 
 app.get('/deletedog',function(req,res){
@@ -302,8 +297,30 @@ app.get('/dogInfo', loggedIn, function (req, res) {
     }
 });
 
-
-
+app.get('/hosp', loggedIn, function (req, res) {
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('hospitalinfo.ejs', {
+            username: req.user.username,
+            pic: req.user.avatar,
+            dog: book,
+            amount: book.length
+        });
+    })
+});
+app.get('/aboutus', loggedIn, function (req, res) {
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('aboutus.ejs', {
+            username: req.user.username,
+            pic: req.user.avatar,
+            dog: book,
+            amount: book.length
+        });
+    })
+});
 passport.use(new LocalStrategy(
     function (username, password, done) {
         userData.findOne({
