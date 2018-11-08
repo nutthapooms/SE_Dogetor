@@ -321,6 +321,27 @@ app.get('/aboutus', loggedIn, function (req, res) {
         });
     })
 });
+app.get('/analyzeReg', loggedIn, function (req, res) {
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('AnalyzeRegOne.ejs', {
+            username: req.user.username,
+            pic: req.user.avatar,
+            dog: book,
+            amount: book.length
+        });
+    })
+});
+app.get('/analyzeUser', function (req, res) {
+        res.render('AnalyzeUserOne.ejs');
+});
+app.get('/dogetor', function (req, res) {
+    res.render('Regis.ejs', {
+        errors: '',
+        dupli: ''
+    })
+});
 passport.use(new LocalStrategy(
     function (username, password, done) {
         userData.findOne({
