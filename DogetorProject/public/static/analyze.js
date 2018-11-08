@@ -12,6 +12,7 @@ var pet = new Vue({
       },
       gendall: [
         'male',
+        
         'female'
       ],
       breedall: [
