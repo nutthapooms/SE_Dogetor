@@ -29,21 +29,32 @@
             		<div class="col-1"></div>
             		<div class="col-10"><h2 class="text-center" id="topic">Hospital information</h2></div> <!--This is Topic--->
             		<div class="col-1"></div>
-
+					<% for (var hos of hos){%>
             		<div class="col rounded" id="infoContainer">
-            			<br>
+						<br>
+						<% if(username =="gatewayfroze"){ %>
+						<a href="/hoslike?id=<%=hos.id%>">like</a>
+						 <% } else{ %>
+							<a href="/hoslike?id=<%=hos.id%>">unlike</a>
+							<% } %>
             			<div class ="text-center">
-            			<img class="rounded" src="https://image.dogilike.com/shareimg/contentimg/2018/meawmeaw/content/content-ThonglorPet_03.jpg" id="hospitalPic">
+							
+            			<img class="rounded" src="/image/<%=hos.pic %>" id="hospitalPic">
             			</div>
             			<div class="col-11" id="infoParagraph">
-            			<br>
-            			<p>[Hospital_name]</p>
-            			<p>[Location---------------------------------------------]</p>
-            			<p>Phone number : xx-xxx-xxxx</p>
-            			<p>Open : tt:tt - TT:TT</p>
+						<br>
+						
+						
+
+            			<p><%= hos.name %></p>
+            			<p><%= hos.location %></p>
+            			<p><%= hos.phone %></p>
+						<p><%= hos.open %></p>
+						
             			</div>
             			
-            		</div>
+					</div>
+					<% } %>
             	</div>
             </div>
             <!--Hospital info End---------------------------------------------------------------------------------------------->

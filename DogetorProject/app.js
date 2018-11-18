@@ -4,7 +4,8 @@ var express = require('express');
 var app = express();
 var body = require('body-parser');
 var userData = require('./routes/mongoSchema');
-var dogData = require('./routes/dogSchema');
+var dogData = require('./routes/dogSchema')
+var hosData = require('./routes/hospSchema')
 var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
@@ -62,7 +63,7 @@ app.use(expressValidator({
 }));
 
 
-var storage = multer.diskStorage({//storage for dog
+var storage = multer.diskStorage({ //storage for dog
     destination: function (req, file, callback) {
         callback(null, __dirname + '/public/image/dog');
     },
@@ -112,7 +113,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
         min: 0
     }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
-    req.checkBody('gender', 'Gender is required').notEmpty()    
+    req.checkBody('gender', 'Gender is required').notEmpty()
 
     var errors = req.validationErrors()
     if (errors) {
@@ -141,8 +142,8 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
             newDog.dogAvatar = req.file.filename
-           
-            
+
+
         }
         newDog.save(function (err, book) {
             if (err) {
@@ -194,7 +195,7 @@ app.post('/editDog', loggedIn, function (req, res) {
 
             });
         })
-    } else {        
+    } else {
 
         dogData.findByIdAndUpdate(req.user.cache, {
             name: req.body.dogName,
@@ -202,22 +203,43 @@ app.post('/editDog', loggedIn, function (req, res) {
             breed: req.body.dogBreed,
             owner: req.user.username,
             gender: req.body.gender,
-            
+
         }, function (err, bookuser) {
-            res.redirect('/doginfo?topic='+bookuser._id)
-                     
+            res.redirect('/doginfo?topic=' + bookuser._id)
+
         })
     }
 })
 
-app.get('/deletedog',function(req,res){
-    userData.findByIdAndUpdate(req.user._id,{$pull:{dog:req.user.cache}},{safe:true,upsert:true},function(err,book){
-        dogData.findByIdAndRemove(req.user.cache,function(err,books){
+app.get('/deletedog', function (req, res) {
+    userData.findByIdAndUpdate(req.user._id, {
+        $pull: {
+            dog: req.user.cache
+        }
+    }, {
+        safe: true,
+        upsert: true
+    }, function (err, book) {
+        dogData.findByIdAndRemove(req.user.cache, function (err, books) {
             res.redirect('/home')
         })
-    })})
+    })
+})
 
 app.get('/home', loggedIn, function (req, res) {
+
+    userData.findOneAndUpdate({
+        _id: req.user._id
+    }, {
+        cache: ''
+    }, {
+        "new": true,
+        "upsert": true
+    }, function (err, man) {
+        console.log(req.user.cache)
+
+
+    })
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
@@ -297,18 +319,30 @@ app.get('/dogInfo', loggedIn, function (req, res) {
     }
 });
 
-app.get('/hosp', loggedIn, function (req, res) {
+app.get('/hosp', loggedIn, function (req, res) {  
+
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        res.render('hospitalinfo.ejs', {
-            username: req.user.username,
-            pic: req.user.avatar,
-            dog: book,
-            amount: book.length
-        });
+        hosData.find({}, function (err, hos) {
+            res.render('hospitalinfo', {
+                username: req.user.username,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                hos :hos
+            });
+        })
+
     })
 });
+
+app.get('/hoslike',loggedIn,function (req,res) { 
+    hosid = req.query.id
+
+    
+
+ })
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
@@ -334,7 +368,7 @@ app.get('/analyzeReg', loggedIn, function (req, res) {
     })
 });
 app.get('/analyzeUser', function (req, res) {
-        res.render('AnalyzeUserOne.ejs');
+    res.render('AnalyzeUserOne.ejs');
 });
 app.get('/dogetor', function (req, res) {
     res.render('Regis.ejs', {
