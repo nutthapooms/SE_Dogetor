@@ -19,6 +19,7 @@ var user = new Schema({
     },
     avatar: String,
     dog: [String],
+    hos:[String],
     cache :String
 
 });

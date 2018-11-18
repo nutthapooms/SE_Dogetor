@@ -27,25 +27,38 @@
             	<div class="row">
 
             		<div class="col-1"></div>
-            		<div class="col-10"><h2 class="text-center" id="topic">Hospital information</h2></div> <!--This is Topic--->
-            		<div class="col-1"></div>
-					<% for (var hos of hos){%>
+					<div class="col-10"><h2 class="text-center" id="topic">Hospital information</h2></div> <!--This is Topic--->
+					
+					<div class="col-1">
+</div>
+
+					<% for (var hos of hos){%>				
+
+					
             		<div class="col rounded" id="infoContainer">
 						<br>
-						<% if(username =="gatewayfroze"){ %>
-						<a href="/hoslike?id=<%=hos.id%>">like</a>
-						 <% } else{ %>
-							<a href="/hoslike?id=<%=hos.id%>">unlike</a>
-							<% } %>
-            			<div class ="text-center">
+						<% if(info.hos.length ==0){ %>
+						<a href="/hoslike?id=<%=hos.name%>">like</a>
+						
+						
+						
+						<% } 
+						else{ %>
 							
+								<% if(info.hos.includes(hos.name) ){ %>
+								<a href="/hosunlike?id=<%=hos.name%>">unlike</a>
+								
+								
+								<% } else { %>	<a href="/hoslike?id=<%=hos.name%>">like</a>
+										<% } %>
+							
+								<% } %>
+											
+						<div class ="text-center">							
             			<img class="rounded" src="/image/<%=hos.pic %>" id="hospitalPic">
             			</div>
             			<div class="col-11" id="infoParagraph">
-						<br>
-						
-						
-
+						<br>						
             			<p><%= hos.name %></p>
             			<p><%= hos.location %></p>
             			<p><%= hos.phone %></p>

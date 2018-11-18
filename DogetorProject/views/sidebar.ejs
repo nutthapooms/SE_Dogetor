@@ -40,21 +40,16 @@
         <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
         <div>
             <table class="sidebarlist rounded-bottom">
-                <tr  id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class="sidebarlist">
-                    <script>document.getElementById("asdasd").id = ++j;</script>
-                    <td class="dognameinlist">he y</td>
-                    <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                </tr>
-                <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" >
-                    <script>document.getElementById("asdasd").id = ++j;</script>
-                    <td class="dognameinlist">he y</td>
-                    <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                </tr>
-                <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" >
-                    <script>document.getElementById("asdasd").id = ++j;</script>
-                    <td class="dognameinlist">he y</td>
-                    <td class="dognameindot"><i class="fas fa-ellipsis-h"></i></td>
-                </tr>
+                    <% for (var infohos of info.hos){%>
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  class ="dogtoshow allowdog">
+                            <script>    
+                                document.getElementById("asdasd").id = j;
+                                j++;
+                            </script>
+                            <td class="dognameinlist" ><a href="/doginfo?topic=<%=infohos%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=infohos%></div> </a> </td>
+                            <td class="dognameindot"><a href="/doginfo?topic=<%=infohos%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                        </tr>   
+                    <% } %>
             </table>
         </div>
     </div>

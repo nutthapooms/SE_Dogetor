@@ -101,6 +101,7 @@ app.get('/addDog', loggedIn, function (req, res) {
     }, function (err, book) {
         res.render('addDog.ejs', {
             username: req.user.username,
+            info: req.user,
             pic: req.user.avatar,
             dog: book,
             amount: book.length
@@ -123,6 +124,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             res.render('homepage', {
                 errors: errors,
                 username: req.user.username,
+                info: req.user,
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
@@ -189,6 +191,7 @@ app.post('/editDog', loggedIn, function (req, res) {
             res.render('homepage', {
                 errors: errors,
                 username: req.user.username,
+                info: req.user,
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
@@ -246,6 +249,7 @@ app.get('/home', loggedIn, function (req, res) {
         res.render('homepage.ejs', {
             errors: '',
             username: req.user.username,
+            info: req.user,
             pic: req.user.avatar,
             dog: book,
             amount: book.length,
@@ -302,6 +306,7 @@ app.get('/dogInfo', loggedIn, function (req, res) {
             }, function (err, bookuser) {
                 res.render("doginfo", {
                     dogName: book.name,
+                    info: req.user,
                     breed: book.breed,
                     gender: book.gender,
                     age: book.age,
@@ -319,7 +324,8 @@ app.get('/dogInfo', loggedIn, function (req, res) {
     }
 });
 
-app.get('/hosp', loggedIn, function (req, res) {  
+app.get('/hosp', loggedIn, function (req, res) {
+
 
     dogData.find({
         owner: req.user.username
@@ -327,28 +333,64 @@ app.get('/hosp', loggedIn, function (req, res) {
         hosData.find({}, function (err, hos) {
             res.render('hospitalinfo', {
                 username: req.user.username,
+                info: req.user,
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-                hos :hos
+                hos: hos
             });
         })
 
     })
 });
 
-app.get('/hoslike',loggedIn,function (req,res) { 
+app.get('/hoslike', loggedIn, function (req, res) {
     hosid = req.query.id
 
-    
+    userData.findByIdAndUpdate(
+        req.user._id, {
+            $push: {
+                hos: hosid
+            }
+        }, {
+            "new": true,
+            "upsert": true
+        },
+        function (err) {
+            res.redirect('/hosp');
 
- })
+        })
+})
+
+app.get('/hosunlike', loggedIn, function (req, res) {
+    hosid = req.query.id
+
+    userData.findByIdAndUpdate(
+        req.user._id, {
+            $pull: {
+                hos: hosid
+            }
+        }, {
+            "safe": true,
+            "upsert": true
+        },
+        function (err) {
+            res.redirect('/hosp');
+
+        })
+
+
+
+
+
+})
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
         res.render('aboutus.ejs', {
             username: req.user.username,
+            info: req.user,
             pic: req.user.avatar,
             dog: book,
             amount: book.length
@@ -361,6 +403,7 @@ app.get('/analyzeReg', loggedIn, function (req, res) {
     }, function (err, book) {
         res.render('AnalyzeRegOne.ejs', {
             username: req.user.username,
+            info: req.user,
             pic: req.user.avatar,
             dog: book,
             amount: book.length
