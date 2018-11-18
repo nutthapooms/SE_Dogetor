@@ -147,30 +147,44 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
 
 
         }
-        newDog.save(function (err, book) {
-            if (err) {
-                console.log(err.code)
+
+        dogData.findOne({
+            name: req.body.dogName,
+            owner: req.user.username
+        }, function (err, result) {
+            if (result) {
+                res.redirect('/addDog')
+
+
             } else {
-                userData.findByIdAndUpdate(
-                    req.user._id, {
-                        $push: {
-                            dog: book._id
-                        }
-                    }, {
-                        "new": true,
-                        "upsert": true
-                    },
-                    function (err, newBook) {
-                        if (err) {
-                            console.log('error')
-                        } else {
-                            console.log('newBook')
-                        }
-                    })
-                console.log(book)
-                res.redirect('/home')
+                newDog.save(function (err, book) {
+                    if (err) {
+                        console.log(err.code)
+                    } else {
+                        userData.findByIdAndUpdate(
+                            req.user._id, {
+                                $push: {
+                                    dog: book._id
+                                }
+                            }, {
+                                "new": true,
+                                "upsert": true
+                            },
+                            function (err, newBook) {
+                                if (err) {
+                                    console.log('error')
+                                } else {
+                                    console.log('newBook')
+                                }
+                            })
+                        console.log(book)
+                        res.redirect('/home')
+                    }
+                })
             }
         })
+
+
     }
 })
 
@@ -200,17 +214,28 @@ app.post('/editDog', loggedIn, function (req, res) {
         })
     } else {
 
-        dogData.findByIdAndUpdate(req.user.cache, {
+        dogData.findOne({
             name: req.body.dogName,
-            age: req.body.dogAge,
-            breed: req.body.dogBreed,
-            owner: req.user.username,
-            gender: req.body.gender,
+            owner: req.user.username
+        }, function (err, result) {
+            if (result) {
+                res.redirect('/doginfo?topic=' + req.user.cache)
+            } else {
+                dogData.findByIdAndUpdate(req.user.cache, {
+                    name: req.body.dogName,
+                    age: req.body.dogAge,
+                    breed: req.body.dogBreed,
+                    owner: req.user.username,
+                    gender: req.body.gender,
 
-        }, function (err, bookuser) {
-            res.redirect('/doginfo?topic=' + bookuser._id)
+                }, function (err, bookuser) {
+                    res.redirect('/doginfo?topic=' + bookuser._id)
 
+                })
+            }
         })
+
+
     }
 })
 
