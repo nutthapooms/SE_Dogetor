@@ -97,5 +97,10 @@ function preMonth(){
 function eachdayclick(x){
     var m = month+1;
     var kk = x+" "+m+" "+year;
-    document.getElementById("dayshow").innerHTML= x+" "+monthlist[month]+" "+year;
+    $.ajax({
+        url:"/event",
+        type:"POST",          
+        data: {date:x,month:m,year:year}
+    })
+    //document.getElementById("dayshow").innerHTML= x+" "+monthlist[month]+" "+year;
 }

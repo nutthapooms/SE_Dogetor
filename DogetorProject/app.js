@@ -307,6 +307,11 @@ app.post('/dogInfo', function (req, res) {
     res.end();
 })
 
+app.post('/event',loggedIn,function(req,res){
+    console.log(req.body)
+    res.redirect('/home')
+})
+
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
