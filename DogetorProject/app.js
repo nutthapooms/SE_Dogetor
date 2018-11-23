@@ -307,37 +307,24 @@ app.post('/dogInfo', function (req, res) {
     res.end();
 })
 
-app.post('/event',loggedIn,function(req,res){
-    // dogData.find({
-    //     owner: req.user.username
-    // }, function (err, book) {
-    //     console.log(req.body);
-    //     res.render('addEvent.ejs', {
-    //         username: req.user.username,
-    //         info: req.user,
-    //         pic: req.user.avatar,
-    //         dog: book,
-    //         amount: book.length
-    //     });
-    // })
-    res.render('addEvent.ejs', {
-        username: req.user.username,
-        info: req.user,
-        pic: req.user.avatar,
-        dog: book,
-        amount: book.length
-    });
+app.get('/event',loggedIn,function(req,res){
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        console.log(req.query.topic);
+        console.log(req.user.username);
+        res.render('addEvent.ejs', {
+            username: req.user.username,
+            info: req.user,
+            pic: req.user.avatar,
+            dog: book,
+            amount: book.length
+        });
+    })
+    
 })
 
-app.get('/event',loggedIn,function(req,res){
-    res.render('addEvent.ejs', {
-        username: req.user.username,
-        info: req.user,
-        pic: req.user.avatar,
-        dog: book,
-        amount: book.length
-    });
-})
+
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic

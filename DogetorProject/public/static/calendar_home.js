@@ -98,9 +98,13 @@ function eachdayclick(x){
     var m = month+1;
     var kk = x+" "+m+" "+year;
     $.ajax({
-        url:"/event",
-        type:"POST",          
-        data: {date:x,month:m,year:year}
+        url:'/event?topic='+kk,
+        type:"GET",      
+        data: {date:x,month:m,year:year},
+        success:function(result){
+            $('body').html(result)
+        }
     })
+    
     //document.getElementById("dayshow").innerHTML= x+" "+monthlist[month]+" "+year;
 }
