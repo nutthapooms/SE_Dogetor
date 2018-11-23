@@ -50,15 +50,41 @@
                     </thead>
                     <tbody id = "calendar">
                         <!-- calendar startt -->
-                            <% for(var i=0; i<6; i++) {%>
-                                <tr>
-                                    <% for(var j=0; j<7; j++) {%>
-                                        <td class = "eachday"><a href="#" class = "dayeach" onclick="eachdayclick(this.innerHTML)"data-toggle="modal" data-target="#dayModal"></a></td>
-                                    <% } %>     
-                                </tr>
-                            <% } %>
+                        <%var date = new Date()%>
+                        <%var datee = 1;%>
+                        <%date.setDate(1);%>
+                        <%var dayy = date.getDay();;%>
+                        <!-- <%= dayy%> -->
+                        <%var monthh = date.getMonth();%>
+                        <%var yearr  = date.getYear();%>
+                        <%var limitt = new Date(yearr, monthh, 0).getDate();%>
+                        <%var check = 0; %> 
+                        <% for(var i=0; i<6; i++) {%>
+                            <tr>
+                                <% for(var j=0; j<7; j++) {%>
+                                    <% if (j == dayy){ %>
+                                        <% check = 1; %>
+                                    <% } %>
+                                    <% if (check == 0){%>
+                                        <td class = "eachday"> </td>
+                                    <% }else{%>
+                                        <% if(datee < limitt){%>
+                                            <td class = "eachday"><a href="#" onclick="eachdayclick(this.innerHTML)"data-toggle="modal" data-target="#dayModal"><%= datee %></a></td>
+                                            
+                                            <% datee++; %>
+                                        <% }else{%>
+                                            <td class = "eachday"> </td>
+                                        <% } %>
+                                    <% } %>
+                                    
+                                <% } %>     
+                            </tr>
+                        <% } %>
+                        <% check = 0; %>
+                        
                          <!-- calendar endd-->
                     </tbody>
+                    
                 </table>
                 <!--appointment modal start---------------------------------------------------------------------------------------------->
                 <div class="modal fade" id="dayModal" tabindex="-1" role="dialog" aria-labelledby="deletedogTitle" aria-hidden="true">

@@ -418,13 +418,20 @@ app.get('/hosunlike', loggedIn, function (req, res) {
         },
         function (err) {
             res.redirect('/hosp');
-
         })
-
-
-
-
-
+})
+app.get('/addEvent',loggedIn,function(req,res){
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        res.render('addEvent.ejs', {
+            username: req.user.username,
+            info: req.user,
+            pic: req.user.avatar,
+            dog: book,
+            amount: book.length
+        });
+    })
 })
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dogetor</title>
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="static/hmoe.css">
+    <link rel="stylesheet" type="text/css" href="/static/addEvent.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
+</head>
+
+<body>
+    <!--  Navbar Start--------------------------------------------------------------------------------------------------->
+    <%- include('navbar') %>
+    <!--  Navbar End------------------------------------------------------------------------------------------------->
+    <!--  Topbar Start------------------------------------------------------------------------------------------------->
+    <!-- <%- include('topbar') %> -->
+    <!--  Topbar End------------------------------------------------------------------------------------------------->
+    <div class="container">
+        <div class="row">
+            <!--  Side bar Start--------------------------------------------------------------------------------------------->
+            <%- include('sidebar') %>
+            <!--Side bar End---------------------------------------------------------------------------------------------->
+            <div class="col-8 content">
+                    <div class = "row">
+                        <h1 class = "col-9">Event this day</h1>
+                        <div class= "col-3">
+                                <button class= "btn addEventBtn">Create event</button>
+                        </div>
+                    </div>
+                    <div>
+                        
+                    </div>
+                    <div class = "contentCard row">
+                        <div class = "col-4 cardTitle">
+                            <h3>Title</h3>
+                            <h5>Date</h5>
+                            <!-- <h5>Location</h5> -->
+                        </div>
+                        <div class = "col-8 cardContent">
+                            <h5>Description</h5>
+                        </div>
+                    </div>
+
+            </div>
+            
+        </div>
+  
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="/static/homee.js"></script>
+<script src="/static/calendar_home.js"></script>
+
+<script>
+    
+    
+
+        history.pushState(null, null, location.href);
+    window.onpopstate = function () {
+        history.go(1);
+    
+    };  
+    </script>
+</html>
