@@ -6,6 +6,7 @@ var body = require('body-parser');
 var userData = require('./routes/mongoSchema');
 var dogData = require('./routes/dogSchema')
 var hosData = require('./routes/hospSchema')
+var eventData = require('./routes/eventSchema')
 var flash = require('connect-flash')
 var session = require('express-session');
 var passport = require('passport')
@@ -310,20 +311,51 @@ app.post('/dogInfo', function (req, res) {
 app.post('/event',loggedIn,function(req,res){
     dogData.find({
         owner: req.user.username
-    }, function (err, book) {
-        console.log(req.body);
-        //console.log(req.user.username);
+    }, function (err, book) {     
+        day = req.body.date
+        month = req.body.month
+        year = req.body.year 
+       
+        
         res.render('addEvent.ejs', {
             username: req.user.username,
             info: req.user,
             pic: req.user.avatar,
             dog: book,
             amount: book.length,
-            day : req.body
+            date:{
+                day:day,
+                month:month,
+                year:year
+            }
         });
     })
     
 })
+
+app.post('/addEvent',loggedIn,function (req,res) {
+    title = req.body.title
+    dog = req.body.dog
+    descr = req.body.descr
+    time = req.body.time
+    day = req.body.day
+    month = req.body.month
+    year = req.body.year 
+
+    newEvent = new eventData()
+    newEvent.title = title
+    newEvent.dog = dog
+    newEvent.owner= req.user.username
+    newEvent.descr = descr
+    newEvent.time = time
+    newEvent.day = day
+    newEvent.month = month
+    newEvent.year = year
+
+    newEvent.save(function(err,docs){
+        res.redirect('home')
+    })
+  })
 
 
 
