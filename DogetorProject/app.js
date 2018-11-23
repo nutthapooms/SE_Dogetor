@@ -327,6 +327,7 @@ app.post('/event',loggedIn,function(req,res){
 
 
 
+
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
 

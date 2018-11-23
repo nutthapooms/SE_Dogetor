@@ -102,7 +102,9 @@ function eachdayclick(x){
         type:"POST",      
         data: {date:x,month:m,year:year},
         success:function(result){
-            $('body').html(result)
+            document.open();
+            document.write(result);
+            document.close();
         }
     })
     
