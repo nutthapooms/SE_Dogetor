@@ -307,18 +307,19 @@ app.post('/dogInfo', function (req, res) {
     res.end();
 })
 
-app.get('/event',loggedIn,function(req,res){
+app.post('/event',loggedIn,function(req,res){
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        console.log(req.query.topic);
-        console.log(req.user.username);
+        console.log(req.body);
+        //console.log(req.user.username);
         res.render('addEvent.ejs', {
             username: req.user.username,
             info: req.user,
             pic: req.user.avatar,
             dog: book,
-            amount: book.length
+            amount: book.length,
+            day : req.body
         });
     })
     
