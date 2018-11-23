@@ -41,7 +41,17 @@
                                         placeholder="Meet doctor">
 
                                 </div>
-
+                                <div class="form-group">
+                                    <label for="">Choose your Dog:</label>
+                                    <select class="custom-select rect-field" id="pet" 
+                                    v-model="petval" v-on:change="changePetInfo">
+                                        <option value="" disabled selected>Select your pet</option>
+                                        <!-- <% for (var pet of dog){%> -->
+                                            <option v-for="(pet, index) in petinfoall" v-bind:value="index+1">
+                                            asd</option>
+                                        <!-- <% } %> -->
+                                    </select>
+                                </div>
                                 <div class="form-group">
                                     <label for="email">Date:</label>
                                     <input type="email" class="form-control" name="email" placeholder="email">
