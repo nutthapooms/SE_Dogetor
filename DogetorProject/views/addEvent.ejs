@@ -26,9 +26,26 @@
             <!--Side bar End---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
                     <div class = "row">
-                        <h1 class = "col-9">Event this day</h1>
+                        <div class = "col-9 titleEvent">
+                            <h1>Event this day</h1>
+                        </div>
                         <div class= "col-3">
-                                <button class= "btn addEventBtn">Create event</button>
+                            <button class= "btn addEventBtn" type="button" data-toggle="collapse" data-target="#addEventCollapse" aria-expanded="false" aria-controls="collapseExample"><i class="fas fa-plus"></i> Create event</button>   
+                        </div>
+                    </div>
+                    <div class="collapse" id="addEventCollapse">
+                        <div class="card-body addEventCollapse row">
+                            <div class = "col-4">
+                                <div><h5>Title:</h5></div>
+                                <div><h5>Date:</h5></div>
+                                <div><h5>Description:</h5></div>
+                            </div>
+                            <div>
+                                <input type="text" class ="form-control">
+                                <input type="text" class ="form-control">
+                                <input type="text" class ="form-control">
+
+                            </div>
                         </div>
                     </div>
                     <div>
