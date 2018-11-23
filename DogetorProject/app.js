@@ -356,6 +356,18 @@ app.get('/dogInfo', loggedIn, function (req, res) {
 
 app.get('/hosp', loggedIn, function (req, res) {
 
+    // newhos = new hosData()
+    // newhos.name = 'test'
+    // newhos.location = 'test'
+    // newhos.phone = 'test'
+    // newhos.open = 'test'
+    // newhos.pic = 'ThonglorPet.jpg'
+
+    // newhos.save(function(err,docs){
+    //     console.log(docs)
+    // })
+
+
 
     dogData.find({
         owner: req.user.username
