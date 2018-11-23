@@ -308,10 +308,36 @@ app.post('/dogInfo', function (req, res) {
 })
 
 app.post('/event',loggedIn,function(req,res){
-    console.log(req.body)
-    res.redirect('/home')
+    // dogData.find({
+    //     owner: req.user.username
+    // }, function (err, book) {
+    //     console.log(req.body);
+    //     res.render('addEvent.ejs', {
+    //         username: req.user.username,
+    //         info: req.user,
+    //         pic: req.user.avatar,
+    //         dog: book,
+    //         amount: book.length
+    //     });
+    // })
+    res.render('addEvent.ejs', {
+        username: req.user.username,
+        info: req.user,
+        pic: req.user.avatar,
+        dog: book,
+        amount: book.length
+    });
 })
 
+app.get('/event',loggedIn,function(req,res){
+    res.render('addEvent.ejs', {
+        username: req.user.username,
+        info: req.user,
+        pic: req.user.avatar,
+        dog: book,
+        amount: book.length
+    });
+})
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
@@ -420,19 +446,7 @@ app.get('/hosunlike', loggedIn, function (req, res) {
             res.redirect('/hosp');
         })
 })
-app.get('/addEvent',loggedIn,function(req,res){
-    dogData.find({
-        owner: req.user.username
-    }, function (err, book) {
-        res.render('addEvent.ejs', {
-            username: req.user.username,
-            info: req.user,
-            pic: req.user.avatar,
-            dog: book,
-            amount: book.length
-        });
-    })
-})
+
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username

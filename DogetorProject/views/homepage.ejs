@@ -69,7 +69,7 @@
                                         <td class = "eachday"> </td>
                                     <% }else{%>
                                         <% if(datee < limitt){%>
-                                            <td class = "eachday"><a href="#" onclick="eachdayclick(this.innerHTML)"data-toggle="modal" data-target="#dayModal"><%= datee %></a></td>
+                                            <td class = "eachday"><a href="#" onclick="eachdayclick(this.innerHTML)"data-toggle="" data-target="#dayModal"><%= datee %></a></td>
                                             
                                             <% datee++; %>
                                         <% }else{%>
@@ -81,7 +81,6 @@
                             </tr>
                         <% } %>
                         <% check = 0; %>
-                        
                          <!-- calendar endd-->
                     </tbody>
                     
