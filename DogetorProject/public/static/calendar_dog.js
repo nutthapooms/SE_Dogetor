@@ -89,11 +89,11 @@ function preMonth(){
     var div = document.getElementById("calendar");
     div.innerHTML = result1;
 }
-function eachdayclick(x){
+function eachdayclick(x,dog){
     var m = month+1;
     var kk = x+" "+m+" "+year;
     $.ajax({
-        url:'event',
+        url:'eventD',
         type:"POST",      
         data: {date:x,month:m,year:year},
         success:function(result){

@@ -133,7 +133,6 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             });
         })
     } else {
-
         newDog = new dogData();
         newDog.name = req.body.dogName
         newDog.age = req.body.dogAge
@@ -145,18 +144,13 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
         } else {
             newDog.dogAvatar = req.file.filename
-
-
         }
-
         dogData.findOne({
             name: req.body.dogName,
             owner: req.user.username
         }, function (err, result) {
             if (result) {
                 res.redirect('/addDog')
-
-
             } else {
                 newDog.save(function (err, book) {
                     if (err) {
@@ -184,8 +178,6 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                 })
             }
         })
-
-
     }
 })
 
@@ -210,11 +202,9 @@ app.post('/editDog', loggedIn, function (req, res) {
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-
             });
         })
     } else {
-
         dogData.findOne({
             name: req.body.dogName,
             owner: req.user.username
@@ -235,8 +225,6 @@ app.post('/editDog', loggedIn, function (req, res) {
                 })
             }
         })
-
-
     }
 })
 
@@ -266,30 +254,17 @@ app.get('/home', loggedIn, function (req, res) {
         "upsert": true
     }, function (err, man) {
         console.log(req.user.cache)
-
-
     })
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-
         eventData.find({
             owner: req.user.username
-
         }, function (err, docs) {
-
             var d = []
-
-
             for (x of docs) {
-
                 d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
             }
-
-            //console.log(typeof d[0])
-
-
-
             res.render('homepage.ejs', {
                 errors: '',
                 username: req.user.username,
@@ -301,8 +276,6 @@ app.get('/home', loggedIn, function (req, res) {
                 events: d
             })
         })
-
-
     })
 });
 app.post('/home', function (req, res) {
@@ -310,71 +283,91 @@ app.post('/home', function (req, res) {
     console.log(try1);
     eventData.find({
         owner: req.user.username
-
     }, function (err, docs) {
-
         var d = []
-
-
         for (x of docs) {
-
             d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year).toString())
         }
-
         console.log(d)
-
-
         res.render('calendar', {
             date: try1.date,
             day: try1.day,
             month: try1.month,
             year: try1.year,
             limit: try1.limit,
-
             events: d
         })
     })
-
-
 })
 app.post('/dogInfo', function (req, res) {
     var try2 = req.body;
     console.log(try2);
-
     dogData.findById(req.user.cache, function (err, dogg) {
         eventData.find({
             owner: req.user.username,
-            dog:dogg.name
-
+            dog: dogg.name
         }, function (err, docs) {
-
             var d = []
-
-
             for (x of docs) {
-
                 d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year).toString())
             }
-
             console.log(d)
-
-
             res.render('calendar', {
                 date: try2.date,
                 day: try2.day,
                 month: try2.month,
                 year: try2.year,
                 limit: try2.limit,
-
                 events: d
             })
         })
-
     })
-
-
 })
 
+app.post('/eventD', loggedIn, function (req, res) {
+
+
+    dogData.find({
+        owner: req.user.username,
+
+    }, function (err, book) {
+        day = req.body.date
+        month = req.body.month
+        year = req.body.year
+        dogData.findById(
+            req.user.cache,
+            function (err, result) {
+                console.log(result)
+                eventData.find({
+                    day: day,
+                    month: month,
+                    year: year,
+                    owner: req.user.username,
+                    dog: result.name
+
+
+                }).sort({
+                    time: +1
+                }).exec(function (err, docs) {
+
+                    res.render('addEvent.ejs', {
+                        username: req.user.username,
+                        info: req.user,
+                        pic: req.user.avatar,
+                        dog: book,
+                        amount: book.length,
+                        date: {
+                            day: day,
+                            month: month,
+                            year: year
+                        },
+                        event: docs
+                    })
+                })
+            })
+
+    })
+})
 app.post('/event', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
@@ -444,9 +437,6 @@ app.post('/addEvent', loggedIn, function (req, res) {
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
-
-
-
     userData.findOneAndUpdate({
         _id: req.user._id
     }, {
@@ -467,19 +457,13 @@ app.get('/dogInfo', loggedIn, function (req, res) {
                 eventData.find({
                     owner: req.user.username,
                     dog: book.name
-
                 }, function (err, docs) {
-
                     var d = []
-
-
                     for (x of docs) {
 
                         d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
                     }
-
                     console.log(d)
-
                     res.render("doginfo", {
                         dogName: book.name,
                         info: req.user,
@@ -493,11 +477,8 @@ app.get('/dogInfo', loggedIn, function (req, res) {
                         amount: bookuser.length,
                         events: d
                     });
-
                 })
-
             })
-
         })
     } else {
         res.redirect('/home')
@@ -550,7 +531,6 @@ app.get('/hoslike', loggedIn, function (req, res) {
         },
         function (err) {
             res.redirect('/hosp');
-
         })
 })
 
@@ -642,8 +622,6 @@ app.post('/login',
         failureRedirect: '/error',
         failureFlash: true
     })
-
-
 );
 
 app.get('/error', function (req, res) {
