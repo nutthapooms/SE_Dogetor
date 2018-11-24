@@ -92,5 +92,16 @@ function preMonth(){
 function eachdayclick(x){
     var m = month+1;
     var kk = x+" "+m+" "+year;
-    document.getElementById("dogdayshow").innerHTML= x+" "+monthlist[month]+" "+year;
+    $.ajax({
+        url:'event',
+        type:"POST",      
+        data: {date:x,month:m,year:year},
+        success:function(result){
+            document.open();
+            document.write(result);
+            document.close();
+        }
+    })
+    
+    //document.getElementById("dayshow").innerHTML= x+" "+monthlist[month]+" "+year;
 }

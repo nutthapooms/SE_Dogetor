@@ -141,13 +141,53 @@
                         </tr>
                     </thead>
                     <tbody id = "calendar">
+                        <!-- calendar startt -->
+                        <%var date = new Date()%>
+                        
+
+                        <%var datee = 1;%>
+                        <%date.setDate(1);%>
+                        <%var dayy = date.getDay();;%>
+                        
+                        <%var monthh = date.getMonth();%>
+                        <%var yearr  = date.getYear();%>
+                        <%var limitt = new Date(yearr, monthh, 0).getDate();%>
+                        <%var check = 0; %> 
                         <% for(var i=0; i<6; i++) {%>
                             <tr>
                                 <% for(var j=0; j<7; j++) {%>
-                                    <td  class = "dogeachday" ><a href="#" class = "dogeach" onclick="eachdayclick(this.innerHTML)"  data-toggle="modal" data-target="#daydogModal"></a></td>
+                                    <% if (j == dayy){ %>
+                                        <% check = 1; %>
+                                    <% } %>
+                                    <% if (check == 0){%>
+                                        <td class = "eachday"> </td>
+                                    <% }else{%>
+                                        <% if(datee < limitt){%>
+                                            
+                                            <%var dayee = datee+""+monthh+yearr %>
+                                            
+                                            <% if(events.includes(dayee)) {%>
+                                            <td class = "eachday" style="background-color:coral" >                                  
+                                                
+                                                <a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                            
+                                            
+                                            <% }else{%>
+                                                <td class = "eachday">                                  
+                                                
+                                                    <a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                            <% } %>
+                                            <% datee++; %>
+                                        <% }else{%>
+                                            <td class = "eachday"> </td>
+                                        <% } %>
+                                    <% } %>
+                                    
                                 <% } %>     
                             </tr>
-                         <% } %>
+                        <% } %>
+                        <% check = 0; %>
+                         <!-- calendar endd-->
                     </tbody>
                 </table>
                  <!--appointment modal start---------------------------------------------------------------------------------------------->

@@ -19,8 +19,20 @@
                             <td class = "dogeachday"> </td>
                         <% }else{%>
                             <% if(datee < limitt){%>
-                                <td class = "dogeachday"><a href="#" onclick="eachdayclick(this.innerHTML)" data-toggle="modal" data-target="#daydogModal"><%= datee %></a></td>
-                                <% datee++; %>
+                                <%var dayee = datee+""+monthh+""+yearr %>
+                                            
+                                            <% if(events.includes(dayee)) {%>
+                                            <td class = "eachday" style="background-color:coral" >                                  
+                                                
+                                                <a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                            
+                                            
+                                            <% }else{%>
+                                                <td class = "eachday">                                  
+                                                
+                                                    <a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                            <% } %>
+                                            <% datee++; %>
                             <% }else{%>
                                 <td class = "dogeachday"> </td>
                             <% } %>

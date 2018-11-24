@@ -273,150 +273,178 @@ app.get('/home', loggedIn, function (req, res) {
         owner: req.user.username
     }, function (err, book) {
 
-        eventData.find({            
-            owner:req.user.username
+        eventData.find({
+            owner: req.user.username
 
-        },function(err,docs){
+        }, function (err, docs) {
 
-            var d=[]
-            
+            var d = []
 
-            for(x of docs){
-                
-                d.push(x.day.toString()+""+(x.month-1).toString()+""+(x.year-1900).toString())
+
+            for (x of docs) {
+
+                d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
             }
-            
+
             //console.log(typeof d[0])
-            
 
-            
+
+
             res.render('homepage.ejs', {
-            errors: '',
-            username: req.user.username,
-            info: req.user,
-            pic: req.user.avatar,
-            dog: book,
-            amount: book.length,
-            dupli: '',
-            events:d
-        })
+                errors: '',
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                dupli: '',
+                events: d
+            })
         })
 
-        
+
     })
 });
 app.post('/home', function (req, res) {
     var try1 = req.body;
     console.log(try1);
-    eventData.find({            
-        owner:req.user.username
+    eventData.find({
+        owner: req.user.username
 
-    },function(err,docs){
+    }, function (err, docs) {
 
-        var d=[]
-        
+        var d = []
 
-        for(x of docs){
-            
-            d.push(x.day.toString()+""+(x.month-1).toString()+""+(x.year).toString())
+
+        for (x of docs) {
+
+            d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year).toString())
         }
-        
-        console.log(d)     
 
-        
+        console.log(d)
+
+
         res.render('calendar', {
-        date: try1.date,
-        day: try1.day,
-        month: try1.month,
-        year: try1.year,
-        limit: try1.limit,
-        
-        events:d
+            date: try1.date,
+            day: try1.day,
+            month: try1.month,
+            year: try1.year,
+            limit: try1.limit,
+
+            events: d
+        })
     })
-    })
-    
-    
+
+
 })
 app.post('/dogInfo', function (req, res) {
     var try2 = req.body;
     console.log(try2);
-    res.render('calendar_dog', {
-        date: try2.date,
-        day: try2.day,
-        month: try2.month,
-        year: try2.year,
-        limit: try2.limit
-    });
-    res.end();
+
+    dogData.findById(req.user.cache, function (err, dogg) {
+        eventData.find({
+            owner: req.user.username,
+            dog:dogg.name
+
+        }, function (err, docs) {
+
+            var d = []
+
+
+            for (x of docs) {
+
+                d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year).toString())
+            }
+
+            console.log(d)
+
+
+            res.render('calendar', {
+                date: try2.date,
+                day: try2.day,
+                month: try2.month,
+                year: try2.year,
+                limit: try2.limit,
+
+                events: d
+            })
+        })
+
+    })
+
+
 })
 
-app.post('/event',loggedIn,function(req,res){
+app.post('/event', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
-    }, function (err, book) {     
+    }, function (err, book) {
         day = req.body.date
         month = req.body.month
-        year = req.body.year 
+        year = req.body.year
 
         eventData.find({
-            day:day,
-            month:month,
-            year:year,
-            owner:req.user.username
+            day: day,
+            month: month,
+            year: year,
+            owner: req.user.username
 
-        }).sort({ time: +1 }).exec(function(err,docs){
+        }).sort({
+            time: +1
+        }).exec(function (err, docs) {
             res.render('addEvent.ejs', {
-            username: req.user.username,
-            info: req.user,
-            pic: req.user.avatar,
-            dog: book,
-            amount: book.length,
-            date:{
-                day:day,
-                month:month,
-                year:year
-            },
-            event:docs
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                date: {
+                    day: day,
+                    month: month,
+                    year: year
+                },
+                event: docs
+            })
         })
-        })
-        
-        
-        
-        
-        
+
+
+
+
+
     })
-    
+
 })
 
-app.post('/addEvent',loggedIn,function (req,res) {
+app.post('/addEvent', loggedIn, function (req, res) {
     title = req.body.title
     dog = req.body.dog
     descr = req.body.descr
     time = req.body.time
     day = req.body.day
     month = req.body.month
-    year = req.body.year 
+    year = req.body.year
 
     newEvent = new eventData()
     newEvent.title = title
     newEvent.dog = dog
-    newEvent.owner= req.user.username
+    newEvent.owner = req.user.username
     newEvent.descr = descr
     newEvent.time = time
     newEvent.day = day
     newEvent.month = month
     newEvent.year = year
 
-    newEvent.save(function(err,docs){
+    newEvent.save(function (err, docs) {
         res.redirect('home')
     })
-  })
+})
 
 
 
 
 app.get('/dogInfo', loggedIn, function (req, res) {
     var topic = req.query.topic
+
 
 
     userData.findOneAndUpdate({
@@ -436,18 +464,38 @@ app.get('/dogInfo', loggedIn, function (req, res) {
             dogData.find({
                 owner: req.user.username
             }, function (err, bookuser) {
-                res.render("doginfo", {
-                    dogName: book.name,
-                    info: req.user,
-                    breed: book.breed,
-                    gender: book.gender,
-                    age: book.age,
-                    dogPic: book.dogAvatar,
-                    username: req.user.username,
-                    pic: req.user.avatar,
-                    dog: bookuser,
-                    amount: bookuser.length
-                });
+                eventData.find({
+                    owner: req.user.username,
+                    dog: book.name
+
+                }, function (err, docs) {
+
+                    var d = []
+
+
+                    for (x of docs) {
+
+                        d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
+                    }
+
+                    console.log(d)
+
+                    res.render("doginfo", {
+                        dogName: book.name,
+                        info: req.user,
+                        breed: book.breed,
+                        gender: book.gender,
+                        age: book.age,
+                        dogPic: book.dogAvatar,
+                        username: req.user.username,
+                        pic: req.user.avatar,
+                        dog: bookuser,
+                        amount: bookuser.length,
+                        events: d
+                    });
+
+                })
+
             })
 
         })
