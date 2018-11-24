@@ -24,13 +24,13 @@
                                             <% if(events.includes(dayee)) {%>
                                             <td class = "eachday" style="background-color:coral" >                                  
                                                 
-                                                <a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                                <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
                                             
                                             
                                             <% }else{%>
                                                 <td class = "eachday">                                  
                                                 
-                                                    <a href="#" onclick="eachdayclick(this.innerHTML)"><%= datee %></a></td>
+                                                    <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
                                             <% } %>
                                             <% datee++; %>
                             <% }else{%>

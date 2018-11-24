@@ -103,35 +103,4 @@ router.get('/', function (req, res) {
 
 });
 
-
-router.get('/index', function (req, res) {
-    console.log('meet')
-
-    if (req.user) {
-        console.log('logged in')
-        res.redirect('/home')
-    } else {
-        console.log('not logged in')
-        res.render('Regis.ejs', {
-            errors: '',
-            dupli: ''
-        })
-    }
-
-});
-
-
-function loggedIn(req, res, next) {
-    if (req.user) {
-        next();
-    } else {
-        res.redirect('/');
-    }
-}
-
-
-
-
-
-
 module.exports = router

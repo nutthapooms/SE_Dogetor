@@ -7,11 +7,11 @@ var userData = require('./routes/mongoSchema')
 var dogData = require('./routes/dogSchema')
 var hosData = require('./routes/hospSchema')
 var eventData = require('./routes/eventSchema')
+var vetData = require('./routes/vetSchema')
 var flash = require('connect-flash')
 var session = require('express-session')
 var passport = require('passport')
 var index = require('./routes/index')
-//var hos = require('./routes/hospital')
 var expressValidator = require('express-validator')
 
 
@@ -535,6 +535,34 @@ app.get('/hosunlike', loggedIn, function (req, res) {
             res.redirect('/hosp');
         })
 })
+app.get('/vet', loggedIn, function (req, res) {
+
+    newvet = new hosData()
+    newvet.name = 'test'
+    newvet.hos = 'test'
+    newvet.phone = 'test'    
+    newvet.pic = 'ThonglorPet.jpg'
+
+    newvet.save(function(err,docs){
+        console.log(docs)
+    })
+
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        vetData.find({}, function (err, hos) {
+            res.render('vetinfo', {
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                vet: vet
+            });
+        })
+
+    })
+});
 
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
@@ -608,6 +636,21 @@ app.post('/login',
         failureFlash: true
     })
 );
+app.get('/index', function (req, res) {
+    console.log('meet')
+
+    if (req.user) {
+        console.log('logged in')
+        res.redirect('/home')
+    } else {
+        console.log('not logged in')
+        res.render('Regis.ejs', {
+            errors: '',
+            dupli: ''
+        })
+    }
+
+});
 
 app.get('/error', function (req, res) {
     req.flash('log', "Username or Password is invalid")

@@ -4,82 +4,94 @@
 <head>
 	<title>Hospital info</title>
 	<link rel="stylesheet" type="text/css" href="/static/bootstrap.css">
-    <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
-        crossorigin="anonymous">
-    <link rel="stylesheet" href="/static/hospitalInfoCss.css">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+	 crossorigin="anonymous">
+	<link rel="stylesheet" href="/static/hospitalInfoCss.css">
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
 </head>
 
 <body>
 
 	<!--  Navbar Start--------------------------------------------------------------------------------------------------->
-    <%- include('navbar') %>
-    <!--  Navbar End------------------------------------------------------------------------------------------------->
+	<%- include('navbar') %>
+	<!--  Navbar End------------------------------------------------------------------------------------------------->
 
-    <div class="container">
-        <div class="row">
-        	 <!--  Side bar Start--------------------------------------------------------------------------------------------->
-             <%- include('sidebar') %>
-             <!--Side bar End---------------------------------------------------------------------------------------------->
-            <!--Hospital info begin---------------------------------------------------------------------------------------------->
-            <div class="blockOfInformation container col-8">
-            	<div class="row">
+	<div class="container">
+		<div class="row">
+			<!--  Side bar Start--------------------------------------------------------------------------------------------->
+			<%- include('sidebar') %>
+			<!--Side bar End---------------------------------------------------------------------------------------------->
+			<!--Hospital info begin---------------------------------------------------------------------------------------------->
+			<div class="blockOfInformation container col-8">
+				<div class="row">
 
-            		<div class="col-1"></div>
-					<div class="col-10"><h2 class="text-center" id="topic">Hospital information</h2></div> <!--This is Topic--->
-					
+					<div class="col-1"></div><span class="glyphicon glyphicon-star-empty"></span>
+					<div class="col-10">
+						<h2 class="text-center" id="topic">Hospital information</h2>
+					</div>
+					<!--This is Topic--->
+
 					<div class="col-1">
-</div>
+					</div>
 
-					<% for (var hos of hos){%>				
+					<% for (var hos of hos){%>
 
-					
-            		<div class="col rounded" id="infoContainer">
+
+					<div class="col rounded" id="infoContainer">
 						<br>
 						<% if(info.hos.length ==0){ %>
-						<a href="/hoslike?id=<%=hos.name%>">like</a>
-						
-						
-						
+						<a href="/hoslike?id=<%=hos.name%>" class="btn btn-info btn-lg"><i class="fa fa-star " style="color:white"></i></a>
+
+
+
 						<% } 
 						else{ %>
-							
-								<% if(info.hos.includes(hos.name) ){ %>
-								<a href="/hosunlike?id=<%=hos.name%>">unlike</a>
-								
-								
-								<% } else { %>	<a href="/hoslike?id=<%=hos.name%>">like</a>
-										<% } %>
-							
-								<% } %>
-											
-						<div class ="text-center">							
-            			<img class="rounded" src="/image/<%=hos.pic %>" id="hospitalPic">
-            			</div>
-            			<div class="col-11" id="infoParagraph">
-						<br>						
-            			<p><%= hos.name %></p>
-            			<p><%= hos.location %></p>
-            			<p><%= hos.phone %></p>
-						<p><%= hos.open %></p>
-						
-            			</div>
-            			
+
+						<% if(info.hos.includes(hos.name) ){ %>
+						<a href="/hosunlike?id=<%=hos.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:yellow"></i></a>
+
+
+						<% } else { %> <a href="/hoslike?id=<%=hos.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:white"></i></a>
+						<% } %>
+
+						<% } %>
+
+						<div class="text-center">
+							<img class="rounded" src="/image/<%=hos.pic %>" id="hospitalPic">
+						</div>
+						<div class="col-11" id="infoParagraph">
+							<br>
+							<p>
+								<%= hos.name %>
+							</p>
+							<p>
+								<%= hos.location %>
+							</p>
+							<p>
+								<%= hos.phone %>
+							</p>
+							<p>
+								<%= hos.open %>
+							</p>
+
+						</div>
+
 					</div>
 					<% } %>
-            	</div>
-            </div>
-            <!--Hospital info End---------------------------------------------------------------------------------------------->
-            
+				</div>
+			</div>
+			<!--Hospital info End---------------------------------------------------------------------------------------------->
+
 			<!--Boostrap Begin---------------------------------------------------------------------------------------------->
-            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"></script>
-             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-              crossorigin="anonymous"></script>
-              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-    		  crossorigin="anonymous"></script>
-    		<!--Boostrap End---------------------------------------------------------------------------------------------->
+			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			 crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+			 crossorigin="anonymous"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+			 crossorigin="anonymous"></script>
+			<!--Boostrap End---------------------------------------------------------------------------------------------->
 
 </body>
+
 </html>
