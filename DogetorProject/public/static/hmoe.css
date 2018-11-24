@@ -1,6 +1,7 @@
 #sidebar{
     background-color: grey;
     color: white;
+    
 }
 #username{
     margin-top: 10px;
@@ -100,6 +101,7 @@
     padding : 0px 10px;
     width: 120px;
     margin: 0px;
+    
 }
 .dognameindot{
     padding : 3px 10px;
@@ -154,6 +156,10 @@
     width: 110px;
     height: 110px;  
       
+}
+
+#infod{
+    -webkit-animation: fadein 0.5s;
 }
 
 #butt{
@@ -240,8 +246,8 @@ body{
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from { opacity: 0;margin-bottom: -10% }
+    to   { opacity: 1;margin-bottom: 0% }
 }
 
 /* Firefox < 16 */
