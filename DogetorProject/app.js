@@ -1,35 +1,39 @@
 var multer = require('multer')
-var mongoose = require('mongoose');
-var express = require('express');
-var app = express();
-var body = require('body-parser');
-var userData = require('./routes/mongoSchema');
+var mongoose = require('mongoose')
+var express = require('express')
+var app = express()
+var body = require('body-parser')
+var userData = require('./routes/mongoSchema')
 var dogData = require('./routes/dogSchema')
 var hosData = require('./routes/hospSchema')
 var eventData = require('./routes/eventSchema')
 var flash = require('connect-flash')
-var session = require('express-session');
+var session = require('express-session')
 var passport = require('passport')
-var index = require('./routes/index');
-var expressValidator = require('express-validator');
+var index = require('./routes/index')
+//var hos = require('./routes/hospital')
+var expressValidator = require('express-validator')
 
 
 
 var LocalStrategy = require('passport-local')
 var port = 8080;
 
-app.use('/', index);
+app.use('/', index)
+//app.use('/hoslike',hos)
+//app.use('/hosunlike',hos)
+
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
         useNewUrlParser: true
     },
     function (err) {
         if (err) throw err;
-        console.log("connect!");
+        console.log("connect!")
     });
 
 app.use(body());
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/public'))
 app.use(session({
     secret: 'secret',
     saveUninitialized: true,
@@ -79,23 +83,6 @@ var upload = multer({
 });
 
 
-
-
-
-app.get('/index', function (req, res) {
-
-    if (req.user) {
-        console.log('ogged in')
-        res.redirect('/home')
-    } else {
-        console.log('not logged in')
-        res.render('Regis.ejs', {
-            errors: '',
-            dupli: ''
-        })
-    }
-
-});
 app.get('/addDog', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
@@ -355,6 +342,7 @@ app.post('/eventD', loggedIn, function (req, res) {
                         info: req.user,
                         pic: req.user.avatar,
                         dog: book,
+                        select:result.name,
                         amount: book.length,
                         date: {
                             day: day,
@@ -390,6 +378,7 @@ app.post('/event', loggedIn, function (req, res) {
                 info: req.user,
                 pic: req.user.avatar,
                 dog: book,
+                select:'',
                 amount: book.length,
                 date: {
                     day: day,
@@ -399,16 +388,14 @@ app.post('/event', loggedIn, function (req, res) {
                 event: docs
             })
         })
-
-
-
-
-
     })
-
 })
 
 app.post('/addEvent', loggedIn, function (req, res) {
+    req.checkBody('title').notEmpty().withMessage('Title is required')
+    req.checkBody('dog').notEmpty().withMessage('Dog name is required').isAlpha().withMessage('')
+    req.checkBody('descr').notEmpty().withMessage('Description is required')   
+    
     title = req.body.title
     dog = req.body.dog
     descr = req.body.descr
@@ -416,7 +403,6 @@ app.post('/addEvent', loggedIn, function (req, res) {
     day = req.body.day
     month = req.body.month
     year = req.body.year
-
     newEvent = new eventData()
     newEvent.title = title
     newEvent.dog = dog
@@ -536,7 +522,6 @@ app.get('/hoslike', loggedIn, function (req, res) {
 
 app.get('/hosunlike', loggedIn, function (req, res) {
     hosid = req.query.id
-
     userData.findByIdAndUpdate(
         req.user._id, {
             $pull: {

@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router();
 var multer = require('multer')
 var userData = require('./mongoSchema');
+var dogData = require('./dogSchema')
 var expressValidator = require('express-validator');
 var session = require('express-session');
 var bcrypt = require('bcrypt-nodejs');
@@ -101,6 +102,36 @@ router.get('/', function (req, res) {
 
 
 });
+
+
+router.get('/index', function (req, res) {
+    console.log('meet')
+
+    if (req.user) {
+        console.log('logged in')
+        res.redirect('/home')
+    } else {
+        console.log('not logged in')
+        res.render('Regis.ejs', {
+            errors: '',
+            dupli: ''
+        })
+    }
+
+});
+
+
+function loggedIn(req, res, next) {
+    if (req.user) {
+        next();
+    } else {
+        res.redirect('/');
+    }
+}
+
+
+
+
 
 
 module.exports = router
