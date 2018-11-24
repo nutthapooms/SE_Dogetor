@@ -272,28 +272,70 @@ app.get('/home', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        res.render('homepage.ejs', {
+
+        eventData.find({            
+            owner:req.user.username
+
+        },function(err,docs){
+
+            var d=[]
+            
+
+            for(x of docs){
+                
+                d.push(x.day.toString()+""+(x.month-1).toString()+""+(x.year-1900).toString())
+            }
+            
+            //console.log(typeof d[0])
+            
+
+            
+            res.render('homepage.ejs', {
             errors: '',
             username: req.user.username,
             info: req.user,
             pic: req.user.avatar,
             dog: book,
             amount: book.length,
-            dupli: ''
-        });
+            dupli: '',
+            events:d
+        })
+        })
+
+        
     })
 });
 app.post('/home', function (req, res) {
     var try1 = req.body;
     console.log(try1);
-    res.render('calendar', {
+    eventData.find({            
+        owner:req.user.username
+
+    },function(err,docs){
+
+        var d=[]
+        
+
+        for(x of docs){
+            
+            d.push(x.day.toString()+""+(x.month-1).toString()+""+(x.year).toString())
+        }
+        
+        console.log(d)     
+
+        
+        res.render('calendar', {
         date: try1.date,
         day: try1.day,
         month: try1.month,
         year: try1.year,
-        limit: try1.limit
-    });
-    res.end();
+        limit: try1.limit,
+        
+        events:d
+    })
+    })
+    
+    
 })
 app.post('/dogInfo', function (req, res) {
     var try2 = req.body;
@@ -315,9 +357,15 @@ app.post('/event',loggedIn,function(req,res){
         day = req.body.date
         month = req.body.month
         year = req.body.year 
-       
-        
-        res.render('addEvent.ejs', {
+
+        eventData.find({
+            day:day,
+            month:month,
+            year:year,
+            owner:req.user.username
+
+        }).sort({ time: +1 }).exec(function(err,docs){
+            res.render('addEvent.ejs', {
             username: req.user.username,
             info: req.user,
             pic: req.user.avatar,
@@ -327,8 +375,15 @@ app.post('/event',loggedIn,function(req,res){
                 day:day,
                 month:month,
                 year:year
-            }
-        });
+            },
+            event:docs
+        })
+        })
+        
+        
+        
+        
+        
     })
     
 })
