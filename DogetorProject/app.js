@@ -616,6 +616,15 @@ app.get('/analyzeReg', loggedIn, function (req, res) {
         });
     })
 });
+
+app.post('/ananymous',function(req,res){
+    console.log(req.body)
+    res.render('resultUserOne',{
+        info:req.body.info,
+        sym:req.body.sym,
+        result:req.body.result
+    })
+})
 app.get('/analyzeUser', function (req, res) {
     res.render('AnalyzeUserOne.ejs');
 });
