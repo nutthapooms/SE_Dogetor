@@ -216,7 +216,15 @@ app.post('/editDog', loggedIn, function (req, res) {
 })
 
 app.get('/deletedog', function (req, res) {
-    userData.findByIdAndUpdate(req.user._id, {
+    dogData.findById(req.user.cache,function(err,dog){
+        console.log(dog)
+        eventData.updateMany({
+        dog:dog.name,
+        owner:req.user.username,
+    },{dog:"",
+        owner:"",},function (err,dell) {
+        console.log(dell)
+        userData.findByIdAndUpdate(req.user._id, {
         $pull: {
             dog: req.user.cache
         }
@@ -225,9 +233,14 @@ app.get('/deletedog', function (req, res) {
         upsert: true
     }, function (err, book) {
         dogData.findByIdAndRemove(req.user.cache, function (err, books) {
+            
             res.redirect('/home')
         })
     })
+      })
+    })
+    
+    
 })
 
 app.get('/home', loggedIn, function (req, res) {
@@ -502,16 +515,7 @@ app.get('/hosp', loggedIn, function (req, res) {
 
 app.get('/hosinfo', loggedIn, function (req, res) {
     hosname = req.query.topic
-    // newhos = new hosData()
-    // newhos.name = 'test'
-    // newhos.location = 'test'
-    // newhos.phone = 'test'
-    // newhos.open = 'test'
-    // newhos.pic = 'ThonglorPet.jpg'
-
-    // newhos.save(function(err,docs){
-    //     console.log(docs)
-    // })
+    
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
@@ -563,32 +567,77 @@ app.get('/hosunlike', loggedIn, function (req, res) {
 })
 app.get('/vet', loggedIn, function (req, res) {
 
-    newvet = new vetData()
-    newvet.name = 'test'
-    newvet.hos = 'test'
-    newvet.phone = 'test'    
-    newvet.pic = 'ThonglorPet.jpg'
-
-    newvet.save(function(err,docs){
-        console.log(docs)
-    })
+    
 
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        vetData.find({}, function (err, hos) {
+        vetData.find({}, function (err, vet) {
             res.render('vetInfo', {
                 username: req.user.username,
                 info: req.user,
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-                // vet: vet
+                vet: vet
             });
         })
 
     })
 });
+
+app.get('/vetinfo', loggedIn, function (req, res) {
+    vetname = req.query.topic
+    
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        vetData.find({name:vetname}, function (err, vet) {
+            res.render('vetinfo', {
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                vet: vet
+            });
+        })
+
+    })
+});
+
+app.get('/vetlike', loggedIn, function (req, res) {
+    vetid = req.query.id
+
+    userData.findByIdAndUpdate(
+        req.user._id, {
+            $addToSet: {
+                vet: vetid
+            }
+        }, {
+            "new": true,
+            "upsert": true
+        },
+        function (err) {
+            res.redirect('/vet');
+        })
+})
+
+app.get('/vetunlike', loggedIn, function (req, res) {
+    vetid = req.query.id
+    userData.findByIdAndUpdate(
+        req.user._id, {
+            $pull: {
+                vet: vetid
+            }
+        }, {
+            "safe": true,
+            "upsert": true
+        },
+        function (err) {
+            res.redirect('/vet');
+        })
+})
 
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
@@ -616,6 +665,15 @@ app.get('/analyzeReg', loggedIn, function (req, res) {
         });
     })
 });
+
+app.post('/ananymous',function(req,res){
+    console.log(req.body)
+    res.render('resultUserOne',{
+        info:req.body.info,
+        sym:req.body.sym,
+        result:req.body.result
+    })
+})
 app.get('/analyzeUser', function (req, res) {
     res.render('AnalyzeUserOne.ejs');
 });
@@ -689,6 +747,7 @@ app.get('/profile', function (req, res) {
 });
 
 app.get('/logout', function (req, res) {
+    
     req.logout();
     res.redirect('/')
 })

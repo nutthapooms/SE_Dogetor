@@ -7,7 +7,9 @@
 	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,700" rel="stylesheet">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
 	 crossorigin="anonymous">
-	<link rel="stylesheet" href="/static/vetInfo.css">
+    <link rel="stylesheet" href="/static/vetInfo.css">
+	 <link rel="stylesheet" href="/static/hmoe.css">
+    
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script> <!-- For use Vue.JS -->
 </head>
 
@@ -30,25 +32,42 @@
                     </div>
                     
                 </div>
+                <% for (var vet of vet){%>
                 <div id="infod" class="contentCard row">
                     <div class="col-4 cardTitle">
 						<img class="rounded" src="/image/doge0.jpg" class ="vetPic" height="110" width="auto">
-                        <h5>Name</h5>
+                        <h5><%=vet.name %></h5>
 
-                        <h5>Surname</h5>
+                        <h5><%=vet.surname %></h5>
                         <br>
-                        <a href="#" class="btn btn-info btn-lg"><i class="fa fa-star " style="color:white"></i></a>
+                        <% if(info.vet.length ==0){ %>
+                            <a href="/vetlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star " style="color:white"></i></a>
+    
+    
+    
+                            <% } 
+                            else{ %>
+    
+                            <% if(info.vet.includes(vet.name) ){ %>
+                            <a href="/vetunlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:yellow"></i></a>
+    
+    
+                            <% } else { %> <a href="/vetlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:white"></i></a>
+                            <% } %>
+    
+                            <% } %>
                         <!-- <h5>Location</h5> -->
                     </div>
                     <div class="col-8 cardContent">
                         <h4>Information</h4>
-                        <h5>Hospital/Clinic</h5>
-                        I don't know
-                        <h5>Experience</h5>
-                        I don't have
+                        <h5><%=vet.hos %></h5>
+                        
+                        <h5><%=vet.phone %></h5>
+                        
 
                     </div>
                 </div>
+                <% } %>
 			</div>
 			<!--Hospital info End---------------------------------------------------------------------------------------------->
         </div>

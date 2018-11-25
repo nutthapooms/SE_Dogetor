@@ -273,6 +273,8 @@ var symptom = new Vue({
         }
       }
 
+      
+
     }
     // hideSymptomInfo: function(){
     //   this.sympdet[0].name = '';
@@ -313,5 +315,15 @@ function summaryResult() {
       }
       symptom.$data.diseaseall[i].prob = 0;
     }
+    $.ajax({
+      url:'/ananymous',
+      type:"POST",      
+      data: {info:pet.$data.petinfo,result:symptom.$data.sympresult,sym:symptom.$data.sympsummary},
+      success:function(result){
+          document.open();
+          document.write(result);
+          document.close();
+      }
+  })
   }
 }

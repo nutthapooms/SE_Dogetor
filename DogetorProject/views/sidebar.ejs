@@ -35,10 +35,11 @@
                 <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
                 <td class="dognameindot"><a href="/addDog"><i class="fas fa-plus"></a></i></td>
             </tr>
+                        
         </table>
         </div>
         <div class="sidebarComp">
-            <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
+            <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite Hosp</div>
             <div>
                 <table class="sidebarlist rounded-bottom">
                         <% for (var infohos of info.hos){%>
@@ -52,6 +53,23 @@
                             </tr>   
                         <% } %>
                 </table>
+                
+            </div>
+            <div style="margin-top:10px;" class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite Vet</div>
+            <div>
+               
+                <table class="sidebarlist rounded-bottom">
+                    <% for (var infovet of info.vet){%>
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  >
+                            <script>    
+                                document.getElementById("asdasd").id = j;
+                                j++;
+                            </script>
+                            <td class="dognameinlist" ><a href="/vetinfo?topic=<%=infovet%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=infovet%></div> </a> </td>
+                            <td class="dognameindot"><a href="/vetinfo?topic=<%=infovet%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                        </tr>   
+                    <% } %>
+            </table>
             </div>
         </div>
         <div class="sidebarComp">
