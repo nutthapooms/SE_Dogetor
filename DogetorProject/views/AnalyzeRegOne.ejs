@@ -39,12 +39,10 @@
                         <div class="input-group-prepend">
                             <label class="input-group-text head-field" for="pet">Pet's name</label>
                         </div>
-                        <select class="custom-select rect-field" id="pet" 
-                        v-model="petval" v-on:change="changePetInfo">
+                        <select class="custom-select rect-field" id="pet" v-on:change="changePetInfo">
                             <option value="" disabled selected>Select your pet</option>
                             <% for (var pet of dog){%>
-                                <option v-for="(pet, index) in petinfoall" v-bind:value="index+1">
-                                {{ pet.name }}</option>
+                                <option><%=pet.name%></option> 
                             <% } %>
                         </select>
                     </div>
