@@ -73,19 +73,52 @@
             </div>
         </div>
         <div class="sidebarComp">
-            <a href="/vet"><div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div></a>
+            <a style="text-decoration:none;" href="/vet"><div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div></a>
         </div>
         <div class="sidebarComp">
-            <a href="/hosp"> <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div></a>
+            <a style="text-decoration:none;" href="/hosp"> <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div></a>
         </div>
         <div class="sidebarComp">
             <!-- <a href="AnalyzeReg.html"></a> -->
-            <a href="/analyzeReg">
+            <a style="text-decoration:none;" href="#" data-toggle="modal"  data-target="#myModal">
                 <div id="analyzebtn" class="listTitle rounded">
                     <h5><i class="fas fa-search"></i> Analyze</h5>
                 </div>
             </a>
         </div>
+
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+              
+                <!-- Modal Header -->
+                <form action="/analyzeReg" method="POST">
+
+                    <div class="form-group">
+                            <label for="">Choose your Dog:</label>
+                            <select class="custom-select rect-field" name="dog" id="pet">
+                                
+                                <option value="" disabled selected>Select your pet</option>
+                                <% for (var pet of dog){%>
+                                <option required >
+                                    <%= pet.name%>
+                                </option>
+                                <% } %>
+
+                            </select>
+                        </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary ">Analyze</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    </div>
+
+
+                </form>
+                
+              </div>
+            </div>
+          </div>
     </div>
 </div>
 <script>

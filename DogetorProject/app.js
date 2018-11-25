@@ -652,7 +652,8 @@ app.get('/aboutus', loggedIn, function (req, res) {
         });
     })
 });
-app.get('/analyzeReg', loggedIn, function (req, res) {
+app.post('/analyzeReg', loggedIn, function (req, res) {
+    console.log(req.body.dog)
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
