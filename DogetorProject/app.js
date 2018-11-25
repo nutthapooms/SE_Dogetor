@@ -483,13 +483,39 @@ app.get('/hosp', loggedIn, function (req, res) {
     // newhos.save(function(err,docs){
     //     console.log(docs)
     // })
-
-
-
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
         hosData.find({}, function (err, hos) {
+            res.render('hospitalinfo', {
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                hos: hos
+            });
+        })
+
+    })
+});
+
+app.get('/hosinfo', loggedIn, function (req, res) {
+    hosname = req.query.topic
+    // newhos = new hosData()
+    // newhos.name = 'test'
+    // newhos.location = 'test'
+    // newhos.phone = 'test'
+    // newhos.open = 'test'
+    // newhos.pic = 'ThonglorPet.jpg'
+
+    // newhos.save(function(err,docs){
+    //     console.log(docs)
+    // })
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        hosData.find({name:hosname}, function (err, hos) {
             res.render('hospitalinfo', {
                 username: req.user.username,
                 info: req.user,
@@ -508,7 +534,7 @@ app.get('/hoslike', loggedIn, function (req, res) {
 
     userData.findByIdAndUpdate(
         req.user._id, {
-            $push: {
+            $addToSet: {
                 hos: hosid
             }
         }, {
