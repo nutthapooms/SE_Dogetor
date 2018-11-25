@@ -1,7 +1,12 @@
 #sidebar{
     background-color: grey;
     color: white;
+    padding: 10px;
     
+}
+#sidebar1{
+    height: 1080px;
+    padding:0px 55px;
 }
 #username{
     margin-top: 10px;

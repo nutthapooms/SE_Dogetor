@@ -1,71 +1,73 @@
-<div class="col-2 rounded-bottom" id="sidebar">
-    <div class="sidebarComp">
-        <img  id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
-        <h5 id=username><%=username%></h5> <!-- username----->
-        <div><%=amount%> dogs</div>
-    </div>
-    
-    <div class="sidebarComp">
-        <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
-        <table class="sidebarlist rounded-bottom">
-            <script>var j = 0;</script>
-            <% for (var pet of dog){%>
-                <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  class ="dogtoshow allowdog">
-                    <script>    
-                        document.getElementById("asdasd").id = j;
-                        j++;
-                    </script>
-                    <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
-                    <td class="dognameindot"><a href="/doginfo?topic=<%=pet.id%>"><i class="fas fa-ellipsis-h"></i> </a></td>
-                </tr>   
-            <% } %>
-        <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-            <script>document.getElementById("asdasd").id = ++j;</script>
-            <td class="dognameinlist"><a href="#"><h5>more</h5></a></td>
-            <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
-        </tr>
-        <tr id = "asdasd" class ="lessbtn" onclick="disallowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-            <script>document.getElementById("asdasd").id = ++j;</script>
-            <td class="dognameinlist"><a href="#"><h5>less</h5></div></td>
-            <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
-        </tr>
-        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
-            <script>document.getElementById("asdasd").id = ++j;</script>
-            <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
-            <td class="dognameindot"><a href="/addDog"><i class="fas fa-plus"></a></i></td>
-        </tr>
-    </table>
-    </div>
-    <div class="sidebarComp">
-        <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
-        <div>
-            <table class="sidebarlist rounded-bottom">
-                    <% for (var infohos of info.hos){%>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  >
-                            <script>    
-                                document.getElementById("asdasd").id = j;
-                                j++;
-                            </script>
-                            <td class="dognameinlist" ><a href="/hosinfo?topic=<%=infohos%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=infohos%></div> </a> </td>
-                            <td class="dognameindot"><a href="/hosinfo?topic=<%=infohos%>"><i class="fas fa-ellipsis-h"></i> </a></td>
-                        </tr>   
-                    <% } %>
-            </table>
+<div class="col-3 " id="sidebar1">
+    <div class ="rounded-bottom" id="sidebar">
+        <div class="sidebarComp">
+            <img  id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
+            <h5 id=username><%=username%></h5> <!-- username----->
+            <div><%=amount%> dogs</div>
         </div>
-    </div>
-    <div class="sidebarComp">
-        <a href="/vet"><div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div></a>
-    </div>
-    <div class="sidebarComp">
-        <a href="/hosp"> <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div></a>
-    </div>
-    <div class="sidebarComp">
-        <!-- <a href="AnalyzeReg.html"></a> -->
-        <a href="/analyzeReg">
-            <div id="analyzebtn" class="listTitle rounded">
-                <h5><i class="fas fa-search"></i> Analyze</h5>
+        
+        <div class="sidebarComp">
+            <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
+            <table class="sidebarlist rounded-bottom">
+                <script>var j = 0;</script>
+                <% for (var pet of dog){%>
+                    <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  class ="dogtoshow allowdog">
+                        <script>    
+                            document.getElementById("asdasd").id = j;
+                            j++;
+                        </script>
+                        <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
+                        <td class="dognameindot"><a href="/doginfo?topic=<%=pet.id%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                    </tr>   
+                <% } %>
+            <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                <script>document.getElementById("asdasd").id = ++j;</script>
+                <td class="dognameinlist"><a href="#"><h5>more</h5></a></td>
+                <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
+            </tr>
+            <tr id = "asdasd" class ="lessbtn" onclick="disallowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                <script>document.getElementById("asdasd").id = ++j;</script>
+                <td class="dognameinlist"><a href="#"><h5>less</h5></div></td>
+                <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
+            </tr>
+            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                <script>document.getElementById("asdasd").id = ++j;</script>
+                <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
+                <td class="dognameindot"><a href="/addDog"><i class="fas fa-plus"></a></i></td>
+            </tr>
+        </table>
+        </div>
+        <div class="sidebarComp">
+            <div class="listTitle rounded-top"><i class="fas fa-star"></i> Favourite</div>
+            <div>
+                <table class="sidebarlist rounded-bottom">
+                        <% for (var infohos of info.hos){%>
+                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  >
+                                <script>    
+                                    document.getElementById("asdasd").id = j;
+                                    j++;
+                                </script>
+                                <td class="dognameinlist" ><a href="/hosinfo?topic=<%=infohos%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=infohos%></div> </a> </td>
+                                <td class="dognameindot"><a href="/hosinfo?topic=<%=infohos%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                            </tr>   
+                        <% } %>
+                </table>
             </div>
-        </a>
+        </div>
+        <div class="sidebarComp">
+            <a href="/vet"><div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div></a>
+        </div>
+        <div class="sidebarComp">
+            <a href="/hosp"> <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div></a>
+        </div>
+        <div class="sidebarComp">
+            <!-- <a href="AnalyzeReg.html"></a> -->
+            <a href="/analyzeReg">
+                <div id="analyzebtn" class="listTitle rounded">
+                    <h5><i class="fas fa-search"></i> Analyze</h5>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
 <script>

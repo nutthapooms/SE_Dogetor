@@ -12,15 +12,6 @@
 </head>
 
 <body>
-        <!-- <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Button with data-target
-              </button>
-            </p>
-            <div class="collapse" id="collapseExample">
-              <div class="card card-body">
-                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
-              </div>
-            </div> -->
     <!--  Navbar Start--------------------------------------------------------------------------------------------------->
     <%- include('navbar') %>
     <!--  Navbar End------------------------------------------------------------------------------------------------->
@@ -60,12 +51,10 @@
                     <tbody id = "calendar">
                         <!-- calendar startt -->
                         <%var date = new Date()%>
-                        
-
                         <%var datee = 1;%>
                         <%date.setDate(1);%>
                         <%var dayy = date.getDay();;%>
-                        
+                        <!-- <%= dayy%> -->
                         <%var monthh = date.getMonth();%>
                         <%var yearr  = date.getYear();%>
                         <%var limitt = new Date(yearr, monthh, 0).getDate();%>
@@ -80,20 +69,8 @@
                                         <td class = "eachday"> </td>
                                     <% }else{%>
                                         <% if(datee < limitt){%>
+                                            <td class = "eachday"><a href="event" onclick="eachdayclick(this.innerHTML)"data-toggle="" data-target="#dayModal"><%= datee %></a></td>
                                             
-                                            <%var day = datee+""+monthh+yearr %>
-                                            
-                                            <% if(events.includes(day)) {%>
-                                            <td class = "eachday" style="background-color:coral" >                                  
-                                                
-                                                <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
-                                            
-                                            
-                                            <% }else{%>
-                                                <td class = "eachday">                                  
-                                                
-                                                    <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
-                                            <% } %>
                                             <% datee++; %>
                                         <% }else{%>
                                             <td class = "eachday"> </td>
@@ -150,7 +127,6 @@
         <% } %>
         <% } else{ %>
         <% } %>
-        
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
