@@ -216,31 +216,33 @@ app.post('/editDog', loggedIn, function (req, res) {
 })
 
 app.get('/deletedog', function (req, res) {
-    dogData.findById(req.user.cache,function(err,dog){
+    dogData.findById(req.user.cache, function (err, dog) {
         console.log(dog)
         eventData.updateMany({
-        dog:dog.name,
-        owner:req.user.username,
-    },{dog:"",
-        owner:"",},function (err,dell) {
-        console.log(dell)
-        userData.findByIdAndUpdate(req.user._id, {
-        $pull: {
-            dog: req.user.cache
-        }
-    }, {
-        safe: true,
-        upsert: true
-    }, function (err, book) {
-        dogData.findByIdAndRemove(req.user.cache, function (err, books) {
-            
-            res.redirect('/home')
+            dog: dog.name,
+            owner: req.user.username,
+        }, {
+            dog: "",
+            owner: "",
+        }, function (err, dell) {
+            console.log(dell)
+            userData.findByIdAndUpdate(req.user._id, {
+                $pull: {
+                    dog: req.user.cache
+                }
+            }, {
+                safe: true,
+                upsert: true
+            }, function (err, book) {
+                dogData.findByIdAndRemove(req.user.cache, function (err, books) {
+
+                    res.redirect('/home')
+                })
+            })
         })
     })
-      })
-    })
-    
-    
+
+
 })
 
 app.get('/home', loggedIn, function (req, res) {
@@ -355,7 +357,7 @@ app.post('/eventD', loggedIn, function (req, res) {
                         info: req.user,
                         pic: req.user.avatar,
                         dog: book,
-                        select:result.name,
+                        select: result.name,
                         amount: book.length,
                         date: {
                             day: day,
@@ -391,7 +393,7 @@ app.post('/event', loggedIn, function (req, res) {
                 info: req.user,
                 pic: req.user.avatar,
                 dog: book,
-                select:'',
+                select: '',
                 amount: book.length,
                 date: {
                     day: day,
@@ -407,8 +409,8 @@ app.post('/event', loggedIn, function (req, res) {
 app.post('/addEvent', loggedIn, function (req, res) {
     req.checkBody('title').notEmpty().withMessage('Title is required')
     req.checkBody('dog').notEmpty().withMessage('Dog name is required').isAlpha().withMessage('')
-    req.checkBody('descr').notEmpty().withMessage('Description is required')   
-    
+    req.checkBody('descr').notEmpty().withMessage('Description is required')
+
     title = req.body.title
     dog = req.body.dog
     descr = req.body.descr
@@ -515,11 +517,13 @@ app.get('/hosp', loggedIn, function (req, res) {
 
 app.get('/hosinfo', loggedIn, function (req, res) {
     hosname = req.query.topic
-    
+
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        hosData.find({name:hosname}, function (err, hos) {
+        hosData.find({
+            name: hosname
+        }, function (err, hos) {
             res.render('hospitalinfo', {
                 username: req.user.username,
                 info: req.user,
@@ -567,7 +571,7 @@ app.get('/hosunlike', loggedIn, function (req, res) {
 })
 app.get('/vet', loggedIn, function (req, res) {
 
-    
+
 
     dogData.find({
         owner: req.user.username
@@ -588,11 +592,13 @@ app.get('/vet', loggedIn, function (req, res) {
 
 app.get('/vetinfo', loggedIn, function (req, res) {
     vetname = req.query.topic
-    
+
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        vetData.find({name:vetname}, function (err, vet) {
+        vetData.find({
+            name: vetname
+        }, function (err, vet) {
             res.render('vetinfo', {
                 username: req.user.username,
                 info: req.user,
@@ -654,25 +660,42 @@ app.get('/aboutus', loggedIn, function (req, res) {
 });
 app.post('/analyzeReg', loggedIn, function (req, res) {
     console.log(req.body.dog)
-    dogData.find({
+    dogData.findOne({
+        name: req.body.dog,
         owner: req.user.username
-    }, function (err, book) {
-        res.render('AnalyzeRegOne.ejs', {
-            username: req.user.username,
-            info: req.user,
-            pic: req.user.avatar,
-            dog: book,
-            amount: book.length
-        });
+    }, function (err, ana) {
+        dogData.find({
+            owner: req.user.username
+        }, function (err, book) {
+            console.log(ana)
+            res.render('AnalyzeRegOne.ejs', {
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                ana:ana
+            });
+        })
     })
+
 });
 
-app.post('/ananymous',function(req,res){
+app.post('/ananymous', function (req, res) {
     console.log(req.body)
-    res.render('resultUserOne',{
-        info:req.body.info,
-        sym:req.body.sym,
-        result:req.body.result
+    res.render('resultUserOne', {
+        info: req.body.info,
+        sym: req.body.sym,
+        result: req.body.result
+    })
+})
+
+app.post('/ananymous2', function (req, res) {
+    console.log(req.body.info)
+    res.render('resultUserOne', {
+        info: req.body.info,
+        sym: req.body.sym,
+        result: req.body.result
     })
 })
 app.get('/analyzeUser', function (req, res) {
@@ -748,7 +771,7 @@ app.get('/profile', function (req, res) {
 });
 
 app.get('/logout', function (req, res) {
-    
+
     req.logout();
     res.redirect('/')
 })
