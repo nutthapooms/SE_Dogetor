@@ -577,13 +577,13 @@ app.get('/vet', loggedIn, function (req, res) {
         owner: req.user.username
     }, function (err, book) {
         vetData.find({}, function (err, hos) {
-            res.render('vetinfo', {
+            res.render('vetInfo', {
                 username: req.user.username,
                 info: req.user,
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-                vet: vet
+                // vet: vet
             });
         })
 
