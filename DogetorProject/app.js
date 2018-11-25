@@ -563,7 +563,7 @@ app.get('/hosunlike', loggedIn, function (req, res) {
 })
 app.get('/vet', loggedIn, function (req, res) {
 
-    newvet = new hosData()
+    newvet = new vetData()
     newvet.name = 'test'
     newvet.hos = 'test'
     newvet.phone = 'test'    
