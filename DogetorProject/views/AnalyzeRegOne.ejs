@@ -39,10 +39,10 @@
                         <!-- Name -->
                         <div class="input-group mb-3 rect-field">
                             <div class="input-group-prepend">
-                                <span class="input-group-text head-field" id="name">Name</span>
+                                <span class="input-group-text head-field">Name</span>
                             </div>
-                            <input type="text" class="form-control rect-field" 
-                            v-model="petinfo.name" placeholder="Pet's name" 
+                            <input id="name" value="<%=ana.name%>" type="text" class="form-control rect-field" 
+                             placeholder="Pet's name" 
                             aria-label="Pet's name" aria-describedby="Pet's name">
                         </div>
                         <!-- Age -->
@@ -50,8 +50,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text head-field" id="basic-addon1">Age</span>                                
                             </div>
-                            <input type="text" class="form-control rect-field" 
-                            v-model="petinfo.age" placeholder="Pet's age" 
+                            <input id="age" type="text" class="form-control rect-field" 
+                            value="<%=ana.age%>"placeholder="Pet's age" 
                             aria-label="Pet's age" aria-describedby="Pet's age">
                         </div>
                     </div>
@@ -64,10 +64,8 @@
                         </div>
                         <select class="custom-select rect-field" id="breed" 
                         v-model="breedval" v-on:change="changeBreed">
-                            <option value="" disabled selected>Select pet's breed</option>
-                            <option v-for="(breed, index) in breedall" 
-                            v-bind:value="index+1">
-                            {{ breed }}</option>
+                            <option value="<%=ana.breed%>" selected><%=ana.breed%></option>
+                            
                         </select>
                     </div>
                     <!-- Gender -->
@@ -77,9 +75,8 @@
                         </div>
                         <select class="custom-select rect-field" id="gender" 
                         v-model="gendval" v-on:change="changeGender">
-                            <option value="" disabled selected>Select pet's gender</option>
-                            <option v-for="(gend, index) in gendall" 
-                            v-bind:value="index+1">{{ gend }}</option>
+                            <option value="<%=ana.gender%>"  selected><%=ana.gender%></option>
+                            
                         </select>
                     </div>
                 </div>
@@ -158,6 +155,6 @@
         crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="/static/homee.js"></script>
-    <script src="/static/analyze.js"></script>
+    <script src="/static/analyze2.js"></script>
     
 </html>

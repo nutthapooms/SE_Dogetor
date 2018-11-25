@@ -692,11 +692,33 @@ app.post('/ananymous', function (req, res) {
 
 app.post('/ananymous2', function (req, res) {
     console.log(req.body.info)
-    res.render('resultUserOne', {
-        info: req.body.info,
-        sym: req.body.sym,
-        result: req.body.result
+
+    dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        eventData.find({
+            owner: req.user.username
+        }, function (err, docs) {
+            var d = []
+            for (x of docs) {
+                d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
+            }
+            res.render('resultReg', {
+                errors: '',
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                dupli: '',
+                events: d,
+                infodog: req.body.info,
+                sym: req.body.sym,
+                result: req.body.result
+            })
+        })
     })
+    
 })
 app.get('/analyzeUser', function (req, res) {
     res.render('AnalyzeUserOne.ejs');
