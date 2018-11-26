@@ -92,11 +92,9 @@ app.get('/addDog', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        res.render('addDog.ejs', {
-
+        res.render('addDog', {
             info: req.user,
             dog: book,
-            amount: book.length
         });
     })
 });
@@ -124,7 +122,6 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                     errors: '',
                     info: req.user,
                     dog: book,
-                    amount: book.length,
                     dupli: '',
                     events: d
                 })
@@ -153,7 +150,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
             } else {
                 newDog.save(function (err, book) {
                     if (err) {
-                        console.log(err.code)
+                        // console.log(err.code)
                     } else {
                         userData.findByIdAndUpdate(
                             req.user._id, {
@@ -171,7 +168,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                                     console.log('newBook')
                                 }
                             })
-                        console.log(book)
+                        // console.log(book)
                         res.redirect('/home')
                     }
                 })
@@ -205,7 +202,6 @@ app.post('/editDog', loggedIn, function (req, res) {
                     errors: '',
                     info: req.user,
                     dog: book,
-                    amount: book.length,
                     dupli: '',
                     events: d
                 })
@@ -237,7 +233,7 @@ app.post('/editDog', loggedIn, function (req, res) {
 
 app.get('/deletedog', function (req, res) {
     dogData.findById(req.user.cache, function (err, dog) {
-        console.log(dog)
+        // console.log(dog)
         eventData.updateMany({
             dog: dog.name,
             owner: req.user.username,
@@ -245,7 +241,7 @@ app.get('/deletedog', function (req, res) {
             dog: "",
             owner: "",
         }, function (err, dell) {
-            console.log(dell)
+            // console.log(dell)
             userData.findByIdAndUpdate(req.user._id, {
                 $pull: {
                     dog: req.user.cache
@@ -275,7 +271,7 @@ app.get('/home', loggedIn, function (req, res) {
         "new": true,
         "upsert": true
     }, function (err, man) {
-        console.log(req.user.cache)
+        // console.log(req.user.cache)
     })
     dogData.find({
         owner: req.user.username
@@ -291,7 +287,6 @@ app.get('/home', loggedIn, function (req, res) {
                 errors: '',
                 info: req.user,
                 dog: book,
-                amount: book.length,
                 dupli: '',
                 events: d
             })
@@ -300,7 +295,7 @@ app.get('/home', loggedIn, function (req, res) {
 });
 app.post('/home', function (req, res) {
     var try1 = req.body;
-    console.log(try1);
+    // console.log(try1);
     eventData.find({
         owner: req.user.username
     }, function (err, docs) {
@@ -308,7 +303,7 @@ app.post('/home', function (req, res) {
         for (x of docs) {
             d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year).toString())
         }
-        console.log(d)
+        // console.log(d)
         res.render('calendar', {
             date: try1.date,
             day: try1.day,
@@ -321,7 +316,7 @@ app.post('/home', function (req, res) {
 })
 app.post('/dogInfo', function (req, res) {
     var try2 = req.body;
-    console.log(try2);
+    // console.log(try2);
     dogData.findById(req.user.cache, function (err, dogg) {
         eventData.find({
             owner: req.user.username,
@@ -331,7 +326,7 @@ app.post('/dogInfo', function (req, res) {
             for (x of docs) {
                 d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year).toString())
             }
-            console.log(d)
+            // console.log(d)
             res.render('calendar', {
                 date: try2.date,
                 day: try2.day,
@@ -357,14 +352,13 @@ app.post('/eventD', loggedIn, function (req, res) {
         dogData.findById(
             req.user.cache,
             function (err, result) {
-                console.log(result)
+                // console.log(result)
                 eventData.find({
                     day: day,
                     month: month,
                     year: year,
                     owner: req.user.username,
                     dog: result.name
-
 
                 }).sort({
                     time: +1
@@ -374,7 +368,7 @@ app.post('/eventD', loggedIn, function (req, res) {
                         info: req.user,
                         dog: book,
                         select: result.name,
-                        amount: book.length,
+
                         date: {
                             day: day,
                             month: month,
@@ -408,7 +402,6 @@ app.post('/event', loggedIn, function (req, res) {
                 info: req.user,
                 dog: book,
                 select: '',
-                amount: book.length,
                 date: {
                     day: day,
                     month: month,
@@ -445,13 +438,10 @@ app.post('/addEvent', loggedIn, function (req, res) {
         newEvent.day = day
         newEvent.month = month
         newEvent.year = year
-
         newEvent.save(function (err, docs) {
             res.redirect('home')
         })
     }
-
-
 })
 
 
@@ -467,7 +457,7 @@ app.get('/dogInfo', loggedIn, function (req, res) {
         "new": true,
         "upsert": true
     }, function (err, man) {
-        console.log(req.user.cache)
+        // console.log(req.user.cache)
 
 
     })
@@ -485,12 +475,11 @@ app.get('/dogInfo', loggedIn, function (req, res) {
 
                         d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
                     }
-                    console.log(d)
+                    // console.log(d)
                     res.render("doginfo", {
                         dogObj: book,
                         info: req.user,
                         dog: bookuser,
-                        amount: bookuser.length,
                         events: d
                     });
                 })
@@ -520,7 +509,7 @@ app.get('/hosp', loggedIn, function (req, res) {
             res.render('hospitalinfo', {
                 info: req.user,
                 dog: book,
-                amount: book.length,
+
                 hos: hos
             });
         })
@@ -540,7 +529,6 @@ app.get('/hosinfo', loggedIn, function (req, res) {
             res.render('hospitalinfo', {
                 info: req.user,
                 dog: book,
-                amount: book.length,
                 hos: hos
             });
         })
@@ -591,7 +579,6 @@ app.get('/vet', loggedIn, function (req, res) {
             res.render('vetInfo', {
                 info: req.user,
                 dog: book,
-                amount: book.length,
                 vet: vet
             });
         })
@@ -611,7 +598,6 @@ app.get('/vetinfo', loggedIn, function (req, res) {
             res.render('vetinfo', {
                 info: req.user,
                 dog: book,
-                amount: book.length,
                 vet: vet
             });
         })
@@ -659,12 +645,11 @@ app.get('/aboutus', loggedIn, function (req, res) {
         res.render('aboutus', {
             info: req.user,
             dog: book,
-            amount: book.length
         });
     })
 });
 app.post('/analyzeReg', loggedIn, function (req, res) {
-    console.log(req.body.dog)
+    // console.log(req.body.dog)
     dogData.findOne({
         name: req.body.dog,
         owner: req.user.username
@@ -672,11 +657,10 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
         dogData.find({
             owner: req.user.username
         }, function (err, book) {
-            console.log(ana)
+            // console.log(ana)
             res.render('AnalyzeRegOne', {
                 info: req.user,
                 dog: book,
-                amount: book.length,
                 ana: ana
             });
         })
@@ -686,7 +670,7 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
 
 app.post('/ananymous', function (req, res) {
 
-    console.log(req.body)
+    // console.log(req.body)
     res.render('resultUserOne', {
         info: req.body.info,
         sym: req.body.sym,
@@ -695,7 +679,7 @@ app.post('/ananymous', function (req, res) {
 })
 
 app.post('/ananymous2', function (req, res) {
-    console.log(req.body.info)
+    // console.log(req.body.info)
 
     dogData.find({
         owner: req.user.username
@@ -711,7 +695,6 @@ app.post('/ananymous2', function (req, res) {
                 errors: '',
                 info: req.user,
                 dog: book,
-                amount: book.length,
                 dupli: '',
                 events: d,
                 infodog: req.body.info,
@@ -724,7 +707,7 @@ app.post('/ananymous2', function (req, res) {
 })
 
 app.post('/ananymous3', function (req, res) {
-    console.log(req.body.info)
+    // console.log(req.body.info)
     dogData.findOneAndUpdate({
         name: req.body.info.name,
         owner: req.user.username
@@ -746,7 +729,6 @@ app.post('/ananymous3', function (req, res) {
                     errors: '',
                     info: req.user,
                     dog: book,
-                    amount: book.length,
                     dupli: '',
                     events: d,
                     infodog: req.body.info,
@@ -789,7 +771,6 @@ passport.use(new LocalStrategy(
 ));
 
 
-
 app.post('/login',
     passport.authenticate('local', {
         successRedirect: '/home',
@@ -798,19 +779,18 @@ app.post('/login',
     })
 );
 app.get('/index', function (req, res) {
-    console.log('meet')
+    // console.log('meet')
 
     if (req.user) {
-        console.log('logged in')
+        // console.log('logged in')
         res.redirect('/home')
     } else {
-        console.log('not logged in')
+        // console.log('not logged in')
         res.render('Regis', {
             errors: '',
             dupli: ''
         })
     }
-
 });
 
 app.get('/error', function (req, res) {
