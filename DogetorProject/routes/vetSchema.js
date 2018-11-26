@@ -1,5 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
 var vet = new Schema({
     name: String,
     surname:String,
@@ -7,6 +7,6 @@ var vet = new Schema({
     phone: String,    
     pic: String
     
-});
+})
 
-module.exports = mongoose.model('vetData', vet);
+module.exports = mongoose.model('vetData', vet)
