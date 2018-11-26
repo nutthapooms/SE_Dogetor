@@ -109,15 +109,24 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
         dogData.find({
             owner: req.user.username
         }, function (err, book) {
-            res.render('homepage', {
-                errors: errors,
-                username: req.user.username,
-                info: req.user,
-                pic: req.user.avatar,
-                dog: book,
-                amount: book.length,
-                dupli: ''
-            });
+            eventData.find({
+                owner: req.user.username
+            }, function (err, docs) {
+                var d = []
+                for (x of docs) {
+                    d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
+                }
+                res.render('homepage.ejs', {
+                    errors: '',
+                    username: req.user.username,
+                    info: req.user,
+                    pic: req.user.avatar,
+                    dog: book,
+                    amount: book.length,
+                    dupli: '',
+                    events: d
+                })
+            })
         })
     } else {
         newDog = new dogData();
@@ -182,14 +191,24 @@ app.post('/editDog', loggedIn, function (req, res) {
         dogData.find({
             owner: req.user.username
         }, function (err, book) {
-            res.render('homepage', {
-                errors: errors,
-                username: req.user.username,
-                info: req.user,
-                pic: req.user.avatar,
-                dog: book,
-                amount: book.length,
-            });
+            eventData.find({
+                owner: req.user.username
+            }, function (err, docs) {
+                var d = []
+                for (x of docs) {
+                    d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
+                }
+                res.render('homepage.ejs', {
+                    errors: '',
+                    username: req.user.username,
+                    info: req.user,
+                    pic: req.user.avatar,
+                    dog: book,
+                    amount: book.length,
+                    dupli: '',
+                    events: d
+                })
+            })
         })
     } else {
         dogData.findOne({
