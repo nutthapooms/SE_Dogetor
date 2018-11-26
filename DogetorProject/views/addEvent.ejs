@@ -24,85 +24,88 @@
             <!--  Side bar Start--------------------------------------------------------------------------------------------->
             <%- include('sidebar') %>
             <!--Side bar End---------------------------------------------------------------------------------------------->
-            <div class="col-8 content">
-                <div class="row">
-                    <div class="col-9 titleEvent">
-                        <h1>Event this day</h1>
-                    </div>
-                    <div class="col-3">
-                        <button class="btn addEventBtn" type="button" data-toggle="collapse" data-target="#addEventCollapse"
-                            aria-expanded="false" aria-controls="addEventCollapse"><i class="fas fa-plus"></i> Create
-                            event</button>
-                    </div>
+            <div class="col-8 ">
+                <div class = "content">
+                        <div class="row" >
+                                <div class="col-9 titleEvent">
+                                    <h1>Event this day</h1>
+                                </div>
+                                <div class="col-3">
+                                    <button class="btn addEventBtn" type="button" data-toggle="collapse" data-target="#addEventCollapse"
+                                        aria-expanded="false" aria-controls="addEventCollapse"><i class="fas fa-plus"></i> Create
+                                        event</button>
+                                </div>
+                            </div>
+                            <!-- collapse startt------------------------------------------------ -->
+                            <div class="collapse" id="addEventCollapse">
+                                <div class="card-body card addEventCollapse">
+                                    <form action="/addEvent" method="POST">
+                                        <div class="form-group">
+                                            <label for="username">Title:</label>
+                                            <input required type="text"  class="form-control" name="title"
+                                                placeholder="Meet doctor">
+            
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="">Choose your Dog:</label>
+                                            <select class="custom-select rect-field" name="dog" id="pet">
+                                                <% if(select=='') {%>
+                                                <option value="" disabled selected>Select your pet</option>
+                                                <% for (var pet of dog){%>
+                                                <option required >
+                                                    <%= pet.name%>
+                                                </option>
+                                                <% } %>
+                                                <%} else {%>
+                                                    <option required >
+                                                        <%= select %>
+                                                    </option>
+                                                    <% } %>
+            
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <p>Description:</p>
+                                            <textarea required name="descr" id="" cols="70" rows="4"></textarea>
+                                        </div>
+            
+                                        <div class="form-group">
+                                            <label for="time">Time:</label>
+                                            
+                                                <input required name='time' type="time" class="form-control" >
+                                                
+            
+                                        </div>
+            
+                                        <div class="form-group">
+                                            <input style="display: none;" readonly type="text" name='day' value="<%=date.day%>">
+                                            <input style="display: none;" readonly type="text" name='month' value="<%=date.month%>">
+                                            <input style="display: none;" readonly type="text" name='year' value="<%=date.year%>">
+                                        </div>
+                                        <div class="row ">
+                                            <button type="submit" class="col btn addBtns">Register</button>
+                                            <!-- <button  class="col btn addBtns">Cancel</button> -->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- collapse end------------------------------------------------ -->
+            
+                            <% event.forEach(function(evento) { %>
+                            <div id="infod" class="contentCard row">
+                                <div class="col-4 cardTitle">
+                                    <h3><%=evento.title %></h3>
+                                    <h5><%=evento.time %></h5>
+                                    <h5><%=evento.dog %></h5>
+                                    <!-- <h5>Location</h5> -->
+                                </div>
+                                <div class="col-8 cardContent">
+                                    <h5><%=evento.descr %></h5>
+                                </div>
+                            </div>
+                            <% }); %>
                 </div>
-                <!-- collapse startt------------------------------------------------ -->
-                <div class="collapse" id="addEventCollapse">
-                    <div class="card-body card addEventCollapse">
-                        <form action="/addEvent" method="POST">
-                            <div class="form-group">
-                                <label for="username">Title:</label>
-                                <input required type="text"  class="form-control" name="title"
-                                    placeholder="Meet doctor">
-
-                            </div>
-                            <div class="form-group">
-                                <label for="">Choose your Dog:</label>
-                                <select class="custom-select rect-field" name="dog" id="pet">
-                                    <% if(select=='') {%>
-                                    <option value="" disabled selected>Select your pet</option>
-                                    <% for (var pet of dog){%>
-                                    <option required >
-                                        <%= pet.name%>
-                                    </option>
-                                    <% } %>
-                                    <%} else {%>
-                                        <option required >
-                                            <%= select %>
-                                        </option>
-                                        <% } %>
-
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <p>Description:</p>
-                                <textarea required name="descr" id="" cols="70" rows="4"></textarea>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="time">Time:</label>
-                                
-                                    <input required name='time' type="time" class="form-control" >
-                                    
-
-                            </div>
-
-                            <div class="form-group">
-                                <input style="display: none;" readonly type="text" name='day' value="<%=date.day%>">
-                                <input style="display: none;" readonly type="text" name='month' value="<%=date.month%>">
-                                <input style="display: none;" readonly type="text" name='year' value="<%=date.year%>">
-                            </div>
-                            <div class="row ">
-                                <button type="submit" class="col btn addBtns">Register</button>
-                                <!-- <button  class="col btn addBtns">Cancel</button> -->
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!-- collapse end------------------------------------------------ -->
-
-                <% event.forEach(function(evento) { %>
-                <div id="infod" class="contentCard row">
-                    <div class="col-4 cardTitle">
-                        <h3><%=evento.title %></h3>
-                        <h5><%=evento.time %></h5>
-                        <h5><%=evento.dog %></h5>
-                        <!-- <h5>Location</h5> -->
-                    </div>
-                    <div class="col-8 cardContent">
-                        <h5><%=evento.descr %></h5>
-                    </div>
-                </div>
-                <% }); %>
+                
 
             </div>
 

@@ -1,6 +1,7 @@
 .content{
     border-radius: 10px;
     background-color: antiquewhite;
+    padding: 10px 20px;  
 }
 .contentCard{
     margin: 2%;
