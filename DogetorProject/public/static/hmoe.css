@@ -1,8 +1,18 @@
 #sidebar{
-    background-color: grey;
+    background-color: rgb(145, 87, 0);
     color: white;
-    padding: 10px;
-    
+    padding: 10px;  
+}
+.navv{
+    background-color: rgb(65, 39, 0);
+    color: white;
+}
+.navv-btn{
+    background-color: rgb(65, 39, 0);
+    color: white;
+}
+.navv-btn:hover { 
+    background-color: rgb(134, 81, 0);
 }
 #sidebar1{
     height: 1080px;
@@ -37,7 +47,7 @@
 #profile{
     width :100px;
     height: 100px;
-    background-position: center;
+    margin-left: 26px;
     border-radius: 50%;
     align:center;
 }
@@ -114,6 +124,8 @@
     margin: 0px;
 }
 .content{
+    
+    border-radius: 5px;
     background-color: rgb(255, 255, 255);
     margin :30px 10px 10px 30px;
     
@@ -155,11 +167,26 @@
 #schedulehead{
     background-color : rgb(255, 229, 182);
     margin-bottom :0px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
 }
 .eachday{
-    
+    padding-left : 10px;
     width: 110px;
     height: 110px;  
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -ms-transition: 0.15s;
+    -o-transition: 0.15s;
+      
+}
+.eachday:hover{
+    font-size: 35px;
+    /* height:100%;
+    width:100%; */
+    background-color:rgba(255, 255, 255, 0.548);
       
 }
 
@@ -167,7 +194,7 @@
     -webkit-animation: fadein 0.5s;
 }
 
-#butt{
+/* #butt{
     font-size: 20px;
     height:100%;
     width:100%;
@@ -177,14 +204,14 @@
     -moz-transition: 0.15s;
     -ms-transition: 0.15s;
     -o-transition: 0.15s;
-}
+} */
 
-#butt:hover{
+/* #butt:hover{
     font-size: 35px;
     height:100%;
     width:100%;
     background-color:rgba(255, 255, 255, 0.548);
-}
+} */
 
 .dogeachday{
     padding-left: 20px;

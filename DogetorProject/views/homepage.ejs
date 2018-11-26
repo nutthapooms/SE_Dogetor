@@ -25,107 +25,109 @@
             
             <!--Side bar End---------------------------------------------------------------------------------------------->
             
-            <div class="col-8 content" >
-                <h1 id="schedulehead"></h1>
-                <table class="schedule ">
-                    <thead>
-                        <tr id = "dayfull">
-                            <td class="day">Sunday</td>
-                            <td class="day">Monday</td>
-                            <td class="day">Tuesday</td>
-                            <td class="day">Wednesday</td>
-                            <td class="day">Thursday</td>
-                            <td class="day">Friday</td>
-                            <td class="day">Saturday</td>
-                        </tr>
-                        <tr id = "dayacro">
-                            <td class="day">Sun</td>
-                            <td class="day">Mon</td>
-                            <td class="day">Tue</td>
-                            <td class="day">Wed</td>
-                            <td class="day">Thu</td>
-                            <td class="day">Fri</td>
-                            <td class="day">Sat</td>
-                        </tr>
-                    </thead>
-                    <tbody id = "calendar">
-                        <!-- calendar startt -->
-                        <%var date = new Date();%>
-                        <%var datee = 1;%>
-                        <%date.setDate(1);%>
-                        <%var dayy = date.getDay();%>
-                        <!-- <%= dayy%> -->
-                        <%var monthh = date.getMonth();%>
-                        <%var yearr  = date.getYear();%>
-                        <%limitt = new Date(yearr, monthh, 0).getDate();%>
-                        <%var check = 0; %> 
-                        <% for(var i=0; i<6; i++) {%>
-                            <tr>
-                                <% for(var j=0; j<7; j++) {%>
-                                    <% if (j == dayy){ %>
-                                        <% check = 1; %>
-                                    <% } %>
-                                    <% if (check == 0){%>
-                                        <td class = "eachday"> </td>
-                                    <% }else{%>
-                                        <% if(datee < limitt){%>
-                                            <%var dayee = datee+""+monthh+""+yearr %>
-                                                        
-                                                        <% if(events.includes(dayee)) {%>
-                                                        <td class = "eachday" style="background-color:coral" >                                  
-                                                            
-                                                            <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
-                                                        
-                                                        
-                                                        <% }else{%>
-                                                            <td class = "eachday">                                  
-                                                            
-                                                                <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
-                                                        <% } %>
-                                                        <% datee++; %>
-                                        <% }else{%>
-                                            <td class = "eachday"> </td>
-                                        <% } %>
-                                    <% } %>
-                                    
-                                <% } %>     
-                            </tr>
-                        <% } %>
-                        <% check = 0; %>
-                        
-                            <!-- calendar endd-->
-                    </tbody>
-                    
-                </table>
-                <!--appointment modal start---------------------------------------------------------------------------------------------->
-                <div class="modal fade" id="dayModal" tabindex="-1" role="dialog" aria-labelledby="deletedogTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="deletedogTitle">Appointment info</h5>
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <div id = dayshow></div>
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                          <a href="#"> <button type="button"  class="btn btn-primary">Confirm</button></a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                <!--appointment modal end---------------------------------------------------------------------------------------------->
-                <div class = "row">
-                        <div class = "rounded col-6"  align ="left">
-                            <button id = "prembtn" class = "btn">Last month</button>
-                        </div>
-                        <div class = "rounded col-6"  align ="right">
-                            <button id = "nxtmbtn" class = "btn">Next month</button>
-                        </div>
-                    </div>
+            <div class="col-8 " >
+                <div class = "calendar content">
+                        <h1 id="schedulehead"></h1>
+                        <table class="schedule ">
+                            <thead>
+                                <tr id = "dayfull">
+                                    <td class="day">Sunday</td>
+                                    <td class="day">Monday</td>
+                                    <td class="day">Tuesday</td>
+                                    <td class="day">Wednesday</td>
+                                    <td class="day">Thursday</td>
+                                    <td class="day">Friday</td>
+                                    <td class="day">Saturday</td>
+                                </tr>
+                                <tr id = "dayacro">
+                                    <td class="day">Sun</td>
+                                    <td class="day">Mon</td>
+                                    <td class="day">Tue</td>
+                                    <td class="day">Wed</td>
+                                    <td class="day">Thu</td>
+                                    <td class="day">Fri</td>
+                                    <td class="day">Sat</td>
+                                </tr>
+                            </thead>
+                            <tbody id = "calendar">
+                                <!-- calendar startt -->
+                                <%var date = new Date();%>
+                                <%var datee = 1;%>
+                                <%date.setDate(1);%>
+                                <%var dayy = date.getDay();%>
+                                <!-- <%= dayy%> -->
+                                <%var monthh = date.getMonth();%>
+                                <%var yearr  = date.getYear();%>
+                                <%limitt = new Date(yearr, monthh, 0).getDate();%>
+                                <%var check = 0; %> 
+                                <% for(var i=0; i<6; i++) {%>
+                                    <tr>
+                                        <% for(var j=0; j<7; j++) {%>
+                                            <% if (j == dayy){ %>
+                                                <% check = 1; %>
+                                            <% } %>
+                                            <% if (check == 0){%>
+                                                <td class = "eachday"> </td>
+                                            <% }else{%>
+                                                <% if(datee < limitt){%>
+                                                    <%var dayee = datee+""+monthh+""+yearr %>
+                                                                
+                                                                <% if(events.includes(dayee)) {%>
+                                                                <td class = "eachday" style="background-color:coral" >                                  
+                                                                    
+                                                                    <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
+                                                                
+                                                                
+                                                                <% }else{%>
+                                                                    <td class = "eachday">                                  
+                                                                    
+                                                                        <a href="#" style="text-decoration:none;" ><div id="butt" onclick="eachdayclick(this.innerHTML)" ><%= datee %></div></a></td>
+                                                                <% } %>
+                                                                <% datee++; %>
+                                                <% }else{%>
+                                                    <td class = "eachday"> </td>
+                                                <% } %>
+                                            <% } %>
+                                            
+                                        <% } %>     
+                                    </tr>
+                                <% } %>
+                                <% check = 0; %>
+                                
+                                    <!-- calendar endd-->
+                            </tbody>
+                            
+                        </table>
+                        <!--appointment modal start---------------------------------------------------------------------------------------------->
+                        <div class="modal fade" id="dayModal" tabindex="-1" role="dialog" aria-labelledby="deletedogTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="deletedogTitle">Appointment info</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <div id = dayshow></div>
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                  <a href="#"> <button type="button"  class="btn btn-primary">Confirm</button></a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <!--appointment modal end---------------------------------------------------------------------------------------------->
+                        <div class = "row">
+                                <div class = "rounded col-6"  align ="left">
+                                    <button id = "prembtn" class = "btn">Last month</button>
+                                </div>
+                                <div class = "rounded col-6"  align ="right">
+                                    <button id = "nxtmbtn" class = "btn">Next month</button>
+                                </div>
+                            </div>
+                </div>
             </div>
         </div>
   
