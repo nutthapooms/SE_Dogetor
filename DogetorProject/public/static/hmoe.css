@@ -1,7 +1,13 @@
+
+
+.containerr{
+    width : 1300px;
+    margin : 0px auto;
+}
 #sidebar{
     background-color: rgb(145, 87, 0);
     color: white;
-    padding: 10px;  
+    padding: 20px;  
 }
 .navv{
     background-color: rgb(65, 39, 0);
@@ -45,9 +51,10 @@
     padding :2%;
 }
 #profile{
-    width :100px;
-    height: 100px;
-    margin-left: 26px;
+    width :140px;
+    height: 140px;
+    margin-left: 21px;
+    
     border-radius: 50%;
     align:center;
 }
@@ -114,13 +121,13 @@
 
 .dognameinlist{
     padding : 0px 10px;
-    width: 120px;
+    width: 140px;
     margin: 0px;
     
 }
 .dognameindot{
     padding : 3px 10px;
-    width: 40px;
+    width: 42px;
     margin: 0px;
 }
 .content{
@@ -174,8 +181,9 @@
 }
 .eachday{
     padding-left : 10px;
-    width: 110px;
+    width: auto ;
     height: 110px;  
+    background-color:transparent;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
     -ms-transition: 0.15s;
@@ -224,7 +232,7 @@
     text-align: center;
     background-color: rgb(226, 136, 0);
     color : white; 
-    width: 110px;
+    width: 121px;
     height: 50px;  
     border: 10px;  
 }

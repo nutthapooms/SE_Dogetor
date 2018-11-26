@@ -1,7 +1,7 @@
 <div class="col-3 " id="sidebar1">
     <div class ="rounded-bottom" id="sidebar">
         <div class="sidebarComp">
-            <img  id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
+            <img id="profile" src="/image/user/<%=pic%>"> <!-- userpics----->
             <h5 id=username><%=username%></h5> <!-- username----->
             <div><%=amount%> dogs</div>
         </div>
@@ -22,17 +22,17 @@
                 <% } %>
             <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                 <script>document.getElementById("asdasd").id = ++j;</script>
-                <td class="dognameinlist"><a href="#"><h5>more</h5></a></td>
-                <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
+                <td class="dognameinlist"><a href="#" style="text-decoration:none;"><h5>more</h5></a></td>
+                <td class="dognameindot"><a href="#" style="text-decoration:none;"><i class="fas fa-ellipsis-h"></i></a></td>
             </tr>
             <tr id = "asdasd" class ="lessbtn" onclick="disallowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                 <script>document.getElementById("asdasd").id = ++j;</script>
-                <td class="dognameinlist"><a href="#"><h5>less</h5></div></td>
+                <td class="dognameinlist"><a href="#" style="text-decoration:none;"><h5>less</h5></div></td>
                 <td class="dognameindot"><a href="#"><i class="fas fa-ellipsis-h"></i></a></td>
             </tr>
             <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                 <script>document.getElementById("asdasd").id = ++j;</script>
-                <td class="dognameinlist" > <a href="/addDog">Add dog</a></td>
+                <td class="dognameinlist" > <a href="/addDog" style="text-decoration:none;">Add dog</a></td>
                 <td class="dognameindot"><a href="/addDog"><i class="fas fa-plus"></a></i></td>
             </tr>
                         
@@ -142,10 +142,13 @@
         jQuery(".morebtn").css("display", "table-row");
     }
     function mouseOver(j){
-        document.getElementById(j).style.backgroundColor = "rgb(225, 220, 212)";  
+        document.getElementById(j).style.backgroundColor = "rgb(260, 245, 220)";  
+        document.getElementById(j).style.fontWeight = "bold";  
     }
     function mouseOut(j){
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
+        document.getElementById(j).style.fontWeight = "normal";  
+
     }
     function allowdog(){
         var allowing = document.getElementsByClassName("allowdog");

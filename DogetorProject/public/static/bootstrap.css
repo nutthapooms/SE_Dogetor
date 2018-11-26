@@ -40,7 +40,11 @@
 *::after {
   box-sizing: border-box;
 }
-
+@media (min-width: 1400px) {
+  .container{
+      max-width: 970px;
+  }
+}
 html {
   font-family: sans-serif;
   line-height: 1.15;
