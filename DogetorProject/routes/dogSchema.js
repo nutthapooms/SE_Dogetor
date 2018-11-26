@@ -6,7 +6,8 @@ var dog = new Schema({
     breed: String,
     owner: String,
     gender: String,
-    dogAvatar: String
+    dogAvatar: String,
+    dis:String
 });
 
 module.exports = mongoose.model('dogData', dog);

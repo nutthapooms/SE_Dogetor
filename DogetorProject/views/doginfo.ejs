@@ -27,24 +27,29 @@
             <!--Dog info start---------------------------------------------------------------------------------------------->
             <div class="col-7 content">
                 <div id="doginfo" class="row">
-                    <div class="col-4"><img id="dogprofilepics" src="/image/dog/<%=dogPic%>" alt=""></div>
+                    <div class="col-4"><img id="dogprofilepics" src="/image/dog/<%=dogObj.dogAvatar%>" alt=""></div>
                     <div class="col-4">
-                        <h1><%=dogName%></h1>
+                        <h1><%=dogObj.name%></h1>
                         <table>
                             <tr>
                                 <td>Breed</td>
                                 <td> : </td>
-                                <td><%=breed%></td>
+                                <td><%=dogObj.breed%></td>
                             </tr>
                             <tr>
                                 <td>Age</td>
                                 <td> : </td>
-                                <td><%=age%></td>
+                                <td><%=dogObj.age%></td>
                             </tr>
                             <tr>
                                 <td>Gender</td>
                                 <td> : </td>
-                                <td><%=gender%></td>
+                                <td><%=dogObj.gender%></td>
+                            </tr>
+                            <tr>
+                                <td>Disease</td>
+                                <td> : </td>
+                                <td><%=dogObj.dis%></td>
                             </tr>
                         </table>
                     </div>
@@ -70,15 +75,15 @@
                             <form action="/editDog" method="POST">
                             <div class="form-group">
                                     <label>Name:</label>
-                                    <input type="text" name="dogName" value="<%=dogName%>" class="form-control" placeholder="name">
+                                    <input type="text" name="dogName" value="<%=dogObj.name%>" class="form-control" placeholder="name">
                             </div>
                             <div class="form-group">
                                 <label>Age(year):</label>
-                                <input type="number" min="0" name="dogAge" value="<%=age%>" class="form-control" placeholder="age">
+                                <input type="number" min="0" name="dogAge" value="<%=dogObj.age%>" class="form-control" placeholder="age">
                             </div>
                             <div class="form-group">
                                 <label>Breed:</label>
-                                <input type="text" name="dogBreed" value="<%=breed%>" class="form-control" placeholder="breed">
+                                <input type="text" name="dogBreed" value="<%=dogObj.breed%>" class="form-control" placeholder="breed">
                             </div>
                             <div class="form-group">
                                 <label>Gender:</label><br>

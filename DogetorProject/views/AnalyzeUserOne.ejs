@@ -26,11 +26,11 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <!-- <a class="nav-item nav-link" href="#">About us</a> -->
+                    <a class="nav-item nav-link" href="#">About us</a>
                     <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Loginmodal"><i class="fas fa-user-plus"></i>
                         Log in</a></button>
-                    <!-- <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Registermodal"><i class="fas fa-user-plus"></i>
-                        Register</a></button> -->
+                    <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Registermodal"><i class="fas fa-user-plus"></i>
+                        Register</a></button>
                 </div>
             </div>
         </div>
@@ -46,6 +46,7 @@
             <!--Side bar End---------------------------------------------------------------------------------------------->
 
             <!--  Analyze part Start ---------------------------------------------------------------------------------------------->
+            <form action="javascript:summaryResult();">
             <div class="col-8 content">
                 <div class="page-header"><h1>Analyze Disease</h1></div>
                 <!-- Pet info -->
@@ -56,16 +57,16 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text head-field" id="name">Name</span>
                             </div>
-                            <input type="text" class="form-control rect-field" 
+                            <input type="text" pattern="[A-Za-z0-9]{1,15}" required  class="form-control rect-field" 
                             v-model="petinfo.name" placeholder="Pet's name" 
-                            aria-label="Pet's name" aria-describedby="Pet's name" oninput="validatyeName()">
+                            aria-label="Pet's name" aria-describedby="Pet's name" >
                         </div>
                         <!-- Age -->
                         <div class="input-group mb-3 rect-field" style="left:340px;">
                             <div class="input-group-prepend">
                                 <span class="input-group-text head-field" id="basic-addon1">Age</span>                                
                             </div>
-                            <input type="text" class="form-control rect-field" 
+                            <input type="number"  pattern="[0-9]" min="0" max="100" required class="form-control rect-field" 
                             v-model=" petinfo.age" placeholder="Pet's age" 
                             aria-label="Pet's age" aria-describedby="Pet's age">
                         </div>
@@ -76,7 +77,7 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text head-field" for="breed">Breed</label>
                             </div>
-                            <select class="custom-select rect-field" id="breed" 
+                            <select required class="custom-select rect-field" id="breed" 
                             v-model="breedval" v-on:change="changeBreed">
                                 <option value="" disabled selected>Select pet's breed</option>
                                 <option v-for="(breed, index) in breedall" 
@@ -89,7 +90,7 @@
                             <div class="input-group-prepend">
                                 <label class="input-group-text head-field" for="gender">Gender</label>
                             </div>
-                            <select class="custom-select rect-field" id="gender" 
+                            <select required class="custom-select rect-field" id="gender" 
                             v-model="gendval" v-on:change="changeGender">
                                 <option value="" disabled selected>Select pet's gender</option>
                                 <option v-for="(gend, index) in gendall" 
@@ -139,7 +140,7 @@
                             </p>
                         </div>
                         <!-- Analyze button -->
-                        <button type="button" class="btn btn-analyze" onclick="summaryResult()" style="top:360px; right:0px;">
+                        <button type="submit" class="btn btn-analyze"  style="top:360px; right:0px;">
                             <i class="fas fa-search"></i> Analyze
                         </button>
                     </div>
@@ -147,6 +148,7 @@
                    
                 </div>
             </div>
+        </form>
                 <!--  Analyze part End ---------------------------------------------------------------------------------------------->
                  <!--  Login Modal start------------------------------------------------------------------------------------------------->
     <div class="modal fade" id="Loginmodal" tabindex="-1" role="dialog" aria-labelledby="LoginModalLabel" aria-hidden="true">

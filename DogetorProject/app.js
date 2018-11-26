@@ -135,6 +135,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
         newDog.breed = req.body.dogBreed
         newDog.owner = req.user.username
         newDog.gender = req.body.gender
+        newDog.dis = ""
 
         if (req.file == undefined) {
             newDog.dogAvatar = 'defaultprofilepicturedogetor.png'
@@ -429,27 +430,34 @@ app.post('/addEvent', loggedIn, function (req, res) {
     req.checkBody('title').notEmpty().withMessage('Title is required')
     req.checkBody('dog').notEmpty().withMessage('Dog name is required').isAlpha().withMessage('')
     req.checkBody('descr').notEmpty().withMessage('Description is required')
+    var errors = req.validationErrors()
 
-    title = req.body.title
-    dog = req.body.dog
-    descr = req.body.descr
-    time = req.body.time
-    day = req.body.day
-    month = req.body.month
-    year = req.body.year
-    newEvent = new eventData()
-    newEvent.title = title
-    newEvent.dog = dog
-    newEvent.owner = req.user.username
-    newEvent.descr = descr
-    newEvent.time = time
-    newEvent.day = day
-    newEvent.month = month
-    newEvent.year = year
-
-    newEvent.save(function (err, docs) {
+    if (errors) {
         res.redirect('home')
-    })
+    } else {
+        title = req.body.title
+        dog = req.body.dog
+        descr = req.body.descr
+        time = req.body.time
+        day = req.body.day
+        month = req.body.month
+        year = req.body.year
+        newEvent = new eventData()
+        newEvent.title = title
+        newEvent.dog = dog
+        newEvent.owner = req.user.username
+        newEvent.descr = descr
+        newEvent.time = time
+        newEvent.day = day
+        newEvent.month = month
+        newEvent.year = year
+
+        newEvent.save(function (err, docs) {
+            res.redirect('home')
+        })
+    }
+
+
 })
 
 
@@ -485,12 +493,8 @@ app.get('/dogInfo', loggedIn, function (req, res) {
                     }
                     console.log(d)
                     res.render("doginfo", {
-                        dogName: book.name,
-                        info: req.user,
-                        breed: book.breed,
-                        gender: book.gender,
-                        age: book.age,
-                        dogPic: book.dogAvatar,
+                        dogObj: book,
+                        info: req.user,                        
                         username: req.user.username,
                         pic: req.user.avatar,
                         dog: bookuser,
@@ -693,14 +697,15 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
                 pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
-                ana:ana
+                ana: ana
             });
         })
     })
 
 });
 
-app.post('/ananymous', function (req, res) {
+app.post('/ananymous', function (req, res) { 
+
     console.log(req.body)
     res.render('resultUserOne', {
         info: req.body.info,
@@ -737,7 +742,46 @@ app.post('/ananymous2', function (req, res) {
             })
         })
     })
+
+})
+
+app.post('/ananymous3', function (req, res) {
+    console.log(req.body.info)
+    dogData.findOneAndUpdate({
+        name:req.body.info.name,
+        owner:req.user.username
+
+    },{
+        dis:req.body.result
+    },function (err,sym) { 
+        dogData.find({
+        owner: req.user.username
+    }, function (err, book) {
+        eventData.find({
+            owner: req.user.username
+        }, function (err, docs) {
+            var d = []
+            for (x of docs) {
+                d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
+            }
+            res.render('resultReg', {
+                errors: '',
+                username: req.user.username,
+                info: req.user,
+                pic: req.user.avatar,
+                dog: book,
+                amount: book.length,
+                dupli: '',
+                events: d,
+                infodog: req.body.info,
+                sym: req.body.sym,
+                result: req.body.result
+            })
+        })
+    })
+     })
     
+
 })
 app.get('/analyzeUser', function (req, res) {
     res.render('AnalyzeUserOne.ejs');
