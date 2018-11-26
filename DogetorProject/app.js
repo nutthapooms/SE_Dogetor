@@ -20,9 +20,6 @@ var LocalStrategy = require('passport-local')
 var port = 8080;
 
 app.use('/', index)
-//app.use('/hoslike',hos)
-//app.use('/hosunlike',hos)
-
 
 mongoose.connect('mongodb://localhost:27017/userDB', {
         useNewUrlParser: true
@@ -79,18 +76,25 @@ var storage = multer.diskStorage({ //storage for dog
 
 var upload = multer({
     storage: storage
-    // fileFilter: imageFilter
+
+});
+passport.serializeUser(function (user, done) {
+    done(null, user.id);
 });
 
+passport.deserializeUser(function (id, done) {
+    userData.findById(id, function (err, user) {
+        done(err, user);
+    });
+});
 
 app.get('/addDog', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
         res.render('addDog.ejs', {
-            username: req.user.username,
+
             info: req.user,
-            pic: req.user.avatar,
             dog: book,
             amount: book.length
         });
@@ -116,11 +120,9 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) {
                 for (x of docs) {
                     d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
                 }
-                res.render('homepage.ejs', {
+                res.render('homepage', {
                     errors: '',
-                    username: req.user.username,
                     info: req.user,
-                    pic: req.user.avatar,
                     dog: book,
                     amount: book.length,
                     dupli: '',
@@ -199,11 +201,9 @@ app.post('/editDog', loggedIn, function (req, res) {
                 for (x of docs) {
                     d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
                 }
-                res.render('homepage.ejs', {
+                res.render('homepage', {
                     errors: '',
-                    username: req.user.username,
                     info: req.user,
-                    pic: req.user.avatar,
                     dog: book,
                     amount: book.length,
                     dupli: '',
@@ -287,11 +287,9 @@ app.get('/home', loggedIn, function (req, res) {
             for (x of docs) {
                 d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
             }
-            res.render('homepage.ejs', {
+            res.render('homepage', {
                 errors: '',
-                username: req.user.username,
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 dupli: '',
@@ -372,10 +370,8 @@ app.post('/eventD', loggedIn, function (req, res) {
                     time: +1
                 }).exec(function (err, docs) {
 
-                    res.render('addEvent.ejs', {
-                        username: req.user.username,
+                    res.render('addEvent', {
                         info: req.user,
-                        pic: req.user.avatar,
                         dog: book,
                         select: result.name,
                         amount: book.length,
@@ -408,10 +404,8 @@ app.post('/event', loggedIn, function (req, res) {
         }).sort({
             time: +1
         }).exec(function (err, docs) {
-            res.render('addEvent.ejs', {
-                username: req.user.username,
+            res.render('addEvent', {
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 select: '',
                 amount: book.length,
@@ -494,9 +488,7 @@ app.get('/dogInfo', loggedIn, function (req, res) {
                     console.log(d)
                     res.render("doginfo", {
                         dogObj: book,
-                        info: req.user,                        
-                        username: req.user.username,
-                        pic: req.user.avatar,
+                        info: req.user,
                         dog: bookuser,
                         amount: bookuser.length,
                         events: d
@@ -526,9 +518,7 @@ app.get('/hosp', loggedIn, function (req, res) {
     }, function (err, book) {
         hosData.find({}, function (err, hos) {
             res.render('hospitalinfo', {
-                username: req.user.username,
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 hos: hos
@@ -548,9 +538,7 @@ app.get('/hosinfo', loggedIn, function (req, res) {
             name: hosname
         }, function (err, hos) {
             res.render('hospitalinfo', {
-                username: req.user.username,
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 hos: hos
@@ -601,9 +589,7 @@ app.get('/vet', loggedIn, function (req, res) {
     }, function (err, book) {
         vetData.find({}, function (err, vet) {
             res.render('vetInfo', {
-                username: req.user.username,
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 vet: vet
@@ -623,9 +609,7 @@ app.get('/vetinfo', loggedIn, function (req, res) {
             name: vetname
         }, function (err, vet) {
             res.render('vetinfo', {
-                username: req.user.username,
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 vet: vet
@@ -672,10 +656,8 @@ app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
-        res.render('aboutus.ejs', {
-            username: req.user.username,
+        res.render('aboutus', {
             info: req.user,
-            pic: req.user.avatar,
             dog: book,
             amount: book.length
         });
@@ -691,10 +673,8 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
             owner: req.user.username
         }, function (err, book) {
             console.log(ana)
-            res.render('AnalyzeRegOne.ejs', {
-                username: req.user.username,
+            res.render('AnalyzeRegOne', {
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 ana: ana
@@ -704,7 +684,7 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
 
 });
 
-app.post('/ananymous', function (req, res) { 
+app.post('/ananymous', function (req, res) {
 
     console.log(req.body)
     res.render('resultUserOne', {
@@ -729,9 +709,7 @@ app.post('/ananymous2', function (req, res) {
             }
             res.render('resultReg', {
                 errors: '',
-                username: req.user.username,
                 info: req.user,
-                pic: req.user.avatar,
                 dog: book,
                 amount: book.length,
                 dupli: '',
@@ -748,46 +726,44 @@ app.post('/ananymous2', function (req, res) {
 app.post('/ananymous3', function (req, res) {
     console.log(req.body.info)
     dogData.findOneAndUpdate({
-        name:req.body.info.name,
-        owner:req.user.username
-
-    },{
-        dis:req.body.result
-    },function (err,sym) { 
-        dogData.find({
+        name: req.body.info.name,
         owner: req.user.username
-    }, function (err, book) {
-        eventData.find({
+
+    }, {
+        dis: req.body.result
+    }, function (err, sym) {
+        dogData.find({
             owner: req.user.username
-        }, function (err, docs) {
-            var d = []
-            for (x of docs) {
-                d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
-            }
-            res.render('resultReg', {
-                errors: '',
-                username: req.user.username,
-                info: req.user,
-                pic: req.user.avatar,
-                dog: book,
-                amount: book.length,
-                dupli: '',
-                events: d,
-                infodog: req.body.info,
-                sym: req.body.sym,
-                result: req.body.result
+        }, function (err, book) {
+            eventData.find({
+                owner: req.user.username
+            }, function (err, docs) {
+                var d = []
+                for (x of docs) {
+                    d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
+                }
+                res.render('resultReg', {
+                    errors: '',
+                    info: req.user,
+                    dog: book,
+                    amount: book.length,
+                    dupli: '',
+                    events: d,
+                    infodog: req.body.info,
+                    sym: req.body.sym,
+                    result: req.body.result
+                })
             })
         })
     })
-     })
-    
+
 
 })
 app.get('/analyzeUser', function (req, res) {
-    res.render('AnalyzeUserOne.ejs');
+    res.render('AnalyzeUserOne');
 });
 app.get('/dogetor', function (req, res) {
-    res.render('Regis.ejs', {
+    res.render('Regis', {
         errors: '',
         dupli: ''
     })
@@ -812,15 +788,7 @@ passport.use(new LocalStrategy(
     }
 ));
 
-passport.serializeUser(function (user, done) {
-    done(null, user.id);
-});
 
-passport.deserializeUser(function (id, done) {
-    userData.findById(id, function (err, user) {
-        done(err, user);
-    });
-});
 
 app.post('/login',
     passport.authenticate('local', {
@@ -837,7 +805,7 @@ app.get('/index', function (req, res) {
         res.redirect('/home')
     } else {
         console.log('not logged in')
-        res.render('Regis.ejs', {
+        res.render('Regis', {
             errors: '',
             dupli: ''
         })
