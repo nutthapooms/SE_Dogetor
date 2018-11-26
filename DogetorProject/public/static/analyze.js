@@ -249,32 +249,6 @@ var symptom = new Vue({
     },
     showSymptomInfo: function(symp){
       this.sympdet = symp;
-    },
-    summaryResult: function(){
-      // Get checked symptom
-      for (i in this.symplistall){
-        for (j in this.symplistall[i]){
-          if(this.symplistall[i][j].check == true){
-            this.sympsummary.push(this.symplistall[i][j].name);
-            for (k in this.diseaseall){    
-              var index = this.diseaseall[k].symplist.indexOf(this.symplistall[i][j].name);
-              if(index != -1){
-                this.diseaseall[k].prob++;
-              }
-            }
-          }
-        }
-      }
-      // Analyze symptom
-      for (i in this.diseaseall){
-        var prob = this.diseaseall[i].prob /= this.diseaseall[i].symplist.length;
-        if(prob > 0.5){
-          this.sympresult.push(this.diseaseall[i].name);
-        }
-      }
-
-      
-
     }
     // hideSymptomInfo: function(){
     //   this.sympdet[0].name = '';
@@ -286,11 +260,10 @@ var symptom = new Vue({
 
 function summaryResult() {
   // Check data
-  if(pet.$data.petinfo.name == '' || pet.$data.petinfo.age == '' || pet.$data.petinfo.breed == '' || pet.$data.petinfo.gend == ''){
-    alert("Please fill in all information.");
+  if(!pet.$data.petinfo.name || !pet.$data.petinfo.age || !pet.$data.petinfo.breed || !pet.$data.petinfo.gend){
+    alert("Please fill all information.");    
   }
   else{
-    //alert(pet.$data.petinfo.name);
     // Get checked symptom
     symptom.$data.sympsummary = [];
     symptom.$data.sympresult = [];
@@ -307,6 +280,10 @@ function summaryResult() {
         }
       }
     }
+    if(symptom.$data.sympsummary.length == 0){
+      alert("Please select at least one disease.");
+      return;
+    }
     // Analyze symptom
     for (i in symptom.$data.diseaseall){
       var prob = symptom.$data.diseaseall[i].prob / symptom.$data.diseaseall[i].symplist.length;
@@ -314,6 +291,9 @@ function summaryResult() {
         symptom.$data.sympresult.push(symptom.$data.diseaseall[i].name);
       }
       symptom.$data.diseaseall[i].prob = 0;
+    }
+    if(symptom.$data.sympresult.length == 0){
+      symptom.$data.sympresult[0] = '';
     }
     $.ajax({
       url:'/ananymous',

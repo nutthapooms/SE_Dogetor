@@ -311,6 +311,10 @@ function summaryResult() {
         }
       }
     }
+    if(symptom.$data.sympsummary.length == 0){
+      alert("Please select at least one disease.");
+      return;
+    }
     // Analyze symptom
     for (i in symptom.$data.diseaseall){
       var prob = symptom.$data.diseaseall[i].prob / symptom.$data.diseaseall[i].symplist.length;
@@ -318,6 +322,9 @@ function summaryResult() {
         symptom.$data.sympresult.push(symptom.$data.diseaseall[i].name);
       }
       symptom.$data.diseaseall[i].prob = 0;
+    }
+    if(symptom.$data.sympresult.length == 0){
+      symptom.$data.sympresult[0] = '';
     }
     $.ajax({
       url:'/ananymous2',

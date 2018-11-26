@@ -43,7 +43,7 @@
                             </div>
                             <input id="name" value="<%=ana.name%>" type="text" class="form-control rect-field" 
                              placeholder="Pet's name" 
-                            aria-label="Pet's name" aria-describedby="Pet's name">
+                            aria-label="Pet's name" aria-describedby="Pet's name" readonly>
                         </div>
                         <!-- Age -->
                         <div class="input-group mb-3 rect-field" style="left:340px;">
@@ -52,7 +52,7 @@
                             </div>
                             <input id="age" type="text" class="form-control rect-field" 
                             value="<%=ana.age%>"placeholder="Pet's age" 
-                            aria-label="Pet's age" aria-describedby="Pet's age">
+                            aria-label="Pet's age" aria-describedby="Pet's age" readonly>
                         </div>
                     </div>
                 </div>
@@ -75,7 +75,7 @@
                         </div>
                         <select class="custom-select rect-field" id="gender" 
                         v-model="gendval" v-on:change="changeGender">
-                            <option value="<%=ana.gender%>"  selected><%=ana.gender%></option>
+                            <option value="<%=ana.gender%>" selected><%=ana.gender%></option>
                             
                         </select>
                     </div>
