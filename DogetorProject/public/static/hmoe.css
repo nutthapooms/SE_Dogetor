@@ -72,6 +72,18 @@
     background-color: rgb(0, 192, 226);
     color: white;
 }
+.listbtn{
+
+    -webkit-transition: 0.15s;
+    -moz-transition: 0.15s;
+    -ms-transition: 0.15s;
+    -o-transition: 0.15s;
+}
+.listbtn:hover{
+    font-size: 22px;
+    
+}
+
 #nxtmbtn{
     
     margin-top : 10px;
@@ -91,6 +103,11 @@
     padding: 5%;
     margin :10px 0px;
     border-radius: 10px;
+}
+#updatedog{
+    margin-top: 50px;
+    padding: 10px;
+    padding-right: 41px;
 }
 #updatedog{
     margin-top: 50px;
@@ -277,6 +294,7 @@
     color:rgb(0, 192, 226);
     margin-top:10px;
 }
+
 body{
             
             -webkit-animation: fadein 0.5s;
