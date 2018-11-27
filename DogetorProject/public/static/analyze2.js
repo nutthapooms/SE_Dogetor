@@ -338,3 +338,57 @@ function summaryResult() {
   })
   
 }
+
+function saveResult() {
+  // Check data
+  pet.$data.petinfo.name = document.getElementById("name").value
+  pet.$data.petinfo.age = document.getElementById("age").value
+  pet.$data.petinfo.breed = document.getElementById("breed").value
+  pet.$data.petinfo.gend = document.getElementById("gender").value
+    
+  
+  
+    //alert(pet.$data.petinfo.name);
+    // Get checked symptom
+    symptom.$data.sympsummary = [];
+    symptom.$data.sympresult = [];
+    for (i in symptom.$data.symplistall){
+      for (j in symptom.$data.symplistall[i]){
+        if(symptom.$data.symplistall[i][j].check == true){
+          symptom.$data.sympsummary.push(symptom.$data.symplistall[i][j].name);
+          for (k in symptom.$data.diseaseall){    
+            var index = symptom.$data.diseaseall[k].symplist.indexOf(symptom.$data.symplistall[i][j].name);
+            if(index != -1){
+              symptom.$data.diseaseall[k].prob++;
+            }
+          }
+        }
+      }
+    }
+    if(symptom.$data.sympsummary.length == 0){
+      alert("Please select at least one disease.");
+      return;
+    }
+    // Analyze symptom
+    for (i in symptom.$data.diseaseall){
+      var prob = symptom.$data.diseaseall[i].prob / symptom.$data.diseaseall[i].symplist.length;
+      if(prob > 0.5){
+        symptom.$data.sympresult.push(symptom.$data.diseaseall[i].name);
+      }
+      symptom.$data.diseaseall[i].prob = 0;
+    }
+    if(symptom.$data.sympresult.length == 0){
+      symptom.$data.sympresult[0] = '';
+    }
+    $.ajax({
+      url:'/ananymous3',
+      type:"POST",      
+      data: {info:pet.$data.petinfo,result:symptom.$data.sympresult,sym:symptom.$data.sympsummary},
+      success:function(result){
+          document.open();
+          document.write(result);
+          document.close();
+      }
+  })
+  
+}

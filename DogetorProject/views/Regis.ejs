@@ -122,13 +122,13 @@
 
                                     <div class="form-group">
                                         <label for="username">Username:</label>
-                                        <input type="text" class="form-control" name="username" placeholder="username">
+                                        <input required type="text" class="form-control" name="username" placeholder="username">
 
                                     </div>
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input type="password" class="form-control" name="password" placeholder="password">
+                                        <input required type="password" class="form-control" name="password" placeholder="password">
                                     </div>
 
                                     <div class="modal-footer">
@@ -180,25 +180,25 @@
 
                                     <div class="form-group">
                                         <label for="username">Username:</label>
-                                        <input type="text" pattern="[A-Za-z0-9]+" class="form-control" name="username"
+                                        <input required type="text" pattern="[A-Za-z0-9]{1,15}" class="form-control" name="username"
                                             placeholder="username">
 
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email">Email:</label>
-                                        <input type="email" class="form-control" name="email" placeholder="email">
+                                        <input required type="email" class="form-control" name="email" placeholder="email">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input id="password1" type="password" class="form-control" name="pwd"
+                                        <input required id="password1" type="password" class="form-control" name="pwd"
                                             placeholder="password" oninput="passwordcheck()">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Cpwd">Confirm Password:</label>
-                                        <input id="password2" type="password" class="form-control" name="Cpwd"
+                                        <input required id="password2" type="password" class="form-control" name="Cpwd"
                                             placeholder="Confirm password" oninput="passwordcheck()">
                                     </div>
                                     <div id="alertpw">
