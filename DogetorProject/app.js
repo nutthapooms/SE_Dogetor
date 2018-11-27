@@ -126,6 +126,10 @@ app.post('/editProfile', upload2.single('uploaded_image2'), function (req, res) 
             newavatar = req.file.filename
         }
         
+        // userData.findOne({
+            
+        // })
+        
         userData.findByIdAndUpdate(req.user.id,{
             username:req.body.username,
             email:req.body.email,
