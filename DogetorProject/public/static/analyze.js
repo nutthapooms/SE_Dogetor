@@ -16,9 +16,11 @@ var pet = new Vue({
         'Female'
       ],
       breedall: [
-        'Husky',
-        'Labrador',
-        'Golden'
+        'Siberian husky',
+        'Golden Retriever',
+        'Corgi',
+        'Pug',
+        'German sheperd'
       ],
       petinfoall: [
         { name: 'Husky',
