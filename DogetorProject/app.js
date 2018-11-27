@@ -297,7 +297,7 @@ app.post('/editDog', loggedIn, function (req, res) {
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
     req.checkBody('gender', 'Gender is required').notEmpty()
 
-    console.log(req.body)
+    //console.log(req.body)
 
     var errors = req.validationErrors()
     if (errors) {
@@ -325,9 +325,27 @@ app.post('/editDog', loggedIn, function (req, res) {
             name: req.body.dogName,
             owner: req.user.username
         }, function (err, result) {
-            if (result) {
+            console.log(result)
+            if (result.id != req.user.cache  ) {
+                if(result.name == req.body.dogName){
                 res.redirect('/doginfo?topic=' + req.user.cache)
-            } else {
+                console.log('dup')
+                }else if(result.name != req.body.dogName){
+                    dogData.findByIdAndUpdate(req.user.cache, {
+                        name: req.body.dogName,
+                        age: req.body.dogAge,
+                        breed: req.body.dogBreed,
+                        owner: req.user.username,
+                        gender: req.body.gender,                    
+    
+                    }, function (err, bookuser) {
+                        res.redirect('/doginfo?topic=' + req.user.cache)
+    
+                    })
+                }
+            } else if(result.id == req.user.cache) {
+                console.log('same')
+
                 dogData.findByIdAndUpdate(req.user.cache, {
                     name: req.body.dogName,
                     age: req.body.dogAge,
@@ -859,6 +877,6 @@ app.post('/ananymous', function (req, res) {
     })
 })
 
-app.listen(port,'161.246.6.34', function () {
+app.listen(port, function () {
     console.log("ready to launch")
 })
