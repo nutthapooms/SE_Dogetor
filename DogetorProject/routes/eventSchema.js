@@ -3,6 +3,7 @@ var Schema = mongoose.Schema
 var event = new Schema({
     title: String,
     dog: String,
+    name:String,
     descr: String,
     owner: String,
     day: Number,

@@ -299,7 +299,8 @@ app.post('/editDog', loggedIn, function (req, res) {
     req.checkBody('gender', 'Gender is required').notEmpty()
 
     //console.log(req.body)
-
+    var tmp = req.body.oldName
+    console.log(tmp)
     var errors = req.validationErrors()
     if (errors) {
         dogData.find({
@@ -327,9 +328,11 @@ app.post('/editDog', loggedIn, function (req, res) {
             owner: req.user.id
         }, function (err, result) {
             console.log('meet')
-            console.log(result)
+            //console.log(result)
             if(!result){
-                dogData.findByIdAndUpdate(req.user.cache, {
+                console.log(req.body.oldname)
+                eventData.updateMany({name:req.body.oldName}, {$set: {name:req.body.dogName }},function(err,oo){
+                    dogData.findByIdAndUpdate(req.user.cache, {
                     name: req.body.dogName,
                     age: req.body.dogAge,
                     breed: req.body.dogBreed,
@@ -340,6 +343,8 @@ app.post('/editDog', loggedIn, function (req, res) {
                     res.redirect('/doginfo?topic=' + req.user.cache)
 
                 })
+                })
+                
 
             }else if (result.id != req.user.cache  ) {
                 console.log('iddd')
@@ -348,6 +353,8 @@ app.post('/editDog', loggedIn, function (req, res) {
                 res.redirect('/doginfo?topic=' + req.user.cache)
                 //console.log('dup')
                 }else if(result.name != req.body.dogName){
+
+                    // eventData.updateMany({name:result.name}, {$set: {name:req.body.dogName }})
                     dogData.findByIdAndUpdate(req.user.cache, {
                         name: req.body.dogName,
                         age: req.body.dogAge,
@@ -362,6 +369,7 @@ app.post('/editDog', loggedIn, function (req, res) {
                 }
             
             }else{
+                eventData.updateMany({name:result.name}, {$set: {name:req.body.dogName }})
                 dogData.findByIdAndUpdate(req.user.cache, {
                     name: req.body.dogName,
                     age: req.body.dogAge,
@@ -557,7 +565,7 @@ app.post('/addEvent', loggedIn, function (req, res) {
         res.redirect('home')
     } else {
        
-        title = req.body.title +"("+req.body.dog+")"
+        title = req.body.title 
         dog = req.body.dog
         descr = req.body.descr
         time = req.body.time
@@ -574,6 +582,7 @@ app.post('/addEvent', loggedIn, function (req, res) {
             newEvent = new eventData()
             newEvent.title = title
             newEvent.dog = temp.id
+            newEvent.name = req.body.dog
             newEvent.owner = req.user.id
             newEvent.descr = descr
             newEvent.time = time
