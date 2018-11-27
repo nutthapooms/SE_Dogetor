@@ -26,7 +26,7 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="#">About us</a>
+                    
                     <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Loginmodal"><i class="fas fa-user-plus"></i>
                         Log in</a></button>
                     <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Registermodal"><i class="fas fa-user-plus"></i>
@@ -47,21 +47,22 @@
 
             <!--  Analyze part Start ---------------------------------------------------------------------------------------------->
             <div class="col-8 content">
-                    <div style="position:absolute; top:50px; left:60px;">
+                    <div class="page-header"><h1>Analyze Disease</h1></div>
+                    <div style="position:absolute; top:70px; left:60px;">
                             <!-- Symptom box -->
                             
-                            <div class="head-result" style="position:relative; top:15px; left:205px"><h2>Info</h2></div>
-                            <div class="box-result" style="position:relative; top:15px;">
-                                    <ul class="text-result  " style="list-style-type: none;" type="none">
-                                            <li >Name :<%=info.name %> </li>
-                                            <li >Age :<%=info.age %> </li>
-                                            <li >Breed :<%=info.breed %> </li>
-                                            <li >Gender :<%=info.gend %> </li>             
+                            <div class="head-result" style="position:relative; top:30px; left:205px"><h2>Information</h2></div>
+                            <div class="box-result" style="position:relative; top:30px;">
+                                    <ul class="text-result" type="none">
+                                            <li >Name : <%=info.name %> </li>
+                                            <li >Age : <%=info.age %> years old</li>
+                                            <li >Breed : <%=info.breed %> </li>
+                                            <li >Gender : <%=info.gend %> </li>             
                                     </ul>
                             </div>
-                            <div class="head-result" style="position:relative; top:15px; left:205px"><h2>Symptom</h2></div>
-                            <div class="box-result" style="position:relative; top:15px;">
-                                <ul class="text-result" type="none">
+                            <div class="head-result" style="position:relative; top:30px; left:205px"><h2>Symptom</h2></div>
+                            <div class="box-result" style="position:relative; top:30px;">
+                                <ul class="text-result">
                                     <% for (var sym of sym){%>
                                         <li><%=sym%></li> 
                                     <% } %>
@@ -70,8 +71,7 @@
                             <!-- Result box -->
                             <div class="head-result" style="position:relative; top:30px; left:205px"><h2>Result</h2></div>
                             <div class="box-result" style="position:relative; top:30px;">
-                                <ul class="text-result" type="none">
-                                    
+                                <ul class="text-result">
                                     <% for (var result of result){%>
                                         <li><%=result%></li> 
                                     <% } %>

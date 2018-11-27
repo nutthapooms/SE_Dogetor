@@ -24,7 +24,7 @@
             </button>
             <div class="collapse navbar-collapse " id="navbarNavAltMarkup">
                 <div class="navbar-nav ml-auto">
-                    <a class="nav-item nav-link" href="#">About us</a>
+                   
                     <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Loginmodal"><i class="fas fa-user-plus"></i>
                         Log in</a></button>
                     <button class="btn btn-dark  navbtn" data-toggle="modal" data-target="#Registermodal"><i class="fas fa-user-plus"></i>
@@ -97,6 +97,13 @@
                 <%=dupli%>
             </div>
             <% } %>
+
+            <%if (dupli == 'Username not found') { %>
+                <div class="alert alert-success alert-dismissible fade show">
+                    <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <%=dupli%>
+                </div>
+                <% } %>
         </div>
     </div>
     <!--  Example Slide End------------------------------------------------------------------------------------------------->

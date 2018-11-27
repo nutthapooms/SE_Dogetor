@@ -93,10 +93,31 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
     }
 })
 
+// router.get('/aboutus', loggedIn, function (req, res) {
+//     dogData.find({
+//         owner: req.user.username
+//     }, function (err, book) {
+//         res.render('aboutus', {
+//             info: req.user,
+//             dog: book,
+//         })
+//     })
+// })
+
+
 
 router.get('/', function (req, res) {
     res.redirect('/index')
 })
+
+// function loggedIn(req, res, next) {
+//     console.log(req.session.passport.user)
+//     if (req.session.passport.user) {
+//         next()
+//     } else {
+//         res.redirect('/')
+//     }
+// }
 
 
 

@@ -17,8 +17,7 @@ var expressValidator = require('express-validator')
 var LocalStrategy = require('passport-local')
 var port = 8080
 
-app.use('/', index)
-
+app.use(index)
 mongoose.connect('mongodb://localhost:27017/userDB', { //connect Database
         useNewUrlParser: true
     },
@@ -39,12 +38,25 @@ app.use(passport.session())
 app.use(flash())
 app.set('view engine', 'ejs')                       //set template engine to EJS
 
+// app.use(function (req, res, next) {
+//     res.locals.currentUser = req.user;
+//     res.locals.success_msg = req.flash('success_msg')
+//     res.locals.error_msg = req.flash('error_msg')
+//     res.locals.error = req.flash('error')
+//     res.locals.edit = req.session.edit;
+//     next()
+// })
+
 app.use(function (req, res, next) {
-    res.locals.success_msg = req.flash('success_msg')
-    res.locals.error_msg = req.flash('error_msg')
-    res.locals.error = req.flash('error')
-    next()
-})
+    res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
+    res.locals.edit = req.session.edit;
+
+    
+    res.locals.session = req.session;
+    next();
+});
 
 app.use(expressValidator({
     errorFormatter: function (param, msg, value) {  
@@ -126,15 +138,9 @@ app.post('/editProfile', upload2.single('uploaded_image2'), function (req, res) 
 })
 
 app.get('/delevent',loggedIn,function(req,res){
-
     eventData.findByIdAndDelete(req.query.topic,function(err,book){
-        res.redirect('/home')
-
-        
+        res.redirect('/home')        
     })
-
-
-
 })
 
 
@@ -535,9 +541,7 @@ app.post('/addEvent', loggedIn, function (req, res) {
 
 
 
-app.get('/hosp', loggedIn, function (req, res) {
-
-    
+app.get('/hosp', loggedIn, function (req, res) {   
     
     dogData.find({
         owner: req.user.username
@@ -801,8 +805,10 @@ app.get('/index', function (req, res) {
 })
 
 app.get('/error', function (req, res) {
-    req.flash('log', "Username or Password is invalid")
-    res.redirect('/')
+    res.render('Regis', {
+        errors: '',
+        dupli: 'Username not found'
+    })
 
 })
 
