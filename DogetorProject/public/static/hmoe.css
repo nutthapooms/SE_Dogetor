@@ -228,24 +228,22 @@
     -webkit-animation: fadein 0.5s;
 }
 
-/* #butt{
-    font-size: 20px;
-    height:100%;
+#butt{
+    
+    margin-top: 40px;
+    height:70%;
     width:100%;
-    background-color:transparent;
+    
     transition: 0.15s;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
     -ms-transition: 0.15s;
     -o-transition: 0.15s;
-} */
+} 
 
-/* #butt:hover{
-    font-size: 35px;
-    height:100%;
-    width:100%;
-    background-color:rgba(255, 255, 255, 0.548);
-} */
+#butt:hover{
+    cursor: pointer;
+}
 
 .dogeachday{
     padding-left: 20px;

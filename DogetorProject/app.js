@@ -357,7 +357,7 @@ app.get('/deletedog', function (req, res) {
                 safe: true,
                 upsert: true
             }, function (err, book) {
-                dogData.findByIdAndRemove(req.user.cache, function (err, books) {
+                dogData.findByIdAndUpdate(req.user.cache,{owner:''}, function (err, books) {
                     res.redirect('/home')
                 })
             })
@@ -503,7 +503,7 @@ app.post('/event', loggedIn, function (req, res) {
 })
 
 app.post('/addEvent', loggedIn, function (req, res) {
-    req.checkBody('title').notEmpty().withMessage('Title is required')
+    req.checkBody('title').notEmpty().withMessage('Title is required').isAlphanumeric().withMessage('Title contains only number and alphabet')
     req.checkBody('dog').notEmpty().withMessage('Dog name is required').isAlpha().withMessage('')
     req.checkBody('descr').notEmpty().withMessage('Description is required')
     var errors = req.validationErrors()
