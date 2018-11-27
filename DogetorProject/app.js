@@ -109,7 +109,7 @@ app.post('/editProfile', upload2.single('uploaded_image2'), function (req, res) 
         res.redirect('/home')
     } else {
         if (req.file == undefined) {
-            newavatar = "defaultprofilepicturedogetoruser.jpg"
+            newavatar = req.user.avatar
         } else {
             newavatar = req.file.filename
         }
@@ -537,16 +537,8 @@ app.post('/addEvent', loggedIn, function (req, res) {
 
 app.get('/hosp', loggedIn, function (req, res) {
 
-    // newhos = new hosData()
-    // newhos.name = 'test'
-    // newhos.location = 'test'
-    // newhos.phone = 'test'
-    // newhos.open = 'test'
-    // newhos.pic = 'ThonglorPet.jpg'
-
-    // newhos.save(function(err,docs){
-    //     console.log(docs)
-    // })
+    
+    
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
@@ -613,6 +605,16 @@ app.get('/hosunlike', loggedIn, function (req, res) {
         })
 })
 app.get('/vet', loggedIn, function (req, res) {
+
+    // newvet = new vetData()
+    // newvet.name = 'test'
+    // newvet.surname = 'test'
+    // newvet.hos = 'test'
+    // newvet.phone = 'test'
+    // newvet.pic = 'ThonglorPet.jpg'
+    // newvet.save(function(err,docs){
+    //     console.log(docs)
+    // })
     dogData.find({
         owner: req.user.username
     }, function (err, book) {
