@@ -71,6 +71,13 @@
 #analyzebtn{
     padding : 15px;
     background-color: rgb(0, 192, 226);
+
+    color: white;
+}
+#updatebtn{
+    padding : 15px;
+    background-color: rgb(255, 153, 0);
+
     color: white;
 }
 .listbtn{

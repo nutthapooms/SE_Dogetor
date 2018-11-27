@@ -26,6 +26,12 @@
     margin-top : 30px;
     margin-left: 5px;
 }
+.deleteEventBtn{
+    background-color: rgb(255, 55, 65);
+    color: white;
+    margin-top : 20px;
+    margin-left: 5px;
+}
 .titleEvent{
     padding: 15px;
     padding-left: 15px;    

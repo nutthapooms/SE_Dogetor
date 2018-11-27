@@ -33,7 +33,8 @@
                                 <div class="col-3">
                                     <button class="btn addEventBtn" type="button" data-toggle="collapse" data-target="#addEventCollapse"
                                         aria-expanded="false" aria-controls="addEventCollapse"><i class="fas fa-plus"></i> Create
-                                        event</button>
+                                        event
+                                    </button>
                                 </div>
                             </div>
                             <!-- collapse startt------------------------------------------------ -->
@@ -99,8 +100,11 @@
                                     <h5><%=evento.dog %></h5>
                                     <!-- <h5>Location</h5> -->
                                 </div>
-                                <div class="col-8 cardContent">
+                                <div class="col-5 cardContent">
                                     <h5><%=evento.descr %></h5>
+                                </div>
+                                <div class = "col-2">
+                                    <button class="btn deleteEventBtn" type="button" ><i class="fas fa-trash-alt"></i> Delete event</button>
                                 </div>
                             </div>
                             <% }); %>

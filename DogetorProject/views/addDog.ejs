@@ -61,9 +61,22 @@
                             <label>Age(year):</label>
                             <input required type="number" min="0" max="100" name="dogAge" class="form-control" placeholder="age">
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Breed:</label>
                             <input required type="text" name="dogBreed" class="form-control" placeholder="breed">
+                        </div> -->
+                        <div class="form-group">
+                            <label>Breed:</label>
+                            <select required class="custom-select rect-field" name="dogBreed" placeholder="breed">
+                                <option value="" disabled selected>Select your breed</option>
+                                <option value="Siberian husky" >Siberian husky</option>
+                                <option value="Golden Retriever" >Golden Retriever</option>
+                                <option value="Corgi" >Corgi</option>
+                                <option value="Pug" >Pug</option>
+                                <option value="German sheperd" >German sheperd</option>
+
+                                
+                            </select>
                         </div>
                         <div class="form-group">
                             <label>Gender:</label><br>
