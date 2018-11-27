@@ -131,6 +131,7 @@ app.post('/editProfile', upload2.single('uploaded_image2'), function (req, res) 
             email:req.body.email,
             avatar:newavatar
         },function(err,book){
+            
             res.redirect('/home')
         })
         
@@ -146,7 +147,7 @@ app.get('/delevent',loggedIn,function(req,res){
 
 app.get('/addDog', loggedIn, function (req, res) {      //go to addDog page
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         res.render('addDog', {
             info: req.user,
@@ -167,10 +168,10 @@ app.get('/home', loggedIn, function (req, res) {
         // console.log(req.user.cache)
     })
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         eventData.find({
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, docs) {
             var d = []
             for (x of docs) {
@@ -190,7 +191,7 @@ app.post('/home', function (req, res) {
     var try1 = req.body
     // console.log(try1)
     eventData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, docs) {
         var d = []
         for (x of docs) {
@@ -219,10 +220,10 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) { //
     
     if (errors) {
         dogData.find({
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, book) {
             eventData.find({
-                owner: req.user.username
+                owner: req.user.id
             }, function (err, docs) {
                 var d = []
                 for (x of docs) {
@@ -242,7 +243,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) { //
         newDog.name = req.body.dogName
         newDog.age = req.body.dogAge
         newDog.breed = req.body.dogBreed
-        newDog.owner = req.user.username
+        newDog.owner = req.user.id
         newDog.gender = req.body.gender
         newDog.dis = ""
 
@@ -253,7 +254,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) { //
         }
         dogData.findOne({
             name: req.body.dogName,
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, result) {
             if (result) {
                 res.redirect('/addDog')
@@ -302,10 +303,10 @@ app.post('/editDog', loggedIn, function (req, res) {
     var errors = req.validationErrors()
     if (errors) {
         dogData.find({
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, book) {
             eventData.find({
-                owner: req.user.username
+                owner: req.user.id
             }, function (err, docs) {
                 var d = []
                 for (x of docs) {
@@ -323,19 +324,35 @@ app.post('/editDog', loggedIn, function (req, res) {
     } else {
         dogData.findOne({
             name: req.body.dogName,
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, result) {
+            console.log('meet')
             console.log(result)
-            if (result.id != req.user.cache  ) {
+            if(!result){
+                dogData.findByIdAndUpdate(req.user.cache, {
+                    name: req.body.dogName,
+                    age: req.body.dogAge,
+                    breed: req.body.dogBreed,
+                    owner: req.user.id,
+                    gender: req.body.gender,                    
+
+                }, function (err, bookuser) {
+                    res.redirect('/doginfo?topic=' + req.user.cache)
+
+                })
+
+            }else if (result.id != req.user.cache  ) {
+                console.log('iddd')
                 if(result.name == req.body.dogName){
-                res.redirect('/doginfo?topic=' + req.user.cache)
                 console.log('dup')
+                res.redirect('/doginfo?topic=' + req.user.cache)
+                //console.log('dup')
                 }else if(result.name != req.body.dogName){
                     dogData.findByIdAndUpdate(req.user.cache, {
                         name: req.body.dogName,
                         age: req.body.dogAge,
                         breed: req.body.dogBreed,
-                        owner: req.user.username,
+                        owner: req.user.id,
                         gender: req.body.gender,                    
     
                     }, function (err, bookuser) {
@@ -343,14 +360,13 @@ app.post('/editDog', loggedIn, function (req, res) {
     
                     })
                 }
-            } else if(result.id == req.user.cache) {
-                console.log('same')
-
+            
+            }else{
                 dogData.findByIdAndUpdate(req.user.cache, {
                     name: req.body.dogName,
                     age: req.body.dogAge,
                     breed: req.body.dogBreed,
-                    owner: req.user.username,
+                    owner: req.user.id,
                     gender: req.body.gender,                    
 
                 }, function (err, bookuser) {
@@ -367,7 +383,7 @@ app.get('/deletedog', function (req, res) {
         // console.log(dog)
         eventData.updateMany({
             dog: dog.name,
-            owner: req.user.username,
+            owner: req.user.id,
         }, {
             dog: "",
             owner: "",
@@ -396,8 +412,8 @@ app.post('/dogInfo', function (req, res) {
     // console.log(try2)
     dogData.findById(req.user.cache, function (err, dogg) {
         eventData.find({
-            owner: req.user.username,
-            dog: dogg.name
+            owner: req.user.id,
+            dog: dogg.id
         }, function (err, docs) {
             var d = []
             for (x of docs) {
@@ -416,6 +432,7 @@ app.post('/dogInfo', function (req, res) {
     })
 })
 app.get('/dogInfo', loggedIn, function (req, res) {
+    
     var topic = req.query.topic
     userData.findOneAndUpdate({
         _id: req.user._id
@@ -425,25 +442,26 @@ app.get('/dogInfo', loggedIn, function (req, res) {
         "new": true,
         "upsert": true
     }, function (err, man) {
-        // console.log(req.user.cache)
+         
 
 
     })
     if (req.user.dog.includes(topic)) {
         dogData.findById(topic, function (err, book) {
             dogData.find({
-                owner: req.user.username
+                owner: req.user.id
             }, function (err, bookuser) {
                 eventData.find({
-                    owner: req.user.username,
-                    dog: book.name
+                    owner: req.user.id,
+                    dog: book.id
                 }, function (err, docs) {
                     var d = []
                     for (x of docs) {
 
                         d.push(x.day.toString() + "" + (x.month - 1).toString() + "" + (x.year - 1900).toString())
                     }
-                    // console.log(d)
+                     
+                     
                     res.render("doginfo", {
                         dogObj: book,
                         info: req.user,
@@ -459,7 +477,7 @@ app.get('/dogInfo', loggedIn, function (req, res) {
 })
 app.post('/eventD', loggedIn, function (req, res) {
     dogData.find({
-        owner: req.user.username,
+        owner: req.user.id,
     }, function (err, book) {
         day = req.body.date
         month = req.body.month
@@ -472,8 +490,8 @@ app.post('/eventD', loggedIn, function (req, res) {
                     day: day,
                     month: month,
                     year: year,
-                    owner: req.user.username,
-                    dog: result.name
+                    owner: req.user.id,
+                    dog: result.id
                 }).sort({
                     time: +1
                 }).exec(function (err, docs) {
@@ -496,7 +514,7 @@ app.post('/eventD', loggedIn, function (req, res) {
 })
 app.post('/event', loggedIn, function (req, res) {
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         day = req.body.date
         month = req.body.month
@@ -506,11 +524,13 @@ app.post('/event', loggedIn, function (req, res) {
             day: day,
             month: month,
             year: year,
-            owner: req.user.username
+            owner: req.user.id
 
         }).sort({
             time: +1
         }).exec(function (err, docs) {
+
+            
             res.render('addEvent', {
                 info: req.user,
                 dog: book,
@@ -528,32 +548,44 @@ app.post('/event', loggedIn, function (req, res) {
 
 app.post('/addEvent', loggedIn, function (req, res) {
     req.checkBody('title').notEmpty().withMessage('Title is required').isAlphanumeric().withMessage('Title contains only number and alphabet')
-    req.checkBody('dog').notEmpty().withMessage('Dog name is required').isAlpha().withMessage('')
+    req.checkBody('dog').notEmpty().withMessage('Dog name is required')
     req.checkBody('descr').notEmpty().withMessage('Description is required')
     var errors = req.validationErrors()
-
+    
     if (errors) {
+       
         res.redirect('home')
     } else {
-        title = req.body.title
+       
+        title = req.body.title +"("+req.body.dog+")"
         dog = req.body.dog
         descr = req.body.descr
         time = req.body.time
         day = req.body.day
         month = req.body.month
         year = req.body.year
-        newEvent = new eventData()
-        newEvent.title = title
-        newEvent.dog = dog
-        newEvent.owner = req.user.username
-        newEvent.descr = descr
-        newEvent.time = time
-        newEvent.day = day
-        newEvent.month = month
-        newEvent.year = year
-        newEvent.save(function (err, docs) {
+        
+        dogData.findOne({
+            name:dog,
+            owner:req.user.id
+        },function(err,temp){
+            console.log(title)
+            
+            newEvent = new eventData()
+            newEvent.title = title
+            newEvent.dog = temp.id
+            newEvent.owner = req.user.id
+            newEvent.descr = descr
+            newEvent.time = time
+            newEvent.day = day
+            newEvent.month = month
+            newEvent.year = year
+            newEvent.save(function (err, docs) {
             res.redirect('home')
         })
+        })
+        
+        
     }
 })
 
@@ -562,7 +594,7 @@ app.post('/addEvent', loggedIn, function (req, res) {
 app.get('/hosp', loggedIn, function (req, res) {   
     
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         hosData.find({}, function (err, hos) {
             res.render('hospitalinfo', {
@@ -579,7 +611,7 @@ app.get('/hosinfo', loggedIn, function (req, res) {
     hosname = req.query.topic
 
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         hosData.find({
             name: hosname
@@ -638,7 +670,7 @@ app.get('/vet', loggedIn, function (req, res) {
     //     console.log(docs)
     // })
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         vetData.find({}, function (err, vet) {
             res.render('vetInfo', {
@@ -653,7 +685,7 @@ app.get('/vet', loggedIn, function (req, res) {
 app.get('/vetinfo', loggedIn, function (req, res) {
     vetname = req.query.topic
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         vetData.find({
             name: vetname
@@ -705,10 +737,10 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
     // console.log(req.body.dog)
     dogData.findOne({
         name: req.body.dog,
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, ana) {
         dogData.find({
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, book) {
             // console.log(ana)
             res.render('AnalyzeRegOne', {
@@ -723,10 +755,10 @@ app.post('/analyzeReg', loggedIn, function (req, res) {
 app.post('/ananymous2',loggedIn, function (req, res) {
     // console.log(req.body.info)
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         eventData.find({
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, docs) {
             var d = []
             for (x of docs) {
@@ -750,15 +782,15 @@ app.post('/ananymous3',loggedIn, function (req, res) {
     // console.log(req.body.info)
     dogData.findOneAndUpdate({
         name: req.body.info.name,
-        owner: req.user.username
+        owner: req.user.id
     }, {
         dis: req.body.result
     }, function (err, sym) {
         dogData.find({
-            owner: req.user.username
+            owner: req.user.id
         }, function (err, book) {
             eventData.find({
-                owner: req.user.username
+                owner: req.user.id
             }, function (err, docs) {
                 var d = []
                 for (x of docs) {
@@ -835,7 +867,7 @@ app.get('/profile', function (req, res) {
 })
 app.get('/aboutus', loggedIn, function (req, res) {
     dogData.find({
-        owner: req.user.username
+        owner: req.user.id
     }, function (err, book) {
         res.render('aboutus', {
             info: req.user,
