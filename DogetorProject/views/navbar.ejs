@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark navv" >
+<nav class="navbar navbar-expand-lg navbar-dark navv "  >
     <div class=container>
         <a class="navbar-brand navv" href="/" ><i class="fas fa-paw"></i> Dogetor</a>
         <button class="navbar-toggler navv" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
@@ -14,3 +14,24 @@
         </div>
     </div>
 </nav>
+<script>
+
+
+// Get the header
+var header = document.getElementById("navv");
+
+// Get the offset position of the navbar
+var sticky = header.offsetTop;
+
+// Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+function myFunction() {
+    myFunction2();
+  if (window.pageYOffset > sticky) {
+    header.classList.add("sticky");
+  } else {
+    header.classList.remove("sticky");
+  }
+}
+</script>
+
+
