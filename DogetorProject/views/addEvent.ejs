@@ -104,7 +104,7 @@
                                     <h5><%=evento.descr %></h5>
                                 </div>
                                 <div class = "col-2">
-                                    <button class="btn deleteEventBtn" type="button" ><i class="fas fa-trash-alt"></i> Delete event</button>
+                                    <a style="text-decoration:none;color: aliceblue" href="/delevent?topic=<%=evento.id%>&d=<%=date.day%>m=<%=date.month%>y=<%=date.year%>" ><button class="btn deleteEventBtn" type="button" ><i class="fas fa-trash-alt"></i>Delete event</button></a> 
                                 </div>
                             </div>
                             <% }); %>

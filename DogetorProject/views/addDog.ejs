@@ -159,9 +159,12 @@
     {
         var typ=document.getElementById("imgInp").value;
         var res = typ.match(".jpg");
-        var res2 = typ.match(".png");
+        var res2 = typ.match("jpeg")
+        var res3 = typ.match(".png");
+        var res4 = typ.match(".PNG");
+        var res5 = type.match("gif")
 
-        if(res || res2)
+        if(res || res2 || res3 || res4 || res5)
         {
            
         }

@@ -276,15 +276,21 @@
     function chng() {
         var typ = document.getElementById("imgInp").value;
         var res = typ.match(".jpg");
-        var res2 = typ.match(".PNG");
+        var res2 = typ.match("jpeg")
+        var res3 = typ.match(".png");
+        var res4 = typ.match(".PNG");
+        var res5 = type.match("gif")
 
-        if (res || res2) {
-
-        } else {
-
+        if(res || res2 || res3 || res4 || res5)
+        {
+           
+        }
+        else
+        {
+           
             alert("Sorry only jpeg or PNG images are accepted");
-            document.getElementById("imgInp").value = "";
-
+            document.getElementById("imgInp").value="";
+            
         }
     }
 

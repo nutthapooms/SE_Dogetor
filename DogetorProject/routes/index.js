@@ -98,24 +98,6 @@ router.get('/', function (req, res) {
     res.redirect('/index')
 })
 
-router.get('/analyzeUser', function (req, res) {
-    res.render('AnalyzeUserOne')
-})
 
-router.get('/dogetor', function (req, res) {
-    res.render('Regis', {
-        errors: '',
-        dupli: ''
-    })
-})
-
-router.post('/ananymous', function (req, res) {
-    // console.log(req.body)
-    res.render('resultUserOne', {
-        info: req.body.info,
-        sym: req.body.sym,
-        result: req.body.result
-    })
-})
 
 module.exports = router

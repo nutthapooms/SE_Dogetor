@@ -72,8 +72,22 @@ var storage = multer.diskStorage({                  //storage for dog
     }
 })
 
+var storage2 = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null,  __dirname + '/public/image/user')
+    },
+    filename: function (req, file, callback) {
+        callback(null, Date.now()+file.originalname)
+    }
+})
+
 var upload = multer({
     storage: storage
+
+})
+
+var upload2 = multer({
+    storage: storage2
 
 })
 passport.serializeUser(function (user, done) {
@@ -85,6 +99,44 @@ passport.deserializeUser(function (id, done) {
         done(err, user)
     })
 })
+
+app.post('/editProfile', upload2.single('uploaded_image2'), function (req, res) {
+    req.checkBody('username').notEmpty().withMessage('Username is required').isAlphanumeric().withMessage('Username contains only number and alphabet')
+    req.checkBody('email').notEmpty().withMessage('Email is required').isEmail().withMessage('Email only!!')
+   
+    var errors = req.validationErrors()
+    if (errors) {
+        res.redirect('/home')
+    } else {
+        if (req.file == undefined) {
+            newavatar = "defaultprofilepicturedogetoruser.jpg"
+        } else {
+            newavatar = req.file.filename
+        }
+        
+        userData.findByIdAndUpdate(req.user.id,{
+            username:req.body.username,
+            email:req.body.email,
+            avatar:newavatar
+        },function(err,book){
+            res.redirect('/home')
+        })
+        
+    }
+})
+
+app.get('/delevent',loggedIn,function(req,res){
+
+    eventData.findByIdAndDelete(req.query.topic,function(err,book){
+        res.redirect('/home')
+
+        
+    })
+
+
+
+})
+
 
 app.get('/addDog', loggedIn, function (req, res) {      //go to addDog page
     dogData.find({
@@ -239,6 +291,8 @@ app.post('/editDog', loggedIn, function (req, res) {
     req.checkBody('dogBreed', 'Dog Breed is required').notEmpty()
     req.checkBody('gender', 'Gender is required').notEmpty()
 
+    console.log(req.body)
+
     var errors = req.validationErrors()
     if (errors) {
         dogData.find({
@@ -273,10 +327,10 @@ app.post('/editDog', loggedIn, function (req, res) {
                     age: req.body.dogAge,
                     breed: req.body.dogBreed,
                     owner: req.user.username,
-                    gender: req.body.gender,
+                    gender: req.body.gender,                    
 
                 }, function (err, bookuser) {
-                    res.redirect('/doginfo?topic=' + bookuser._id)
+                    res.redirect('/doginfo?topic=' + req.user.cache)
 
                 })
             }
@@ -478,6 +532,8 @@ app.post('/addEvent', loggedIn, function (req, res) {
         })
     }
 })
+
+
 
 app.get('/hosp', loggedIn, function (req, res) {
 
@@ -775,6 +831,26 @@ function loggedIn(req, res, next) {
     }
 }
 
-app.listen(port, function () {
+app.get('/analyzeUser', function (req, res) {
+    res.render('AnalyzeUserOne')
+})
+
+app.get('/dogetor', function (req, res) {
+    res.render('Regis', {
+        errors: '',
+        dupli: ''
+    })
+})
+
+app.post('/ananymous', function (req, res) {
+    // console.log(req.body)
+    res.render('resultUserOne', {
+        info: req.body.info,
+        sym: req.body.sym,
+        result: req.body.result
+    })
+})
+
+app.listen(port,'161.246.6.34', function () {
     console.log("ready to launch")
 })
