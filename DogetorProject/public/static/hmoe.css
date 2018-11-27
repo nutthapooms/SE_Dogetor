@@ -22,6 +22,8 @@
 #sidebar1{
     height: 1080px;
     padding:0px 55px;
+    padding-top:56px;
+    
 }
 #username{
     margin-top: 10px;
@@ -151,6 +153,7 @@
     border-radius: 5px;
     background-color: rgb(255, 255, 255);
     margin :30px 10px 10px 30px;
+    margin-top:86px;
     
 }
 #missionTopic{

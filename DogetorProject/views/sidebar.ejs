@@ -1,4 +1,4 @@
-<div class="col-3 " id="sidebar1">
+<div class="col-lg-3 sticky-top" id="sidebar1" >
     <div class ="rounded-bottom" id="sidebar">
         <div class="sidebarComp">
             <img id="profile" src="/image/user/<%=info.avatar%>"> <!-- userpics----->
@@ -91,40 +91,40 @@
             </a>
         </div>
 
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-              
-                <!-- Modal Header -->
-                <form action="/analyzeReg" method="POST">
-
-                    <div class="form-group">
-                            <label for="">Choose your Dog:</label>
-                            <select required class="custom-select rect-field" name="dog" id="pet">
-                                
-                                <option value="" disabled selected>Select your pet</option>
-                                <% for (var pet of dog){%>
-                                <option required >
-                                    <%= pet.name%>
-                                </option>
-                                <% } %>
-
-                            </select>
-                        </div>
-
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary ">Analyze</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    </div>
-
-
-                </form>
-                
-              </div>
-            </div>
-          </div>
+        
     </div>
 </div>
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content"> 
+        <!-- Modal Header -->
+        <form action="/analyzeReg" method="POST">
+
+            <div class="form-group">
+                    <label for="">Choose your Dog:</label>
+                    <select required class="custom-select rect-field" name="dog" id="pet">
+                        
+                        <option value="" disabled selected>Select your pet</option>
+                        <% for (var pet of dog){%>
+                        <option required >
+                            <%= pet.name%>
+                        </option>
+                        <% } %>
+
+                    </select>
+                </div>
+
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary ">Analyze</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+
+
+        </form>
+        
+      </div>
+    </div>
+  </div>
 <script>
     var dogtoshow = document.getElementsByClassName("dogtoshow");
     var morebtn = document.getElementsByClassName("morebtn");
