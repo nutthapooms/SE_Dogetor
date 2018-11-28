@@ -35,22 +35,18 @@
                 <% for (var vet of vet){%>
                 <div id="infod" class="contentCard row">
                     <div class="col-4 cardTitle">
-						<img class="rounded" src="/image/doge0.jpg" class ="vetPic" height="110" width="auto">
-                        <h5><%=vet.name %></h5>
-
-                        <h5><%=vet.surname %></h5>
+                        
+                        <img class="rounded" src="/image/<%=vet.pic%>" class ="vetPic" height="110" width="auto">
+                        <h5><%=vet.name %>  <%=vet.surname %></h5>
                         <br>
                         <% if(info.vet.length ==0){ %>
-                            <a href="/vetlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star " style="color:white"></i></a>
-    
-    
+                            <a href="/vetlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star " style="color:white"></i></a>    
     
                             <% } 
                             else{ %>
     
                             <% if(info.vet.includes(vet.name) ){ %>
-                            <a href="/vetunlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:yellow"></i></a>
-    
+                            <a href="/vetunlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:yellow"></i></a>    
     
                             <% } else { %> <a href="/vetlike?id=<%=vet.name%>" class="btn btn-info btn-lg"><i class="fa fa-star" style="color:white"></i></a>
                             <% } %>
@@ -60,9 +56,9 @@
                     </div>
                     <div class="col-8 cardContent">
                         <h4>Information</h4>
-                        <h5><%=vet.hos %></h5>
+                        Hospital :<h5><%=vet.hos %></h5>
                         
-                        <h5><%=vet.experience %></h5>
+                        Experience :<h5><%=vet.experience %></h5>
                         
 
                     </div>

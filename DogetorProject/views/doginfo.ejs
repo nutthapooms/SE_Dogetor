@@ -90,21 +90,17 @@
                                 <form action="/editDog" method="POST">
                                     <div class="form-group">
                                         <label>Name:</label>
-                                        <input required type="text" name="dogName" value="<%=dogObj.name%>" class="form-control"
-                                            placeholder="name">
+                                        <input required type="text" name="dogName" pattern="[A-Za-z0-9\s]{1,15}" value="<%=dogObj.name%>" class="form-control"
+                                            placeholder="Max Character : 15">
                                         <input style="display:none" readonly required type="text" name="oldName" value="<%=dogObj.name%>"
                                             class="form-control" placeholder="name">
                                     </div>
                                     <div class="form-group">
                                         <label>Age(year):</label>
                                         <input required type="number" min="0" name="dogAge" value="<%=dogObj.age%>"
-                                            class="form-control" placeholder="age">
+                                            class="form-control" placeholder="Max : 100">
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <label>Breed:</label>
-                                        <input required type="text" name="dogBreed" value="" class="form-control"
-                                            placeholder="breed">
-                                    </div> -->
+                                   
                                     <div class="form-group">
                                         <label>Breed:</label>
                                         <select required class="custom-select rect-field" name="dogBreed" placeholder="breed">
@@ -209,8 +205,8 @@
                             <td class="eachday" style="background-color:coral">
 
 
-                                <div id="butt" onclick="eachdayclick(this.innerHTML)">
-                                    <%= datee %>
+                                <div id="butt" class="ee" onclick="eachdayclick(this.innerHTML)">
+                                        <%= datee %>
                                 </div>
                             </td>
 

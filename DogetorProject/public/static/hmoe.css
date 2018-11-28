@@ -3,11 +3,14 @@
     width : 1300px;
     margin : 0px auto;
 }
+
+
 #sidebar{
     background-color: rgb(252, 199, 120);;
     color: white;
     padding: 20px;  
 }
+
 .navv{
     background-color:  rgb(226, 136, 0);
     color: white;
@@ -22,7 +25,7 @@
 #sidebar1{
     height: 1080px;
     padding:0px 55px;
-    padding-top:56px;
+    padding-top:40px;
     
 }
 #username{
@@ -94,19 +97,21 @@
 
 #nxtmbtn{
     
-    margin-top : 10px;
+    margin:10px;
+
     padding : 10px;
     background-color: rgb(0, 192, 226);
     color: white;
 }
 #prembtn{
-    margin-top : 10px;
+    margin:10px;
     padding : 10px;
     background-color: rgb(0, 192, 226);
     color: white;
 }
 #doginfo{
     background-color: rgb(0, 192, 226);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: white;
     padding: 5%;
     margin :10px 0px;
@@ -145,12 +150,14 @@
 }
 
 .dognameinlist{
+    text-decoration:none;color:rgb(184, 108, 37);
     padding : 0px 10px;
     width: 140px;
     margin: 0px;
     
 }
 .dognameindot{
+    text-decoration:none;color:rgb(184, 108, 37);
     padding : 3px 10px;
     width: 42px;
     margin: 0px;
@@ -158,7 +165,7 @@
 .content{
     
     border-radius: 5px;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     margin :30px 10px 10px 30px;
     margin-top:86px;
     
@@ -232,15 +239,17 @@
     
     
     height:100%;
-    width:100%;
-    
-    
+    width:100%;   
     transition: 0.15s;
     -webkit-transition: 0.15s;
     -moz-transition: 0.15s;
     -ms-transition: 0.15s;
     -o-transition: 0.15s;
 } 
+
+.ee{
+    color:white;
+}
 
 
 

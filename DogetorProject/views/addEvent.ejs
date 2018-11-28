@@ -43,8 +43,8 @@
                                     <form action="/addEvent" method="POST">
                                         <div class="form-group">
                                             <label for="username">Title:</label>
-                                            <input required type="text" required pattern="[A-Za-z0-9]{1,30}" class="form-control" name="title"
-                                                placeholder="Meetdoctor">
+                                            <input required type="text" required pattern="[A-Za-z0-9\s]{1,20}" class="form-control" name="title"
+                                                placeholder="Max Character : 20">
             
                                         </div>
                                         <div class="form-group">
@@ -95,13 +95,14 @@
                             <% event.forEach(function(evento) { %>
                             <div id="infod" class="contentCard row">
                                 <div class="col-4 cardTitle">
-                                    <h3><%=evento.title %></h3>
+                                    <h4 style="word-wrap:break-word" ><%=evento.title %></h4>
                                     <h5><%=evento.time %></h5>
                                     <h5><%=evento.name %></h5>
                                     <!-- <h5>Location</h5> -->
                                 </div>
-                                <div style="word-wrap: break-word;" class="col-5 cardContent">
-                                    <div><h5><%=evento.descr %></h5></div> 
+                                <div  style="word-wrap: break-word;background-color: rgba(240, 248, 255, 0.726)" class="col-5 cardContent">
+                                    <h4>Description </h4>
+                                    <h5><%=evento.descr %></h5>
                                 </div>
                                 <div class = "col-2">
                                     <a style="text-decoration:none;color: aliceblue" href="/delevent?topic=<%=evento.id%>&d=<%=date.day%>m=<%=date.month%>y=<%=date.year%>" ><button class="btn deleteEventBtn" type="button" ><i class="fas fa-trash-alt"></i>Delete event</button></a> 

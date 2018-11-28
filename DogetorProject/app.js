@@ -211,7 +211,7 @@ app.post('/home', function (req, res) {
 })
 app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) { //add dog to database
     //////////validator///////////
-    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required').isLength({min:0,max:15}).trim().escape()
     req.checkBody('dogAge').isInt({
         min: 0
     }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
@@ -290,7 +290,7 @@ app.post('/addDog', upload.single('uploaded_dogimage'), function (req, res) { //
 
 app.post('/editDog', loggedIn, function (req, res) {
     //////////validator///////////
-    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required')
+    req.checkBody('dogName').isAlphanumeric().withMessage('Dog name contains only number and alphabet').notEmpty().withMessage('Dog Name is required').isLength({min:0,max:15}).trim().escape()
     req.checkBody('dogAge').isInt({
         min: 0
     }).withMessage('Dog Age must be positive integer').notEmpty().withMessage('Dog age is required')
@@ -548,16 +548,14 @@ app.post('/event', loggedIn, function (req, res) {
 })
 
 app.post('/addEvent', loggedIn, function (req, res) {
-    req.checkBody('title').notEmpty().withMessage('Title is required').isAlphanumeric().withMessage('Title contains only number and alphabet')
+    req.checkBody('title').trim().notEmpty().withMessage('Title is required').trim().matches(/^[a-z0-9 ]+$/i).withMessage('Title contains only number and alphabet').isLength({min:0,max:20}).withMessage('')
     req.checkBody('dog').notEmpty().withMessage('Dog name is required')
     req.checkBody('descr').notEmpty().withMessage('Description is required')
     var errors = req.validationErrors()
 
     if (errors) {
-
         res.redirect('home')
     } else {
-
         title = req.body.title
         dog = req.body.dog
         descr = req.body.descr
@@ -591,14 +589,7 @@ app.post('/addEvent', loggedIn, function (req, res) {
 
 
 app.get('/hosp', loggedIn, function (req, res) {
-    // newhos = new hosData()
-    // newhos.name = 'test'    
-    // newhos.location = 'test'    
-    // newhos.open = 'test'
-    // newhos.phone = 'test'
-    // newhos.pic = 'ThonglorPet.jpg'
-    // newhos.save(function(err,docs){
-    // console.log(docs)})
+    
 
     dogData.find({
         owner: req.user.id
@@ -663,15 +654,7 @@ app.get('/hosunlike', loggedIn, function (req, res) {
         })
 })
 app.get('/vet', loggedIn, function (req, res) { 
-//     newvet = new vetData()
-//     newvet.name = 'test'
-//     newvet.surname = 'test'
-//     newvet.hos = 'test'
-//     newvet.experience = 'test'
-//     newvet.pic = 'ThonglorPet.jpg'
-//     newvet.save(function(err,docs){
-//         console.log(docs)
-// })
+
 
     dogData.find({
         owner: req.user.id

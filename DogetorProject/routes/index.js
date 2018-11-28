@@ -46,7 +46,7 @@ var upload = multer({
 
 
 router.post('/', upload.single('uploaded_image'), function (req, res) {
-    req.checkBody('username').notEmpty().withMessage('Username is required').isAlphanumeric().withMessage('Username contains only number and alphabet')
+    req.checkBody('username').notEmpty().withMessage('Username is required').isAlphanumeric().withMessage('Username contains only number and alphabet').isLength({min:1,max:15}).withMessage('Usernam length must be 1-12 character')
     req.checkBody('email').notEmpty().withMessage('Email is required').isEmail().withMessage('Email only!!')
     req.checkBody('pwd').notEmpty().withMessage('Password is required ').isAlphanumeric().withMessage('Password contains only number and alphabet')
     req.checkBody('Cpwd', 'Password  not match').equals(req.body.pwd)

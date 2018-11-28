@@ -24,23 +24,23 @@
                             j++;
                         </script>
                         <td class="dognameinlist" ><a href="/doginfo?topic=<%=pet.id%>" style="text-decoration:none;color:rgb(184, 108, 37);"><div style="height:100%;width:100%;"><%=pet.name%></div> </a> </td>
-                        <td class="dognameindot"><a href="/doginfo?topic=<%=pet.id%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                        <td class="dognameindot"><a href="/doginfo?topic=<%=pet.id%>"style="text-decoration:none;color:rgb(184, 108, 37);" ><i class="fas fa-ellipsis-h"></i> </a></td>
                     </tr>   
                 <% } %>
             <tr id = "asdasd" class ="morebtn" onclick="allowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                 <script>document.getElementById("asdasd").id = ++j;</script>
-                <td class="dognameinlist"><a href="#" style="color:rgb(184, 108, 37);" style="text-decoration:none;"><h5>more</h5></a></td>
+                <td class="dognameinlist"><a href="#" style="color:rgb(184, 108, 37);text-decoration:none;" ><h5>more</h5></a></td>
                 <td class="dognameindot"><a href="#"style="color:rgb(184, 108, 37);" style="text-decoration:none;"><i class="fas fa-ellipsis-h"></i></a></td>
             </tr>
             <tr id = "asdasd" class ="lessbtn" onclick="disallowdog()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                 <script>document.getElementById("asdasd").id = ++j;</script>
-                <td class="dognameinlist"><a href="#" style="text-decoration:none;"><h5>less</h5></div></td>
+                <td class="dognameinlist"><a href="#" style="text-decoration:none;color:rgb(184, 108, 37);"><h5>less</h5></div></td>
                 <td class="dognameindot"><a href="#"style="color:rgb(184, 108, 37);" ><i class="fas fa-ellipsis-h"></i></a></td>
             </tr>
             <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
                 <script>document.getElementById("asdasd").id = ++j;</script>
-                <td class="dognameinlist"  > <a href="/addDog" style="color:rgb(184, 108, 37);" style="text-decoration:none;">Add dog</a></td>
-                <td class="dognameindot"><a href="/addDog"><i class="fas fa-plus"></a></i></td>
+                <td class="dognameinlist"  > <a href="/addDog" style="color:rgb(184, 108, 37);text-decoration:none;" >Add dog</a></td>
+                <td class="dognameindot"><a href="/addDog" style="text-decoration:none;color:rgb(184, 108, 37);"><i class="fas fa-plus"></a></i></td>
             </tr>
                         
         </table>
@@ -54,15 +54,25 @@
             <div>
                 <table class="sidebarlist rounded-bottom">
                         <% for (var infohos of info.hos){%>
-                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  >
+                            <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class = "hostoshow allowhos"  >
                                 <script>    
                                     document.getElementById("asdasd").id = j;
                                     j++;
                                 </script>
-                                <td class="dognameinlist" ><a href="/hosinfo?topic=<%=infohos%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=infohos%></div> </a> </td>
-                                <td class="dognameindot"><a href="/hosinfo?topic=<%=infohos%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                                <td class="dognameinlist" ><a href="/hosinfo?topic=<%=infohos%>" style="text-decoration:none;" ><div style="height:100%;width:100%;color:rgb(184, 108, 37);"><%=infohos%></div> </a> </td>
+                                <td class="dognameindot"><a href="/hosinfo?topic=<%=infohos%>" style="color:rgb(184, 108, 37);"><i class="fas fa-ellipsis-h"></i> </a></td>
                             </tr>   
                         <% } %>
+                        <tr id = "asdasd" class ="morehosbtn" onclick="allowhos()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                            <script>document.getElementById("asdasd").id = ++j;</script>
+                            <td class="dognameinlist"><a href="#" style="color:rgb(184, 108, 37);text-decoration:none;"  ><h5 style="color:rgb(184, 108, 37);" >more</h5></a></td>
+                            <td class="dognameindot"><a href="#"style="color:rgb(184, 108, 37);" ><i class="fas fa-ellipsis-h"></i></a></td>
+                        </tr>
+                        <tr id = "asdasd" class ="lesshosbtn" onclick="disallowhos()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                            <script>document.getElementById("asdasd").id = ++j;</script>
+                            <td class="dognameinlist"><a href="#" style="color:rgb(184, 108, 37);" ><h5>less</h5></div></td>
+                            <td class="dognameindot"><a href="#" style="color:rgb(184, 108, 37);" ><i  class="fas fa-ellipsis-h"></i></a></td>
+                        </tr>
                 </table>
                 
             </div>
@@ -71,15 +81,25 @@
                
                 <table class="sidebarlist rounded-bottom">
                     <% for (var infovet of info.vet){%>
-                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)"  >
+                        <tr id = "asdasd" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)" class = "vettoshow allowvet">
                             <script>    
                                 document.getElementById("asdasd").id = j;
                                 j++;
                             </script>
-                            <td class="dognameinlist" ><a href="/vetinfo?topic=<%=infovet%>" style="text-decoration:none;"><div style="height:100%;width:100%;"><%=infovet%></div> </a> </td>
-                            <td class="dognameindot"><a href="/vetinfo?topic=<%=infovet%>"><i class="fas fa-ellipsis-h"></i> </a></td>
+                            <td class="dognameinlist" ><a href="/vetinfo?topic=<%=infovet%>" style="text-decoration:none;"><div style="height:100%;width:100%;text-decoration:none;color:rgb(184, 108, 37);"><%=infovet%></div> </a> </td>
+                            <td class="dognameindot"><a href="/vetinfo?topic=<%=infovet%>" style="color:rgb(184, 108, 37);" ><i class="fas fa-ellipsis-h"></i> </a></td>
                         </tr>   
                     <% } %>
+                    <tr id = "asdasd" class ="morevetbtn" onclick="allowvet()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                        <script>document.getElementById("asdasd").id = ++j;</script>
+                        <td class="dognameinlist"><a href="#" style="color:rgb(184, 108, 37);text-decoration: none" ><h5>more</h5></a></td>
+                        <td class="dognameindot"><a href="#"style="color:rgb(184, 108, 37);"><i class="fas fa-ellipsis-h"></i></a></td>
+                    </tr>
+                    <tr id = "asdasd" class ="lessvetbtn" onclick="disallowvet()" onmouseover="mouseOver(this.id)" onmouseout="mouseOut(this.id)">
+                        <script>document.getElementById("asdasd").id = ++j;</script>
+                        <td class="dognameinlist"><a href="#" style="color:rgb(184, 108, 37);text-decoration: none"  ><h5>less</h5></div></td>
+                        <td class="dognameindot"><a href="#" style="color:rgb(184, 108, 37);" ><i class="fas fa-ellipsis-h"></i></a></td>
+                    </tr>
             </table>
             </div>
         </div>
@@ -195,21 +215,27 @@
  </div>
  <!--  Regis Modal End------------------------------------------------------------------------------------------------->
 <script>
+    
     var dogtoshow = document.getElementsByClassName("dogtoshow");
+    var hostoshow = document.getElementsByClassName("hostoshow");
+    var vettoshow = document.getElementsByClassName("vettoshow");
+
     var morebtn = document.getElementsByClassName("morebtn");
+    var morehosbtn = document.getElementsByClassName("morehosbtn");
+    var morevetbtn = document.getElementsByClassName("morevetbtn");
+
     var lessbtn = document.getElementsByClassName("lessbtn");
-    lessbtn[0].style.display = "none"
-    for(var e = 0;e<dogtoshow.length;e++){
-        if(e>2){
-            dogtoshow[e].style.display = "none"
-        }
-    }
-    if(dogtoshow.length<4){
-        morebtn[0].style.display = "none"
-    }
-    else{
-        jQuery(".morebtn").css("display", "table-row");
-    }
+    var lesshosbtn = document.getElementsByClassName("lesshosbtn");
+    var lessvetbtn = document.getElementsByClassName("lessvetbtn");
+
+    lessbtn[0].style.display = "none";
+    lesshosbtn[0].style.display = "none";
+    lessvetbtn[0].style.display = "none";
+    
+    // inithos();
+    
+    initlist();
+    
     function mouseOver(j){
         document.getElementById(j).style.backgroundColor = "rgb(260, 245, 220)";  
         document.getElementById(j).style.fontWeight = "bold";  
@@ -218,6 +244,48 @@
         document.getElementById(j).style.backgroundColor = "rgb(255, 238, 212)";
         document.getElementById(j).style.fontWeight = "normal";  
     }
+    function initlist(){
+        if(dogtoshow.length<4){
+                morebtn[0].style.display = "none";
+            }
+            else{
+                morebtn[0].style.display = "table-row";
+            }
+            if(hostoshow.length<4){
+                morehosbtn[0].style.display = "none";
+            }
+            else{
+                morehosbtn[0].style.display = "table-row";
+            }            
+            if(vettoshow.length<4){
+                morevetbtn[0].style.display = "none";
+            }
+            else{
+                morevetbtn[0].style.display = "table-row";
+                
+            }
+        for(var e = 0;e<dogtoshow.length;e++){
+            if(e>2){
+                dogtoshow[e].style.display = "none"
+            }
+        }   
+        for(var k = 0;k<hostoshow.length;k++){
+            if(k>2){
+                hostoshow[k].style.display = "none"
+            }
+        }
+        for(var j = 0;j<vettoshow.length;j++){
+            if(j>2){
+                vettoshow[j].style.display = "none"
+            }
+        }
+        
+
+    
+        
+    }
+    
+    
     function allowdog(){
         var allowing = document.getElementsByClassName("allowdog");
         jQuery(".allowdog").css("display", "table-row");
@@ -229,7 +297,7 @@
         var dogtoshow = document.getElementsByClassName("dogtoshow");
         for(var e = 0;e<dogtoshow.length;e++){
             if(e>2){
-                dogtoshow[e].style.display = "none"
+                dogtoshow[e].style.display = "none";
             }
         }
         // jQuery(".allowdog").css("display", "table-row");
@@ -237,4 +305,47 @@
         jQuery(".morebtn").css("display", "table-row");
         
     }
+    
+    function allowhos(){
+        var allowing = document.getElementsByClassName("allowhos");
+        jQuery(".allowhos").css("display", "table-row");
+        morehosbtn[0].style.display = "none"
+        jQuery(".lesshosbtn").css("display", "table-row");
+        
+        
+    }
+    function disallowhos(){
+        var hostoshow = document.getElementsByClassName("hostoshow");
+        for(var k = 0;k<hostoshow.length;k++){
+            if(k>2){
+                hostoshow[k].style.display = "none";
+            }
+        }
+        // jQuery(".allowdog").css("display", "table-row");
+        lesshosbtn[0].style.display = "none"
+        jQuery(".morehosbtn").css("display", "table-row");
+    }
+
+    function allowvet(){
+        var allowing = document.getElementsByClassName("allowvet");
+        jQuery(".allowvet").css("display", "table-row");
+        morevetbtn[0].style.display = "none"
+        jQuery(".lessvetbtn").css("display", "table-row");
+        
+        
+    }
+    function disallowvet(){
+        var vettoshow = document.getElementsByClassName("vettoshow");
+        for(var k = 0;k<vettoshow.length;k++){
+            if(k>2){
+                vettoshow[k].style.display = "none";
+            }
+        }
+        // jQuery(".allowdog").css("display", "table-row");
+        lessvetbtn[0].style.display = "none"
+        jQuery(".morevetbtn").css("display", "table-row");
+    }
+
+
+    
 </script>

@@ -129,13 +129,13 @@
 
                                     <div class="form-group">
                                         <label for="username">Username:</label>
-                                        <input required type="text" class="form-control" name="username" placeholder="username">
+                                        <input required pattern="[A-Za-z0-9]{1,15}" type="text" class="form-control" name="username" placeholder="username">
 
                                     </div>
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input required type="password" class="form-control" name="password" placeholder="password">
+                                        <input required  type="password"  class="form-control" name="password" placeholder="password">
                                     </div>
 
                                     <div class="modal-footer">
@@ -188,7 +188,7 @@
                                     <div class="form-group">
                                         <label for="username">Username:</label>
                                         <input required type="text" pattern="[A-Za-z0-9]{1,15}" class="form-control" name="username"
-                                            placeholder="username">
+                                            placeholder="Max Character : 15">
 
                                     </div>
 
@@ -199,14 +199,14 @@
 
                                     <div class="form-group">
                                         <label for="pwd">Password:</label>
-                                        <input required id="password1" type="password" class="form-control" name="pwd"
-                                            placeholder="password" oninput="passwordcheck()">
+                                        <input required pattern="[A-Za-z0-9]{20}" id="password1" type="password" class="form-control" name="pwd"
+                                            placeholder="Max Character : 20" oninput="passwordcheck()">
                                     </div>
 
                                     <div class="form-group">
                                         <label for="Cpwd">Confirm Password:</label>
-                                        <input required id="password2" type="password" class="form-control" name="Cpwd"
-                                            placeholder="Confirm password" oninput="passwordcheck()">
+                                        <input required pattern="[A-Za-z0-9]{20}" id="password2" type="password" class="form-control" name="Cpwd"
+                                            placeholder="Max Character : 20" oninput="passwordcheck()">
                                     </div>
                                     <div id="alertpw">
 
