@@ -4,20 +4,20 @@
     margin : 0px auto;
 }
 #sidebar{
-    background-color: rgb(145, 87, 0);
+    background-color: rgb(252, 199, 120);;
     color: white;
     padding: 20px;  
 }
 .navv{
-    background-color: rgb(65, 39, 0);
+    background-color:  rgb(226, 136, 0);
     color: white;
 }
 .navv-btn{
-    background-color: rgb(65, 39, 0);
+    background-color:  rgb(226, 136, 0);
     color: white;
 }
 .navv-btn:hover { 
-    background-color: rgb(134, 81, 0);
+    background-color: rgb(231, 151, 31);
 }
 #sidebar1{
     height: 1080px;
@@ -306,7 +306,9 @@
 }
 
 body{
-            
+    background-image: linear-gradient(white, rgb(247, 225, 192));
+    background-attachment: fixed;
+    background-repeat: no-repeat;
             -webkit-animation: fadein 0.5s;
             /*Safari,ChromeandOpera>12.1*/-moz-animation: fadein 0.5s;
             /*Firefox<16*/-ms-animation: fadein 0.5s;

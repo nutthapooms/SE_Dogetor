@@ -8,16 +8,12 @@ var session = require('express-session')
 var bcrypt = require('bcrypt-nodejs')
 var flash = require('connect-flash')
 
-
-
 router.use(flash())
 router.use(session({
     secret: 'secret',
     saveUninitialized: true,
     resave: true
 }))
-
-
 
 router.use(expressValidator({
     errorFormatter: function (param, msg, value) {
@@ -74,7 +70,6 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
         } else {
             newuser.avatar = req.file.filename
         }
-
         newuser.save(function (err, book) {
             if (err) {
                 console.log(err.code)
@@ -93,32 +88,8 @@ router.post('/', upload.single('uploaded_image'), function (req, res) {
     }
 })
 
-// router.get('/aboutus', loggedIn, function (req, res) {
-//     dogData.find({
-//         owner: req.user.username
-//     }, function (err, book) {
-//         res.render('aboutus', {
-//             info: req.user,
-//             dog: book,
-//         })
-//     })
-// })
-
-
-
 router.get('/', function (req, res) {
     res.redirect('/index')
 })
-
-// function loggedIn(req, res, next) {
-//     console.log(req.session.passport.user)
-//     if (req.session.passport.user) {
-//         next()
-//     } else {
-//         res.redirect('/')
-//     }
-// }
-
-
 
 module.exports = router

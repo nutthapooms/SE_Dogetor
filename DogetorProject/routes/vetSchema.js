@@ -4,7 +4,7 @@ var vet = new Schema({
     name: String,
     surname:String,
     hos: String,
-    phone: String,    
+    experience: String,    
     pic: String
     
 })
