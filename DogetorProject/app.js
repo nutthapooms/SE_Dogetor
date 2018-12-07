@@ -867,6 +867,6 @@ app.post('/ananymous', function (req, res) {
     })
 })
 
-app.listen(port, '161.246.6.34', function () {
+app.listen(port, function () {
     console.log("ready to launch")
 })
