@@ -324,7 +324,7 @@ function summaryResult() {
       symptom.$data.diseaseall[i].prob = 0;
     }
     if(symptom.$data.sympresult.length == 0){
-      symptom.$data.sympresult[0] = '';
+      symptom.$data.sympresult[0] = 'ไม่พบโรคที่คาดว่าจะเป็น';
     }
     $.ajax({
       url:'/ananymous2',
@@ -378,7 +378,7 @@ function saveResult() {
       symptom.$data.diseaseall[i].prob = 0;
     }
     if(symptom.$data.sympresult.length == 0){
-      symptom.$data.sympresult[0] = '';
+      symptom.$data.sympresult[0] = 'ไม่พบโรคที่คาดว่าจะเป็น';
     }
     $.ajax({
       url:'/ananymous3',

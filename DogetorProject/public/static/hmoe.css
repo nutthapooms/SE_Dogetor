@@ -187,7 +187,7 @@
 
 #infoParagraph{
     font-weight: bold;
-    color: grey;
+    color: rgb(241, 241, 241);
 }
 
 #memberContainer{
@@ -205,7 +205,8 @@
     border-radius: 10px;
 }
 #schedulehead{
-    background-color : rgb(255, 229, 182);
+    background-color : rgb(0, 192, 226);
+    color: white;
     margin-bottom :0px;
     padding: 10px;
     border-top-left-radius: 10px;

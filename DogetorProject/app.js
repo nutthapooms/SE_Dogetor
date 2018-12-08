@@ -17,7 +17,7 @@ var LocalStrategy = require('passport-local')
 var port = 8080
 
 app.use(index)
-mongoose.connect('mongodb://localhost:27017/userDB', { //connect Database
+mongoose.connect('mongodb://admin1:admin1@ds125574.mlab.com:25574/dogetorproject', { //connect Database
         useNewUrlParser: true
     },
     function (err) {

@@ -6,14 +6,6 @@
             <div><%=dog.length%> dogs</div>
         </div>
         <div class="sidebarComp">
-                <!-- <a href="AnalyzeReg.html"></a> -->
-                <a style="text-decoration:none;" href="#" data-toggle="modal"  data-target="#Updatemodal">
-                    <div id="updatebtn" class="listTitle rounded">
-                        <h5 class = "listbtn"><i class="fas fa-cog"></i> Edit Profile</h5>
-                    </div>
-                </a>
-            </div>
-        <div class="sidebarComp">
             <div class="listTitle rounded-top"><i class="fas fa-dog"></i> Dog list</div>
             <table class="sidebarlist rounded-bottom">
                 <script>var j = 0;</script>
@@ -104,11 +96,12 @@
             </div>
         </div>
         <div class="sidebarComp">
+                <a style="text-decoration:none;" href="/hosp" class = "listbtn"> <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div></a>
+            </div>
+        <div class="sidebarComp">
             <a style="text-decoration:none;" href="/vet" class = "listbtn"><div class="listTitle rounded"><i class="fas fa-user-md"></i> Vet list</div></a>
         </div>
-        <div class="sidebarComp">
-            <a style="text-decoration:none;" href="/hosp" class = "listbtn"> <div class="listTitle rounded"><i class="fas fa-briefcase-medical"></i> Hospital list</div></a>
-        </div>
+        
         <div class="sidebarComp">
             <!-- <a href="AnalyzeReg.html"></a> -->
             <a style="text-decoration:none;" href="#" data-toggle="modal"  data-target="#myModal">
@@ -245,37 +238,37 @@
         document.getElementById(j).style.fontWeight = "normal";  
     }
     function initlist(){
-        if(dogtoshow.length<4){
-                morebtn[0].style.display = "none";
-            }
-            else{
-                morebtn[0].style.display = "table-row";
-            }
-            if(hostoshow.length<4){
-                morehosbtn[0].style.display = "none";
-            }
-            else{
-                morehosbtn[0].style.display = "table-row";
-            }            
-            if(vettoshow.length<4){
-                morevetbtn[0].style.display = "none";
-            }
-            else{
-                morevetbtn[0].style.display = "table-row";
-                
-            }
+        if(dogtoshow.length<3){
+            morebtn[0].style.display = "none";
+        }
+        else{
+            morebtn[0].style.display = "table-row";
+        }
+        if(hostoshow.length<3){
+            morehosbtn[0].style.display = "none";
+        }
+        else{
+            morehosbtn[0].style.display = "table-row";
+        }            
+        if(vettoshow.length<3){
+            morevetbtn[0].style.display = "none";
+        }
+        else{
+            morevetbtn[0].style.display = "table-row";
+            
+        }
         for(var e = 0;e<dogtoshow.length;e++){
-            if(e>2){
+            if(e>1){
                 dogtoshow[e].style.display = "none"
             }
         }   
         for(var k = 0;k<hostoshow.length;k++){
-            if(k>2){
+            if(k>1){
                 hostoshow[k].style.display = "none"
             }
         }
         for(var j = 0;j<vettoshow.length;j++){
-            if(j>2){
+            if(j>1){
                 vettoshow[j].style.display = "none"
             }
         }
@@ -296,7 +289,7 @@
     function disallowdog(){
         var dogtoshow = document.getElementsByClassName("dogtoshow");
         for(var e = 0;e<dogtoshow.length;e++){
-            if(e>2){
+            if(e>1){
                 dogtoshow[e].style.display = "none";
             }
         }
@@ -317,7 +310,7 @@
     function disallowhos(){
         var hostoshow = document.getElementsByClassName("hostoshow");
         for(var k = 0;k<hostoshow.length;k++){
-            if(k>2){
+            if(k>1){
                 hostoshow[k].style.display = "none";
             }
         }
@@ -337,7 +330,7 @@
     function disallowvet(){
         var vettoshow = document.getElementsByClassName("vettoshow");
         for(var k = 0;k<vettoshow.length;k++){
-            if(k>2){
+            if(k>1){
                 vettoshow[k].style.display = "none";
             }
         }
